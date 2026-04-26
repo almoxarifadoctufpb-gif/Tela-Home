@@ -1734,25 +1734,14 @@
                 <div class="brand-text"><h1>VULPS+</h1><p>Painel de Desempenho</p></div>
             </div>
             <div class="header-actions">
-                <!-- Botão Foco removido daqui e movido para dentro do card do cronômetro -->
+                <button class="btn btn-outline" onclick="refreshDashboard()"><i class="fas fa-sync-alt"></i> Atualizar</button>
+                <button class="btn btn-outline" onclick="openExportModal()"><i class="fas fa-file-export"></i> Exportar</button>
                 <button id="theme-toggle" class="btn btn-outline"><i class="fas fa-moon"></i> <span>Escuro</span></button>
                 <button id="quemSomosBtn" class="btn btn-outline"><i class="fas fa-users"></i> Quem Somos</button>
             </div>
         </div>
 
-        <!-- DASHBOARD -->
-        <header class="dash-header" style="border-radius: 24px; margin-bottom: 24px;">
-            <div class="dash-header-inner">
-                <div class="dash-brand">
-                    <img src="https://i.ibb.co/LzCwL9bX/ChatGPT_Image.png" alt="VULPS+">
-                    <div><h1>Dashboard VULPS+</h1><p>Métricas completas de desempenho</p></div>
-                </div>
-                <div class="dash-actions">
-                    <button class="btn-dash" onclick="refreshDashboard()"><i class="fas fa-sync-alt"></i> Atualizar</button>
-                    <button class="btn-dash btn-dash-primary" onclick="openExportModal()"><i class="fas fa-file-export"></i> Exportar CSV</button>
-                </div>
-            </div>
-        </header>
+        <!-- DASHBOARD (sem header duplicado) -->
         <main class="dash-container" style="padding: 0 0 24px 0;">
             <section class="kpi-grid">
                 <div class="kpi-card success animate-in animate-delay-1"><div class="kpi-header"><div class="kpi-icon"><i class="fas fa-check-circle"></i></div><span class="kpi-trend" id="kpiCorrectTrend">+0%</span></div><div class="kpi-value" id="kpiCorrect">0</div><div class="kpi-label">Acertos Totais</div><div class="kpi-sub" id="kpiCorrectSub">0% de aproveitamento</div></div>
@@ -1987,7 +1976,7 @@
                 const status = getStatus(perc);
                 const tempoFormatado = formatarHorasMinutos(d.horasMinutos || 0);
                 const badgeClass = status === 'Avançado' ? 'badge-high' : (status === 'Intermediário' ? 'badge-mid' : 'badge-low');
-                return `<tr><tr>${nome}</td><td>${d.certas}</td><td>${d.erradas}</td><td>${total}</td><td>${perc}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempoFormatado}</td><td><button class="btn-iniciar-cron" onclick="iniciarCronometroPara('${nome}')" title="Iniciar cronômetro"><i class="fas fa-play"></i></button><button class="btn-excluir" onclick="excluirDisciplina('${nome}')" title="Excluir"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                return `<tr><td>${nome}</td><td>${d.certas}</td><td>${d.erradas}</td><td>${total}</td><td>${perc}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempoFormatado}</td><td><button class="btn-iniciar-cron" onclick="iniciarCronometroPara('${nome}')" title="Iniciar cronômetro"><i class="fas fa-play"></i></button><button class="btn-excluir" onclick="excluirDisciplina('${nome}')" title="Excluir"><i class="fas fa-trash-alt"></i></button></td></tr>`;
             }).join('');
         }
 
