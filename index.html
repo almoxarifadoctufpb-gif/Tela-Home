@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="tema-2">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -1736,6 +1736,7 @@
             <div class="header-actions">
                 <button class="btn btn-outline" onclick="refreshDashboard()"><i class="fas fa-sync-alt"></i> Atualizar</button>
                 <button class="btn btn-outline" onclick="openExportModal()"><i class="fas fa-file-export"></i> Exportar</button>
+                <button class="btn btn-outline" onclick="resetMetrics()" title="Zerar todas as métricas"><i class="fas fa-trash-alt"></i> Zerar métricas</button>
                 <button id="theme-toggle" class="btn btn-outline"><i class="fas fa-moon"></i> <span>Escuro</span></button>
                 <button id="quemSomosBtn" class="btn btn-outline"><i class="fas fa-users"></i> Quem Somos</button>
             </div>
@@ -1794,7 +1795,6 @@
                 <button id="timerPause" class="btn btn-outline"><i class="fas fa-pause"></i> Pausar</button>
                 <button id="timerSave" class="btn btn-outline"><i class="fas fa-save"></i> Salvar Tempo</button>
                 <button id="timerReset" class="btn btn-outline"><i class="fas fa-redo"></i> Zerar</button>
-                <!-- Botão Foco movido para cá (próximo aos controles do cronômetro) -->
                 <button id="focusModeToggle" class="btn btn-outline"><i class="fas fa-expand"></i> Foco</button>
             </div>
         </div>
@@ -1919,12 +1919,9 @@
 
         function atualizarSelects() {
             const todasDisciplinas = disciplinasPredefinidas.sort();
-            // Select do cronômetro: apenas disciplinas existentes (data)
             const disciplinasExistentes = Object.keys(data).sort();
             selectDisciplina.innerHTML = '<option value="">-- Selecione --</option>' + disciplinasExistentes.map(d => `<option value="${d}">${d}</option>`).join('');
-            // Select de nova disciplina: todas as predefinidas
             novaSelect.innerHTML = '<option value="">-- Adicionar nova disciplina --</option>' + todasDisciplinas.map(d => `<option value="${d}">${d}</option>`).join('');
-            // Select de registro: disciplinas existentes
             registroDisciplinaSelect.innerHTML = '<option value="">-- Selecione --</option>' + disciplinasExistentes.map(d => `<option value="${d}">${d}</option>`).join('');
         }
 
@@ -2022,6 +2019,23 @@
             setTimeout(() => { msgAdicionar.textContent = ''; msgAdicionar.style.color = 'var(--accent-primary)'; }, 3000);
         }
 
+        function resetMetrics() {
+            if (confirm("ATENÇÃO: ESSA AÇÃO APAGA SUAS MÉTRICAS\nAntes de confirmar, esteja ciente de que esta função fará uma limpeza.")) {
+                // Remove dados do localStorage
+                localStorage.removeItem('vulps_discipline_data');
+                localStorage.removeItem('user_progress_events');
+                localStorage.removeItem('vulps_goals');
+                // Limpa cache
+                if (typeof vulpsCache !== 'undefined') {
+                    vulpsCache.clearAll();
+                }
+                // Recarrega a página para estado zerado
+                location.reload();
+            }
+        }
+        // Expor a função globalmente para o botão onclick
+        window.resetMetrics = resetMetrics;
+
         registroAcertarBtn.onclick = () => {
             const nome = registroDisciplinaSelect.value;
             if (!nome) { alert('Selecione uma disciplina!'); return; }
@@ -2086,7 +2100,7 @@
         };
 
         (function(){
-            const html=document.documentElement; const themes=['dark','light','tema-1','tema-2','minimal']; let cur=localStorage.getItem('theme')||'dark';
+            const html=document.documentElement; const themes=['dark','light','tema-1','tema-2','minimal']; let cur=localStorage.getItem('theme')||'tema-2';
             html.setAttribute('data-theme',cur);
             document.getElementById('theme-toggle').onclick=()=>{ let idx=themes.indexOf(cur); idx=(idx+1)%themes.length; cur=themes[idx]; html.setAttribute('data-theme',cur); localStorage.setItem('theme',cur); if(typeof cachedAccentColor!=='undefined') cachedAccentColor=null; if(typeof vulpsCache!=='undefined') vulpsCache.invalidateAll('cssVar'); };
             const sidebar=document.getElementById('sidebar'); const overlay=document.getElementById('sidebarOverlay');
