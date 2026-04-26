@@ -1403,6 +1403,308 @@
         @media (max-width: 480px) {
             .kpi-grid { grid-template-columns: 1fr; }
         }
+
+        /* ========== RESPONSIVIDADE ADICIONAL (NOVO BLOCO) ========== */
+        /* Garantia de overflow hidden e ajustes finos */
+        body {
+            overflow-x: hidden;
+        }
+        .app-container,
+        .dash-container,
+        .card,
+        .dash-section,
+        .registro-card,
+        .painel-controle,
+        .adicionar-area,
+        .header-brand,
+        .dash-header-inner,
+        .kpi-grid,
+        .chart-grid,
+        .heatmap-grid,
+        .table-container,
+        .modal-card {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        /* Tipografia responsiva global */
+        body, button, input, select, .btn, .sidebar-btn, .timer-display, .kpi-value, .section-title {
+            font-size: clamp(0.85rem, 2vw, 1rem);
+        }
+        h1, .brand-text h1, .dash-brand h1 {
+            font-size: clamp(1.2rem, 5vw, 2rem);
+        }
+        .timer-display {
+            font-size: clamp(2rem, 8vw, 3.8rem);
+        }
+        .kpi-value {
+            font-size: clamp(1.3rem, 4vw, 2rem);
+        }
+
+        /* Sidebar ajustes em telas pequenas */
+        @media (max-width: 767px) {
+            #sidebar {
+                width: 80%;
+                max-width: 280px;
+                transform: translateX(-100%);
+            }
+            #sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-btn {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Dashboard header responsivo */
+        .dash-header {
+            padding: 12px 16px;
+        }
+        .dash-header-inner {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+        }
+        .dash-actions {
+            justify-content: flex-start;
+        }
+        .btn-dash {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+
+        /* KPIs com grid mais responsivo */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+        }
+        .kpi-card {
+            padding: 16px 14px;
+        }
+        .kpi-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 1rem;
+        }
+        .kpi-value {
+            font-size: 1.6rem;
+        }
+        .kpi-label, .kpi-sub {
+            font-size: 0.75rem;
+        }
+
+        /* Seções do dashboard */
+        .dash-section {
+            padding: 16px;
+        }
+        .section-header {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .section-filters {
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-select {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* Gráficos responsivos */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .chart-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+        .chart-wrapper {
+            padding: 12px;
+        }
+        .chart-canvas {
+            height: auto !important;
+            max-height: 260px;
+            width: 100% !important;
+        }
+
+        /* Heatmap semanal responsivo */
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(7, minmax(35px, 1fr));
+            gap: 4px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+        }
+        .heatmap-cell {
+            font-size: 0.65rem;
+            min-width: 30px;
+        }
+        .heatmap-labels {
+            gap: 4px;
+            font-size: 0.6rem;
+        }
+        @media (max-width: 480px) {
+            .heatmap-grid {
+                gap: 3px;
+            }
+            .heatmap-cell {
+                font-size: 0.55rem;
+                min-width: 28px;
+            }
+            .heatmap-labels span {
+                font-size: 0.5rem;
+            }
+        }
+
+        /* Cards de metas */
+        .goal-card {
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px;
+        }
+        .goal-ring {
+            width: 48px;
+            height: 48px;
+        }
+        .goal-info {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        /* Tabelas responsivas */
+        .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .dash-table {
+            min-width: 500px;
+            width: 100%;
+        }
+        .dash-table th,
+        .dash-table td {
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+            .dash-table th,
+            .dash-table td {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Modal de export */
+        .modal-card {
+            max-width: 90vw;
+            padding: 20px;
+            margin: 0 12px;
+        }
+        .export-preview {
+            font-size: 0.7rem;
+            max-height: 200px;
+        }
+
+        /* Layout principal - cards e formulários */
+        .registro-card {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .registro-card .controle-grupo {
+            width: 100%;
+        }
+        .row-botoes {
+            justify-content: space-between;
+        }
+        .adicionar-area {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        #novaDisciplinaSelect, #addDisciplinaBtn {
+            width: 100%;
+        }
+        #tabelaDisciplinas {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        #tabelaDisciplinas th,
+        #tabelaDisciplinas td {
+            padding: 8px 10px;
+            font-size: 0.8rem;
+        }
+        #filtroTabela {
+            max-width: 100%;
+        }
+
+        /* Botões */
+        .btn, .sidebar-btn, .pix-copy-btn {
+            min-height: 44px;
+        }
+        .timer-type-selector {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .timer-type-btn {
+            padding: 6px 12px;
+            font-size: 0.75rem;
+        }
+        @media (max-width: 480px) {
+            .timer-display {
+                font-size: 2rem;
+                padding: 0.3rem 0.8rem;
+            }
+            .btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Modo foco */
+        .focus-ring-container {
+            width: min(70vw, 240px);
+            height: min(70vw, 240px);
+        }
+        .focus-timer {
+            font-size: clamp(1.8rem, 8vw, 5rem);
+        }
+        .focus-btn {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 480px) {
+            .focus-btn {
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        /* Banner de doação */
+        .vulps-donation-banner {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            left: auto;
+            max-width: calc(100% - 32px);
+            width: 260px;
+            padding: 12px;
+        }
+        @media (max-width: 480px) {
+            .vulps-donation-banner {
+                width: auto;
+                left: 16px;
+                right: 16px;
+                bottom: 12px;
+                text-align: center;
+            }
+        }
     </style>
 <base target="_blank">
 </head>
@@ -1432,7 +1734,7 @@
                 <div class="brand-text"><h1>VULPS+</h1><p>Painel de Desempenho</p></div>
             </div>
             <div class="header-actions">
-                <button id="focusModeToggle" class="btn btn-outline"><i class="fas fa-expand"></i> Foco</button>
+                <!-- Botão Foco removido daqui e movido para dentro do card do cronômetro -->
                 <button id="theme-toggle" class="btn btn-outline"><i class="fas fa-moon"></i> <span>Escuro</span></button>
                 <button id="quemSomosBtn" class="btn btn-outline"><i class="fas fa-users"></i> Quem Somos</button>
             </div>
@@ -1478,7 +1780,7 @@
             </section>
             <section class="dash-section animate-in animate-delay-5">
                 <div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos os resultados</option><option value="correct">Apenas acertos</option><option value="wrong">Apenas erros</option></select></div></div>
-                <div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo</th><th>ID da Questão</th></tr></thead><tbody id="historyTableBody"></tbody></table></div>
+                <div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo</th><th>ID da Questão</th></td></thead><tbody id="historyTableBody"></tbody></table></div>
             </section>
         </main>
         <!-- FIM DO DASHBOARD -->
@@ -1503,6 +1805,8 @@
                 <button id="timerPause" class="btn btn-outline"><i class="fas fa-pause"></i> Pausar</button>
                 <button id="timerSave" class="btn btn-outline"><i class="fas fa-save"></i> Salvar Tempo</button>
                 <button id="timerReset" class="btn btn-outline"><i class="fas fa-redo"></i> Zerar</button>
+                <!-- Botão Foco movido para cá (próximo aos controles do cronômetro) -->
+                <button id="focusModeToggle" class="btn btn-outline"><i class="fas fa-expand"></i> Foco</button>
             </div>
         </div>
 
@@ -1588,6 +1892,7 @@
 
         let data = JSON.parse(localStorage.getItem('vulps_discipline_data')) || {};
         let events = JSON.parse(localStorage.getItem('user_progress_events')) || [];
+        let goals = []; // será carregado no loadData
         if (Object.keys(data).length === 0) {
             disciplinasPredefinidas.slice(0, 6).forEach(d => data[d] = { certas: 0, erradas: 0, horasMinutos: 0 });
             salvarDados();
@@ -1625,9 +1930,13 @@
 
         function atualizarSelects() {
             const todasDisciplinas = disciplinasPredefinidas.sort();
-            selectDisciplina.innerHTML = '<option value="">-- Selecione --</option>' + todasDisciplinas.map(d => `<option value="${d}">${d}</option>`).join('');
+            // Select do cronômetro: apenas disciplinas existentes (data)
+            const disciplinasExistentes = Object.keys(data).sort();
+            selectDisciplina.innerHTML = '<option value="">-- Selecione --</option>' + disciplinasExistentes.map(d => `<option value="${d}">${d}</option>`).join('');
+            // Select de nova disciplina: todas as predefinidas
             novaSelect.innerHTML = '<option value="">-- Adicionar nova disciplina --</option>' + todasDisciplinas.map(d => `<option value="${d}">${d}</option>`).join('');
-            registroDisciplinaSelect.innerHTML = '<option value="">-- Selecione --</option>' + Object.keys(data).sort().map(d => `<option value="${d}">${d}</option>`).join('');
+            // Select de registro: disciplinas existentes
+            registroDisciplinaSelect.innerHTML = '<option value="">-- Selecione --</option>' + disciplinasExistentes.map(d => `<option value="${d}">${d}</option>`).join('');
         }
 
         selectDisciplina.addEventListener('change', function() {
@@ -1678,7 +1987,7 @@
                 const status = getStatus(perc);
                 const tempoFormatado = formatarHorasMinutos(d.horasMinutos || 0);
                 const badgeClass = status === 'Avançado' ? 'badge-high' : (status === 'Intermediário' ? 'badge-mid' : 'badge-low');
-                return `<tr><td>${nome}</td><td>${d.certas}</td><td>${d.erradas}</td><td>${total}</td><td>${perc}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempoFormatado}</td><td><button class="btn-iniciar-cron" onclick="iniciarCronometroPara('${nome}')" title="Iniciar cronômetro"><i class="fas fa-play"></i></button><button class="btn-excluir" onclick="excluirDisciplina('${nome}')" title="Excluir"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                return `<tr><tr>${nome}</td><td>${d.certas}</td><td>${d.erradas}</td><td>${total}</td><td>${perc}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempoFormatado}</td><td><button class="btn-iniciar-cron" onclick="iniciarCronometroPara('${nome}')" title="Iniciar cronômetro"><i class="fas fa-play"></i></button><button class="btn-excluir" onclick="excluirDisciplina('${nome}')" title="Excluir"><i class="fas fa-trash-alt"></i></button></td></tr>`;
             }).join('');
         }
 
