@@ -1119,10 +1119,10 @@
 
     <div class="toast-container" id="toastContainer"></div>
 
-    <button id="camiFAB" aria-label="Abrir assistente Cami"><span class="cami-icon">🦎</span><span class="cami-notification-dot" id="camiDot"></span></button>
+    <button id="camiFAB" aria-label="Abrir assistente Cami"><span class="cami-icon">🦊</span><span class="cami-notification-dot" id="camiDot"></span></button>
     <div id="camiChatWindow">
         <div id="camiChatHeader">
-            <div class="cami-avatar">🦎</div>
+            <div class="cami-avatar">🦊</div>
             <div class="cami-header-info"><div class="cami-header-name">Cami · Assistente VULPS+</div><div class="cami-header-status">Online · Pronta para ajudar</div></div>
             <button id="camiChatMinimize">✕</button>
         </div>
@@ -1463,7 +1463,7 @@
                     input.focus();
                     if (camiFirstInteraction) {
                         camiFirstInteraction = false;
-                        mostrarDigitando(() => { enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente da VULPS+. Posso ajudar com métricas, cronômetro, metas e como usar o dashboard. 🦎 Lembre-se: <strong>ninguém estuda sozinho!</strong> 💚'); });
+                        mostrarDigitando(() => { enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente da VULPS+. Posso ajudar com métricas, cronômetro, metas e como usar o dashboard. 🦊 Lembre-se: <strong>ninguém estuda sozinho!</strong> 💚'); });
                     }
                 } else { win.classList.remove('active'); fab.classList.remove('chat-open'); }
             }
@@ -1864,7 +1864,6 @@
             document.getElementById('kpiTimeSub').textContent = 'Média: ' + formatTime(m.avgTime) + '/questão';
             document.getElementById('kpiStreakSub').textContent = 'Maior streak: ' + m.maxStreak;
 
-            // Mensagens de apoio mútuo
             const encCorrect = document.getElementById('kpiCorrectEnc');
             if (encCorrect && m.correct > 0) {
                 const nomes = ["Maria", "João", "Ana", "Pedro", "Carla"];
