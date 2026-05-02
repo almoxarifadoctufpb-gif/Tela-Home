@@ -15,7 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
-        /* ========== VARIÁVEIS GLOBAIS (PALETA CORRIGIDA) ========== */
+        /* ========== VARIÁVEIS GLOBAIS ========== */
         :root {
             --primary: #1155cc;
             --primary-dark: #0d47a1;
@@ -573,6 +573,7 @@
         }
         .feed-empty .mascot-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
 
+        /* Modo Foco - agora com raposa */
         .focus-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(8,15,30,0.92); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -580,7 +581,31 @@
         }
         .focus-overlay.active { opacity: 1; pointer-events: auto; }
         .focus-container { text-align: center; }
-        .focus-logo { display: block; margin: 0 auto 24px; width: 100px; opacity: 0.85; filter: drop-shadow(0 0 24px rgba(255,122,0,0.3)); }
+        .focus-fox {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 110px; height: 110px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,122,0,0.25) 0%, rgba(0,200,120,0.2) 100%);
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            animation: foxFloat 4s ease-in-out infinite;
+            box-shadow: 0 0 36px rgba(255,122,0,0.35);
+        }
+        .focus-fox::after {
+            content: ''; position: absolute; inset: -4px; border-radius: 50%;
+            border: 2px dashed var(--accent);
+            opacity: 0.4;
+            animation: spinSlow 25s linear infinite;
+        }
+        @keyframes foxFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .focus-logo { display: none; } /* ocultando a logo antiga */
         .focus-ring-container { position: relative; width: 220px; height: 220px; margin: 0 auto 20px; }
         canvas#focusRingCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .focus-timer {
@@ -803,6 +828,7 @@
             .motivational-brain { width: 56px; height: 56px; font-size: 1.6rem; }
             .motivational-quote { font-size: 0.9rem; }
             .community-feed .feed-list { max-height: 160px; }
+            .focus-fox { width: 90px; height: 90px; font-size: 3rem; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none; }
@@ -900,7 +926,6 @@
             <button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional" aria-label="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button>
         </div>
 
-        <!-- FEED DA COMUNIDADE -->
         <div class="community-feed">
             <div class="feed-header">
                 <div class="feed-title">
@@ -1054,7 +1079,7 @@
     <div class="focus-overlay" id="focusOverlay">
         <button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button>
         <div class="focus-container">
-            <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="focus-logo">
+            <div class="focus-fox">🦊</div>
             <div class="focus-ring-container"><canvas id="focusRingCanvas" width="240" height="240"></canvas><div class="focus-timer" id="focusTimerDisplay">00:00:00</div></div>
             <div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount">1</span></div>
             <div class="focus-controls"><button class="focus-btn" id="focusTimerStart"><i class="fas fa-play"></i></button><button class="focus-btn" id="focusTimerPause"><i class="fas fa-pause"></i></button></div>
@@ -1204,7 +1229,7 @@
         document.getElementById('motivationalRefreshBtn').addEventListener('click', refreshMotivationalQuote);
         updateMotivationalQuote();
 
-        // ========== FEED DA COMUNIDADE (MOCK) ==========
+        // ========== FEED DA COMUNIDADE ==========
         const comunidadeNomes = [
             "Maria", "João", "Ana", "Pedro", "Carla", "Lucas", "Juliana", "Rafael",
             "Fernanda", "Bruno", "Amanda", "Gustavo", "Patrícia", "Felipe", "Larissa",
@@ -1263,7 +1288,7 @@
             setInterval(renderizarFeedComunidade, 45000 + Math.random() * 30000);
         }
 
-        // ========== SAUDAÇÃO DINÂMICA (SIDEBAR) ==========
+        // ========== SAUDAÇÃO DINÂMICA ==========
         (function() {
             const greetingEl = document.getElementById('sidebarGreeting');
             if (greetingEl) {
@@ -1276,7 +1301,7 @@
             }
         })();
 
-        // ========== CONFETES (QUEM SOMOS) ==========
+        // ========== CONFETES ==========
         function spawnConfetti() {
             const container = document.getElementById('confettiContainer');
             if (!container) return;
@@ -1308,7 +1333,7 @@
             overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
         })();
 
-        // ========== TEMA (CLARO/ESCURO) ==========
+        // ========== TEMA ==========
         (function() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
