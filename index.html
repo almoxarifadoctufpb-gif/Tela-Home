@@ -12,11 +12,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- jsPDF para exportação PDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
-        /* ========== VARIÁVEIS GLOBAIS (REFINADAS) ========== */
+        /* ========== VARIÁVEIS GLOBAIS ========== */
         :root {
             --primary: #1155cc;
             --primary-dark: #0d47a1;
@@ -35,7 +34,6 @@
             --gold: #f0b90b;
             --gold-light: #fde047;
             --whatsapp: #25D366;
-
             --bg-primary: #f7f9fc;
             --bg-card: #ffffff;
             --text-primary: #0f172a;
@@ -43,27 +41,23 @@
             --text-muted: #94a3b8;
             --border-light: #e2e8f0;
             --border-medium: #cbd5e1;
-
             --sidebar-bg: #0f1e3d;
             --sidebar-gradient: linear-gradient(180deg, #102048 0%, #0d1a3a 40%, #0a142e 100%);
             --sidebar-shadow: inset -2px 0 12px rgba(0,0,0,0.2), 4px 0 24px rgba(15,30,60,0.4);
             --sidebar-text: rgba(255, 255, 255, 0.88);
             --sidebar-hover: rgba(255, 255, 255, 0.08);
             --sidebar-active: rgba(255, 255, 255, 0.12);
-
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
             --radius-xl: 24px;
             --radius-pill: 40px;
             --radius-full: 9999px;
-
             --shadow-xs: 0 1px 2px rgba(0,0,0,0.04);
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
             --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
             --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
             --shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
-
             --sidebar-width: 260px;
             --topbar-height: 56px;
             --input-bg: #ffffff;
@@ -76,13 +70,11 @@
             --footer-heading: #ffffff;
             --footer-link: #7ed957;
             --footer-border: rgba(255, 255, 255, 0.08);
-
             --transition-fast: 0.15s ease;
             --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ========== DARK MODE (REFINADO) ========== */
         html[data-theme="dark"] {
             --bg-primary: #0b1120;
             --bg-card: #1a2332;
@@ -130,7 +122,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* ========== TOPBAR (ESTILO QCONCURSOS) ========== */
         #topbar {
             position: fixed; top: 0; left: 0; right: 0; height: var(--topbar-height);
             background: var(--bg-card); border-bottom: 1px solid var(--border-light);
@@ -182,18 +173,11 @@
         .notification-dropdown .notification-item.unread {
             background: var(--primary-soft); font-weight: 600; color: var(--text-primary);
         }
-        .notification-dropdown .notification-item .notification-icon {
-            font-size: 1rem; color: var(--primary); margin-top: 2px;
-        }
+        .notification-dropdown .notification-item .notification-icon { font-size: 1rem; color: var(--primary); margin-top: 2px; }
         .notification-dropdown .notification-item .notification-content { flex: 1; min-width: 0; }
-        .notification-dropdown .notification-item .notification-time {
-            font-size: 0.7rem; color: var(--text-muted); margin-top: 4px;
-        }
-        .notification-dropdown .notification-empty {
-            padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.85rem;
-        }
+        .notification-dropdown .notification-item .notification-time { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .notification-dropdown .notification-empty { padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 
-        /* ========== HAMBURGER (REFINADO) ========== */
         #hamburgerBtn {
             display: flex; align-items: center; justify-content: center;
             position: fixed; top: 20px; left: 20px; z-index: 110;
@@ -202,13 +186,8 @@
             color: var(--text-primary); font-size: 1.1rem; cursor: pointer;
             box-shadow: var(--shadow-sm); transition: all var(--transition-base);
         }
-        #hamburgerBtn:hover {
-            border-color: var(--primary);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
-        }
+        #hamburgerBtn:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-1px); }
 
-        /* ========== SIDEBAR (REFINADA - COM PERFIL ACIMA DO LOGO) ========== */
         #sidebar {
             position: fixed; left: 0; top: 0; height: 100vh; height: 100dvh;
             width: var(--sidebar-width); background: var(--sidebar-gradient);
@@ -225,43 +204,27 @@
             padding: 28px 0 20px; margin-bottom: 8px;
             border-bottom: 1px solid rgba(255,255,255,0.12);
         }
-        .sidebar-profile {
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            width: 100%;
-        }
+        .sidebar-profile { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; }
         .sidebar-avatar {
             width: 58px; height: 58px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.4rem; color: #fff;
-            border: 3px solid rgba(255,255,255,0.25);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            transition: transform var(--transition-base), box-shadow var(--transition-base);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            font-size: 1.4rem; color: #fff; border: 3px solid rgba(255,255,255,0.25);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3); transition: transform var(--transition-base), box-shadow var(--transition-base);
+            cursor: pointer; position: relative; overflow: hidden;
         }
         .sidebar-avatar::after {
             content: ''; position: absolute; inset: 0;
             background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 60%);
             opacity: 0.6;
         }
-        .sidebar-avatar:hover {
-            transform: scale(1.06);
-            box-shadow: 0 8px 28px rgba(126, 217, 87, 0.5);
-        }
+        .sidebar-avatar:hover { transform: scale(1.06); box-shadow: 0 8px 28px rgba(126, 217, 87, 0.5); }
         .sidebar-avatar i { position: relative; z-index: 1; }
         .sidebar-greeting {
-            font-size: 0.85rem; font-weight: 600; color: #ffffff;
-            letter-spacing: 0.2px; text-align: center; line-height: 1.3;
-            opacity: 0.92; text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+            font-size: 0.85rem; font-weight: 600; color: #ffffff; letter-spacing: 0.2px;
+            text-align: center; line-height: 1.3; opacity: 0.92; text-shadow: 0 1px 4px rgba(0,0,0,0.2);
         }
-        .sidebar-greeting .greeting-emoji { display: inline-block; margin-left: 2px; }
-        #sidebar .sidebar-header .sidebar-logo {
-            width: 130px; height: auto; border-radius: 16px;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
-            transition: transform var(--transition-base);
-        }
+        #sidebar .sidebar-header .sidebar-logo { width: 130px; height: auto; border-radius: 16px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25)); transition: transform var(--transition-base); }
         #sidebar .sidebar-header .sidebar-logo:hover { transform: scale(1.04); }
 
         #closeSidebarBtn {
@@ -276,31 +239,21 @@
         .sidebar-btn {
             display: flex; align-items: center; gap: 12px;
             padding: 10px 14px; border-radius: var(--radius-md);
-            background: transparent; border: none;
-            color: var(--sidebar-text); font-weight: 500;
-            font-size: 0.84rem; cursor: pointer;
-            transition: all var(--transition-base);
+            background: transparent; border: none; color: var(--sidebar-text); font-weight: 500;
+            font-size: 0.84rem; cursor: pointer; transition: all var(--transition-base);
             width: 100%; min-height: 48px; text-decoration: none;
             position: relative; border-left: 3px solid transparent; text-align: left;
         }
-        .sidebar-btn i {
-            font-size: 1.05rem; color: rgba(255,255,255,0.85);
-            transition: color var(--transition-base), opacity var(--transition-base);
-            min-width: 20px; text-align: center; opacity: 1;
-        }
+        .sidebar-btn i { font-size: 1.05rem; color: rgba(255,255,255,0.85); transition: color var(--transition-base); min-width: 20px; text-align: center; }
         .sidebar-btn .sb-info { display: flex; flex-direction: column; gap: 1px; line-height: 1.25; }
         .sidebar-btn .sb-title { font-weight: 600; font-size: 0.85rem; color: #ffffff; transition: color var(--transition-base); }
         .sidebar-btn .sb-sub { font-weight: 400; font-size: 0.7rem; color: rgba(255,255,255,0.65); transition: color var(--transition-base); }
-        .sidebar-btn:hover {
-            background: var(--sidebar-hover); transform: translateX(3px);
-            color: #fff; border-left-color: var(--secondary);
-        }
+        .sidebar-btn:hover { background: var(--sidebar-hover); transform: translateX(3px); color: #fff; border-left-color: var(--secondary); }
         .sidebar-btn:hover i { color: var(--secondary); }
         .sidebar-btn:hover .sb-title { color: var(--secondary); }
         .sidebar-btn:hover .sb-sub { color: rgba(255,255,255,0.9); }
         .sidebar-btn[aria-current="page"] {
-            background: var(--sidebar-active); font-weight: 600;
-            border-left-color: var(--secondary); color: #ffffff;
+            background: var(--sidebar-active); font-weight: 600; border-left-color: var(--secondary); color: #ffffff;
             box-shadow: inset 0 0 20px rgba(126,217,87,0.08);
         }
         .sidebar-btn[aria-current="page"] .sb-sub { color: rgba(255,255,255,0.85); }
@@ -310,24 +263,18 @@
         #sidebarOverlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(10,20,40,0.65); backdrop-filter: blur(4px);
-            z-index: 99; opacity: 0; pointer-events: none;
-            transition: opacity var(--transition-slow);
+            z-index: 99; opacity: 0; pointer-events: none; transition: opacity var(--transition-slow);
         }
         #sidebarOverlay.active { opacity: 1; pointer-events: auto; }
 
-        /* ========== APP CONTAINER ========== */
         .app-container {
-            flex: 1; max-width: 1400px; margin: 0 auto;
-            padding: 24px; display: flex; flex-direction: column;
-            gap: 24px; width: 100%; min-width: 0;
-            margin-top: var(--topbar-height);
+            flex: 1; max-width: 1400px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column;
+            gap: 24px; width: 100%; min-width: 0; margin-top: var(--topbar-height);
         }
 
-        /* ========== HEADER (REFINADO) ========== */
         .app-header {
             display: flex; align-items: flex-start; justify-content: space-between;
-            flex-wrap: wrap; padding-bottom: 20px; gap: 16px;
-            border-bottom: 1px solid var(--border-light);
+            flex-wrap: wrap; padding-bottom: 20px; gap: 16px; border-bottom: 1px solid var(--border-light);
         }
         .header-brand { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 200px; }
         .brand-text h1 {
@@ -335,249 +282,108 @@
             margin: 0; line-height: 1.25; letter-spacing: -0.01em;
         }
         .brand-text h1 i { color: var(--primary); margin-right: 4px; }
-        .brand-text p {
-            color: var(--text-secondary); font-size: 0.85rem;
-            font-weight: 500; margin: 0; display: flex; align-items: center; gap: 6px;
-        }
+        .brand-text p { color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; margin: 0; display: flex; align-items: center; gap: 6px; }
         .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
-        /* ========== QUADRO MOTIVACIONAL (NOVO) ========== */
         .motivational-banner {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 20px 24px;
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
+            display: flex; align-items: center; gap: 20px;
+            background: var(--bg-card); border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg); padding: 20px 24px;
+            box-shadow: var(--shadow-sm); transition: all var(--transition-base); position: relative; overflow: hidden;
         }
         .motivational-banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--primary-light) 0%, var(--accent) 100%);
-            border-radius: 4px 0 0 4px;
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--primary-light) 0%, var(--accent) 100%); border-radius: 4px 0 0 4px;
         }
-        .motivational-banner:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
-        }
+        .motivational-banner:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
         .motivational-brain {
-            flex-shrink: 0;
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
+            flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%;
             background: linear-gradient(135deg, var(--primary-soft) 0%, rgba(255,117,31,0.2) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            position: relative;
+            display: flex; align-items: center; justify-content: center; font-size: 2rem; position: relative;
             transition: transform var(--transition-base);
         }
-        .motivational-brain:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
+        .motivational-brain:hover { transform: scale(1.1) rotate(5deg); }
         .motivational-brain::after {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            border: 2px dashed var(--primary);
-            opacity: 0.3;
-            animation: brainRotate 20s linear infinite;
+            content: ''; position: absolute; inset: -3px; border-radius: 50%;
+            border: 2px dashed var(--primary); opacity: 0.3; animation: brainRotate 20s linear infinite;
         }
-        @keyframes brainRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .motivational-content {
-            flex: 1;
-            min-width: 0;
-        }
-        .motivational-quote {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.5;
-            margin-bottom: 4px;
-            font-style: italic;
-        }
-        .motivational-author {
-            font-size: 0.82rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-        .motivational-author::before {
-            content: '— ';
-            color: var(--primary);
-            font-weight: 700;
-        }
+        @keyframes brainRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .motivational-content { flex: 1; min-width: 0; }
+        .motivational-quote { font-size: 1rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; margin-bottom: 4px; font-style: italic; }
+        .motivational-author { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); }
+        .motivational-author::before { content: '— '; color: var(--primary); font-weight: 700; }
         .motivational-refresh {
-            flex-shrink: 0;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 1px solid var(--border-light);
-            background: transparent;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-base);
+            flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-light);
+            background: transparent; color: var(--text-muted); cursor: pointer; font-size: 0.9rem;
+            display: flex; align-items: center; justify-content: center; transition: all var(--transition-base);
         }
-        .motivational-refresh:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-            background: var(--primary-glass);
-        }
+        .motivational-refresh:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-glass); }
 
-        /* ========== BOTÕES (REFINADOS - MAIS PREMIUM) ========== */
         .btn {
             background: var(--btn-bg); border: 1.5px solid var(--btn-border);
-            border-radius: var(--radius-md); padding: 9px 16px;
-            font-weight: 600; font-size: 0.84rem; color: var(--text-primary);
-            cursor: pointer; transition: all var(--transition-base);
+            border-radius: var(--radius-md); padding: 9px 16px; font-weight: 600; font-size: 0.84rem;
+            color: var(--text-primary); cursor: pointer; transition: all var(--transition-base);
             display: inline-flex; align-items: center; justify-content: center; gap: 6px;
             min-height: 42px; white-space: nowrap; font-family: inherit;
-            box-shadow: var(--shadow-xs); letter-spacing: -0.01em;
-            position: relative; overflow: hidden;
+            box-shadow: var(--shadow-xs); letter-spacing: -0.01em; position: relative; overflow: hidden;
         }
-        .btn::after {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
-            opacity: 0; transition: opacity var(--transition-base);
-        }
+        .btn::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%); opacity: 0; transition: opacity var(--transition-base); }
         .btn:hover::after { opacity: 0.5; }
-        .btn:hover {
-            background: var(--btn-bg-hover); border-color: var(--primary);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-md);
-        }
+        .btn:hover { background: var(--btn-bg-hover); border-color: var(--primary); transform: translateY(-1px); box-shadow: var(--shadow-md); }
         .btn:active { transform: scale(0.97); }
         .btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
         .btn:disabled { opacity: 0.45; pointer-events: none; cursor: not-allowed; }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-            border: none; color: #fff !important; font-weight: 600;
-            box-shadow: 0 4px 14px rgba(17, 85, 204, 0.3);
+            border: none; color: #fff !important; font-weight: 600; box-shadow: 0 4px 14px rgba(17, 85, 204, 0.3);
         }
-        .btn-primary:hover {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(17, 85, 204, 0.4);
-        }
-
+        .btn-primary:hover { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(17, 85, 204, 0.4); }
         .btn-accent {
             background: linear-gradient(135deg, #ff8a3d 0%, var(--accent) 100%);
-            border: none; color: #fff !important; font-weight: 600;
-            box-shadow: 0 4px 14px rgba(255, 117, 31, 0.3);
+            border: none; color: #fff !important; font-weight: 600; box-shadow: 0 4px 14px rgba(255, 117, 31, 0.3);
         }
-        .btn-accent:hover {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(255, 117, 31, 0.4);
-        }
-
-        .btn-outline-accent {
-            border: 1.5px solid var(--primary); color: var(--primary) !important;
-            background: transparent;
-        }
+        .btn-accent:hover { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 117, 31, 0.4); }
+        .btn-outline-accent { border: 1.5px solid var(--primary); color: var(--primary) !important; background: transparent; }
         .btn-outline-accent:hover { background: var(--primary-glass); }
-
-        .btn-whatsapp {
-            background: var(--whatsapp); border: none; color: #fff !important;
-            font-weight: 600;
-            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
-        }
-        .btn-whatsapp:hover {
-            background: #1da851; transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
-        }
-
+        .btn-whatsapp { background: var(--whatsapp); border: none; color: #fff !important; font-weight: 600; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3); }
+        .btn-whatsapp:hover { background: #1da851; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45); }
         .btn-sm { padding: 6px 12px; font-size: 0.78rem; min-height: 34px; border-radius: var(--radius-sm); }
-
-        /* Botão Foco destacado no cronômetro */
         .btn-focus-highlight {
             background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-            border: none; color: #fff !important; font-weight: 700;
-            font-size: 0.88rem; padding: 12px 28px; border-radius: var(--radius-pill);
-            box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4);
+            border: none; color: #fff !important; font-weight: 700; font-size: 0.88rem; padding: 12px 28px;
+            border-radius: var(--radius-pill); box-shadow: 0 6px 24px rgba(124, 58, 237, 0.4);
             transition: all var(--transition-base); letter-spacing: 0.02em;
         }
-        .btn-focus-highlight:hover {
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
-            transform: scale(1.05);
-            box-shadow: 0 8px 32px rgba(124, 58, 237, 0.55);
-        }
+        .btn-focus-highlight:hover { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); transform: scale(1.05); box-shadow: 0 8px 32px rgba(124, 58, 237, 0.55); }
         .btn-focus-highlight:active { transform: scale(0.96); }
 
-        /* ========== CARDS (REFINADOS) ========== */
         .card {
             background: var(--bg-card); border-radius: var(--radius-lg);
-            padding: 24px; box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-light); transition: all var(--transition-base);
+            padding: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-light); transition: all var(--transition-base);
         }
         .card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
 
-        label {
-            font-weight: 600; font-size: 0.82rem; color: var(--text-secondary);
-            display: block; margin-bottom: 6px; letter-spacing: -0.01em;
-        }
+        label { font-weight: 600; font-size: 0.82rem; color: var(--text-secondary); display: block; margin-bottom: 6px; letter-spacing: -0.01em; }
         select, input {
-            width: 100%; padding: 10px 14px;
-            border: 1.5px solid var(--border-light);
-            border-radius: var(--radius-md); font-size: 0.88rem;
-            background: var(--input-bg); color: var(--text-primary);
-            min-height: 44px; margin-bottom: 8px; font-family: inherit;
-            transition: all var(--transition-base);
+            width: 100%; padding: 10px 14px; border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-md); font-size: 0.88rem; background: var(--input-bg);
+            color: var(--text-primary); min-height: 44px; margin-bottom: 8px; font-family: inherit; transition: all var(--transition-base);
         }
-        select:focus, input:focus {
-            outline: none; border-color: var(--primary);
-            box-shadow: var(--input-focus-glow); background: var(--bg-card);
-        }
+        select:focus, input:focus { outline: none; border-color: var(--primary); box-shadow: var(--input-focus-glow); background: var(--bg-card); }
 
-        .badge {
-            display: inline-flex; align-items: center; gap: 4px;
-            padding: 4px 12px; border-radius: var(--radius-pill); font-size: 0.76rem; font-weight: 600;
-            background: var(--primary-soft); color: var(--primary); border: 1px solid transparent;
-        }
+        .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: var(--radius-pill); font-size: 0.76rem; font-weight: 600; background: var(--primary-soft); color: var(--primary); border: 1px solid transparent; }
 
-        /* ========== KPIs (REFINADOS) ========== */
-        .dashboard-grid {
-            display: grid; gap: 16px;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        }
+        .dashboard-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
         .kpi-card {
-            background: var(--bg-card); border-radius: var(--radius-lg);
-            padding: 20px 20px 20px 18px; border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-xs); transition: all var(--transition-base);
-            display: flex; align-items: flex-start; gap: 14px;
-            position: relative; overflow: hidden;
+            background: var(--bg-card); border-radius: var(--radius-lg); padding: 20px 20px 20px 18px;
+            border: 1px solid var(--border-light); box-shadow: var(--shadow-xs); transition: all var(--transition-base);
+            display: flex; align-items: flex-start; gap: 14px; position: relative; overflow: hidden;
         }
-        .kpi-card::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
-            background: var(--primary); opacity: 0.35; transition: opacity var(--transition-base);
-        }
+        .kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--primary); opacity: 0.35; transition: opacity var(--transition-base); }
         .kpi-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .kpi-card:hover::before { opacity: 1; }
-
-        .kpi-icon {
-            width: 50px; height: 50px; border-radius: var(--radius-md);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.25rem; flex-shrink: 0;
-            background: var(--primary-glass);
-        }
+        .kpi-icon { width: 50px; height: 50px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; background: var(--primary-glass); }
         .kpi-icon.acertos { background: var(--secondary-soft); color: var(--secondary); }
         .kpi-icon.erros { background: var(--danger-soft); color: var(--danger); }
         .kpi-icon.tempo { background: var(--warning-soft); color: var(--warning); }
@@ -590,48 +396,28 @@
         .kpi-value { font-size: 1.65rem; font-weight: 700; color: var(--text-primary); line-height: 1.2; letter-spacing: -0.02em; }
         .kpi-sub { font-size: 0.74rem; color: var(--text-muted); margin-top: 2px; font-weight: 500; }
 
-        /* ========== SEÇÕES ========== */
-        .section-header {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 18px; flex-wrap: wrap; gap: 12px;
-            border-bottom: 1px solid var(--border-light); padding-bottom: 14px;
-        }
-        .section-title {
-            font-size: 1.05rem; font-weight: 700; color: var(--text-primary);
-            display: flex; align-items: center; gap: 10px; letter-spacing: -0.01em;
-        }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid var(--border-light); padding-bottom: 14px; }
+        .section-title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); display: flex; align-items: center; gap: 10px; letter-spacing: -0.01em; }
         .section-title i { color: var(--primary); font-size: 1.15rem; }
-        .section-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+        .section-filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
         .filter-select {
-            padding: 8px 12px; border-radius: var(--radius-pill);
-            border: 1.5px solid var(--border-light); background: var(--bg-card);
-            color: var(--text-primary); font-size: 0.82rem; cursor: pointer;
+            padding: 8px 12px; border-radius: var(--radius-pill); border: 1.5px solid var(--border-light);
+            background: var(--bg-card); color: var(--text-primary); font-size: 0.82rem; cursor: pointer;
             min-height: 38px; outline: none; transition: all var(--transition-base);
         }
         .filter-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
 
-        /* ========== GRÁFICOS ========== */
         .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; }
-        .chart-wrapper {
-            position: relative; background: var(--bg-primary);
-            border-radius: var(--radius-md); padding: 18px;
-            border: 1px solid var(--border-light);
-        }
+        .chart-wrapper { position: relative; background: var(--bg-primary); border-radius: var(--radius-md); padding: 18px; border: 1px solid var(--border-light); }
         .chart-canvas { width: 100%; height: 260px; display: block; }
 
-        /* ========== TABELA (REFINADA) ========== */
-        .table-container {
-            overflow-x: auto; border-radius: var(--radius-md);
-            border: 1px solid var(--border-light);
-        }
+        .table-container { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border-light); }
         .dash-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
         .dash-table thead { background: var(--bg-primary); }
         .dash-table th {
-            padding: 12px 14px; text-align: left; font-weight: 700;
-            color: var(--text-secondary); font-size: 0.76rem; text-transform: uppercase;
-            letter-spacing: 0.5px; border-bottom: 2px solid var(--border-medium);
-            white-space: nowrap; cursor: pointer; user-select: none;
-            transition: color var(--transition-fast);
+            padding: 12px 14px; text-align: left; font-weight: 700; color: var(--text-secondary);
+            font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border-medium);
+            white-space: nowrap; cursor: pointer; user-select: none; transition: color var(--transition-fast);
         }
         .dash-table th:hover { color: var(--primary); }
         .dash-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-light); color: var(--text-primary); }
@@ -644,14 +430,11 @@
         .badge-danger { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
         .badge-warning { background: var(--warning-soft); color: var(--warning); border: 1px solid var(--warning); }
 
-        /* ========== HEATMAP (REFINADO) ========== */
         .heatmap-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; max-width: 380px; }
         .heatmap-cell {
-            aspect-ratio: 1; border-radius: var(--radius-sm);
-            background: var(--bg-primary); border: 1px solid var(--border-light);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 0.72rem; font-weight: 700; cursor: pointer;
-            transition: all var(--transition-base); position: relative;
+            aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--bg-primary);
+            border: 1px solid var(--border-light); display: flex; align-items: center; justify-content: center;
+            font-size: 0.72rem; font-weight: 700; cursor: pointer; transition: all var(--transition-base); position: relative;
         }
         .heatmap-cell:hover { transform: scale(1.12); z-index: 2; box-shadow: var(--shadow-md); }
         .heatmap-cell.level-1 { background: rgba(17,85,204,0.12); border-color: rgba(17,85,204,0.2); }
@@ -659,51 +442,33 @@
         .heatmap-cell.level-3 { background: rgba(17,85,204,0.5); border-color: rgba(17,85,204,0.65); color: #fff; }
         .heatmap-cell.level-4 { background: var(--primary); border-color: var(--primary-dark); color: #fff; }
         .heatmap-labels {
-            display: grid; grid-template-columns: repeat(7, 1fr);
-            gap: 6px; margin-bottom: 6px; text-align: center;
-            font-size: 0.7rem; color: var(--text-muted); font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.5px;
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 6px;
+            text-align: center; font-size: 0.7rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
         }
 
-        /* ========== METAS (REFINADAS) ========== */
         .goal-card {
-            display: flex; align-items: center; gap: 14px;
-            padding: 14px 18px; background: var(--bg-primary);
-            border-radius: var(--radius-md); border: 1px solid var(--border-light);
+            display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+            background: var(--bg-primary); border-radius: var(--radius-md); border: 1px solid var(--border-light);
             margin-bottom: 10px; transition: all var(--transition-base);
         }
         .goal-card:hover { border-color: var(--primary); background: var(--primary-glass); }
         .goal-ring { width: 52px; height: 52px; border-radius: 50%; position: relative; flex-shrink: 0; }
         .goal-ring svg { transform: rotate(-90deg); }
         .goal-ring-bg { fill: none; stroke: var(--border-light); stroke-width: 4; }
-        .goal-ring-fill {
-            fill: none; stroke: var(--primary); stroke-width: 4;
-            stroke-linecap: round; transition: stroke-dashoffset 1s ease;
-        }
-        .goal-ring-text {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 0.8rem; font-weight: 700; color: var(--primary);
-        }
+        .goal-ring-fill { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+        .goal-ring-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.8rem; font-weight: 700; color: var(--primary); }
         .goal-info { flex: 1; min-width: 0; }
         .goal-title { font-weight: 700; color: var(--text-primary); margin-bottom: 2px; font-size: 0.9rem; }
         .goal-desc { font-size: 0.76rem; color: var(--text-muted); font-weight: 500; }
 
-        /* ========== CRONÔMETRO (REFINADO) ========== */
         .timer-display {
             font-size: 3.5rem; font-weight: 700; font-variant-numeric: tabular-nums;
-            letter-spacing: 1px; background: var(--bg-primary);
-            padding: 0.5rem 2rem; border-radius: var(--radius-lg);
-            display: inline-block; min-width: 220px; text-align: center;
-            border: 1px solid var(--border-light); line-height: 1.2;
-            color: var(--text-primary); user-select: none;
-            font-family: 'Inter', monospace;
-            box-shadow: inset 0 1px 4px rgba(0,0,0,0.04);
+            letter-spacing: 1px; background: var(--bg-primary); padding: 0.5rem 2rem;
+            border-radius: var(--radius-lg); display: inline-block; min-width: 220px; text-align: center;
+            border: 1px solid var(--border-light); line-height: 1.2; color: var(--text-primary);
+            user-select: none; font-family: 'Inter', monospace; box-shadow: inset 0 1px 4px rgba(0,0,0,0.04);
         }
-        .timer-type-selector {
-            display: flex; gap: 4px; background: var(--bg-primary);
-            border-radius: var(--radius-pill); padding: 4px;
-            border: 1px solid var(--border-light);
-        }
+        .timer-type-selector { display: flex; gap: 4px; background: var(--bg-primary); border-radius: var(--radius-pill); padding: 4px; border: 1px solid var(--border-light); }
         .timer-type-btn {
             padding: 6px 14px; border-radius: var(--radius-pill); border: none;
             background: transparent; color: var(--text-muted); font-weight: 600;
@@ -718,54 +483,39 @@
         }
         .registro-card .controle-grupo { margin-bottom: 0; flex: 1; min-width: 130px; }
 
-        /* ========== MODO FOCO (REFINADO) ========== */
         .focus-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(8,15,30,0.92); backdrop-filter: blur(24px);
-            z-index: 9999; display: flex; flex-direction: column;
-            align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none;
-            transition: opacity var(--transition-slow);
+            z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity var(--transition-slow);
         }
         .focus-overlay.active { opacity: 1; pointer-events: auto; }
         .focus-container { text-align: center; }
-        .focus-logo {
-            display: block; margin: 0 auto 24px; width: 100px;
-            opacity: 0.85; filter: drop-shadow(0 0 24px rgba(255,255,255,0.25));
-        }
+        .focus-logo { display: block; margin: 0 auto 24px; width: 100px; opacity: 0.85; filter: drop-shadow(0 0 24px rgba(255,255,255,0.25)); }
         .focus-ring-container { position: relative; width: 220px; height: 220px; margin: 0 auto 20px; }
         canvas#focusRingCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .focus-timer {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 700;
             font-variant-numeric: tabular-nums; letter-spacing: 3px;
-            color: #fff; text-shadow: 0 0 40px rgba(255,117,31,0.5); z-index: 3;
-            font-family: 'Inter', monospace;
+            color: #fff; text-shadow: 0 0 40px rgba(255,117,31,0.5); z-index: 3; font-family: 'Inter', monospace;
         }
         .focus-session-label { font-size: 1.1rem; color: #ffffff; margin-top: 8px; font-weight: 500; opacity: 0.9; }
         .focus-controls { display: flex; gap: 24px; margin-top: 32px; }
         .focus-btn {
-            width: 56px; height: 56px; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06);
-            color: #fff; font-size: 1.4rem; cursor: pointer;
-            transition: all var(--transition-base);
-            backdrop-filter: blur(8px);
+            width: 56px; height: 56px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25);
+            background: rgba(255,255,255,0.06); color: #fff; font-size: 1.4rem; cursor: pointer;
+            transition: all var(--transition-base); backdrop-filter: blur(8px);
         }
-        .focus-btn:hover {
-            background: var(--accent); border-color: var(--accent);
-            box-shadow: 0 0 32px rgba(255,117,31,0.5); transform: scale(1.05);
-        }
+        .focus-btn:hover { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 32px rgba(255,117,31,0.5); transform: scale(1.05); }
         .focus-exit {
-            position: absolute; top: 28px; right: 28px;
-            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-            color: #fff; font-size: 1.3rem; cursor: pointer;
-            width: 40px; height: 40px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            position: absolute; top: 28px; right: 28px; background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 1.3rem; cursor: pointer;
+            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             transition: all var(--transition-base);
         }
         .focus-exit:hover { color: #fff; background: var(--danger); border-color: var(--danger); }
 
-        /* ========== MODAL EXPORTAÇÃO ========== */
         .modal-overlay {
             position: fixed; inset: 0; background: rgba(8,15,30,0.65);
             backdrop-filter: blur(8px); display: none; align-items: center;
@@ -774,95 +524,88 @@
         .modal-overlay.active { display: flex; }
         .modal-card {
             background: var(--bg-card); max-width: 580px; width: 100%;
-            border-radius: var(--radius-xl); padding: 26px;
-            border: 1px solid var(--border-light);
+            border-radius: var(--radius-xl); padding: 26px; border: 1px solid var(--border-light);
             box-shadow: var(--shadow-xl); max-height: 85vh; overflow-y: auto;
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
         .modal-title { font-size: 1.2rem; font-weight: 700; }
         .modal-close {
-            width: 36px; height: 36px; border-radius: 50%;
-            border: 1px solid var(--border-light); background: transparent;
-            color: var(--text-muted); cursor: pointer; font-size: 0.95rem;
-            display: flex; align-items: center; justify-content: center;
-            transition: all var(--transition-base);
+            width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-light);
+            background: transparent; color: var(--text-muted); cursor: pointer; font-size: 0.95rem;
+            display: flex; align-items: center; justify-content: center; transition: all var(--transition-base);
         }
         .modal-close:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
 
         .share-summary-box {
             background: var(--bg-primary); border-radius: var(--radius-md); padding: 16px;
             border: 1px solid var(--border-light); font-size: 0.84rem; line-height: 1.6;
-            color: var(--text-secondary); margin-bottom: 16px; white-space: pre-wrap;
-            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary); margin-bottom: 16px; white-space: pre-wrap; font-family: 'Inter', sans-serif;
         }
-        .share-actions {
-            display: flex; gap: 10px; flex-wrap: wrap;
+        .share-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+        /* Modal de Adicionar Disciplina */
+        .suggestions-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .suggestion-chip {
+            padding: 6px 14px;
+            border-radius: var(--radius-pill);
+            border: 1px solid var(--border-light);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.78rem;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all var(--transition-base);
+            white-space: nowrap;
+        }
+        .suggestion-chip:hover {
+            background: var(--primary-soft);
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
 
-        /* ========== MODAL QUEM SOMOS (SPLASH TROFÉU) ========== */
         #quemSomosOverlay {
             position: fixed; inset: 0; background: rgba(8,15,30,0.8);
             backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            display: none; align-items: center; justify-content: center;
-            z-index: 1001; padding: 16px;
+            display: none; align-items: center; justify-content: center; z-index: 1001; padding: 16px;
         }
         #quemSomosOverlay.active { display: flex; }
         #quemSomosModal {
             background: var(--bg-card); max-width: 620px; width: 100%;
-            border-radius: var(--radius-xl); padding: 32px 28px;
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-xl); max-height: 85vh; overflow-y: auto;
-            text-align: center; position: relative;
+            border-radius: var(--radius-xl); padding: 32px 28px; border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-xl); max-height: 85vh; overflow-y: auto; text-align: center; position: relative;
         }
-        #quemSomosModal .trophy-container {
-            position: relative; margin-bottom: 24px;
-        }
+        #quemSomosModal .trophy-container { position: relative; margin-bottom: 24px; }
         #quemSomosModal .trophy-icon {
             font-size: 4.5rem; color: var(--gold);
             filter: drop-shadow(0 0 24px rgba(240,185,11,0.6)) drop-shadow(0 8px 12px rgba(0,0,0,0.3));
             animation: trophyFloat 3s ease-in-out infinite;
         }
-        @keyframes trophyFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .confetti-container {
-            position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-            pointer-events: none; width: 300px; height: 300px;
-            overflow: hidden; z-index: 0;
-        }
-        .confetti {
-            position: absolute; width: 10px; height: 10px; border-radius: 2px;
-            animation: confettiFall 3s linear infinite;
-        }
-        @keyframes confettiFall {
-            0% { transform: translateY(-40px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(320px) rotate(720deg); opacity: 0; }
-        }
-        #quemSomosModal .manifesto-text {
-            text-align: left; font-size: 0.88rem; color: var(--text-secondary);
-            line-height: 1.7; max-width: 520px; margin: 0 auto;
-        }
-        #quemSomosModal .manifesto-text strong {
-            color: var(--text-primary); font-size: 1rem;
-        }
-        #quemSomosModal .manifesto-text .brand-name {
-            color: var(--primary); font-weight: 700;
-        }
+        @keyframes trophyFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        .confetti-container { position: absolute; top: 0; left: 50%; transform: translateX(-50%); pointer-events: none; width: 300px; height: 300px; overflow: hidden; z-index: 0; }
+        .confetti { position: absolute; width: 10px; height: 10px; border-radius: 2px; animation: confettiFall 3s linear infinite; }
+        @keyframes confettiFall { 0% { transform: translateY(-40px) rotate(0deg); opacity: 1; } 100% { transform: translateY(320px) rotate(720deg); opacity: 0; } }
+        #quemSomosModal .manifesto-text { text-align: left; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; max-width: 520px; margin: 0 auto; }
+        #quemSomosModal .manifesto-text strong { color: var(--text-primary); font-size: 1rem; }
+        #quemSomosModal .manifesto-text .brand-name { color: var(--primary); font-weight: 700; }
         #quemSomosModal .close-btn {
-            position: absolute; top: 12px; right: 12px;
-            width: 32px; height: 32px; border-radius: 50%;
-            border: 1px solid var(--border-light); background: var(--bg-card);
-            color: var(--text-muted); cursor: pointer; font-size: 0.9rem;
-            display: flex; align-items: center; justify-content: center;
+            position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%;
+            border: 1px solid var(--border-light); background: var(--bg-card); color: var(--text-muted);
+            cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;
             transition: all var(--transition-base);
         }
-        #quemSomosModal .close-btn:hover {
-            color: var(--danger); border-color: var(--danger);
-            background: var(--danger-soft);
-        }
+        #quemSomosModal .close-btn:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
 
-        /* ========== CHATBOT CAMI (REFINADO) ========== */
         #camiFAB {
             position: fixed; bottom: 28px; left: 28px; z-index: 9998;
             width: 56px; height: 56px; border-radius: 50%;
@@ -870,13 +613,9 @@
             border: none; cursor: pointer;
             box-shadow: 0 4px 20px rgba(17, 85, 204, 0.35), 0 2px 8px rgba(0,0,0,0.1);
             display: flex; align-items: center; justify-content: center;
-            transition: all var(--transition-base);
-            animation: camiPulse 4s infinite;
+            transition: all var(--transition-base); animation: camiPulse 4s infinite;
         }
-        #camiFAB:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 32px rgba(126, 217, 87, 0.55), 0 4px 16px rgba(0,0,0,0.15);
-        }
+        #camiFAB:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(126, 217, 87, 0.55), 0 4px 16px rgba(0,0,0,0.15); }
         #camiFAB:active { transform: scale(0.94); }
         #camiFAB .cami-icon { font-size: 1.5rem; transition: transform var(--transition-base); }
         #camiFAB.chat-open .cami-icon { transform: rotate(180deg); }
@@ -885,129 +624,65 @@
             50% { box-shadow: 0 8px 32px rgba(17,85,204,0.6), 0 4px 16px rgba(0,0,0,0.2); }
         }
         #camiFAB .cami-notification-dot {
-            position: absolute; top: 5px; right: 5px;
-            width: 10px; height: 10px; border-radius: 50%;
-            background: var(--accent); border: 2px solid #fff;
-            display: none; animation: camiDotPulse 2s infinite;
+            position: absolute; top: 5px; right: 5px; width: 10px; height: 10px; border-radius: 50%;
+            background: var(--accent); border: 2px solid #fff; display: none; animation: camiDotPulse 2s infinite;
         }
-        @keyframes camiDotPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.5); }
-        }
+        @keyframes camiDotPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.5); } }
         #camiChatWindow {
             position: fixed; bottom: 100px; left: 28px; z-index: 9997;
-            width: 380px; max-width: calc(100vw - 48px);
-            height: 500px; max-height: calc(100vh - 160px);
-            background: var(--bg-card); border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-xl); border: 1px solid var(--border-light);
-            display: flex; flex-direction: column; overflow: hidden;
-            transform: translateY(16px) scale(0.96);
-            opacity: 0; pointer-events: none;
-            transition: all var(--transition-slow);
+            width: 380px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 160px);
+            background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border-light); display: flex; flex-direction: column; overflow: hidden;
+            transform: translateY(16px) scale(0.96); opacity: 0; pointer-events: none; transition: all var(--transition-slow);
             backdrop-filter: blur(12px);
         }
-        #camiChatWindow.active {
-            transform: translateY(0) scale(1);
-            opacity: 1; pointer-events: auto;
-        }
+        #camiChatWindow.active { transform: translateY(0) scale(1); opacity: 1; pointer-events: auto; }
         #camiChatHeader {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--secondary-dark) 100%);
-            padding: 12px 16px; display: flex; align-items: center; gap: 10px;
-            color: #fff; flex-shrink: 0;
+            padding: 12px 16px; display: flex; align-items: center; gap: 10px; color: #fff; flex-shrink: 0;
         }
-        #camiChatHeader .cami-avatar {
-            width: 34px; height: 34px; border-radius: 50%;
-            background: rgba(255,255,255,0.18); display: flex;
-            align-items: center; justify-content: center; font-size: 1.1rem;
-        }
+        #camiChatHeader .cami-avatar { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
         #camiChatHeader .cami-header-info { flex: 1; min-width: 0; }
         #camiChatHeader .cami-header-name { font-weight: 700; font-size: 0.85rem; line-height: 1.2; }
         #camiChatHeader .cami-header-status { font-size: 0.68rem; opacity: 0.85; }
-        #camiChatMinimize {
-            background: rgba(255,255,255,0.15); border: none; color: #fff;
-            width: 28px; height: 28px; border-radius: 50%;
-            cursor: pointer; font-size: 0.8rem; transition: background var(--transition-fast);
-        }
+        #camiChatMinimize { background: rgba(255,255,255,0.15); border: none; color: #fff; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 0.8rem; transition: background var(--transition-fast); }
         #camiChatMinimize:hover { background: rgba(255,255,255,0.28); }
-        #camiChatMessages {
-            flex: 1; overflow-y: auto; padding: 14px;
-            display: flex; flex-direction: column; gap: 10px;
-            scroll-behavior: smooth;
-        }
-        .cami-message {
-            max-width: 85%; padding: 10px 14px; border-radius: var(--radius-md);
-            font-size: 0.84rem; line-height: 1.5; word-break: break-word;
-            animation: camiMsgIn 0.3s ease;
-        }
-        @keyframes camiMsgIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .cami-message.bot {
-            background: var(--bg-primary); align-self: flex-start;
-            border-bottom-left-radius: 4px; color: var(--text-primary);
-            border: 1px solid var(--border-light);
-        }
-        .cami-message.user {
-            background: var(--primary); color: #fff; align-self: flex-end;
-            border-bottom-right-radius: 4px;
-        }
+        #camiChatMessages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; scroll-behavior: smooth; }
+        .cami-message { max-width: 85%; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.84rem; line-height: 1.5; word-break: break-word; animation: camiMsgIn 0.3s ease; }
+        @keyframes camiMsgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .cami-message.bot { background: var(--bg-primary); align-self: flex-start; border-bottom-left-radius: 4px; color: var(--text-primary); border: 1px solid var(--border-light); }
+        .cami-message.user { background: var(--primary); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
         .cami-message .cami-typing { display: flex; gap: 4px; padding: 6px 0; }
-        .cami-message .cami-typing span {
-            width: 6px; height: 6px; border-radius: 50%;
-            background: var(--text-muted); animation: camiTypingBounce 1.4s infinite;
-        }
+        .cami-message .cami-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); animation: camiTypingBounce 1.4s infinite; }
         .cami-message .cami-typing span:nth-child(2) { animation-delay: 0.2s; }
         .cami-message .cami-typing span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes camiTypingBounce {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-7px); }
-        }
-        #camiQuickReplies {
-            display: flex; flex-wrap: wrap; gap: 6px;
-            padding: 10px 14px; border-top: 1px solid var(--border-light); flex-shrink: 0;
-        }
+        @keyframes camiTypingBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-7px); } }
+        #camiQuickReplies { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 14px; border-top: 1px solid var(--border-light); flex-shrink: 0; }
         .cami-quick-btn {
-            padding: 6px 12px; border-radius: var(--radius-pill);
-            border: 1px solid var(--border-light); background: var(--bg-card);
-            color: var(--text-primary); cursor: pointer;
-            font-size: 0.76rem; font-family: inherit; transition: all var(--transition-base);
-            white-space: nowrap; font-weight: 600;
+            padding: 6px 12px; border-radius: var(--radius-pill); border: 1px solid var(--border-light);
+            background: var(--bg-card); color: var(--text-primary); cursor: pointer;
+            font-size: 0.76rem; font-family: inherit; transition: all var(--transition-base); white-space: nowrap; font-weight: 600;
         }
         .cami-quick-btn:hover { background: var(--primary-soft); border-color: var(--primary); }
-        #camiChatInputArea {
-            display: flex; gap: 8px; padding: 10px 14px;
-            border-top: 1px solid var(--border-light); flex-shrink: 0; align-items: center;
-        }
+        #camiChatInputArea { display: flex; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--border-light); flex-shrink: 0; align-items: center; }
         #camiChatInput {
-            flex: 1; border: 1.5px solid var(--border-light);
-            border-radius: var(--radius-pill); padding: 8px 14px;
-            font-size: 0.84rem; min-height: 38px;
-            background: var(--input-bg); color: var(--text-primary);
+            flex: 1; border: 1.5px solid var(--border-light); border-radius: var(--radius-pill); padding: 8px 14px;
+            font-size: 0.84rem; min-height: 38px; background: var(--input-bg); color: var(--text-primary);
             font-family: inherit; transition: all var(--transition-base); margin-bottom: 0;
         }
-        #camiChatInput:focus {
-            outline: none; border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(17,85,204,0.1);
-        }
+        #camiChatInput:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(17,85,204,0.1); }
         #camiSendBtn {
-            width: 38px; height: 38px; border-radius: 50%;
-            background: var(--primary); border: none; color: #fff;
-            cursor: pointer; font-size: 0.95rem; transition: all var(--transition-base);
+            width: 38px; height: 38px; border-radius: 50%; background: var(--primary);
+            border: none; color: #fff; cursor: pointer; font-size: 0.95rem; transition: all var(--transition-base);
             flex-shrink: 0; box-shadow: var(--shadow-xs);
         }
         #camiSendBtn:hover { background: var(--primary-dark); transform: scale(1.06); }
         #camiSendBtn:active { transform: scale(0.94); }
 
-        /* ========== TOAST (REFINADO) ========== */
-        .toast-container {
-            position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-            display: flex; flex-direction: column; gap: 8px; pointer-events: none;
-        }
+        .toast-container { position: fixed; bottom: 28px; right: 28px; z-index: 9999; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
         .toast {
-            background: var(--bg-card); border: 1.5px solid var(--primary);
-            border-radius: var(--radius-pill); padding: 10px 22px; font-weight: 600;
-            animation: toastIn 0.35s ease, toastOut 0.35s ease 2.8s forwards;
+            background: var(--bg-card); border: 1.5px solid var(--primary); border-radius: var(--radius-pill);
+            padding: 10px 22px; font-weight: 600; animation: toastIn 0.35s ease, toastOut 0.35s ease 2.8s forwards;
             font-size: 0.84rem; pointer-events: auto; display: flex; align-items: center; gap: 8px;
             box-shadow: var(--shadow-md); backdrop-filter: blur(8px);
         }
@@ -1015,19 +690,12 @@
         @keyframes toastIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes toastOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(16px); } }
 
-        /* ========== FOOTER (REFINADO) ========== */
         .app-footer {
-            background: var(--footer-bg); color: var(--footer-text);
-            padding: 22px 24px 16px; margin-top: 16px;
-            border-top: 1px solid var(--footer-border);
-            font-size: 0.78rem; line-height: 1.7;
+            background: var(--footer-bg); color: var(--footer-text); padding: 22px 24px 16px; margin-top: 16px;
+            border-top: 1px solid var(--footer-border); font-size: 0.78rem; line-height: 1.7;
             transition: background-color var(--transition-slow), color var(--transition-slow); width: 100%;
         }
-        .footer-inner {
-            max-width: 1300px; margin: 0 auto;
-            display: flex; flex-wrap: wrap; justify-content: space-between;
-            align-items: flex-start; gap: 24px;
-        }
+        .footer-inner { max-width: 1300px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px; }
         .footer-info { flex: 1 1 300px; min-width: 240px; }
         .footer-info strong { color: var(--footer-heading); font-weight: 700; }
         .footer-links { display: flex; flex-wrap: wrap; gap: 16px; list-style: none; padding: 0; margin: 8px 0 4px; }
@@ -1035,20 +703,15 @@
         .footer-links a:hover { color: var(--footer-heading); text-decoration: underline; }
         .footer-social { display: flex; gap: 12px; align-items: center; margin-top: 4px; }
         .footer-social a {
-            display: flex; align-items: center; justify-content: center;
-            width: 36px; height: 36px; border-radius: 50%;
-            background: rgba(255,255,255,0.06); color: var(--footer-text);
-            font-size: 1rem; transition: all var(--transition-base); text-decoration: none;
+            display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(255,255,255,0.06); color: var(--footer-text); font-size: 1rem; transition: all var(--transition-base); text-decoration: none;
         }
         .footer-social a:hover { background: var(--secondary); color: #fff; transform: translateY(-2px); box-shadow: 0 6px 18px rgba(126,217,87,0.3); }
         .footer-bottom {
-            max-width: 1300px; margin: 16px auto 0; padding-top: 14px;
-            border-top: 1px solid var(--footer-border); text-align: center;
-            font-size: 0.7rem; color: var(--text-muted);
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            max-width: 1300px; margin: 16px auto 0; padding-top: 14px; border-top: 1px solid var(--footer-border);
+            text-align: center; font-size: 0.7rem; color: var(--text-muted); display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
         }
 
-        /* ========== RESPONSIVIDADE (AJUSTADA) ========== */
         @media (max-width: 768px) {
             #topbar { padding: 0 12px; }
             #topbar .topbar-logo span { display: none; }
@@ -1063,19 +726,9 @@
             #camiFAB { bottom: 24px; left: 16px; width: 50px; height: 50px; }
             .app-header { flex-direction: column; }
             .header-actions { width: 100%; justify-content: flex-start; }
-            .motivational-banner {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
-            }
-            .motivational-brain {
-                width: 56px;
-                height: 56px;
-                font-size: 1.6rem;
-            }
-            .motivational-quote {
-                font-size: 0.9rem;
-            }
+            .motivational-banner { flex-direction: column; text-align: center; gap: 12px; }
+            .motivational-brain { width: 56px; height: 56px; font-size: 1.6rem; }
+            .motivational-quote { font-size: 0.9rem; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none; }
@@ -1094,7 +747,6 @@
     </style>
 </head>
 <body>
-    <!-- TOPBAR (ESTILO QCONCURSOS) -->
     <header id="topbar" role="banner">
         <a href="#" class="topbar-logo">
             <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" />
@@ -1110,14 +762,10 @@
                         <span>Notificações</span>
                         <button class="btn btn-sm" id="markAllReadBtn" style="font-size:0.7rem;">Marcar todas como lidas</button>
                     </div>
-                    <div id="notificationList">
-                        <div class="notification-empty">Nenhuma notificação no momento.</div>
-                    </div>
+                    <div id="notificationList"><div class="notification-empty">Nenhuma notificação no momento.</div></div>
                 </div>
             </div>
-            <button id="topbarThemeToggle" class="btn btn-sm" aria-label="Alternar tema">
-                <i class="fas" id="topbarThemeIcon">☀️</i>
-            </button>
+            <button id="topbarThemeToggle" class="btn btn-sm" aria-label="Alternar tema"><i class="fas" id="topbarThemeIcon">☀️</i></button>
             <button id="topbarQuemSomosBtn" class="btn btn-sm"><i class="fas fa-users"></i> Quem Somos</button>
         </div>
     </header>
@@ -1125,61 +773,27 @@
     <button id="hamburgerBtn" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
     <div id="sidebarOverlay"></div>
 
-    <!-- SIDEBAR -->
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
             <div class="sidebar-profile">
-                <div class="sidebar-avatar" id="sidebarAvatar" title="Seu perfil">
-                    <i class="fas fa-user"></i>
-                </div>
+                <div class="sidebar-avatar" id="sidebarAvatar" title="Seu perfil"><i class="fas fa-user"></i></div>
                 <div class="sidebar-greeting" id="sidebarGreeting">Olá, Bom dia</div>
             </div>
             <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="sidebar-logo" />
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
-        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-users"></i>
-            <span class="sb-info"><span class="sb-title">Comunidade VULP</span><span class="sb-sub">Central do Concurseiro</span></span>
-        </a>
-        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-route"></i>
-            <span class="sb-info"><span class="sb-title">Rota da Aprovação</span><span class="sb-sub">Cronograma de Estudos</span></span>
-        </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="sidebar-btn" aria-current="page">
-            <i class="fas fa-chart-bar"></i>
-            <span class="sb-info"><span class="sb-title">Painel de Desempenho</span><span class="sb-sub">Métricas e Progresso</span></span>
-        </a>
-        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-hourglass-half"></i>
-            <span class="sb-info"><span class="sb-title">Modo Caverna</span><span class="sb-sub">Cronômetro</span></span>
-        </a>
-        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-door-open"></i>
-            <span class="sb-info"><span class="sb-title">Sala de Estudos</span><span class="sb-sub">Leitor de PDF</span></span>
-        </a>
-        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-balance-scale"></i>
-            <span class="sb-info"><span class="sb-title">Leitor de Leis</span><span class="sb-sub">Memorização de Leis</span></span>
-        </a>
-        <a href="https://vulps-anki-memoriza-o.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-seedling"></i>
-            <span class="sb-info"><span class="sb-title">Decora+</span><span class="sb-sub">Ank de Memória</span></span>
-        </a>
-        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-robot"></i>
-            <span class="sb-info"><span class="sb-title">IA Concurseira</span><span class="sb-sub">Questões Comentadas</span></span>
-        </a>
-        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-store"></i>
-            <span class="sb-info"><span class="sb-title">VULP Store</span><span class="sb-sub">Material de Estudos</span></span>
-        </a>
-        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-heart"></i>
-            <span class="sb-info"><span class="sb-title">Ajude esse Projeto</span><span class="sb-sub">Apoie a VULP+</span></span>
-        </a>
+        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade VULP</span><span class="sb-sub">Central do Concurseiro</span></span></a>
+        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-route"></i><span class="sb-info"><span class="sb-title">Rota da Aprovação</span><span class="sb-sub">Cronograma de Estudos</span></span></a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="sidebar-btn" aria-current="page"><i class="fas fa-chart-bar"></i><span class="sb-info"><span class="sb-title">Painel de Desempenho</span><span class="sb-sub">Métricas e Progresso</span></span></a>
+        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-hourglass-half"></i><span class="sb-info"><span class="sb-title">Modo Caverna</span><span class="sb-sub">Cronômetro</span></span></a>
+        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-door-open"></i><span class="sb-info"><span class="sb-title">Sala de Estudos</span><span class="sb-sub">Leitor de PDF</span></span></a>
+        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-balance-scale"></i><span class="sb-info"><span class="sb-title">Leitor de Leis</span><span class="sb-sub">Memorização de Leis</span></span></a>
+        <a href="https://vulps-anki-memoriza-o.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-seedling"></i><span class="sb-info"><span class="sb-title">Decora+</span><span class="sb-sub">Ank de Memória</span></span></a>
+        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-robot"></i><span class="sb-info"><span class="sb-title">IA Concurseira</span><span class="sb-sub">Questões Comentadas</span></span></a>
+        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-store"></i><span class="sb-info"><span class="sb-title">VULP Store</span><span class="sb-sub">Material de Estudos</span></span></a>
+        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-heart"></i><span class="sb-info"><span class="sb-title">Ajude esse Projeto</span><span class="sb-sub">Apoie a VULP+</span></span></a>
     </div>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main class="app-container">
         <div class="app-header">
             <div class="header-brand">
@@ -1197,19 +811,15 @@
             </div>
         </div>
 
-        <!-- QUADRO MOTIVACIONAL (NOVO) -->
         <div class="motivational-banner" id="motivationalBanner">
             <div class="motivational-brain">🧠</div>
             <div class="motivational-content">
                 <div class="motivational-quote" id="motivationalQuote">Carregando...</div>
                 <div class="motivational-author" id="motivationalAuthor"></div>
             </div>
-            <button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional" aria-label="Nova frase motivacional">
-                <i class="fas fa-sync-alt"></i>
-            </button>
+            <button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional" aria-label="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button>
         </div>
 
-        <!-- KPIs -->
         <section class="dashboard-grid" id="kpiGrid">
             <div class="kpi-card"><div class="kpi-icon acertos"><i class="fas fa-check-circle"></i></div><div class="kpi-info"><div class="kpi-label">Acertos Totais</div><div class="kpi-value" id="kpiCorrect">0</div><div class="kpi-sub" id="kpiCorrectSub">0% de aproveitamento</div></div></div>
             <div class="kpi-card"><div class="kpi-icon erros"><i class="fas fa-times-circle"></i></div><div class="kpi-info"><div class="kpi-label">Erros Totais</div><div class="kpi-value" id="kpiWrong">0</div><div class="kpi-sub" id="kpiWrongSub">0% do total</div></div></div>
@@ -1219,7 +829,6 @@
             <div class="kpi-card"><div class="kpi-icon hoje"><i class="fas fa-book-open"></i></div><div class="kpi-info"><div class="kpi-label">Questões Hoje</div><div class="kpi-value" id="kpiToday">0</div><div class="kpi-sub" id="kpiTodaySub">Total: 0 questões</div></div></div>
         </section>
 
-        <!-- CRONÔMETRO (COM BOTÃO FOCO EM DESTAQUE) -->
         <div class="card" style="text-align:center;" id="timerCard">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
                 <div style="text-align:left;"><label>Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div>
@@ -1232,9 +841,7 @@
             </div>
             <div class="timer-display" id="timerDisplay">00:00:00</div>
             <div style="margin:12px 0;color:var(--primary);font-weight:600;"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
-            <div style="margin: 8px 0 16px;">
-                <button id="focusModeHighlightBtn" class="btn btn-focus-highlight"><i class="fas fa-expand"></i> Entrar no Modo Foco</button>
-            </div>
+            <div style="margin: 8px 0 16px;"><button id="focusModeHighlightBtn" class="btn btn-focus-highlight"><i class="fas fa-expand"></i> Entrar no Modo Foco</button></div>
             <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
                 <button id="timerStart" class="btn btn-accent"><i class="fas fa-play"></i> Iniciar</button>
                 <button id="timerPause" class="btn btn-sm"><i class="fas fa-pause"></i> Pausar</button>
@@ -1243,7 +850,6 @@
             </div>
         </div>
 
-        <!-- REGISTRO RÁPIDO -->
         <div class="registro-card">
             <div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div>
             <div class="controle-grupo" style="max-width:100px;"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center;"></div>
@@ -1253,7 +859,6 @@
             </div>
         </div>
 
-        <!-- GRÁFICOS -->
         <section class="card">
             <div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div>
             <div class="chart-grid">
@@ -1267,20 +872,23 @@
             <div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2></div><div id="goalsContainer"></div></div>
         </div>
 
-        <!-- TABELA DE DISCIPLINAS -->
         <section class="card">
-            <div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px;"></div></div>
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2>
+                <div class="section-filters">
+                    <input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px;">
+                    <button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button>
+                </div>
+            </div>
             <div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th>Disciplina</th><th>Certas</th><th>Erradas</th><th>Total</th><th>% Acerto</th><th>Status</th><th>Horas</th><th>Ações</th></tr></thead><tbody></tbody></table></div>
         </section>
 
-        <!-- HISTÓRICO -->
         <section class="card">
             <div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div>
             <div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo</th><th>ID</th></tr></thead><tbody id="historyTableBody"></tbody></table></div>
         </section>
     </main>
 
-    <!-- FOOTER -->
     <footer class="app-footer" role="contentinfo">
         <div class="footer-inner">
             <div class="footer-info">
@@ -1298,7 +906,6 @@
         <div class="footer-bottom"><span>VULP+ · Tecnologia e Educação Colaborativa</span><span>|</span><span>Feito com dedicação para concurseiros de todo o Brasil</span></div>
     </footer>
 
-    <!-- MODO FOCO -->
     <div class="focus-overlay" id="focusOverlay">
         <button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button>
         <div class="focus-container">
@@ -1309,7 +916,6 @@
         </div>
     </div>
 
-    <!-- MODAL EXPORTAÇÃO PDF -->
     <div class="modal-overlay" id="exportModal">
         <div class="modal-card">
             <div class="modal-header"><h3 class="modal-title"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal"><i class="fas fa-times"></i></button></div>
@@ -1318,14 +924,10 @@
                 <button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button>
                 <button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button>
             </div>
-            <div class="share-summary-box" id="pdfPreviewInfo">
-                <strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br>
-                <strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.
-            </div>
+            <div class="share-summary-box" id="pdfPreviewInfo"><strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br><strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.</div>
         </div>
     </div>
 
-    <!-- MODAL COMPARTILHAR -->
     <div class="modal-overlay" id="shareModal">
         <div class="modal-card">
             <div class="modal-header"><h3 class="modal-title"><i class="fas fa-share-alt"></i> Compartilhar Desempenho</h3><button class="modal-close" id="closeShareModal"><i class="fas fa-times"></i></button></div>
@@ -1339,14 +941,28 @@
         </div>
     </div>
 
-    <!-- MODAL QUEM SOMOS (SPLASH TROFÉU) -->
+    <!-- Modal Adicionar Disciplina -->
+    <div class="modal-overlay" id="addDisciplinaModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title"><i class="fas fa-plus-circle"></i> Adicionar Disciplina</h3>
+                <button class="modal-close" id="closeAddDisciplinaModal"><i class="fas fa-times"></i></button>
+            </div>
+            <label for="newDisciplinaInput">Nome da disciplina</label>
+            <input type="text" id="newDisciplinaInput" placeholder="Digite o nome da disciplina..." autocomplete="off">
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px;">Ou escolha uma sugestão rápida:</p>
+            <div class="suggestions-grid" id="suggestionsGrid"></div>
+            <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end;">
+                <button class="btn btn-sm" id="cancelAddDisciplinaBtn">Cancelar</button>
+                <button class="btn btn-primary btn-sm" id="confirmAddDisciplinaBtn"><i class="fas fa-check"></i> Adicionar</button>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="quemSomosOverlay">
         <div id="quemSomosModal">
             <button class="close-btn" id="closeQuemSomosBtn"><i class="fas fa-times"></i></button>
-            <div class="trophy-container">
-                <div class="confetti-container" id="confettiContainer"></div>
-                <i class="fas fa-trophy trophy-icon"></i>
-            </div>
+            <div class="trophy-container"><div class="confetti-container" id="confettiContainer"></div><i class="fas fa-trophy trophy-icon"></i></div>
             <div class="manifesto-text">
                 <p><strong>Manifesto</strong></p>
                 <p>O mercado de concursos públicos está cada vez mais competitivo. Atualmente, o acesso a mentorias, consultorias e materiais de alta qualidade muitas vezes fica restrito a uma parcela da população que pode investir valores elevados. Diante desse cenário, surge uma reflexão importante: como competir em igualdade quando o acesso ao conhecimento não é democrático?</p>
@@ -1359,10 +975,8 @@
         </div>
     </div>
 
-    <!-- TOAST -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- CHATBOT CAMI -->
     <button id="camiFAB" aria-label="Abrir assistente Cami"><span class="cami-icon">🦎</span><span class="cami-notification-dot" id="camiDot"></span></button>
     <div id="camiChatWindow">
         <div id="camiChatHeader">
@@ -1384,7 +998,7 @@
     </div>
 
     <script>
-        // ========== FRASES MOTIVACIONAIS (NOVO) ==========
+        // ========== FRASES MOTIVACIONAIS ==========
         const motivationalPhrases = [
             { quote: "A persistência é o caminho do êxito.", author: "Charles Chaplin" },
             { quote: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
@@ -1421,10 +1035,7 @@
         function getDailyPhraseIndex() {
             const today = new Date().toISOString().split('T')[0];
             let hash = 0;
-            for (let i = 0; i < today.length; i++) {
-                hash = ((hash << 5) - hash) + today.charCodeAt(i);
-                hash |= 0;
-            }
+            for (let i = 0; i < today.length; i++) { hash = ((hash << 5) - hash) + today.charCodeAt(i); hash |= 0; }
             return Math.abs(hash) % motivationalPhrases.length;
         }
 
@@ -1457,16 +1068,9 @@
             if (greetingEl) {
                 const hora = new Date().getHours();
                 let saudacao, emoji;
-                if (hora >= 5 && hora < 12) {
-                    saudacao = 'Bom dia';
-                    emoji = '☀️';
-                } else if (hora >= 12 && hora < 18) {
-                    saudacao = 'Boa tarde';
-                    emoji = '🌤️';
-                } else {
-                    saudacao = 'Boa noite';
-                    emoji = '🌙';
-                }
+                if (hora >= 5 && hora < 12) { saudacao = 'Bom dia'; emoji = '☀️'; }
+                else if (hora >= 12 && hora < 18) { saudacao = 'Boa tarde'; emoji = '🌤️'; }
+                else { saudacao = 'Boa noite'; emoji = '🌙'; }
                 greetingEl.innerHTML = `Olá, ${saudacao} <span class="greeting-emoji">${emoji}</span>`;
             }
         })();
@@ -1495,19 +1099,12 @@
         (function() {
             const overlay = document.getElementById('quemSomosOverlay');
             const closeBtn = document.getElementById('closeQuemSomosBtn');
-            function openModal() {
-                overlay.classList.add('active');
-                spawnConfetti();
-            }
-            function closeModal() {
-                overlay.classList.remove('active');
-            }
+            function openModal() { overlay.classList.add('active'); spawnConfetti(); }
+            function closeModal() { overlay.classList.remove('active'); }
             document.getElementById('quemSomosBtn').addEventListener('click', openModal);
             document.getElementById('topbarQuemSomosBtn').addEventListener('click', openModal);
             closeBtn.addEventListener('click', closeModal);
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) closeModal();
-            });
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
         })();
 
         // ========== TEMA (CLARO/ESCURO) ==========
@@ -1521,9 +1118,7 @@
                 icon.className = 'fas ' + (isLight ? 'fa-moon' : 'fa-sun');
                 label.textContent = isLight ? 'Escuro' : 'Claro';
                 const topbarIcon = document.getElementById('topbarThemeIcon');
-                if (topbarIcon) {
-                    topbarIcon.className = 'fas ' + (isLight ? 'fa-sun' : 'fa-moon');
-                }
+                if (topbarIcon) topbarIcon.className = 'fas ' + (isLight ? 'fa-sun' : 'fa-moon');
                 localStorage.setItem('theme', name);
             }
             const saved = localStorage.getItem('theme') || 'light';
@@ -1549,7 +1144,7 @@
             setTimeout(() => { if (el.parentNode) el.remove(); }, 3200);
         }
 
-        // ========== NOTIFICAÇÕES (TOPBAR) ==========
+        // ========== NOTIFICAÇÕES ==========
         let notifications = JSON.parse(localStorage.getItem('vulps_notifications')) || [];
 
         function generateMockNotifications() {
@@ -1559,27 +1154,21 @@
                 if (m.streak > 0 && m.streak % 5 === 0) {
                     newNotifs.push({
                         id: (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() + Math.random()),
-                        type: 'streak',
-                        title: 'Streak de Estudos!',
+                        type: 'streak', title: 'Streak de Estudos!',
                         message: `Você estudou por ${m.streak} dias consecutivos! Continue assim! 🔥`,
-                        time: new Date().toISOString(),
-                        read: false
+                        time: new Date().toISOString(), read: false
                     });
                 }
                 if (m.correctPercent >= 70 && goals.length >= 2 && goals[1].current >= goals[1].target) {
                     newNotifs.push({
                         id: (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() + Math.random()),
-                        type: 'goal',
-                        title: 'Meta Atingida!',
+                        type: 'goal', title: 'Meta Atingida!',
                         message: `Taxa de acerto de ${m.correctPercent}%! Meta de ${goals[1].target}% concluída! ✅`,
-                        time: new Date().toISOString(),
-                        read: false
+                        time: new Date().toISOString(), read: false
                     });
                 }
                 return newNotifs;
-            } catch (e) {
-                return [];
-            }
+            } catch (e) { return []; }
         }
 
         function addNotification(notif) {
@@ -1587,9 +1176,7 @@
             if (exists) return;
             notifications.unshift(notif);
             if (notifications.length > 50) notifications.pop();
-            try {
-                localStorage.setItem('vulps_notifications', JSON.stringify(notifications));
-            } catch (e) {}
+            try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {}
             updateNotificationUI();
         }
 
@@ -1597,10 +1184,7 @@
             const unreadCount = notifications.filter(n => !n.read).length;
             const badge = document.getElementById('notificationBadge');
             const list = document.getElementById('notificationList');
-            if (badge) {
-                badge.textContent = unreadCount;
-                badge.style.display = unreadCount > 0 ? 'flex' : 'none';
-            }
+            if (badge) { badge.textContent = unreadCount; badge.style.display = unreadCount > 0 ? 'flex' : 'none'; }
             if (list) {
                 if (notifications.length === 0) {
                     list.innerHTML = '<div class="notification-empty">Nenhuma notificação no momento.</div>';
@@ -1608,52 +1192,37 @@
                     list.innerHTML = notifications.map((n, i) => `
                         <div class="notification-item${n.read ? '' : ' unread'}" data-index="${i}">
                             <div class="notification-icon"><i class="fas fa-${n.type === 'streak' ? 'fire' : n.type === 'goal' ? 'bullseye' : 'info-circle'}"></i></div>
-                            <div class="notification-content">
-                                <div>${n.message}</div>
-                                <div class="notification-time">${new Date(n.time).toLocaleString('pt-BR')}</div>
-                            </div>
-                        </div>
-                    `).join('');
+                            <div class="notification-content"><div>${n.message}</div><div class="notification-time">${new Date(n.time).toLocaleString('pt-BR')}</div></div>
+                        </div>`).join('');
                 }
             }
         }
 
         function markAllRead() {
             notifications.forEach(n => n.read = true);
-            try {
-                localStorage.setItem('vulps_notifications', JSON.stringify(notifications));
-            } catch (e) {}
+            try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {}
             updateNotificationUI();
             toast('Todas as notificações foram lidas.');
         }
 
         document.getElementById('notificationBell').addEventListener('click', (e) => {
             e.stopPropagation();
-            const dd = document.getElementById('notificationDropdown');
-            dd.classList.toggle('active');
+            document.getElementById('notificationDropdown').classList.toggle('active');
         });
-
         document.addEventListener('click', (e) => {
             const dd = document.getElementById('notificationDropdown');
             if (dd && dd.classList.contains('active') && !dd.contains(e.target) && e.target.id !== 'notificationBell') {
                 dd.classList.remove('active');
             }
         });
-
-        document.getElementById('markAllReadBtn').addEventListener('click', (e) => {
-            e.stopPropagation();
-            markAllRead();
-        });
-
+        document.getElementById('markAllReadBtn').addEventListener('click', (e) => { e.stopPropagation(); markAllRead(); });
         document.getElementById('notificationList').addEventListener('click', (e) => {
             const item = e.target.closest('.notification-item');
             if (item) {
                 const index = parseInt(item.dataset.index);
                 if (!isNaN(index) && notifications[index]) {
                     notifications[index].read = true;
-                    try {
-                        localStorage.setItem('vulps_notifications', JSON.stringify(notifications));
-                    } catch (e) {}
+                    try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {}
                     updateNotificationUI();
                 }
             }
@@ -1680,45 +1249,31 @@
             function toggleChat() {
                 camiOpen = !camiOpen;
                 if (camiOpen) {
-                    win.classList.add('active');
-                    fab.classList.add('chat-open');
+                    win.classList.add('active'); fab.classList.add('chat-open');
                     if (dot) dot.style.display = 'none';
                     input.focus();
                     if (camiFirstInteraction) {
                         camiFirstInteraction = false;
-                        mostrarDigitando(() => {
-                            enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente do Painel de Desempenho da VULPS+. Posso ajudar com dúvidas sobre métricas, cronômetro, metas e como usar o dashboard. 🦎');
-                        });
+                        mostrarDigitando(() => { enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente do Painel de Desempenho da VULPS+. Posso ajudar com dúvidas sobre métricas, cronômetro, metas e como usar o dashboard. 🦎'); });
                     }
-                } else {
-                    win.classList.remove('active');
-                    fab.classList.remove('chat-open');
-                }
+                } else { win.classList.remove('active'); fab.classList.remove('chat-open'); }
             }
 
             function mostrarDigitando(cb) {
-                const d = document.createElement('div');
-                d.className = 'cami-message bot';
+                const d = document.createElement('div'); d.className = 'cami-message bot';
                 d.innerHTML = '<div class="cami-typing"><span></span><span></span><span></span></div>';
-                msgs.appendChild(d);
-                msgs.scrollTop = msgs.scrollHeight;
+                msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
                 setTimeout(() => { d.remove(); cb(); }, 1200 + Math.random() * 800);
             }
 
             function enviarBot(t) {
-                const d = document.createElement('div');
-                d.className = 'cami-message bot';
-                d.innerHTML = t;
-                msgs.appendChild(d);
-                msgs.scrollTop = msgs.scrollHeight;
+                const d = document.createElement('div'); d.className = 'cami-message bot'; d.innerHTML = t;
+                msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
             }
 
             function enviarUsuario(t) {
-                const d = document.createElement('div');
-                d.className = 'cami-message user';
-                d.textContent = t;
-                msgs.appendChild(d);
-                msgs.scrollTop = msgs.scrollHeight;
+                const d = document.createElement('div'); d.className = 'cami-message user'; d.textContent = t;
+                msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
             }
 
             function processarMensagem(texto) {
@@ -1742,25 +1297,15 @@
             fab.addEventListener('click', toggleChat);
             document.getElementById('camiChatMinimize').addEventListener('click', () => { camiOpen = true; toggleChat(); });
             document.getElementById('camiSendBtn').addEventListener('click', () => {
-                const texto = input.value.trim();
-                if (texto) { processarMensagem(texto); input.value = ''; }
+                const texto = input.value.trim(); if (texto) { processarMensagem(texto); input.value = ''; }
             });
             input.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    const texto = input.value.trim();
-                    if (texto) { processarMensagem(texto); input.value = ''; }
-                }
+                if (e.key === 'Enter') { e.preventDefault(); const texto = input.value.trim(); if (texto) { processarMensagem(texto); input.value = ''; } }
             });
             document.getElementById('camiQuickReplies').addEventListener('click', (e) => {
                 const btn = e.target.closest('.cami-quick-btn');
                 if (btn && btn.dataset.topic) {
-                    const topicos = {
-                        metricas: 'Como funcionam as métricas?',
-                        cronometro: 'Como usar o cronômetro?',
-                        metas: 'Como funcionam as metas?',
-                        dashboard: 'O que tem no dashboard?'
-                    };
+                    const topicos = { metricas: 'Como funcionam as métricas?', cronometro: 'Como usar o cronômetro?', metas: 'Como funcionam as metas?', dashboard: 'O que tem no dashboard?' };
                     const texto = topicos[btn.dataset.topic] || btn.dataset.topic;
                     if (!camiOpen) toggleChat();
                     processarMensagem(texto);
@@ -1778,6 +1323,30 @@
             "Segurança da Informação","Saúde Pública","Conhecimentos Pedagógicos","Criminologia"
         ];
 
+        // Lista extensa de sugestões de disciplinas para concursos
+        const todasDisciplinasSugestoes = [
+            "Língua Portuguesa","Raciocínio Lógico-Matemático","Matemática","Noções de Informática","Atualidades",
+            "Direito Constitucional","Direito Administrativo","Direito Penal","Direito Processual Penal",
+            "Direito Civil","Direito do Trabalho","Direito Tributário","Direito Processual Civil",
+            "Direito Ambiental","Direito Internacional Público","Direitos Humanos","Legislação Específica",
+            "Administração Geral","Administração Pública","Contabilidade Geral","Contabilidade Pública",
+            "Economia e Finanças Públicas","Estatística","Gestão de Pessoas","Ética no Serviço Público",
+            "Segurança da Informação","Saúde Pública","Conhecimentos Pedagógicos","Criminologia",
+            "Medicina Legal","Engenharia Civil","Arquitetura","Biblioteconomia","Arquivologia",
+            "História do Brasil","Geografia do Brasil","História Mundial","Geografia Mundial",
+            "Filosofia","Sociologia","Antropologia","Ciência Política",
+            "Direito Eleitoral","Direito Previdenciário","Direito Empresarial","Direito do Consumidor",
+            "Direito da Criança e do Adolescente","Direito Penal Militar","Direito Processual Penal Militar",
+            "Direito Marítimo","Direito Aeronáutico","Direito Regulatório","Direito Digital",
+            "Auditoria","Controladoria","Planejamento Estratégico","Gestão de Projetos","Governança Corporativa",
+            "Matemática Financeira","Raciocínio Analítico","Interpretação de Textos","Redação Oficial",
+            "Inglês","Espanhol","Francês","Direito Agrário","Direito Minerário","Direito Urbanístico",
+            "Políticas Públicas","Sustentabilidade","Responsabilidade Social","Gestão Ambiental",
+            "Tecnologia da Informação","Banco de Dados","Redes de Computadores","Engenharia de Software",
+            "Medicina do Trabalho","Psicologia Organizacional","Serviço Social","Enfermagem",
+            "Nutrição","Farmácia","Biologia","Física","Química","Geologia"
+        ];
+
         let data = {};
         let events = [];
         let goals = [
@@ -1787,16 +1356,9 @@
             { id: 4, title: 'Dias consecutivos', target: 30, current: 0, unit: 'dias', period: 'streak' }
         ];
 
-        try {
-            data = JSON.parse(localStorage.getItem('vulps_discipline_data')) || {};
-        } catch (e) { data = {}; }
-        try {
-            events = JSON.parse(localStorage.getItem('user_progress_events')) || [];
-        } catch (e) { events = []; }
-        try {
-            const savedGoals = JSON.parse(localStorage.getItem('vulps_goals'));
-            if (savedGoals && Array.isArray(savedGoals)) goals = savedGoals;
-        } catch (e) {}
+        try { data = JSON.parse(localStorage.getItem('vulps_discipline_data')) || {}; } catch (e) { data = {}; }
+        try { events = JSON.parse(localStorage.getItem('user_progress_events')) || []; } catch (e) { events = []; }
+        try { const savedGoals = JSON.parse(localStorage.getItem('vulps_goals')); if (savedGoals && Array.isArray(savedGoals)) goals = savedGoals; } catch (e) {}
 
         if (Object.keys(data).length === 0) {
             disciplinasPredefinidas.slice(0, 8).forEach(d => data[d] = { certas: 0, erradas: 0, horasMinutos: 0 });
@@ -1805,6 +1367,69 @@
 
         function salvarDados() { try { localStorage.setItem('vulps_discipline_data', JSON.stringify(data)); } catch (e) {} }
         function salvarEventos() { try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (e) {} }
+
+        // ========== MODAL ADICIONAR DISCIPLINA ==========
+        const addDisciplinaModal = document.getElementById('addDisciplinaModal');
+        const newDisciplinaInput = document.getElementById('newDisciplinaInput');
+        const suggestionsGrid = document.getElementById('suggestionsGrid');
+
+        function atualizarSugestoes() {
+            const existentes = new Set(Object.keys(data).map(d => d.toLowerCase().trim()));
+            const disponiveis = todasDisciplinasSugestoes.filter(d => !existentes.has(d.toLowerCase().trim()));
+            suggestionsGrid.innerHTML = disponiveis.map(d => `<button class="suggestion-chip" data-name="${d}">${d}</button>`).join('');
+        }
+
+        document.getElementById('addDisciplinaBtn').addEventListener('click', () => {
+            atualizarSugestoes();
+            newDisciplinaInput.value = '';
+            addDisciplinaModal.classList.add('active');
+            setTimeout(() => newDisciplinaInput.focus(), 100);
+        });
+
+        document.getElementById('closeAddDisciplinaModal').addEventListener('click', () => addDisciplinaModal.classList.remove('active'));
+        document.getElementById('cancelAddDisciplinaBtn').addEventListener('click', () => addDisciplinaModal.classList.remove('active'));
+        addDisciplinaModal.addEventListener('click', (e) => { if (e.target === addDisciplinaModal) addDisciplinaModal.classList.remove('active'); });
+
+        suggestionsGrid.addEventListener('click', (e) => {
+            const chip = e.target.closest('.suggestion-chip');
+            if (chip) {
+                newDisciplinaInput.value = chip.dataset.name;
+                newDisciplinaInput.focus();
+            }
+        });
+
+        function adicionarNovaDisciplina(nome) {
+            nome = nome.trim();
+            if (!nome) { toast('Digite um nome válido.', 'error'); return; }
+            const nomeNormalizado = nome;
+            if (data[nomeNormalizado]) {
+                toast('Esta disciplina já existe.', 'error');
+                return;
+            }
+            data[nomeNormalizado] = { certas: 0, erradas: 0, horasMinutos: 0 };
+            salvarDados();
+            atualizarSelects();
+            renderizarTabela();
+            refreshDashboard();
+            toast(`✓ Disciplina "${nomeNormalizado}" adicionada!`);
+        }
+
+        document.getElementById('confirmAddDisciplinaBtn').addEventListener('click', () => {
+            const nome = newDisciplinaInput.value.trim();
+            if (!nome) { toast('Digite o nome da disciplina.', 'error'); return; }
+            adicionarNovaDisciplina(nome);
+            addDisciplinaModal.classList.remove('active');
+        });
+
+        newDisciplinaInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const nome = newDisciplinaInput.value.trim();
+                if (!nome) { toast('Digite o nome da disciplina.', 'error'); return; }
+                adicionarNovaDisciplina(nome);
+                addDisciplinaModal.classList.remove('active');
+            }
+        });
 
         // ========== CRONÔMETRO ==========
         let timerInterval = null, segundos = 0, pomodoroActive = true, pomodoroCount = 1, focusModeActive = false, ciclo30min = 0;
@@ -1836,8 +1461,7 @@
             ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI);
             ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 12; ctx.stroke();
             const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff751f';
-            const grad = ctx.createLinearGradient(0, 0, w, h);
-            grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff');
+            const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff');
             ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress));
             ctx.strokeStyle = grad; ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.stroke();
         }
@@ -1854,31 +1478,22 @@
             toast(`✓ ${minutos}min salvos em "${nome}"`);
         }
 
-        function abrirModoFoco() {
-            focusOverlay.classList.add('active');
-            focusModeActive = true;
-            updateCiclo30min();
-        }
+        function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); }
 
         document.getElementById('timerStart').addEventListener('click', () => {
             if (timerInterval) return;
             timerInterval = setInterval(() => {
                 segundos++; atualizarTimer(); updateCiclo30min();
-                if (pomodoroActive && segundos % 1500 === 0) {
-                    clearInterval(timerInterval); timerInterval = null;
-                    toast(`🍅 Pomodoro ${pomodoroCount++} concluído! Pausa de 5 min.`);
-                }
+                if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído! Pausa de 5 min.`); }
             }, 1000);
         });
         document.getElementById('timerPause').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; });
         document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(false));
         document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); });
-
         document.getElementById('focusModeHighlightBtn').addEventListener('click', abrirModoFoco);
         document.getElementById('exitFocusBtn').addEventListener('click', () => { focusOverlay.classList.remove('active'); focusModeActive = false; });
         document.getElementById('focusTimerStart').addEventListener('click', () => document.getElementById('timerStart').click());
         document.getElementById('focusTimerPause').addEventListener('click', () => document.getElementById('timerPause').click());
-
         document.querySelectorAll('.timer-type-btn').forEach(b => {
             b.addEventListener('click', () => {
                 document.querySelectorAll('.timer-type-btn').forEach(x => x.classList.remove('active'));
@@ -1909,12 +1524,10 @@
             const disciplinas = Object.keys(data).sort();
             const filtradas = disciplinas.filter(d => d.toLowerCase().includes((filtro || '').toLowerCase()));
             tbody.innerHTML = filtradas.map(nome => {
-                const d = getDisciplina(nome);
-                const total = d.certas + d.erradas;
+                const d = getDisciplina(nome); const total = d.certas + d.erradas;
                 const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0;
                 const status = getStatus(perc);
-                const h = Math.floor((d.horasMinutos || 0) / 60);
-                const m = (d.horasMinutos || 0) % 60;
+                const h = Math.floor((d.horasMinutos || 0) / 60); const m = (d.horasMinutos || 0) % 60;
                 const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`;
                 const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger');
                 return `<tr><td>${nome}</td><td>${d.certas}</td><td>${d.erradas}</td><td>${total}</td><td>${perc}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm" onclick="iniciarCronometroPara('${nome}')"><i class="fas fa-play"></i></button> <button class="btn btn-sm" onclick="excluirDisciplina('${nome}')" style="color:var(--danger);"><i class="fas fa-trash-alt"></i></button></td></tr>`;
@@ -1932,7 +1545,6 @@
             if (selectDisciplina.value === nome) selectDisciplina.value = '';
             refreshDashboard();
         };
-
         filtroInput.addEventListener('input', e => renderizarTabela(e.target.value));
 
         // ========== REGISTRO RÁPIDO ==========
@@ -1958,17 +1570,12 @@
         // ========== RESET ==========
         document.getElementById('resetMetricsBtn').addEventListener('click', () => {
             if (confirm('Zerar TODAS as métricas? Esta ação não pode ser desfeita.')) {
-                try {
-                    localStorage.removeItem('vulps_discipline_data');
-                    localStorage.removeItem('user_progress_events');
-                    localStorage.removeItem('vulps_goals');
-                    localStorage.removeItem('vulps_notifications');
-                } catch (e) {}
+                try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications'); } catch (e) {}
                 location.reload();
             }
         });
 
-        // ========== EXPORTAÇÃO PDF (jsPDF + autotable) ==========
+        // ========== EXPORTAÇÃO PDF ==========
         const exportModal = document.getElementById('exportModal');
         const shareModal = document.getElementById('shareModal');
 
@@ -1976,17 +1583,7 @@
         document.getElementById('closeExportModal').addEventListener('click', () => exportModal.classList.remove('active'));
         document.getElementById('shareBtn').addEventListener('click', () => {
             const m = computeMetrics();
-            const summary = `📊 VULPS+ · Painel de Desempenho\n` +
-                `━━━━━━━━━━━━━━━━━━\n` +
-                `📈 Total de Questões: ${m.total}\n` +
-                `✅ Acertos: ${m.correct} (${m.correctPercent}%)\n` +
-                `❌ Erros: ${m.wrong}\n` +
-                `⏱️ Tempo de Estudo: ${formatHours(m.totalTime)}\n` +
-                `🔥 Streak: ${m.streak} dias consecutivos\n` +
-                `📅 Questões Hoje: ${m.todayCount}\n` +
-                `🏆 Taxa de Acerto: ${m.correctPercent}%\n` +
-                `━━━━━━━━━━━━━━━━━━\n` +
-                `🔗 Acesse: ${window.location.href}`;
+            const summary = `📊 VULPS+ · Painel de Desempenho\n━━━━━━━━━━━━━━━━━━\n📈 Total de Questões: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo de Estudo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias consecutivos\n📅 Questões Hoje: ${m.todayCount}\n🏆 Taxa de Acerto: ${m.correctPercent}%\n━━━━━━━━━━━━━━━━━━\n🔗 Acesse: ${window.location.href}`;
             document.getElementById('shareSummaryText').textContent = summary;
             shareModal.classList.add('active');
         });
@@ -1994,133 +1591,41 @@
 
         function getShareSummary() {
             const m = computeMetrics();
-            return `📊 VULPS+ · Painel de Desempenho\n` +
-                `━━━━━━━━━━━━━━━━━━\n` +
-                `📈 Total de Questões: ${m.total}\n` +
-                `✅ Acertos: ${m.correct} (${m.correctPercent}%)\n` +
-                `❌ Erros: ${m.wrong}\n` +
-                `⏱️ Tempo de Estudo: ${formatHours(m.totalTime)}\n` +
-                `🔥 Streak: ${m.streak} dias consecutivos\n` +
-                `📅 Questões Hoje: ${m.todayCount}\n` +
-                `🏆 Taxa de Acerto: ${m.correctPercent}%\n` +
-                `━━━━━━━━━━━━━━━━━━\n` +
-                `🔗 Acesse: ${window.location.href}`;
+            return `📊 VULPS+ · Painel de Desempenho\n━━━━━━━━━━━━━━━━━━\n📈 Total de Questões: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo de Estudo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias consecutivos\n📅 Questões Hoje: ${m.todayCount}\n🏆 Taxa de Acerto: ${m.correctPercent}%\n━━━━━━━━━━━━━━━━━━\n🔗 Acesse: ${window.location.href}`;
         }
 
-        document.getElementById('shareWhatsAppBtn').addEventListener('click', () => {
-            const summary = getShareSummary();
-            const url = `https://wa.me/?text=${encodeURIComponent(summary)}`;
-            window.open(url, '_blank');
-        });
+        document.getElementById('shareWhatsAppBtn').addEventListener('click', () => { const summary = getShareSummary(); window.open(`https://wa.me/?text=${encodeURIComponent(summary)}`, '_blank'); });
+        document.getElementById('shareCopyBtn').addEventListener('click', () => { const summary = getShareSummary(); navigator.clipboard.writeText(summary).then(() => toast('Resumo copiado!')).catch(() => toast('Falha ao copiar.', 'error')); });
+        document.getElementById('shareCopyLinkBtn').addEventListener('click', () => { navigator.clipboard.writeText(window.location.href).then(() => toast('Link copiado!')).catch(() => toast('Falha ao copiar.', 'error')); });
 
-        document.getElementById('shareCopyBtn').addEventListener('click', () => {
-            const summary = getShareSummary();
-            navigator.clipboard.writeText(summary).then(() => {
-                toast('Resumo copiado para a área de transferência!');
-            }).catch(() => {
-                toast('Falha ao copiar.', 'error');
-            });
-        });
-
-        document.getElementById('shareCopyLinkBtn').addEventListener('click', () => {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                toast('Link copiado!');
-            }).catch(() => {
-                toast('Falha ao copiar.', 'error');
-            });
-        });
-
-        // Fechar modais ao clicar fora
-        [exportModal, shareModal].forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) modal.classList.remove('active');
-            });
-        });
+        [exportModal, shareModal].forEach(modal => { modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); }); });
 
         function exportPDF(isComplete = true) {
             try {
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
                 const m = computeMetrics();
-
-                // Cabeçalho
-                doc.setFillColor(17, 85, 204);
-                doc.rect(0, 0, 210, 30, 'F');
-                doc.setTextColor(255, 255, 255);
-                doc.setFontSize(16);
-                doc.setFont('helvetica', 'bold');
+                doc.setFillColor(17, 85, 204); doc.rect(0, 0, 210, 30, 'F');
+                doc.setTextColor(255, 255, 255); doc.setFontSize(16); doc.setFont('helvetica', 'bold');
                 doc.text('VULPS+ · Painel de Desempenho', 105, 15, { align: 'center' });
-                doc.setFontSize(10);
-                doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' });
-
+                doc.setFontSize(10); doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' });
                 let yPos = 38;
-
-                // KPIs
-                doc.setTextColor(15, 23, 42);
-                doc.setFontSize(14);
-                doc.setFont('helvetica', 'bold');
-                doc.text('Resumo de Desempenho', 15, yPos);
-                yPos += 8;
-
-                doc.setFontSize(10);
-                doc.setFont('helvetica', 'normal');
-                const kpis = [
-                    `Acertos Totais: ${m.correct}`,
-                    `Erros Totais: ${m.wrong}`,
-                    `Tempo de Estudo: ${formatHours(m.totalTime)}`,
-                    `Dias Consecutivos (Streak): ${m.streak}`,
-                    `Taxa de Acerto: ${m.correctPercent}%`,
-                    `Questões Hoje: ${m.todayCount}`
-                ];
-                kpis.forEach(kpi => {
-                    doc.text('• ' + kpi, 20, yPos);
-                    yPos += 6;
-                });
-
+                doc.setTextColor(15, 23, 42); doc.setFontSize(14); doc.setFont('helvetica', 'bold');
+                doc.text('Resumo de Desempenho', 15, yPos); yPos += 8;
+                doc.setFontSize(10); doc.setFont('helvetica', 'normal');
+                const kpis = [`Acertos Totais: ${m.correct}`, `Erros Totais: ${m.wrong}`, `Tempo de Estudo: ${formatHours(m.totalTime)}`, `Dias Consecutivos (Streak): ${m.streak}`, `Taxa de Acerto: ${m.correctPercent}%`, `Questões Hoje: ${m.todayCount}`];
+                kpis.forEach(kpi => { doc.text('• ' + kpi, 20, yPos); yPos += 6; });
                 if (isComplete) {
-                    yPos += 6;
-                    // Tabela de disciplinas
-                    doc.setFontSize(12);
-                    doc.setFont('helvetica', 'bold');
-                    doc.text('Desempenho por Disciplina', 15, yPos);
-                    yPos += 8;
-
+                    yPos += 6; doc.setFontSize(12); doc.setFont('helvetica', 'bold'); doc.text('Desempenho por Disciplina', 15, yPos); yPos += 8;
                     const disciplinas = Object.keys(data).sort();
-                    const tableData = disciplinas.map(nome => {
-                        const d = getDisciplina(nome);
-                        const total = d.certas + d.erradas;
-                        const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0;
-                        const status = getStatus(perc);
-                        const horas = formatHours(d.horasMinutos || 0);
-                        return [nome, String(d.certas), String(d.erradas), String(total), perc + '%', status, horas];
-                    });
-
-                    doc.autoTable({
-                        startY: yPos,
-                        head: [['Disciplina', 'Certas', 'Erradas', 'Total', '% Acerto', 'Status', 'Horas']],
-                        body: tableData,
-                        headStyles: { fillColor: [17, 85, 204], textColor: 255, fontStyle: 'bold', fontSize: 8 },
-                        bodyStyles: { fontSize: 8, textColor: [15, 23, 42] },
-                        alternateRowStyles: { fillColor: [241, 245, 249] }
-                    });
+                    const tableData = disciplinas.map(nome => { const d = getDisciplina(nome); const total = d.certas + d.erradas; const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0; const status = getStatus(perc); const horas = formatHours(d.horasMinutos || 0); return [nome, String(d.certas), String(d.erradas), String(total), perc + '%', status, horas]; });
+                    doc.autoTable({ startY: yPos, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '% Acerto', 'Status', 'Horas']], body: tableData, headStyles: { fillColor: [17, 85, 204], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8, textColor: [15, 23, 42] }, alternateRowStyles: { fillColor: [241, 245, 249] } });
                 }
-
-                // Rodapé
                 const pageCount = doc.getNumberOfPages();
-                for (let i = 1; i <= pageCount; i++) {
-                    doc.setPage(i);
-                    doc.setFontSize(8);
-                    doc.setTextColor(148, 163, 184);
-                    doc.text('VULP+ · Tecnologia e Educação Colaborativa', 105, 285, { align: 'center' });
-                    doc.text(`Página ${i} de ${pageCount}`, 105, 290, { align: 'center' });
-                }
-
+                for (let i = 1; i <= pageCount; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+ · Tecnologia e Educação Colaborativa', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pageCount}`, 105, 290, { align: 'center' }); }
                 doc.save(`vulps_desempenho_${new Date().toISOString().split('T')[0]}.pdf`);
                 toast('PDF exportado com sucesso!');
-            } catch (e) {
-                toast('Erro ao gerar PDF. Verifique o console.', 'error');
-                console.error(e);
-            }
+            } catch (e) { toast('Erro ao gerar PDF.', 'error'); console.error(e); }
         }
 
         document.getElementById('exportFullPdfBtn').addEventListener('click', () => exportPDF(true));
@@ -2132,8 +1637,7 @@
                 const total = events.length;
                 const correct = events.filter(e => e.correct === true).length;
                 const wrong = total - correct;
-                let totalTime = 0;
-                for (const d of Object.values(data)) totalTime += (d.horasMinutos || 0);
+                let totalTime = 0; for (const d of Object.values(data)) totalTime += (d.horasMinutos || 0);
                 const avgTime = total > 0 ? Math.round(totalTime / total) : 0;
                 const todayStr = new Date().toISOString().split('T')[0];
                 const todayCount = events.filter(e => e.timestamp.startsWith(todayStr)).length;
@@ -2151,9 +1655,7 @@
                 }
                 const correctPercent = total ? ((correct / total) * 100).toFixed(1) : '0.0';
                 return { total, correct, wrong, totalTime, avgTime, todayCount, streak, maxStreak, correctPercent };
-            } catch (e) {
-                return { total: 0, correct: 0, wrong: 0, totalTime: 0, avgTime: 0, todayCount: 0, streak: 0, maxStreak: 0, correctPercent: '0.0' };
-            }
+            } catch (e) { return { total: 0, correct: 0, wrong: 0, totalTime: 0, avgTime: 0, todayCount: 0, streak: 0, maxStreak: 0, correctPercent: '0.0' }; }
         }
 
         function renderKPIs() {
@@ -2186,15 +1688,13 @@
 
         function renderHeatmap() {
             const grid = document.getElementById('heatmapGrid');
-            const today = new Date();
-            const startOfWeek = new Date(today); startOfWeek.setDate(today.getDate() - today.getDay());
+            const today = new Date(); const startOfWeek = new Date(today); startOfWeek.setDate(today.getDate() - today.getDay());
             const byDay = {};
             events.forEach(e => { const d = e.timestamp.split('T')[0]; byDay[d] = (byDay[d] || 0) + 1; });
             let html = '';
             for (let i = 0; i < 7; i++) {
                 const d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i);
-                const iso = d.toISOString().split('T')[0];
-                const count = byDay[iso] || 0;
+                const iso = d.toISOString().split('T')[0]; const count = byDay[iso] || 0;
                 let level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4) level = 'level-2'; else if (count >= 1) level = 'level-1';
                 html += `<div class="heatmap-cell ${level}">${d.getDate()}</div>`;
             }
@@ -2229,11 +1729,7 @@
             const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - period);
             const filtered = events.filter(e => new Date(e.timestamp) >= cutoff);
             const byDay = {};
-            filtered.forEach(e => {
-                const day = e.timestamp.split('T')[0];
-                if (!byDay[day]) byDay[day] = { total: 0, correct: 0 };
-                byDay[day].total++; if (e.correct) byDay[day].correct++;
-            });
+            filtered.forEach(e => { const day = e.timestamp.split('T')[0]; if (!byDay[day]) byDay[day] = { total: 0, correct: 0 }; byDay[day].total++; if (e.correct) byDay[day].correct++; });
             const days = Object.keys(byDay).sort();
             const accuracyData = days.map(d => ({ day: d, accuracy: (byDay[d].total ? (byDay[d].correct / byDay[d].total) * 100 : 0) }));
             const volumeData = days.map(d => ({ day: d, correct: byDay[d].correct, wrong: byDay[d].total - byDay[d].correct }));
@@ -2242,12 +1738,9 @@
         }
 
         function drawLineChart(canvasId, data) {
-            const canvas = document.getElementById(canvasId);
-            if (!canvas || data.length === 0) return;
-            const ctx = canvas.getContext('2d');
-            const W = canvas.parentElement.clientWidth || 400, H = 280;
-            canvas.width = W; canvas.height = H;
-            const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+            const canvas = document.getElementById(canvasId); if (!canvas || data.length === 0) return;
+            const ctx = canvas.getContext('2d'); const W = canvas.parentElement.clientWidth || 400, H = 280;
+            canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 40, left: 50 };
             const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
             ctx.clearRect(0, 0, W, H);
             const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#1155cc';
@@ -2256,22 +1749,15 @@
             ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
             if (data.length > 1) {
                 ctx.beginPath(); ctx.strokeStyle = primary; ctx.lineWidth = 2.5;
-                data.forEach((d, i) => {
-                    const x = pad.left + i * (cW / (data.length - 1));
-                    const y = pad.top + cH - (d.accuracy / 100) * cH;
-                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-                });
+                data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
                 ctx.stroke();
             }
         }
 
         function drawBarChart(canvasId, data) {
-            const canvas = document.getElementById(canvasId);
-            if (!canvas || data.length === 0) return;
-            const ctx = canvas.getContext('2d');
-            const W = canvas.parentElement.clientWidth || 400, H = 280;
-            canvas.width = W; canvas.height = H;
-            const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+            const canvas = document.getElementById(canvasId); if (!canvas || data.length === 0) return;
+            const ctx = canvas.getContext('2d'); const W = canvas.parentElement.clientWidth || 400, H = 280;
+            canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 40, left: 50 };
             const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
             ctx.clearRect(0, 0, W, H);
             const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#1155cc';
@@ -2280,31 +1766,20 @@
             ctx.strokeStyle = border; ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
             const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1);
-            const barW = Math.min(30, cW / data.length * 0.6);
-            const gap = (cW - barW * data.length) / (data.length + 1);
+            const barW = Math.min(30, cW / data.length * 0.6); const gap = (cW - barW * data.length) / (data.length + 1);
             data.forEach((d, i) => {
                 const x = pad.left + gap + i * (barW + gap);
                 const totalH = ((d.correct + d.wrong) / maxVal) * cH;
                 const correctH = (d.correct / maxVal) * cH;
-                ctx.fillStyle = secondary;
-                ctx.fillRect(x, H - pad.bottom - totalH, barW, totalH);
-                ctx.fillStyle = primary;
-                ctx.fillRect(x, H - pad.bottom - correctH, barW, correctH);
+                ctx.fillStyle = secondary; ctx.fillRect(x, H - pad.bottom - totalH, barW, totalH);
+                ctx.fillStyle = primary; ctx.fillRect(x, H - pad.bottom - correctH, barW, correctH);
             });
         }
 
         function refreshDashboard() {
-            renderKPIs();
-            renderGoals();
-            renderHeatmap();
-            renderSubjectTable();
-            populateHistoryFilters();
-            renderHistoryTable();
-            renderCharts();
-            try {
-                const newNotifs = generateMockNotifications();
-                newNotifs.forEach(n => addNotification(n));
-            } catch (e) {}
+            renderKPIs(); renderGoals(); renderHeatmap(); renderSubjectTable();
+            populateHistoryFilters(); renderHistoryTable(); renderCharts();
+            try { const newNotifs = generateMockNotifications(); newNotifs.forEach(n => addNotification(n)); } catch (e) {}
         }
 
         document.getElementById('chartPeriod').addEventListener('change', renderCharts);
