@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ========== VARIÁVEIS GLOBAIS (SISTEMA DE CORES REFINADO) ========== */
+        /* ========== VARIÁVEIS GLOBAIS ========== */
         :root {
             --primary: #1155cc;
             --primary-dark: #0d47a1;
@@ -33,9 +33,11 @@
             --border-light: #e2e8f0;
 
             --sidebar-bg: #1155cc;
+            --sidebar-gradient: linear-gradient(180deg, #1a6bff 0%, #1155cc 30%, #0d47a1 100%);
+            --sidebar-shadow: inset -2px 0 8px rgba(0,0,0,0.15), 4px 0 20px rgba(17,85,204,0.3);
             --sidebar-text: rgba(255, 255, 255, 0.85);
             --sidebar-hover: rgba(255, 255, 255, 0.08);
-            --sidebar-active: rgba(255, 255, 255, 0.12);
+            --sidebar-active: rgba(255, 255, 255, 0.15);
 
             --radius-card: 16px;
             --radius-btn: 12px;
@@ -55,7 +57,7 @@
             --footer-border: rgba(255, 255, 255, 0.08);
         }
 
-        /* ========== DARK MODE (REFINADO) ========== */
+        /* ========== DARK MODE ========== */
         html[data-theme="dark"] {
             --bg-primary: #0f172a;
             --bg-card: #1e293b;
@@ -76,6 +78,8 @@
             --footer-text: #94a3b8;
             --footer-heading: #e2e8f0;
             --footer-border: rgba(255, 255, 255, 0.06);
+            --sidebar-gradient: linear-gradient(180deg, #1a5cd4 0%, #0d47a1 40%, #0a3a7a 100%);
+            --sidebar-shadow: inset -2px 0 8px rgba(0,0,0,0.3), 4px 0 20px rgba(0,0,0,0.4);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -104,31 +108,31 @@
         }
         #hamburgerBtn:hover { border-color: var(--primary); box-shadow: var(--card-shadow-hover); transform: translateY(-1px); }
 
-        /* ========== SIDEBAR (REFINADA) ========== */
+        /* ========== SIDEBAR (REFINADA COM GRADIENTE) ========== */
         #sidebar {
             position: fixed; left: 0; top: 0; height: 100vh; height: 100dvh;
-            width: var(--sidebar-width); background: var(--sidebar-bg);
+            width: var(--sidebar-width); background: var(--sidebar-gradient);
             backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
             padding: 0 18px 28px; display: flex; flex-direction: column; gap: 6px;
             z-index: 100; overflow-y: auto;
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 4px 0 30px rgba(0, 0, 0, 0.1), inset -1px 0 0 rgba(255,255,255,0.1);
+            box-shadow: var(--sidebar-shadow);
             transform: translateX(-100%);
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar .sidebar-header {
-            display: flex; flex-direction: column; align-items: center; gap: 12px;
-            padding: 28px 0 20px; margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
+            display: flex; flex-direction: column; align-items: center; gap: 14px;
+            padding: 32px 0 24px; margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
         }
         #sidebar .sidebar-header .sidebar-logo {
-            width: 120px; height: auto; border-radius: 16px;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
+            width: 150px; height: auto; border-radius: 20px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.25));
             transition: transform 0.3s ease;
         }
-        #sidebar .sidebar-header .sidebar-logo:hover { transform: scale(1.05); }
+        #sidebar .sidebar-header .sidebar-logo:hover { transform: scale(1.06); }
         #sidebar .sidebar-header .sidebar-title {
-            font-size: 1.3rem; font-weight: 600; color: #ffffff;
+            font-size: 1.4rem; font-weight: 600; color: #ffffff;
             letter-spacing: 0.5px; margin: 0;
         }
         #closeSidebarBtn {
@@ -153,18 +157,22 @@
             transition: color 0.2s, opacity 0.2s; min-width: 22px; text-align: center; opacity: 0.9;
         }
         .sidebar-btn .sb-info { display: flex; flex-direction: column; gap: 2px; line-height: 1.25; }
-        .sidebar-btn .sb-title { font-weight: 600; font-size: 0.88rem; color: #ffffff; }
-        .sidebar-btn .sb-sub { font-weight: 400; font-size: 0.72rem; color: rgba(255,255,255,0.75); }
+        .sidebar-btn .sb-title { font-weight: 600; font-size: 0.88rem; color: #ffffff; transition: color 0.2s; }
+        .sidebar-btn .sb-sub { font-weight: 400; font-size: 0.72rem; color: rgba(255,255,255,0.75); transition: color 0.2s; }
         .sidebar-btn:hover {
             background: var(--sidebar-hover); transform: translateX(4px);
             color: #fff; border-left-color: rgba(255,255,255,0.5);
         }
-        .sidebar-btn:hover i { opacity: 1; }
+        .sidebar-btn:hover i { color: var(--secondary); opacity: 1; }
+        .sidebar-btn:hover .sb-title { color: var(--secondary); }
+        .sidebar-btn:hover .sb-sub { color: rgba(255,255,255,0.95); }
         .sidebar-btn[aria-current="page"] {
             background: var(--sidebar-active); font-weight: 600;
             border-left-color: #ffffff; color: #ffffff;
         }
         .sidebar-btn[aria-current="page"] .sb-sub { color: rgba(255,255,255,0.9); }
+        .sidebar-btn[aria-current="page"] .sb-title { color: #ffffff; }
+        .sidebar-btn[aria-current="page"] i { color: #ffffff; }
 
         #sidebarOverlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -197,7 +205,7 @@
         }
         .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
-        /* ========== BOTÕES (REFINADOS) ========== */
+        /* ========== BOTÕES ========== */
         .btn {
             background: var(--btn-bg); border: 1px solid var(--btn-border);
             border-radius: var(--radius-btn); padding: 10px 18px;
@@ -278,7 +286,7 @@
             background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary);
         }
 
-        /* ========== KPIs (COM FUNDO LEVE) ========== */
+        /* ========== KPIs ========== */
         .dashboard-grid {
             display: grid; gap: 16px;
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
@@ -483,6 +491,145 @@
             white-space: pre-wrap; word-break: break-all;
         }
 
+        /* ========== CHATBOT CAMI ========== */
+        #camiFAB {
+            position: fixed; bottom: 24px; left: 24px; z-index: 9998;
+            width: 56px; height: 56px; border-radius: 28px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border: none; cursor: pointer;
+            box-shadow: 0 0 20px rgba(17, 85, 204, 0.4), 0 4px 12px rgba(0,0,0,0.15);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            animation: camiPulse 3s infinite;
+        }
+        #camiFAB:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 30px rgba(126, 217, 87, 0.6), 0 8px 20px rgba(0,0,0,0.2);
+        }
+        #camiFAB:active { transform: scale(0.95); }
+        #camiFAB .cami-icon { font-size: 1.6rem; transition: transform 0.3s; }
+        #camiFAB.chat-open .cami-icon { transform: rotate(180deg); }
+        @keyframes camiPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(17,85,204,0.4), 0 4px 12px rgba(0,0,0,0.15); }
+            50% { box-shadow: 0 0 32px rgba(17,85,204,0.7), 0 6px 18px rgba(0,0,0,0.25); }
+        }
+        #camiFAB .cami-notification-dot {
+            position: absolute; top: 4px; right: 4px;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--accent); border: 2px solid #fff;
+            display: none; animation: camiDotPulse 2s infinite;
+        }
+        @keyframes camiDotPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+        }
+        #camiChatWindow {
+            position: fixed; bottom: 96px; left: 24px; z-index: 9997;
+            width: 380px; max-width: calc(100vw - 40px);
+            height: 520px; max-height: calc(100vh - 140px);
+            background: var(--bg-card); border-radius: 20px;
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-light);
+            display: flex; flex-direction: column; overflow: hidden;
+            transform: translateY(20px) scale(0.95);
+            opacity: 0; pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+        }
+        #camiChatWindow.active {
+            transform: translateY(0) scale(1);
+            opacity: 1; pointer-events: auto;
+        }
+        #camiChatHeader {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 50%, var(--secondary) 100%);
+            padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+            color: #fff; flex-shrink: 0;
+        }
+        #camiChatHeader .cami-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(255,255,255,0.2); display: flex;
+            align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        #camiChatHeader .cami-header-info { flex: 1; min-width: 0; }
+        #camiChatHeader .cami-header-name { font-weight: 700; font-size: 0.9rem; line-height: 1.2; }
+        #camiChatHeader .cami-header-status { font-size: 0.7rem; opacity: 0.85; }
+        #camiChatMinimize {
+            background: rgba(255,255,255,0.15); border: none; color: #fff;
+            width: 30px; height: 30px; border-radius: 50%;
+            cursor: pointer; font-size: 0.85rem; transition: background 0.2s;
+        }
+        #camiChatMinimize:hover { background: rgba(255,255,255,0.3); }
+        #camiChatMessages {
+            flex: 1; overflow-y: auto; padding: 16px;
+            display: flex; flex-direction: column; gap: 10px;
+            scroll-behavior: smooth;
+        }
+        .cami-message {
+            max-width: 85%; padding: 10px 14px; border-radius: 16px;
+            font-size: 0.85rem; line-height: 1.45; word-break: break-word;
+            animation: camiMsgIn 0.3s ease;
+        }
+        @keyframes camiMsgIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cami-message.bot {
+            background: var(--bg-primary); align-self: flex-start;
+            border-bottom-left-radius: 4px; color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+        .cami-message.user {
+            background: var(--primary); color: #fff; align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .cami-message .cami-typing { display: flex; gap: 4px; padding: 6px 0; }
+        .cami-message .cami-typing span {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: var(--text-muted); animation: camiTypingBounce 1.4s infinite;
+        }
+        .cami-message .cami-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .cami-message .cami-typing span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes camiTypingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-8px); }
+        }
+        #camiQuickReplies {
+            display: flex; flex-wrap: wrap; gap: 6px;
+            padding: 10px 16px; border-top: 1px solid var(--border-light); flex-shrink: 0;
+        }
+        .cami-quick-btn {
+            padding: 7px 14px; border-radius: 20px;
+            border: 1px solid var(--border-light); background: var(--bg-card);
+            color: var(--text-primary); cursor: pointer;
+            font-size: 0.78rem; font-family: inherit; transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .cami-quick-btn:hover {
+            background: var(--primary-soft); border-color: var(--primary);
+        }
+        #camiChatInputArea {
+            display: flex; gap: 8px; padding: 10px 16px;
+            border-top: 1px solid var(--border-light); flex-shrink: 0; align-items: center;
+        }
+        #camiChatInput {
+            flex: 1; border: 1.5px solid var(--border-light);
+            border-radius: 24px; padding: 10px 16px;
+            font-size: 0.85rem; min-height: 40px;
+            background: var(--input-bg); color: var(--text-primary);
+            font-family: inherit; transition: 0.2s; margin-bottom: 0;
+        }
+        #camiChatInput:focus {
+            outline: none; border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(17,85,204,0.12);
+        }
+        #camiSendBtn {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--primary); border: none; color: #fff;
+            cursor: pointer; font-size: 1rem; transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        #camiSendBtn:hover { background: var(--primary-dark); transform: scale(1.05); }
+        #camiSendBtn:active { transform: scale(0.95); }
+
         /* ========== TOAST ========== */
         .toast-container {
             position: fixed; bottom: 24px; right: 24px; z-index: 9999;
@@ -537,7 +684,9 @@
             .kpi-value { font-size: 1.4rem; }
             .timer-display { font-size: 2.2rem; min-width: 160px; }
             .focus-ring-container { width: min(70vw, 240px); height: min(70vw, 240px); }
-            .sidebar-logo { width: 90px !important; }
+            .sidebar-logo { width: 130px !important; }
+            #camiChatWindow { width: calc(100vw - 32px); left: 16px; bottom: 88px; height: 440px; }
+            #camiFAB { bottom: 20px; left: 16px; width: 50px; height: 50px; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none; }
@@ -545,10 +694,11 @@
             #sidebarOverlay { display: none; }
             body { padding-left: var(--sidebar-width); }
             .app-footer { padding-left: calc(var(--sidebar-width) + 24px); }
+            #camiFAB { left: calc(var(--sidebar-width) + 24px); }
         }
         @media (max-width: 47.99em) {
             #closeSidebarBtn { display: flex; }
-            #sidebar .sidebar-header .sidebar-logo { width: 100px; }
+            #sidebar .sidebar-header .sidebar-logo { width: 120px; }
         }
     </style>
 </head>
@@ -737,6 +887,27 @@
     <!-- TOAST -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <!-- CHATBOT CAMI -->
+    <button id="camiFAB" aria-label="Abrir assistente Cami"><span class="cami-icon">🦎</span><span class="cami-notification-dot" id="camiDot"></span></button>
+    <div id="camiChatWindow">
+        <div id="camiChatHeader">
+            <div class="cami-avatar">🦎</div>
+            <div class="cami-header-info"><div class="cami-header-name">Cami · Assistente VULPS+</div><div class="cami-header-status">Online · Pronta para ajudar</div></div>
+            <button id="camiChatMinimize">✕</button>
+        </div>
+        <div id="camiChatMessages"></div>
+        <div id="camiQuickReplies">
+            <button class="cami-quick-btn" data-topic="metricas">Métricas</button>
+            <button class="cami-quick-btn" data-topic="cronometro">Cronômetro</button>
+            <button class="cami-quick-btn" data-topic="metas">Metas</button>
+            <button class="cami-quick-btn" data-topic="dashboard">Dashboard</button>
+        </div>
+        <div id="camiChatInputArea">
+            <input type="text" id="camiChatInput" placeholder="Digite sua dúvida..." aria-label="Digite sua mensagem">
+            <button id="camiSendBtn" aria-label="Enviar mensagem"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <script>
         // ========== TEMA (CLARO/ESCURO) ==========
         (function() {
@@ -777,6 +948,107 @@
             document.getElementById('hamburgerBtn').addEventListener('click', () => { sidebar.classList.add('open'); overlay.classList.add('active'); });
             document.getElementById('closeSidebarBtn').addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
             overlay.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
+        })();
+
+        // ========== CHATBOT CAMI ==========
+        (function() {
+            let camiOpen = false, camiFirstInteraction = true;
+            const win = document.getElementById('camiChatWindow');
+            const fab = document.getElementById('camiFAB');
+            const dot = document.getElementById('camiDot');
+            const msgs = document.getElementById('camiChatMessages');
+            const input = document.getElementById('camiChatInput');
+
+            function toggleChat() {
+                camiOpen = !camiOpen;
+                if (camiOpen) {
+                    win.classList.add('active');
+                    fab.classList.add('chat-open');
+                    if (dot) dot.style.display = 'none';
+                    input.focus();
+                    if (camiFirstInteraction) {
+                        camiFirstInteraction = false;
+                        mostrarDigitando(() => {
+                            enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente do Painel de Desempenho da VULPS+. Posso ajudar com dúvidas sobre métricas, cronômetro, metas e como usar o dashboard. 🦎');
+                        });
+                    }
+                } else {
+                    win.classList.remove('active');
+                    fab.classList.remove('chat-open');
+                }
+            }
+
+            function mostrarDigitando(cb) {
+                const d = document.createElement('div');
+                d.className = 'cami-message bot';
+                d.innerHTML = '<div class="cami-typing"><span></span><span></span><span></span></div>';
+                msgs.appendChild(d);
+                msgs.scrollTop = msgs.scrollHeight;
+                setTimeout(() => { d.remove(); cb(); }, 1200 + Math.random() * 800);
+            }
+
+            function enviarBot(t) {
+                const d = document.createElement('div');
+                d.className = 'cami-message bot';
+                d.innerHTML = t;
+                msgs.appendChild(d);
+                msgs.scrollTop = msgs.scrollHeight;
+            }
+
+            function enviarUsuario(t) {
+                const d = document.createElement('div');
+                d.className = 'cami-message user';
+                d.textContent = t;
+                msgs.appendChild(d);
+                msgs.scrollTop = msgs.scrollHeight;
+            }
+
+            function processarMensagem(texto) {
+                enviarUsuario(texto);
+                const t = texto.toLowerCase();
+                mostrarDigitando(() => {
+                    if (t.includes('métrica') || t.includes('kpi')) {
+                        enviarBot('O <strong>Painel de Desempenho</strong> mostra KPIs como acertos, erros, taxa de acerto, streak de dias e tempo de estudo. Todos atualizam automaticamente conforme você registra atividades.');
+                    } else if (t.includes('cronômetro') || t.includes('timer')) {
+                        enviarBot('Use o <strong>cronômetro</strong> para registrar tempo de estudo. Selecione a disciplina, escolha o tipo (Teoria, Questões, Revisão ou Pausa) e clique em <strong>Iniciar</strong>. Depois é só salvar!');
+                    } else if (t.includes('meta')) {
+                        enviarBot('A seção de <strong>Metas de Estudo</strong> acompanha 4 objetivos: questões por dia, taxa de acerto, tempo semanal e dias consecutivos. Visualize seu progresso com anéis coloridos!');
+                    } else if (t.includes('dashboard') || t.includes('gráfico')) {
+                        enviarBot('O dashboard tem gráficos de evolução, mapa de calor semanal, desempenho por disciplina e histórico detalhado. Use os filtros para personalizar a visualização.');
+                    } else {
+                        enviarBot('Estou aqui para ajudar! 😊 Pergunte sobre <strong>métricas</strong>, <strong>cronômetro</strong>, <strong>metas</strong> ou <strong>dashboard</strong>.');
+                    }
+                });
+            }
+
+            fab.addEventListener('click', toggleChat);
+            document.getElementById('camiChatMinimize').addEventListener('click', () => { camiOpen = true; toggleChat(); });
+            document.getElementById('camiSendBtn').addEventListener('click', () => {
+                const texto = input.value.trim();
+                if (texto) { processarMensagem(texto); input.value = ''; }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const texto = input.value.trim();
+                    if (texto) { processarMensagem(texto); input.value = ''; }
+                }
+            });
+            document.getElementById('camiQuickReplies').addEventListener('click', (e) => {
+                const btn = e.target.closest('.cami-quick-btn');
+                if (btn && btn.dataset.topic) {
+                    const topicos = {
+                        metricas: 'Como funcionam as métricas?',
+                        cronometro: 'Como usar o cronômetro?',
+                        metas: 'Como funcionam as metas?',
+                        dashboard: 'O que tem no dashboard?'
+                    };
+                    const texto = topicos[btn.dataset.topic] || btn.dataset.topic;
+                    if (!camiOpen) toggleChat();
+                    processarMensagem(texto);
+                }
+            });
+            setTimeout(() => { if (!camiOpen && camiFirstInteraction && dot) dot.style.display = 'block'; }, 5000);
         })();
 
         // ========== DADOS ==========
