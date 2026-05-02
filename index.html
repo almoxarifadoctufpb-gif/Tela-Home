@@ -202,7 +202,7 @@
             transform: translateY(-1px);
         }
 
-        /* ========== SIDEBAR (REFINADA - COM PERFIL) ========== */
+        /* ========== SIDEBAR (REFINADA - COM PERFIL ACIMA DO LOGO) ========== */
         #sidebar {
             position: fixed; left: 0; top: 0; height: 100vh; height: 100dvh;
             width: var(--sidebar-width); background: var(--sidebar-gradient);
@@ -215,18 +215,11 @@
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar .sidebar-header {
-            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            display: flex; flex-direction: column; align-items: center; gap: 16px;
             padding: 28px 0 20px; margin-bottom: 8px;
             border-bottom: 1px solid rgba(255,255,255,0.12);
         }
-        #sidebar .sidebar-header .sidebar-logo {
-            width: 130px; height: auto; border-radius: 16px;
-            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
-            transition: transform var(--transition-base);
-        }
-        #sidebar .sidebar-header .sidebar-logo:hover { transform: scale(1.04); }
-
-        /* Perfil do usuário (avatar + saudação) */
+        /* Perfil do usuário (avatar + saudação) - AGORA ACIMA DO LOGO */
         .sidebar-profile {
             display: flex; flex-direction: column; align-items: center; gap: 8px;
             width: 100%;
@@ -264,6 +257,12 @@
         .sidebar-greeting .greeting-emoji {
             display: inline-block; margin-left: 2px;
         }
+        #sidebar .sidebar-header .sidebar-logo {
+            width: 130px; height: auto; border-radius: 16px;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25));
+            transition: transform var(--transition-base);
+        }
+        #sidebar .sidebar-header .sidebar-logo:hover { transform: scale(1.04); }
 
         #closeSidebarBtn {
             display: none; position: absolute; top: 16px; right: 16px;
@@ -334,6 +333,9 @@
         .brand-text h1 {
             font-weight: 700; font-size: 1.6rem; color: var(--text-primary);
             margin: 0; line-height: 1.25; letter-spacing: -0.01em;
+        }
+        .brand-text h1 i {
+            color: var(--primary); margin-right: 4px;
         }
         .brand-text p {
             color: var(--text-secondary); font-size: 0.85rem;
@@ -929,14 +931,15 @@
     <!-- SIDEBAR -->
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
-            <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="sidebar-logo" />
-            <!-- Perfil do usuário com avatar e saudação dinâmica -->
+            <!-- Perfil do usuário (avatar + saudação) - ACIMA DO LOGO -->
             <div class="sidebar-profile">
                 <div class="sidebar-avatar" id="sidebarAvatar" title="Seu perfil">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="sidebar-greeting" id="sidebarGreeting">Olá, Bom dia</div>
             </div>
+            <!-- Logotipo do camaleão - ABAIXO DO PERFIL -->
+            <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="sidebar-logo" />
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
         <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
@@ -986,7 +989,7 @@
         <div class="app-header">
             <div class="header-brand">
                 <div class="brand-text">
-                    <h1>VULPS+ | Painel de Desempenho</h1>
+                    <h1><i class="fas fa-home"></i> | Painel de Desempenho</h1>
                     <p>Métricas, metas, cronômetro e progresso de estudos</p>
                 </div>
             </div>
@@ -1165,7 +1168,6 @@
                 const isLight = name === 'light';
                 icon.className = 'fas ' + (isLight ? 'fa-moon' : 'fa-sun');
                 label.textContent = isLight ? 'Escuro' : 'Claro';
-                // Atualizar ícone da topbar também
                 const topbarIcon = document.getElementById('topbarThemeIcon');
                 if (topbarIcon) {
                     topbarIcon.className = 'fas ' + (isLight ? 'fa-sun' : 'fa-moon');
@@ -1179,7 +1181,6 @@
                 setTheme(current === 'light' ? 'dark' : 'light');
                 refreshDashboard();
             });
-            // Topbar theme toggle
             document.getElementById('topbarThemeToggle').addEventListener('click', () => {
                 document.getElementById('theme-toggle').click();
             });
