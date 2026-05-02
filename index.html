@@ -12,6 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- jsPDF para exportação PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
         /* ========== VARIÁVEIS GLOBAIS (REFINADAS) ========== */
         :root {
@@ -31,6 +34,7 @@
             --warning-soft: rgba(245, 158, 11, 0.15);
             --gold: #f0b90b;
             --gold-light: #fde047;
+            --whatsapp: #25D366;
 
             --bg-primary: #f7f9fc;
             --bg-card: #ffffff;
@@ -391,6 +395,16 @@
         }
         .btn-outline-accent:hover { background: var(--primary-glass); }
 
+        .btn-whatsapp {
+            background: var(--whatsapp); border: none; color: #fff !important;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+        }
+        .btn-whatsapp:hover {
+            background: #1da851; transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+        }
+
         .btn-sm { padding: 6px 12px; font-size: 0.78rem; min-height: 34px; border-radius: var(--radius-sm); }
 
         /* Botão Foco destacado no cronômetro */
@@ -674,12 +688,15 @@
             transition: all var(--transition-base);
         }
         .modal-close:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
-        .export-preview {
+
+        .share-summary-box {
             background: var(--bg-primary); border-radius: var(--radius-md); padding: 16px;
-            font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
-            font-size: 0.78rem; color: var(--text-secondary);
-            max-height: 280px; overflow-y: auto; border: 1px solid var(--border-light);
-            white-space: pre-wrap; word-break: break-all;
+            border: 1px solid var(--border-light); font-size: 0.84rem; line-height: 1.6;
+            color: var(--text-secondary); margin-bottom: 16px; white-space: pre-wrap;
+            font-family: 'Inter', sans-serif;
+        }
+        .share-actions {
+            display: flex; gap: 10px; flex-wrap: wrap;
         }
 
         /* ========== MODAL QUEM SOMOS (SPLASH TROFÉU) ========== */
@@ -709,7 +726,6 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        /* Confetes */
         .confetti-container {
             position: absolute; top: 0; left: 50%; transform: translateX(-50%);
             pointer-events: none; width: 300px; height: 300px;
@@ -999,14 +1015,12 @@
     <!-- SIDEBAR -->
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
-            <!-- Perfil do usuário (avatar + saudação) - ACIMA DO LOGO -->
             <div class="sidebar-profile">
                 <div class="sidebar-avatar" id="sidebarAvatar" title="Seu perfil">
                     <i class="fas fa-user"></i>
                 </div>
                 <div class="sidebar-greeting" id="sidebarGreeting">Olá, Bom dia</div>
             </div>
-            <!-- Logotipo do camaleão - ABAIXO DO PERFIL -->
             <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="sidebar-logo" />
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
@@ -1062,7 +1076,8 @@
                 </div>
             </div>
             <div class="header-actions">
-                <button id="exportBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-file-export"></i> Exportar</button>
+                <button id="exportBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
+                <button id="shareBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-share-alt"></i> Compartilhar</button>
                 <button id="resetMetricsBtn" class="btn btn-outline-accent btn-sm" title="Zerar métricas"><i class="fas fa-trash-alt"></i> Zerar</button>
                 <button id="quemSomosBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-users"></i> Quem Somos</button>
                 <button id="theme-toggle" class="btn btn-sm" aria-label="Alternar tema"><i class="fas" id="theme-icon">☀️</i> <span id="theme-label">Escuro</span></button>
@@ -1092,7 +1107,6 @@
             </div>
             <div class="timer-display" id="timerDisplay">00:00:00</div>
             <div style="margin:12px 0;color:var(--primary);font-weight:600;"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
-            <!-- Botão Modo Foco em destaque -->
             <div style="margin: 8px 0 16px;">
                 <button id="focusModeHighlightBtn" class="btn btn-focus-highlight"><i class="fas fa-expand"></i> Entrar no Modo Foco</button>
             </div>
@@ -1170,17 +1184,33 @@
         </div>
     </div>
 
-    <!-- MODAL EXPORTAÇÃO -->
+    <!-- MODAL EXPORTAÇÃO PDF -->
     <div class="modal-overlay" id="exportModal">
         <div class="modal-card">
-            <div class="modal-header"><h3 class="modal-title"><i class="fas fa-file-csv"></i> Exportar Dados</h3><button class="modal-close" id="closeExportModal"><i class="fas fa-times"></i></button></div>
-            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;">Selecione os dados que deseja exportar em formato CSV:</p>
-            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
-                <button class="btn btn-primary btn-sm" id="exportAllBtn"><i class="fas fa-download"></i> Todos os Dados</button>
-                <button class="btn btn-sm" id="exportSubjectsBtn"><i class="fas fa-graduation-cap"></i> Por Disciplina</button>
-                <button class="btn btn-sm" id="exportDailyBtn"><i class="fas fa-calendar"></i> Por Dia</button>
+            <div class="modal-header"><h3 class="modal-title"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal"><i class="fas fa-times"></i></button></div>
+            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;">Gere um relatório profissional em PDF com suas métricas de estudo:</p>
+            <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button>
+                <button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button>
             </div>
-            <div class="export-preview" id="exportPreview">Selecione uma opção para visualizar...</div>
+            <div class="share-summary-box" id="pdfPreviewInfo">
+                <strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br>
+                <strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL COMPARTILHAR -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal-card">
+            <div class="modal-header"><h3 class="modal-title"><i class="fas fa-share-alt"></i> Compartilhar Desempenho</h3><button class="modal-close" id="closeShareModal"><i class="fas fa-times"></i></button></div>
+            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;">Compartilhe seu desempenho com amigos ou nas redes sociais:</p>
+            <div class="share-summary-box" id="shareSummaryText"></div>
+            <div class="share-actions">
+                <button class="btn btn-whatsapp btn-sm" id="shareWhatsAppBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+                <button class="btn btn-sm" id="shareCopyBtn"><i class="fas fa-copy"></i> Copiar Resumo</button>
+                <button class="btn btn-sm" id="shareCopyLinkBtn"><i class="fas fa-link"></i> Copiar Link</button>
+            </div>
         </div>
     </div>
 
@@ -1632,7 +1662,6 @@
             toast(`✓ ${minutos}min salvos em "${nome}"`);
         }
 
-        // Função para abrir modo foco (agora chamada pelos dois botões)
         function abrirModoFoco() {
             focusOverlay.classList.add('active');
             focusModeActive = true;
@@ -1653,9 +1682,7 @@
         document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(false));
         document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); });
 
-        // Botão Foco destacado (novo, dentro do cronômetro)
         document.getElementById('focusModeHighlightBtn').addEventListener('click', abrirModoFoco);
-        // Botão Foco antigo (pode ser que ainda exista referência, mas foi removido do header)
         document.getElementById('exitFocusBtn').addEventListener('click', () => { focusOverlay.classList.remove('active'); focusModeActive = false; });
         document.getElementById('focusTimerStart').addEventListener('click', () => document.getElementById('timerStart').click());
         document.getElementById('focusTimerPause').addEventListener('click', () => document.getElementById('timerPause').click());
@@ -1749,39 +1776,163 @@
             }
         });
 
-        // ========== EXPORTAÇÃO ==========
-        document.getElementById('exportBtn').addEventListener('click', () => document.getElementById('exportModal').classList.add('active'));
-        document.getElementById('closeExportModal').addEventListener('click', () => document.getElementById('exportModal').classList.remove('active'));
-        function exportCSV(type) {
-            let csv = '';
+        // ========== EXPORTAÇÃO PDF (jsPDF + autotable) ==========
+        const exportModal = document.getElementById('exportModal');
+        const shareModal = document.getElementById('shareModal');
+
+        document.getElementById('exportBtn').addEventListener('click', () => exportModal.classList.add('active'));
+        document.getElementById('closeExportModal').addEventListener('click', () => exportModal.classList.remove('active'));
+        document.getElementById('shareBtn').addEventListener('click', () => {
+            const m = computeMetrics();
+            const summary = `📊 VULPS+ · Painel de Desempenho\n` +
+                `━━━━━━━━━━━━━━━━━━\n` +
+                `📈 Total de Questões: ${m.total}\n` +
+                `✅ Acertos: ${m.correct} (${m.correctPercent}%)\n` +
+                `❌ Erros: ${m.wrong}\n` +
+                `⏱️ Tempo de Estudo: ${formatHours(m.totalTime)}\n` +
+                `🔥 Streak: ${m.streak} dias consecutivos\n` +
+                `📅 Questões Hoje: ${m.todayCount}\n` +
+                `🏆 Taxa de Acerto: ${m.correctPercent}%\n` +
+                `━━━━━━━━━━━━━━━━━━\n` +
+                `🔗 Acesse: ${window.location.href}`;
+            document.getElementById('shareSummaryText').textContent = summary;
+            shareModal.classList.add('active');
+        });
+        document.getElementById('closeShareModal').addEventListener('click', () => shareModal.classList.remove('active'));
+
+        function getShareSummary() {
+            const m = computeMetrics();
+            return `📊 VULPS+ · Painel de Desempenho\n` +
+                `━━━━━━━━━━━━━━━━━━\n` +
+                `📈 Total de Questões: ${m.total}\n` +
+                `✅ Acertos: ${m.correct} (${m.correctPercent}%)\n` +
+                `❌ Erros: ${m.wrong}\n` +
+                `⏱️ Tempo de Estudo: ${formatHours(m.totalTime)}\n` +
+                `🔥 Streak: ${m.streak} dias consecutivos\n` +
+                `📅 Questões Hoje: ${m.todayCount}\n` +
+                `🏆 Taxa de Acerto: ${m.correctPercent}%\n` +
+                `━━━━━━━━━━━━━━━━━━\n` +
+                `🔗 Acesse: ${window.location.href}`;
+        }
+
+        document.getElementById('shareWhatsAppBtn').addEventListener('click', () => {
+            const summary = getShareSummary();
+            const url = `https://wa.me/?text=${encodeURIComponent(summary)}`;
+            window.open(url, '_blank');
+        });
+
+        document.getElementById('shareCopyBtn').addEventListener('click', () => {
+            const summary = getShareSummary();
+            navigator.clipboard.writeText(summary).then(() => {
+                toast('Resumo copiado para a área de transferência!');
+            }).catch(() => {
+                toast('Falha ao copiar.', 'error');
+            });
+        });
+
+        document.getElementById('shareCopyLinkBtn').addEventListener('click', () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                toast('Link copiado!');
+            }).catch(() => {
+                toast('Falha ao copiar.', 'error');
+            });
+        });
+
+        // Fechar modais ao clicar fora
+        [exportModal, shareModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.classList.remove('active');
+            });
+        });
+
+        function exportPDF(isComplete = true) {
             try {
-                if (type === 'all') {
-                    csv = 'Data,Disciplina,Acerto,Tempo,ID\n';
-                    events.forEach(e => csv += `${e.timestamp},${e.subject || ''},${e.correct},${e.timeSpent || 0},${e.questionId || ''}\n`);
-                } else if (type === 'subjects') {
-                    csv = 'Disciplina,Acertos,Erros,Total,Taxa,Horas\n';
-                    Object.entries(data).forEach(([nome, d]) => {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                const m = computeMetrics();
+
+                // Cabeçalho
+                doc.setFillColor(17, 85, 204);
+                doc.rect(0, 0, 210, 30, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFontSize(16);
+                doc.setFont('helvetica', 'bold');
+                doc.text('VULPS+ · Painel de Desempenho', 105, 15, { align: 'center' });
+                doc.setFontSize(10);
+                doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' });
+
+                let yPos = 38;
+
+                // KPIs
+                doc.setTextColor(15, 23, 42);
+                doc.setFontSize(14);
+                doc.setFont('helvetica', 'bold');
+                doc.text('Resumo de Desempenho', 15, yPos);
+                yPos += 8;
+
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'normal');
+                const kpis = [
+                    `Acertos Totais: ${m.correct}`,
+                    `Erros Totais: ${m.wrong}`,
+                    `Tempo de Estudo: ${formatHours(m.totalTime)}`,
+                    `Dias Consecutivos (Streak): ${m.streak}`,
+                    `Taxa de Acerto: ${m.correctPercent}%`,
+                    `Questões Hoje: ${m.todayCount}`
+                ];
+                kpis.forEach(kpi => {
+                    doc.text('• ' + kpi, 20, yPos);
+                    yPos += 6;
+                });
+
+                if (isComplete) {
+                    yPos += 6;
+                    // Tabela de disciplinas
+                    doc.setFontSize(12);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Desempenho por Disciplina', 15, yPos);
+                    yPos += 8;
+
+                    const disciplinas = Object.keys(data).sort();
+                    const tableData = disciplinas.map(nome => {
+                        const d = getDisciplina(nome);
                         const total = d.certas + d.erradas;
-                        csv += `${nome},${d.certas},${d.erradas},${total},${total ? ((d.certas / total) * 100).toFixed(1) : 0}%,${d.horasMinutos || 0}\n`;
+                        const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0;
+                        const status = getStatus(perc);
+                        const horas = formatHours(d.horasMinutos || 0);
+                        return [nome, String(d.certas), String(d.erradas), String(total), perc + '%', status, horas];
                     });
-                } else if (type === 'daily') {
-                    const byDay = {};
-                    events.forEach(e => { const day = e.timestamp.split('T')[0]; if (!byDay[day]) byDay[day] = { total: 0, correct: 0 }; byDay[day].total++; if (e.correct) byDay[day].correct++; });
-                    csv = 'Data,Total,Acertos,Erros,Taxa\n';
-                    Object.entries(byDay).sort().forEach(([day, d]) => csv += `${day},${d.total},${d.correct},${d.total - d.correct},${((d.correct / d.total) * 100).toFixed(1)}%\n`);
+
+                    doc.autoTable({
+                        startY: yPos,
+                        head: [['Disciplina', 'Certas', 'Erradas', 'Total', '% Acerto', 'Status', 'Horas']],
+                        body: tableData,
+                        headStyles: { fillColor: [17, 85, 204], textColor: 255, fontStyle: 'bold', fontSize: 8 },
+                        bodyStyles: { fontSize: 8, textColor: [15, 23, 42] },
+                        alternateRowStyles: { fillColor: [241, 245, 249] }
+                    });
                 }
-            } catch (e) {}
-            document.getElementById('exportPreview').textContent = csv || 'Sem dados.';
-            if (csv) {
-                const blob = new Blob([csv], { type: 'text/csv' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a'); a.href = url; a.download = 'vulps_export.csv'; a.click();
-                URL.revokeObjectURL(url);
+
+                // Rodapé
+                const pageCount = doc.getNumberOfPages();
+                for (let i = 1; i <= pageCount; i++) {
+                    doc.setPage(i);
+                    doc.setFontSize(8);
+                    doc.setTextColor(148, 163, 184);
+                    doc.text('VULP+ · Tecnologia e Educação Colaborativa', 105, 285, { align: 'center' });
+                    doc.text(`Página ${i} de ${pageCount}`, 105, 290, { align: 'center' });
+                }
+
+                doc.save(`vulps_desempenho_${new Date().toISOString().split('T')[0]}.pdf`);
+                toast('PDF exportado com sucesso!');
+            } catch (e) {
+                toast('Erro ao gerar PDF. Verifique o console.', 'error');
+                console.error(e);
             }
         }
-        document.getElementById('exportAllBtn').addEventListener('click', () => exportCSV('all'));
-        document.getElementById('exportSubjectsBtn').addEventListener('click', () => exportCSV('subjects'));
-        document.getElementById('exportDailyBtn').addEventListener('click', () => exportCSV('daily'));
+
+        document.getElementById('exportFullPdfBtn').addEventListener('click', () => exportPDF(true));
+        document.getElementById('exportSummaryPdfBtn').addEventListener('click', () => exportPDF(false));
 
         // ========== DASHBOARD ==========
         function computeMetrics() {
