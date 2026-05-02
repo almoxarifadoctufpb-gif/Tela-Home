@@ -202,7 +202,7 @@
             transform: translateY(-1px);
         }
 
-        /* ========== SIDEBAR (REFINADA - MAIS ELEGANTE) ========== */
+        /* ========== SIDEBAR (REFINADA - COM PERFIL) ========== */
         #sidebar {
             position: fixed; left: 0; top: 0; height: 100vh; height: 100dvh;
             width: var(--sidebar-width); background: var(--sidebar-gradient);
@@ -215,7 +215,7 @@
         }
         #sidebar.open { transform: translateX(0); }
         #sidebar .sidebar-header {
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
             padding: 28px 0 20px; margin-bottom: 8px;
             border-bottom: 1px solid rgba(255,255,255,0.12);
         }
@@ -225,10 +225,46 @@
             transition: transform var(--transition-base);
         }
         #sidebar .sidebar-header .sidebar-logo:hover { transform: scale(1.04); }
-        #sidebar .sidebar-header .sidebar-title {
-            font-size: 1.3rem; font-weight: 700; color: #ffffff;
-            letter-spacing: 0.3px; margin: 0;
+
+        /* Perfil do usuário (avatar + saudação) */
+        .sidebar-profile {
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            width: 100%;
         }
+        .sidebar-avatar {
+            width: 58px; height: 58px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: #fff;
+            border: 3px solid rgba(255,255,255,0.25);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .sidebar-avatar::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.3) 0%, transparent 60%);
+            opacity: 0.6;
+        }
+        .sidebar-avatar:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 28px rgba(126, 217, 87, 0.5);
+        }
+        .sidebar-avatar i {
+            position: relative; z-index: 1;
+        }
+        .sidebar-greeting {
+            font-size: 0.85rem; font-weight: 600; color: #ffffff;
+            letter-spacing: 0.2px; text-align: center; line-height: 1.3;
+            opacity: 0.92;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        .sidebar-greeting .greeting-emoji {
+            display: inline-block; margin-left: 2px;
+        }
+
         #closeSidebarBtn {
             display: none; position: absolute; top: 16px; right: 16px;
             width: 32px; height: 32px; border-radius: var(--radius-md);
@@ -285,7 +321,7 @@
             flex: 1; max-width: 1400px; margin: 0 auto;
             padding: 24px; display: flex; flex-direction: column;
             gap: 24px; width: 100%; min-width: 0;
-            margin-top: var(--topbar-height); /* Compensa a topbar fixa */
+            margin-top: var(--topbar-height);
         }
 
         /* ========== HEADER (REFINADO) ========== */
@@ -836,6 +872,7 @@
             .timer-display { font-size: 2rem; min-width: 140px; }
             .focus-ring-container { width: min(65vw, 200px); height: min(65vw, 200px); }
             .sidebar-logo { width: 110px !important; }
+            .sidebar-avatar { width: 48px; height: 48px; font-size: 1.2rem; }
             #camiChatWindow { width: calc(100vw - 32px); left: 16px; bottom: 96px; height: 440px; }
             #camiFAB { bottom: 24px; left: 16px; width: 50px; height: 50px; }
             .app-header { flex-direction: column; }
@@ -846,7 +883,7 @@
             #sidebar { transform: translateX(0); z-index: 50; }
             #sidebarOverlay { display: none; }
             body { padding-left: var(--sidebar-width); }
-            #topbar { left: var(--sidebar-width); } /* Alinha topbar com sidebar */
+            #topbar { left: var(--sidebar-width); }
             .app-footer { padding-left: calc(var(--sidebar-width) + 24px); }
             #camiFAB { left: calc(var(--sidebar-width) + 28px); }
         }
@@ -893,7 +930,13 @@
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
             <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="sidebar-logo" />
-            <span class="sidebar-title">VULP+</span>
+            <!-- Perfil do usuário com avatar e saudação dinâmica -->
+            <div class="sidebar-profile">
+                <div class="sidebar-avatar" id="sidebarAvatar" title="Seu perfil">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="sidebar-greeting" id="sidebarGreeting">Olá, Bom dia</div>
+            </div>
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
         <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
@@ -966,7 +1009,7 @@
             <div class="kpi-card"><div class="kpi-icon hoje"><i class="fas fa-book-open"></i></div><div class="kpi-info"><div class="kpi-label">Questões Hoje</div><div class="kpi-value" id="kpiToday">0</div><div class="kpi-sub" id="kpiTodaySub">Total: 0 questões</div></div></div>
         </section>
 
-        <!-- CRONÔMETRO (movido para cá) -->
+        <!-- CRONÔMETRO -->
         <div class="card" style="text-align:center;" id="timerCard">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
                 <div style="text-align:left;"><label>Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div>
@@ -987,7 +1030,7 @@
             </div>
         </div>
 
-        <!-- REGISTRO RÁPIDO (movido para cá) -->
+        <!-- REGISTRO RÁPIDO -->
         <div class="registro-card">
             <div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div>
             <div class="controle-grupo" style="max-width:100px;"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center;"></div>
@@ -1092,6 +1135,26 @@
     </div>
 
     <script>
+        // ========== SAUDAÇÃO DINÂMICA (SIDEBAR) ==========
+        (function() {
+            const greetingEl = document.getElementById('sidebarGreeting');
+            if (greetingEl) {
+                const hora = new Date().getHours();
+                let saudacao, emoji;
+                if (hora >= 5 && hora < 12) {
+                    saudacao = 'Bom dia';
+                    emoji = '☀️';
+                } else if (hora >= 12 && hora < 18) {
+                    saudacao = 'Boa tarde';
+                    emoji = '🌤️';
+                } else {
+                    saudacao = 'Boa noite';
+                    emoji = '🌙';
+                }
+                greetingEl.innerHTML = `Olá, ${saudacao} <span class="greeting-emoji">${emoji}</span>`;
+            }
+        })();
+
         // ========== TEMA (CLARO/ESCURO) ==========
         (function() {
             const html = document.documentElement;
@@ -1167,7 +1230,6 @@
         }
 
         function addNotification(notif) {
-            // Evitar duplicadas
             const exists = notifications.some(n => n.id === notif.id);
             if (exists) return;
             notifications.unshift(notif);
@@ -1212,14 +1274,12 @@
             toast('Todas as notificações foram lidas.');
         }
 
-        // Toggle do dropdown de notificações
         document.getElementById('notificationBell').addEventListener('click', (e) => {
             e.stopPropagation();
             const dd = document.getElementById('notificationDropdown');
             dd.classList.toggle('active');
         });
 
-        // Fechar dropdown ao clicar fora
         document.addEventListener('click', (e) => {
             const dd = document.getElementById('notificationDropdown');
             if (dd && dd.classList.contains('active') && !dd.contains(e.target) && e.target.id !== 'notificationBell') {
@@ -1246,14 +1306,12 @@
             }
         });
 
-        // Botão Quem Somos na topbar
         document.getElementById('topbarQuemSomosBtn').addEventListener('click', () => {
             const quemSomosBtn = document.getElementById('quemSomosBtn');
             if (quemSomosBtn) quemSomosBtn.click();
             else toast('VULPS+ · Tecnologia e Educação Colaborativa para concurseiros.', '');
         });
 
-        // Inicialização das notificações
         updateNotificationUI();
 
         // ========== SIDEBAR ==========
@@ -1768,7 +1826,6 @@
             populateHistoryFilters();
             renderHistoryTable();
             renderCharts();
-            // Gerar e adicionar notificações baseadas nos dados atuais
             try {
                 const newNotifs = generateMockNotifications();
                 newNotifs.forEach(n => addNotification(n));
