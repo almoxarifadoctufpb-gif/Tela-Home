@@ -868,6 +868,37 @@
             <div class="kpi-card"><div class="kpi-icon hoje"><i class="fas fa-book-open"></i></div><div class="kpi-info"><div class="kpi-label">Questões Hoje</div><div class="kpi-value" id="kpiToday">0</div><div class="kpi-sub" id="kpiTodaySub">Total: 0 questões</div></div></div>
         </section>
 
+        <!-- CRONÔMETRO (movido para cá) -->
+        <div class="card" style="text-align:center;" id="timerCard">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+                <div style="text-align:left;"><label>Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div>
+                <div class="timer-type-selector">
+                    <button class="timer-type-btn active" data-type="Teoria"><i class="fas fa-book-open"></i> Teoria</button>
+                    <button class="timer-type-btn" data-type="Questões"><i class="fas fa-question-circle"></i> Questões</button>
+                    <button class="timer-type-btn" data-type="Revisão"><i class="fas fa-sync-alt"></i> Revisão</button>
+                    <button class="timer-type-btn" data-type="Pausa"><i class="fas fa-coffee"></i> Pausa</button>
+                </div>
+            </div>
+            <div class="timer-display" id="timerDisplay">00:00:00</div>
+            <div style="margin:12px 0;color:var(--primary);font-weight:600;"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
+            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+                <button id="timerStart" class="btn btn-accent"><i class="fas fa-play"></i> Iniciar</button>
+                <button id="timerPause" class="btn btn-sm"><i class="fas fa-pause"></i> Pausar</button>
+                <button id="timerSave" class="btn btn-sm"><i class="fas fa-save"></i> Salvar</button>
+                <button id="timerReset" class="btn btn-sm"><i class="fas fa-redo"></i> Zerar</button>
+            </div>
+        </div>
+
+        <!-- REGISTRO RÁPIDO (movido para cá) -->
+        <div class="registro-card">
+            <div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div>
+            <div class="controle-grupo" style="max-width:100px;"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center;"></div>
+            <div style="display:flex;gap:8px;">
+                <button id="registroAcertarBtn" class="btn btn-sm" style="border-color:var(--secondary);color:var(--secondary);"><i class="fas fa-check"></i> Acertos</button>
+                <button id="registroErrarBtn" class="btn btn-sm" style="border-color:var(--danger);color:var(--danger);"><i class="fas fa-times"></i> Erros</button>
+            </div>
+        </div>
+
         <!-- GRÁFICOS -->
         <section class="card">
             <div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div>
@@ -893,37 +924,6 @@
             <div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div>
             <div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo</th><th>ID</th></tr></thead><tbody id="historyTableBody"></tbody></table></div>
         </section>
-
-        <!-- CRONÔMETRO -->
-        <div class="card" style="text-align:center;" id="timerCard">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
-                <div style="text-align:left;"><label>Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div>
-                <div class="timer-type-selector">
-                    <button class="timer-type-btn active" data-type="Teoria"><i class="fas fa-book-open"></i> Teoria</button>
-                    <button class="timer-type-btn" data-type="Questões"><i class="fas fa-question-circle"></i> Questões</button>
-                    <button class="timer-type-btn" data-type="Revisão"><i class="fas fa-sync-alt"></i> Revisão</button>
-                    <button class="timer-type-btn" data-type="Pausa"><i class="fas fa-coffee"></i> Pausa</button>
-                </div>
-            </div>
-            <div class="timer-display" id="timerDisplay">00:00:00</div>
-            <div style="margin:12px 0;color:var(--primary);font-weight:600;"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
-            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-                <button id="timerStart" class="btn btn-accent"><i class="fas fa-play"></i> Iniciar</button>
-                <button id="timerPause" class="btn btn-sm"><i class="fas fa-pause"></i> Pausar</button>
-                <button id="timerSave" class="btn btn-sm"><i class="fas fa-save"></i> Salvar</button>
-                <button id="timerReset" class="btn btn-sm"><i class="fas fa-redo"></i> Zerar</button>
-            </div>
-        </div>
-
-        <!-- REGISTRO RÁPIDO -->
-        <div class="registro-card">
-            <div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div>
-            <div class="controle-grupo" style="max-width:100px;"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center;"></div>
-            <div style="display:flex;gap:8px;">
-                <button id="registroAcertarBtn" class="btn btn-sm" style="border-color:var(--secondary);color:var(--secondary);"><i class="fas fa-check"></i> Acertos</button>
-                <button id="registroErrarBtn" class="btn btn-sm" style="border-color:var(--danger);color:var(--danger);"><i class="fas fa-times"></i> Erros</button>
-            </div>
-        </div>
     </main>
 
     <!-- FOOTER -->
