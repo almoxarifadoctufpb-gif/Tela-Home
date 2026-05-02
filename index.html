@@ -341,6 +341,106 @@
         }
         .header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
+        /* ========== QUADRO MOTIVACIONAL (NOVO) ========== */
+        .motivational-banner {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        .motivational-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-light) 0%, var(--accent) 100%);
+            border-radius: 4px 0 0 4px;
+        }
+        .motivational-banner:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .motivational-brain {
+            flex-shrink: 0;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-soft) 0%, rgba(255,117,31,0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            position: relative;
+            transition: transform var(--transition-base);
+        }
+        .motivational-brain:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .motivational-brain::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2px dashed var(--primary);
+            opacity: 0.3;
+            animation: brainRotate 20s linear infinite;
+        }
+        @keyframes brainRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .motivational-content {
+            flex: 1;
+            min-width: 0;
+        }
+        .motivational-quote {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.5;
+            margin-bottom: 4px;
+            font-style: italic;
+        }
+        .motivational-author {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .motivational-author::before {
+            content: '— ';
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .motivational-refresh {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+        }
+        .motivational-refresh:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: var(--primary-glass);
+        }
+
         /* ========== BOTÕES (REFINADOS - MAIS PREMIUM) ========== */
         .btn {
             background: var(--btn-bg); border: 1.5px solid var(--btn-border);
@@ -963,6 +1063,19 @@
             #camiFAB { bottom: 24px; left: 16px; width: 50px; height: 50px; }
             .app-header { flex-direction: column; }
             .header-actions { width: 100%; justify-content: flex-start; }
+            .motivational-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+            .motivational-brain {
+                width: 56px;
+                height: 56px;
+                font-size: 1.6rem;
+            }
+            .motivational-quote {
+                font-size: 0.9rem;
+            }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none; }
@@ -1082,6 +1195,18 @@
                 <button id="quemSomosBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-users"></i> Quem Somos</button>
                 <button id="theme-toggle" class="btn btn-sm" aria-label="Alternar tema"><i class="fas" id="theme-icon">☀️</i> <span id="theme-label">Escuro</span></button>
             </div>
+        </div>
+
+        <!-- QUADRO MOTIVACIONAL (NOVO) -->
+        <div class="motivational-banner" id="motivationalBanner">
+            <div class="motivational-brain">🧠</div>
+            <div class="motivational-content">
+                <div class="motivational-quote" id="motivationalQuote">Carregando...</div>
+                <div class="motivational-author" id="motivationalAuthor"></div>
+            </div>
+            <button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional" aria-label="Nova frase motivacional">
+                <i class="fas fa-sync-alt"></i>
+            </button>
         </div>
 
         <!-- KPIs -->
@@ -1259,6 +1384,73 @@
     </div>
 
     <script>
+        // ========== FRASES MOTIVACIONAIS (NOVO) ==========
+        const motivationalPhrases = [
+            { quote: "A persistência é o caminho do êxito.", author: "Charles Chaplin" },
+            { quote: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" },
+            { quote: "Não é o mais forte que sobrevive, nem o mais inteligente, mas o que melhor se adapta às mudanças.", author: "Leon C. Megginson" },
+            { quote: "A disciplina é a ponte entre metas e realizações.", author: "Jim Rohn" },
+            { quote: "Você nunca será velho demais para estabelecer um novo objetivo.", author: "C.S. Lewis" },
+            { quote: "A jornada de mil milhas começa com um único passo.", author: "Lao Tsé" },
+            { quote: "O conhecimento é o único recurso que se multiplica quando compartilhado.", author: "Adam Grant" },
+            { quote: "Estudar é como navegar em um oceano de possibilidades.", author: "Provérbio Chinês" },
+            { quote: "O amanhã pertence àqueles que se preparam hoje.", author: "Malcolm X" },
+            { quote: "Aprender é a única coisa de que a mente nunca se cansa.", author: "Leonardo da Vinci" },
+            { quote: "Cada erro é uma oportunidade de aprender algo novo.", author: "Albert Einstein" },
+            { quote: "O sucesso não é definitivo e o fracasso não é fatal: o que importa é a coragem de continuar.", author: "Winston Churchill" },
+            { quote: "O homem não é nada além daquilo que a educação faz dele.", author: "Immanuel Kant" },
+            { quote: "A motivação é o que te faz começar, o hábito é o que te mantém.", author: "Jim Ryun" },
+            { quote: "Seu futuro é criado pelo que você faz hoje, não amanhã.", author: "Robert Kiyosaki" },
+            { quote: "O estudo é a luz que ilumina o caminho do ignorante.", author: "Confúcio" },
+            { quote: "Quem nunca cometeu um erro, nunca tentou nada novo.", author: "Albert Einstein" },
+            { quote: "A preparação é a chave para a confiança.", author: "Arthur Ashe" },
+            { quote: "Aprenda como se você fosse viver para sempre.", author: "Mahatma Gandhi" },
+            { quote: "A maior glória não está em nunca cair, mas em levantar-se a cada queda.", author: "Confúcio" },
+            { quote: "Conhecimento não é poder, é poder em potencial. Ação é poder.", author: "Tony Robbins" },
+            { quote: "O impossível é apenas uma questão de opinião.", author: "Mario Quintana" },
+            { quote: "Sonhos sem disciplina são apenas ilusões.", author: "Augusto Cury" },
+            { quote: "A excelência não é um feito, é um hábito.", author: "Aristóteles" },
+            { quote: "Você é o que você faz repetidamente.", author: "Aristóteles" },
+            { quote: "O importante é não parar de questionar.", author: "Albert Einstein" },
+            { quote: "A educação é a arma mais poderosa que você pode usar para mudar o mundo.", author: "Nelson Mandela" },
+            { quote: "Não existe fracasso, apenas feedback.", author: "Robert Allen" },
+            { quote: "O segredo do sucesso é a constância do propósito.", author: "Benjamin Disraeli" },
+            { quote: "A diferença entre o possível e o impossível está na determinação.", author: "Tommy Lasorda" }
+        ];
+
+        function getDailyPhraseIndex() {
+            const today = new Date().toISOString().split('T')[0];
+            let hash = 0;
+            for (let i = 0; i < today.length; i++) {
+                hash = ((hash << 5) - hash) + today.charCodeAt(i);
+                hash |= 0;
+            }
+            return Math.abs(hash) % motivationalPhrases.length;
+        }
+
+        function updateMotivationalQuote() {
+            const storedIndex = localStorage.getItem('vulps_motivational_index');
+            let index;
+            if (storedIndex !== null && storedIndex === getDailyPhraseIndex().toString()) {
+                index = parseInt(storedIndex);
+            } else {
+                index = getDailyPhraseIndex();
+                localStorage.setItem('vulps_motivational_index', index.toString());
+            }
+            const phrase = motivationalPhrases[index];
+            document.getElementById('motivationalQuote').textContent = `"${phrase.quote}"`;
+            document.getElementById('motivationalAuthor').textContent = phrase.author;
+        }
+
+        function refreshMotivationalQuote() {
+            const newIndex = Math.floor(Math.random() * motivationalPhrases.length);
+            localStorage.setItem('vulps_motivational_index', newIndex.toString());
+            updateMotivationalQuote();
+        }
+
+        document.getElementById('motivationalRefreshBtn').addEventListener('click', refreshMotivationalQuote);
+        updateMotivationalQuote();
+
         // ========== SAUDAÇÃO DINÂMICA (SIDEBAR) ==========
         (function() {
             const greetingEl = document.getElementById('sidebarGreeting');
