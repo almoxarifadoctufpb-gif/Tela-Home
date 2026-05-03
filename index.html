@@ -1249,7 +1249,10 @@
             cursor: pointer;
             user-select: none;
             transition: color var(--transition-fast);
-            position: relative;
+            position: sticky;
+            top: 0;
+            background: var(--bg-card);
+            z-index: 1;
         }
 
         .dash-table th:hover {
@@ -1617,6 +1620,170 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+        }
+
+        /* SISTEMA DE ABAS */
+        .tab-nav {
+            display: flex;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 4px;
+            border: 1px solid var(--border-light);
+            gap: 4px;
+            position: sticky;
+            top: calc(var(--topbar-height) + 8px);
+            z-index: 80;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: var(--radius-md);
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(255, 122, 0, 0.3);
+        }
+
+        .tab-btn.active i {
+            color: #fff;
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .tab-content.active {
+            display: flex;
+            animation: tabFadeIn 0.3s ease;
+        }
+
+        @keyframes tabFadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ONBOARDING TOUR */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .onboarding-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .onboarding-overlay::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 15, 30, 0.75);
+            z-index: 0;
+        }
+
+        .onboarding-spotlight {
+            position: fixed;
+            border-radius: var(--radius-md);
+            box-shadow: 0 0 0 9999px rgba(8, 15, 30, 0.75);
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .onboarding-tooltip {
+            position: fixed;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+            max-width: 340px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .onboarding-step-indicator {
+            font-size: 0.72rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .onboarding-tooltip h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .onboarding-tooltip p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .onboarding-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #onboardingSkipBtn {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        /* MODAL CONFIRMAÇÃO */
+        #confirmModal .modal-card {
+            max-width: 440px;
+            text-align: center;
+        }
+
+        #confirmMessage {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        #confirmOkBtn.danger {
+            background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+            box-shadow: 0 3px 10px rgba(239, 68, 68, 0.25);
+        }
+
+        #confirmOkBtn.danger:hover {
+            box-shadow: 0 5px 16px rgba(239, 68, 68, 0.35);
         }
 
         .tooltip {
@@ -2664,12 +2831,15 @@
             .feed-list { max-height: 280px; }
             .feed-item { flex-wrap: wrap; gap: 8px; }
             .feed-time { margin-left: auto; }
+            .tab-btn { padding: 8px 10px; font-size: 0.75rem; }
+            .tab-btn i { font-size: 0.85rem; }
             .focus-fox { width: 90px; height: 90px; font-size: 3rem }
             .focus-ring-container { width: 200px; height: 200px }
             .avatar-game-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
             .avatar-game-img-wrap { width: 90px !important; height: 90px !important; }
             .profile-avatar-display { width: 110px !important; height: 110px !important; }
             .feed-avatar { width: 30px; height: 30px; }
+            .onboarding-tooltip { max-width: 280px; padding: 16px 18px; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none }
@@ -2694,6 +2864,7 @@
         <div class="topbar-actions">
             <span class="support-message"><i class="fas fa-users"></i> <span id="onlineEstudantes">+12</span> pessoas estudando agora</span>
             <button id="topbarProfileBtn" class="btn btn-sm" title="Meu Perfil"><i class="fas fa-user-circle"></i> Perfil</button>
+            <button id="helpTourBtn" class="btn btn-sm" title="Tour guiado"><i class="fas fa-question-circle"></i></button>
             <div class="notification-bell" id="notificationBell" aria-label="Notificações"><i class="fas fa-bell"></i><span class="badge" id="notificationBadge" style="display:none">0</span>
                 <div class="notification-dropdown" id="notificationDropdown">
                     <div class="notification-header"><span>Notificações</span><button class="btn btn-sm" id="markAllReadBtn" style="font-size:0.7rem">Marcar todas como lidas</button></div>
@@ -2763,47 +2934,68 @@
                 <div class="motivational-author" id="motivationalAuthor"></div>
             </div><button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button></div>
 
-        <!-- SEÇÃO COMUNIDADE GAMIFICADA -->
-        <section class="community-feed">
-            <div class="feed-header">
-                <div class="feed-title">
-                    <i class="fas fa-users"></i>
-                    <span>Comunidade VULP+</span>
-                    <div class="online-badge">
-                        🔥 <span id="onlineCount">47</span> online agora
+        <!-- SISTEMA DE ABAS -->
+        <nav class="tab-nav" id="tabNav">
+            <button class="tab-btn active" data-tab="principal">
+                <i class="fas fa-clock"></i> Principal
+            </button>
+            <button class="tab-btn" data-tab="metricas">
+                <i class="fas fa-chart-bar"></i> Métricas
+            </button>
+            <button class="tab-btn" data-tab="historico">
+                <i class="fas fa-history"></i> Histórico
+            </button>
+        </nav>
+
+        <!-- CONTEÚDO ABA PRINCIPAL -->
+        <div class="tab-content active" id="tab-principal">
+            <section class="community-feed">
+                <div class="feed-header">
+                    <div class="feed-title">
+                        <i class="fas fa-users"></i>
+                        <span>Comunidade VULP+</span>
+                        <div class="online-badge">
+                            🔥 <span id="onlineCount">47</span> online agora
+                        </div>
                     </div>
+                    <span class="feed-live">Atividades em tempo real</span>
                 </div>
-                <span class="feed-live">Atividades em tempo real</span>
+                <div class="feed-list" id="communityFeedList"></div>
+            </section>
+
+            <section class="dashboard-grid" id="kpiGrid">
+                <div class="kpi-card"><div class="kpi-icon acertos"><i class="fas fa-check-circle"></i></div><div class="kpi-info"><div class="kpi-label">Acertos Totais</div><div class="kpi-value" id="kpiCorrect">0</div><div class="kpi-sub" id="kpiCorrectSub">0% de aproveitamento</div><div class="kpi-encouragement" id="kpiCorrectEnc"><i class="fas fa-users"></i><span></span></div></div></div>
+                <div class="kpi-card"><div class="kpi-icon erros"><i class="fas fa-times-circle"></i></div><div class="kpi-info"><div class="kpi-label">Erros Totais</div><div class="kpi-value" id="kpiWrong">0</div><div class="kpi-sub" id="kpiWrongSub">0% do total</div><div class="kpi-encouragement" style="color:var(--text-muted)"><i class="fas fa-lightbulb"></i><span>Cada erro é um degrau</span></div></div></div>
+                <div class="kpi-card"><div class="kpi-icon tempo"><i class="fas fa-clock"></i></div><div class="kpi-info"><div class="kpi-label">Tempo de Estudo</div><div class="kpi-value" id="kpiTime">00:00</div><div class="kpi-sub" id="kpiTimeSub">Média: 0:00/questão</div></div></div>
+                <div class="kpi-card"><div class="kpi-icon streak"><i class="fas fa-fire"></i></div><div class="kpi-info"><div class="kpi-label">Dias Consecutivos</div><div class="kpi-value" id="kpiStreak">0</div><div class="kpi-sub" id="kpiStreakSub">Maior streak: 0</div><div class="kpi-encouragement" id="kpiStreakEnc"><i class="fas fa-trophy"></i><span></span></div></div></div>
+                <div class="kpi-card"><div class="kpi-icon taxa"><i class="fas fa-bullseye"></i></div><div class="kpi-info"><div class="kpi-label">Taxa de Acerto</div><div class="kpi-value" id="kpiAccuracy">0%</div><div class="kpi-sub" id="kpiAccuracySub">Meta: 70%</div></div></div>
+                <div class="kpi-card"><div class="kpi-icon hoje"><i class="fas fa-book-open"></i></div><div class="kpi-info"><div class="kpi-label">Questões Hoje</div><div class="kpi-value" id="kpiToday">0</div><div class="kpi-sub" id="kpiTodaySub">Total: 0 questões</div></div></div>
+            </section>
+
+            <div class="card" style="text-align:center" id="timerCard">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px"><div style="text-align:left"><label>Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="timer-type-selector"><button class="timer-type-btn active" data-type="Teoria"><i class="fas fa-book-open"></i> Teoria</button><button class="timer-type-btn" data-type="Questões"><i class="fas fa-question-circle"></i> Questões</button><button class="timer-type-btn" data-type="Revisão"><i class="fas fa-sync-alt"></i> Revisão</button><button class="timer-type-btn" data-type="Pausa"><i class="fas fa-coffee"></i> Pausa</button></div></div>
+                <div class="timer-display" id="timerDisplay">00:00:00</div>
+                <div style="margin:12px 0;color:var(--accent);font-weight:600"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
+                <div style="margin:8px 0 16px"><button id="focusModeHighlightBtn" class="btn btn-focus-highlight"><i class="fas fa-expand"></i> Entrar no Modo Foco</button></div>
+                <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap"><button id="timerStart" class="btn btn-accent"><i class="fas fa-play"></i> Iniciar</button><button id="timerPause" class="btn btn-sm"><i class="fas fa-pause"></i> Pausar</button><button id="timerSave" class="btn btn-accent btn-sm"><i class="fas fa-save"></i> Salvar</button><button id="timerReset" class="btn btn-sm"><i class="fas fa-redo"></i> Zerar</button></div>
             </div>
-            <div class="feed-list" id="communityFeedList"></div>
-        </section>
 
-        <section class="dashboard-grid" id="kpiGrid">
-            <div class="kpi-card"><div class="kpi-icon acertos"><i class="fas fa-check-circle"></i></div><div class="kpi-info"><div class="kpi-label">Acertos Totais</div><div class="kpi-value" id="kpiCorrect">0</div><div class="kpi-sub" id="kpiCorrectSub">0% de aproveitamento</div><div class="kpi-encouragement" id="kpiCorrectEnc"><i class="fas fa-users"></i><span></span></div></div></div>
-            <div class="kpi-card"><div class="kpi-icon erros"><i class="fas fa-times-circle"></i></div><div class="kpi-info"><div class="kpi-label">Erros Totais</div><div class="kpi-value" id="kpiWrong">0</div><div class="kpi-sub" id="kpiWrongSub">0% do total</div><div class="kpi-encouragement" style="color:var(--text-muted)"><i class="fas fa-lightbulb"></i><span>Cada erro é um degrau</span></div></div></div>
-            <div class="kpi-card"><div class="kpi-icon tempo"><i class="fas fa-clock"></i></div><div class="kpi-info"><div class="kpi-label">Tempo de Estudo</div><div class="kpi-value" id="kpiTime">00:00</div><div class="kpi-sub" id="kpiTimeSub">Média: 0:00/questão</div></div></div>
-            <div class="kpi-card"><div class="kpi-icon streak"><i class="fas fa-fire"></i></div><div class="kpi-info"><div class="kpi-label">Dias Consecutivos</div><div class="kpi-value" id="kpiStreak">0</div><div class="kpi-sub" id="kpiStreakSub">Maior streak: 0</div><div class="kpi-encouragement" id="kpiStreakEnc"><i class="fas fa-trophy"></i><span></span></div></div></div>
-            <div class="kpi-card"><div class="kpi-icon taxa"><i class="fas fa-bullseye"></i></div><div class="kpi-info"><div class="kpi-label">Taxa de Acerto</div><div class="kpi-value" id="kpiAccuracy">0%</div><div class="kpi-sub" id="kpiAccuracySub">Meta: 70%</div></div></div>
-            <div class="kpi-card"><div class="kpi-icon hoje"><i class="fas fa-book-open"></i></div><div class="kpi-info"><div class="kpi-label">Questões Hoje</div><div class="kpi-value" id="kpiToday">0</div><div class="kpi-sub" id="kpiTodaySub">Total: 0 questões</div></div></div>
-        </section>
-
-        <div class="card" style="text-align:center" id="timerCard">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px"><div style="text-align:left"><label>Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="timer-type-selector"><button class="timer-type-btn active" data-type="Teoria"><i class="fas fa-book-open"></i> Teoria</button><button class="timer-type-btn" data-type="Questões"><i class="fas fa-question-circle"></i> Questões</button><button class="timer-type-btn" data-type="Revisão"><i class="fas fa-sync-alt"></i> Revisão</button><button class="timer-type-btn" data-type="Pausa"><i class="fas fa-coffee"></i> Pausa</button></div></div>
-            <div class="timer-display" id="timerDisplay">00:00:00</div>
-            <div style="margin:12px 0;color:var(--accent);font-weight:600"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
-            <div style="margin:8px 0 16px"><button id="focusModeHighlightBtn" class="btn btn-focus-highlight"><i class="fas fa-expand"></i> Entrar no Modo Foco</button></div>
-            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap"><button id="timerStart" class="btn btn-accent"><i class="fas fa-play"></i> Iniciar</button><button id="timerPause" class="btn btn-sm"><i class="fas fa-pause"></i> Pausar</button><button id="timerSave" class="btn btn-accent btn-sm"><i class="fas fa-save"></i> Salvar</button><button id="timerReset" class="btn btn-sm"><i class="fas fa-redo"></i> Zerar</button></div>
+            <div class="registro-card"><div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="controle-grupo" style="max-width:100px"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center"></div><div style="display:flex;gap:8px"><button id="registroAcertarBtn" class="btn btn-sm" style="border-color:var(--secondary);color:var(--secondary)"><i class="fas fa-check"></i> Acertos</button><button id="registroErrarBtn" class="btn btn-sm" style="border-color:var(--danger);color:var(--danger)"><i class="fas fa-times"></i> Erros</button></div></div>
         </div>
 
-        <div class="registro-card"><div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="controle-grupo" style="max-width:100px"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center"></div><div style="display:flex;gap:8px"><button id="registroAcertarBtn" class="btn btn-sm" style="border-color:var(--secondary);color:var(--secondary)"><i class="fas fa-check"></i> Acertos</button><button id="registroErrarBtn" class="btn btn-sm" style="border-color:var(--danger);color:var(--danger)"><i class="fas fa-times"></i> Erros</button></div></div>
+        <!-- CONTEÚDO ABA MÉTRICAS -->
+        <div class="tab-content" id="tab-metricas">
+            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div><div class="chart-grid"><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Taxa de Acerto (%)</div><canvas id="accuracyChart" class="chart-canvas"></canvas></div><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Questões (Verde: Acertos, Laranja: Erros)</div><canvas id="volumeChart" class="chart-canvas"></canvas></div></div></section>
 
-        <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div><div class="chart-grid"><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Taxa de Acerto (%)</div><canvas id="accuracyChart" class="chart-canvas"></canvas></div><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Questões (Verde: Acertos, Laranja: Erros)</div><canvas id="volumeChart" class="chart-canvas"></canvas></div></div></section>
+            <div class="chart-grid"><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid"></div></div><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div></div>
 
-        <div class="chart-grid"><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid"></div></div><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div></div>
+            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
+        </div>
 
-        <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
-
-        <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><input type="date" id="historyFilterDate" class="filter-select" style="min-width:140px" title="Filtrar por data"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div><div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo (min)</th><th>ID</th><th>Ações</th></tr></thead><tbody id="historyTableBody"></tbody></table></div></section>
+        <!-- CONTEÚDO ABA HISTÓRICO -->
+        <div class="tab-content" id="tab-historico">
+            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><input type="date" id="historyFilterDate" class="filter-select" style="min-width:140px" title="Filtrar por data"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div><div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo (min)</th><th>ID</th><th>Ações</th></tr></thead><tbody id="historyTableBody"></tbody></table></div></section>
+        </div>
     </main>
 
     <footer class="app-footer" role="contentinfo">
@@ -2813,6 +3005,7 @@
 
     <div class="focus-overlay" id="focusOverlay"><button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button><div class="focus-container"><div class="focus-fox">🦊</div><div class="focus-ring-container"><canvas id="focusRingCanvas" width="240" height="240"></canvas><div class="focus-timer" id="focusTimerDisplay">00:00:00</div></div><div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount" style="color:var(--accent);font-weight:700;font-size:1.4rem">1</span></div><div class="focus-controls"><button class="focus-btn" id="focusTimerStart"><i class="fas fa-play"></i></button><button class="focus-btn" id="focusTimerPause"><i class="fas fa-pause"></i></button></div><div class="focus-encouragement">🦊 Foco total! Cada minuto conta.</div></div></div>
 
+    <!-- MODAIS -->
     <div class="modal-overlay" id="profileModal"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-user-circle"></i> Meu Perfil</h3><button class="modal-close" id="closeProfileModal"><i class="fas fa-times"></i></button></div><div class="profile-avatar-display" id="profileAvatarDisplay"><div class="avatar-svg" id="profileAvatarSvg"></div><img id="profileAvatarImg" src="" alt="Avatar" style="display:none"/><div class="edit-badge" id="profileEditBadge" title="Editar avatar"><i class="fas fa-cog"></i></div></div><div class="profile-nickname" id="profileNicknameDisplay">Concurseiro(a)</div><div class="profile-nickname-edit"><input type="text" id="profileNicknameInput" placeholder="Seu nickname" maxlength="20"/><button class="btn btn-sm btn-primary" id="saveNicknameBtn"><i class="fas fa-check"></i></button></div><button class="btn btn-accent btn-sm" id="openEditProfileBtn" style="width:100%;margin-top:8px"><i class="fas fa-gamepad"></i> Escolher Avatar</button></div></div>
 
     <div class="modal-overlay" id="editProfileModal"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-gamepad"></i> Escolher Avatar</h3><button class="modal-close" id="closeEditProfileModal"><i class="fas fa-times"></i></button></div><div class="profile-tabs"><button class="profile-tab active" data-tab="photo">📸 Minha Foto</button><button class="profile-tab" data-tab="avatars">🎮 Avatares Game</button></div><div id="tabPhoto"><div class="photo-upload-area" id="photoUploadArea"><i class="fas fa-camera"></i><p style="font-weight:600;margin-bottom:4px">Clique para enviar sua foto</p><p style="font-size:0.72rem;color:var(--text-muted)">JPG, PNG ou WebP</p><input type="file" id="photoFileInput" accept="image/*" style="display:none"/></div><div style="text-align:center;margin-top:12px"><img id="photoPreview" class="photo-preview" src="" alt="Preview" style="display:none"/></div><button class="btn btn-primary btn-sm" id="savePhotoBtn" style="width:100%;margin-top:12px"><i class="fas fa-save"></i> Usar esta foto</button><button class="btn btn-sm" id="removePhotoBtn" style="width:100%;margin-top:6px;color:var(--danger)"><i class="fas fa-undo"></i> Voltar para avatar padrão</button></div><div id="tabAvatars" style="display:none">
@@ -2829,6 +3022,37 @@
     <div class="modal-overlay" id="editDisciplinaModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-edit"></i> Renomear Disciplina</h3><button class="modal-close" id="closeEditDisciplinaModal"><i class="fas fa-times"></i></button></div><label for="editDisciplinaNomeAntigo">Nome atual</label><input type="text" id="editDisciplinaNomeAntigo" disabled style="opacity:0.7"><label for="editDisciplinaNomeNovo">Novo nome</label><input type="text" id="editDisciplinaNomeNovo" placeholder="Digite o novo nome..." autocomplete="off"><div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end"><button class="btn btn-sm" id="cancelEditDisciplinaBtn">Cancelar</button><button class="btn btn-primary btn-sm" id="confirmEditDisciplinaBtn"><i class="fas fa-check"></i> Renomear</button></div></div></div>
     <div class="modal-overlay" id="editGoalsModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-bullseye"></i> Ajustar Metas</h3><button class="modal-close" id="closeEditGoalsModal"><i class="fas fa-times"></i></button></div><div id="editGoalsForm"><div style="margin-bottom:12px"><label>Meta 1: Questões por dia</label><input type="number" id="goalEdit0" min="1" class="filter-select" style="width:100px" value="20"></div><div style="margin-bottom:12px"><label>Meta 2: Taxa de acerto (%)</label><input type="number" id="goalEdit1" min="1" max="100" class="filter-select" style="width:100px" value="70"></div><div style="margin-bottom:12px"><label>Meta 3: Tempo semanal (min)</label><input type="number" id="goalEdit2" min="1" class="filter-select" style="width:100px" value="300"></div><div style="margin-bottom:12px"><label>Meta 4: Dias consecutivos</label><input type="number" id="goalEdit3" min="1" class="filter-select" style="width:100px" value="30"></div></div><div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end"><button class="btn btn-sm" id="cancelEditGoalsBtn">Cancelar</button><button class="btn btn-primary btn-sm" id="confirmEditGoalsBtn"><i class="fas fa-save"></i> Salvar Metas</button></div></div></div>
     <div class="modal-overlay" id="quemSomosOverlay"><div id="quemSomosModal"><button class="close-btn" id="closeQuemSomosBtn"><i class="fas fa-times"></i></button><div class="trophy-container"><div class="confetti-container" id="confettiContainer"></div><i class="fas fa-trophy trophy-icon"></i></div><div class="manifesto-text"><p><strong>Manifesto</strong></p><p>O mercado de concursos públicos está cada vez mais competitivo...</p><p>A <span class="brand-name">VULP+</span> nasce para democratizar o aprendizado.</p><p><span class="brand-name">vulp+</span><br><strong>Ecossistema de Estudos</strong></p><p>Aqui, ninguém estuda sozinho.</p></div></div></div>
+
+    <!-- MODAL DE CONFIRMAÇÃO -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+            <div class="modal-header" style="justify-content: center;">
+                <h3 class="modal-title" id="confirmTitle">Confirmação</h3>
+            </div>
+            <p id="confirmMessage" style="color: var(--text-secondary); margin-bottom: 24px; font-size: 0.95rem;"></p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <button class="btn btn-sm" id="confirmCancelBtn" style="min-width: 100px;">Cancelar</button>
+                <button class="btn btn-sm btn-primary" id="confirmOkBtn" style="min-width: 100px;">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ONBOARDING TOUR -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-spotlight" id="onboardingSpotlight"></div>
+        <div class="onboarding-tooltip" id="onboardingTooltip">
+            <div class="onboarding-step-indicator">
+                <span id="onboardingStepDot">●</span> Passo <span id="onboardingCurrentStep">1</span> de <span id="onboardingTotalSteps">4</span>
+            </div>
+            <h4 id="onboardingTitle"></h4>
+            <p id="onboardingDescription"></p>
+            <div class="onboarding-actions">
+                <button class="btn btn-sm" id="onboardingSkipBtn">Pular tour</button>
+                <button class="btn btn-sm btn-primary" id="onboardingNextBtn">Próximo →</button>
+            </div>
+        </div>
+    </div>
+
     <div class="toast-container" id="toastContainer"></div>
     <button id="camiFAB" aria-label="Abrir assistente Cami"><span class="cami-icon">🦊</span><span class="cami-notification-dot" id="camiDot"></span></button>
     <div id="camiChatWindow"><div id="camiChatHeader"><div class="cami-avatar">🦊</div><div class="cami-header-info"><div class="cami-header-name">Cami · Assistente</div><div class="cami-header-status">Online</div></div><button id="camiChatMinimize">✕</button></div><div id="camiChatMessages"></div><div id="camiQuickReplies"><button class="cami-quick-btn" data-topic="metricas">Métricas</button><button class="cami-quick-btn" data-topic="cronometro">Cronômetro</button><button class="cami-quick-btn" data-topic="metas">Metas</button><button class="cami-quick-btn" data-topic="dashboard">Dashboard</button><button class="cami-quick-btn" data-topic="backup">Backup</button></div><div id="camiChatInputArea"><input type="text" id="camiChatInput" placeholder="Digite sua dúvida..."><button id="camiSendBtn"><i class="fas fa-paper-plane"></i></button></div></div>
@@ -2849,7 +3073,7 @@
             </svg>`;
         }
 
-        // ========== NOVOS AVATARES ==========
+        // ========== AVATARES GAME ==========
         const gameAvatars = [
             { name: 'VULP 46', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP46_lkd2sm.png', category: 'militar' },
             { name: 'VULP 47', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP47_fcrjur.png', category: 'civil' },
@@ -2956,6 +3180,176 @@
             toast('🎮 Avatar selecionado!');
         };
 
+        // ========== SISTEMA DE ABAS ==========
+        (function() {
+            const tabNav = document.getElementById('tabNav');
+            if (!tabNav) return;
+            const buttons = tabNav.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const target = btn.dataset.tab;
+                    buttons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    contents.forEach(c => c.classList.remove('active'));
+                    const targetContent = document.getElementById('tab-' + target);
+                    if (targetContent) targetContent.classList.add('active');
+                    localStorage.setItem('vulps_active_tab', target);
+                });
+            });
+            const savedTab = localStorage.getItem('vulps_active_tab') || 'principal';
+            const activeBtn = tabNav.querySelector(`[data-tab="${savedTab}"]`);
+            if (activeBtn) activeBtn.click();
+        })();
+
+        // ========== MODAL DE CONFIRMAÇÃO + FOCUS TRAP ==========
+        (function() {
+            const overlay = document.getElementById('confirmModal');
+            const titleEl = document.getElementById('confirmTitle');
+            const messageEl = document.getElementById('confirmMessage');
+            const cancelBtn = document.getElementById('confirmCancelBtn');
+            const okBtn = document.getElementById('confirmOkBtn');
+            let resolvePromise = null;
+            let previousFocus = null;
+
+            function getFocusableElements() {
+                return overlay.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            }
+
+            function trapFocus(e) {
+                if (e.key !== 'Tab') return;
+                const focusable = getFocusableElements();
+                if (focusable.length === 0) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+                } else {
+                    if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                }
+            }
+
+            window.showConfirmModal = function(title, message, isDanger = false) {
+                return new Promise((resolve) => {
+                    resolvePromise = resolve;
+                    previousFocus = document.activeElement;
+                    titleEl.textContent = title;
+                    messageEl.textContent = message;
+                    if (isDanger) okBtn.classList.add('danger');
+                    else okBtn.classList.remove('danger');
+                    overlay.classList.add('active');
+                    document.addEventListener('keydown', handleKeydown);
+                    overlay.addEventListener('keydown', trapFocus);
+                    setTimeout(() => cancelBtn.focus(), 100);
+                });
+            };
+
+            function closeConfirm(result) {
+                overlay.classList.remove('active');
+                document.removeEventListener('keydown', handleKeydown);
+                overlay.removeEventListener('keydown', trapFocus);
+                if (resolvePromise) { resolvePromise(result); resolvePromise = null; }
+                if (previousFocus) setTimeout(() => previousFocus.focus(), 100);
+            }
+
+            function handleKeydown(e) { if (e.key === 'Escape') closeConfirm(false); }
+
+            cancelBtn.addEventListener('click', () => closeConfirm(false));
+            okBtn.addEventListener('click', () => closeConfirm(true));
+            overlay.addEventListener('click', (e) => { if (e.target === overlay) closeConfirm(false); });
+        })();
+
+        // ========== ONBOARDING TOUR ==========
+        (function() {
+            const overlay = document.getElementById('onboardingOverlay');
+            const spotlight = document.getElementById('onboardingSpotlight');
+            const tooltip = document.getElementById('onboardingTooltip');
+            const titleEl = document.getElementById('onboardingTitle');
+            const descEl = document.getElementById('onboardingDescription');
+            const stepEl = document.getElementById('onboardingCurrentStep');
+            const totalStepsEl = document.getElementById('onboardingTotalSteps');
+            const nextBtn = document.getElementById('onboardingNextBtn');
+            const skipBtn = document.getElementById('onboardingSkipBtn');
+            const helpBtn = document.getElementById('helpTourBtn');
+            const HAS_SEEN_TOUR_KEY = 'vulps_has_seen_tour';
+            let currentStep = 0;
+
+            const steps = [
+                { selector: '#timerCard', title: '⏱️ Cronômetro de Estudos', description: 'Inicie o cronômetro, escolha a disciplina e o tipo de sessão. Salve seu tempo ao finalizar.', position: 'bottom' },
+                { selector: '.registro-card', title: '📝 Registro Rápido', description: 'Registre acertos e erros manualmente. Isso alimenta seus KPIs, gráficos e metas.', position: 'bottom' },
+                { selector: '#kpiGrid', title: '📊 Seus KPIs', description: 'Acompanhe acertos, erros, tempo de estudo, streak e taxa de aproveitamento.', position: 'bottom' },
+                { selector: '.community-feed', title: '🦊 Comunidade Viva', description: 'Veja atividades de outros concurseiros em tempo real!', position: 'top' }
+            ];
+
+            function spotlightElement(el) {
+                const rect = el.getBoundingClientRect();
+                const padding = 8;
+                spotlight.style.top = (rect.top - padding) + 'px';
+                spotlight.style.left = (rect.left - padding) + 'px';
+                spotlight.style.width = (rect.width + padding * 2) + 'px';
+                spotlight.style.height = (rect.height + padding * 2) + 'px';
+                spotlight.style.borderRadius = 'var(--radius-md)';
+            }
+
+            function positionTooltip(targetEl, position) {
+                const rect = targetEl.getBoundingClientRect();
+                const tooltipW = tooltip.offsetWidth;
+                const tooltipH = tooltip.offsetHeight;
+                const gap = 16;
+                let top, left;
+                if (position === 'bottom') {
+                    top = rect.bottom + gap;
+                    left = Math.max(16, Math.min(rect.left + rect.width / 2 - tooltipW / 2, window.innerWidth - tooltipW - 16));
+                    if (top + tooltipH > window.innerHeight - 16) top = rect.top - tooltipH - gap;
+                } else {
+                    top = rect.top - tooltipH - gap;
+                    left = Math.max(16, Math.min(rect.left + rect.width / 2 - tooltipW / 2, window.innerWidth - tooltipW - 16));
+                    if (top < 16) top = rect.bottom + gap;
+                }
+                tooltip.style.top = top + 'px';
+                tooltip.style.left = left + 'px';
+            }
+
+            function showStep(stepIndex) {
+                if (stepIndex >= steps.length) { finishTour(); return; }
+                const step = steps[stepIndex];
+                const targetEl = document.querySelector(step.selector);
+                if (!targetEl) { showStep(stepIndex + 1); return; }
+                const tabContent = targetEl.closest('.tab-content');
+                if (tabContent && !tabContent.classList.contains('active')) {
+                    const tabId = tabContent.id.replace('tab-', '');
+                    const tabBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+                    if (tabBtn) tabBtn.click();
+                }
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => {
+                    spotlightElement(targetEl);
+                    positionTooltip(targetEl, step.position);
+                    titleEl.textContent = step.title;
+                    descEl.textContent = step.description;
+                    stepEl.textContent = stepIndex + 1;
+                    currentStep = stepIndex;
+                    nextBtn.textContent = stepIndex === steps.length - 1 ? '✓ Começar a estudar!' : 'Próximo →';
+                }, 400);
+            }
+
+            function startTour() { currentStep = 0; totalStepsEl.textContent = steps.length; overlay.classList.add('active'); showStep(0); }
+            function finishTour() { overlay.classList.remove('active'); localStorage.setItem(HAS_SEEN_TOUR_KEY, 'true'); }
+
+            nextBtn.addEventListener('click', () => currentStep >= steps.length - 1 ? finishTour() : showStep(currentStep + 1));
+            skipBtn.addEventListener('click', finishTour);
+            if (helpBtn) helpBtn.addEventListener('click', () => { localStorage.removeItem(HAS_SEEN_TOUR_KEY); startTour(); });
+            window.addEventListener('load', () => { if (!localStorage.getItem(HAS_SEEN_TOUR_KEY)) setTimeout(startTour, 1500); });
+            window.addEventListener('resize', () => {
+                if (overlay.classList.contains('active') && currentStep < steps.length) {
+                    const step = steps[currentStep];
+                    const targetEl = document.querySelector(step.selector);
+                    if (targetEl) { spotlightElement(targetEl); positionTooltip(targetEl, step.position); }
+                }
+            });
+        })();
+
+        // ========== EVENTOS DE PERFIL E AVATARES ==========
         document.querySelectorAll('.avatar-category-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 document.querySelectorAll('.avatar-category-btn').forEach(b => b.classList.remove('active'));
@@ -2979,234 +3373,204 @@
         document.getElementById('photoUploadArea').addEventListener('click', () => document.getElementById('photoFileInput').click());
         document.getElementById('photoFileInput').addEventListener('change', (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { const img = new Image(); img.onload = () => { const canvas = document.createElement('canvas'); const size = 200; canvas.width = size; canvas.height = size; const ctx = canvas.getContext('2d'); const minDim = Math.min(img.width, img.height); const sx = (img.width - minDim) / 2, sy = (img.height - minDim) / 2; ctx.beginPath(); ctx.arc(size/2, size/2, size/2, 0, Math.PI*2); ctx.clip(); ctx.drawImage(img, sx, sy, minDim, minDim, 0, 0, size, size); const dataUrl = canvas.toDataURL('image/jpeg', 0.85); document.getElementById('photoPreview').src = dataUrl; document.getElementById('photoPreview').style.display = 'block'; document.getElementById('photoPreview').dataset.tempPhoto = dataUrl; }; img.src = ev.target.result; }; reader.readAsDataURL(file); });
         document.getElementById('savePhotoBtn').addEventListener('click', () => { const temp = document.getElementById('photoPreview').dataset.tempPhoto; if (temp) { userProfile.avatarType = 'photo'; userProfile.avatarPhoto = temp; userProfile.avatarGameUrl = null; saveProfile(); updateAllAvatarDisplays(); buildAvatarGrid(); toast('📸 Foto salva!'); } });
-        document.getElementById('removePhotoBtn').addEventListener('click', () => { userProfile.avatarType = 'default'; userProfile.avatarPhoto = null; userProfile.avatarGameUrl = null; saveProfile(); updateAllAvatarDisplays(); buildAvatarGrid(); document.getElementById('photoPreview').style.display = 'none'; document.getElementById('photoPreview').dataset.tempPhoto = ''; toast('🦊 Avatar padrão restaurado!'); });
+        document.getElementById('removePhotoBtn').addEventListener('click', () => { userProfile.avatarType = 'default'; userProfile.avatarPhoto = null; userProfile.avatarGameUrl = null; saveProfile(); updateAllAvatarDisplays(); buildAvatarGrid(); document.getElementById('photoPreview').style.display = 'none'; toast('🦊 Avatar padrão restaurado!'); });
 
         // ========== FRASES MOTIVACIONAIS ==========
-        const motivationalPhrases = [{ quote: "A persistência é o caminho do êxito.", author: "Charles Chaplin" }, { quote: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" }, { quote: "Não é o mais forte que sobrevive, nem o mais inteligente, mas o que melhor se adapta às mudanças.", author: "Leon C. Megginson" }, { quote: "A disciplina é a ponte entre metas e realizações.", author: "Jim Rohn" }, { quote: "Você nunca será velho demais para estabelecer um novo objetivo.", author: "C.S. Lewis" }, { quote: "A jornada de mil milhas começa com um único passo.", author: "Lao Tsé" }, { quote: "O conhecimento é o único recurso que se multiplica quando compartilhado.", author: "Adam Grant" }, { quote: "O amanhã pertence àqueles que se preparam hoje.", author: "Malcolm X" }, { quote: "Cada erro é uma oportunidade de aprender algo novo.", author: "Albert Einstein" }, { quote: "O sucesso não é definitivo e o fracasso não é fatal: o que importa é a coragem de continuar.", author: "Winston Churchill" }];
-        function getDailyPhraseIndex() { const t = new Date().toISOString().split('T')[0]; let h = 0; for (let i = 0; i < t.length; i++) { h = ((h << 5) - h) + t.charCodeAt(i); h |= 0 } return Math.abs(h) % motivationalPhrases.length }
-        function updateMotivationalQuote(f) { if (f) { const i = getDailyPhraseIndex(); localStorage.setItem('vulps_motivational_index', i.toString()) } let s = localStorage.getItem('vulps_motivational_index'); if (s === null) { s = getDailyPhraseIndex(); localStorage.setItem('vulps_motivational_index', s.toString()) } const p = motivationalPhrases[parseInt(s) % motivationalPhrases.length]; document.getElementById('motivationalQuote').textContent = `"${p.quote}"`; document.getElementById('motivationalAuthor').textContent = p.author }
-        function refreshMotivationalQuote() { const i = Math.floor(Math.random() * motivationalPhrases.length); localStorage.setItem('vulps_motivational_index', i.toString()); updateMotivationalQuote() }
+        const motivationalPhrases = [{ quote: "A persistência é o caminho do êxito.", author: "Charles Chaplin" }, { quote: "O sucesso é a soma de pequenos esforços repetidos dia após dia.", author: "Robert Collier" }, { quote: "A disciplina é a ponte entre metas e realizações.", author: "Jim Rohn" }, { quote: "O conhecimento é o único recurso que se multiplica quando compartilhado.", author: "Adam Grant" }, { quote: "O amanhã pertence àqueles que se preparam hoje.", author: "Malcolm X" }];
+        function getDailyPhraseIndex() { const t = new Date().toISOString().split('T')[0]; let h = 0; for (let i = 0; i < t.length; i++) { h = ((h << 5) - h) + t.charCodeAt(i); h |= 0; } return Math.abs(h) % motivationalPhrases.length; }
+        function updateMotivationalQuote(f) { if (f) { const i = getDailyPhraseIndex(); localStorage.setItem('vulps_motivational_index', i.toString()); } let s = localStorage.getItem('vulps_motivational_index'); if (s === null) { s = getDailyPhraseIndex().toString(); localStorage.setItem('vulps_motivational_index', s); } const p = motivationalPhrases[parseInt(s) % motivationalPhrases.length]; document.getElementById('motivationalQuote').textContent = `"${p.quote}"`; document.getElementById('motivationalAuthor').textContent = p.author; }
+        function refreshMotivationalQuote() { const i = Math.floor(Math.random() * motivationalPhrases.length); localStorage.setItem('vulps_motivational_index', i.toString()); updateMotivationalQuote(); }
         document.getElementById('motivationalRefreshBtn').addEventListener('click', refreshMotivationalQuote);
         updateMotivationalQuote(true);
 
-        function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000) }
+        function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000); }
         atualizarOnlineEstudantes();
 
-        // ========== SIMULADOR COMUNIDADE GAMIFICADA ==========
-        const nicknames = [
-            "ConcurseiroRaiz", "FocoNaPRF", "FiscalMaster", "AprovadaTRT",
-            "MissãoSEFAZ", "RumoPF", "GuerreiraINSS", "DeltaPC",
-            "MetaReceita", "TáticaTJ", "ElitePC", "RetaFinalPF"
-        ];
-
-        const activities = [
-            "acertou 15 questões seguidas de Direito Constitucional",
-            "finalizou a meta diária",
-            "subiu para Ouro II",
-            "recebeu ajuda em Raciocínio Lógico",
-            "entrou na sala de estudos da PF",
-            "iniciou simulado da PRF",
-            "completou 3h de foco hoje",
-            "desbloqueou a conquista Mestre da Disciplina",
-            "recebeu ajuda em Direito Penal",
-            "finalizou revisão de Informática"
-        ];
-
-        const avatarColors = [
-            "#F97316", "#3B82F6", "#8B5CF6", "#EC4899",
-            "#14B8A6", "#EAB308", "#6366F1", "#22C55E"
-        ];
-
-        function getRandomItem(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-
-        function createFeedItem() {
-            const nickname = getRandomItem(nicknames);
-            const activity = getRandomItem(activities);
-            const color = getRandomItem(avatarColors);
-
-            const item = document.createElement("div");
-            item.className = "feed-item";
-
-            item.innerHTML = `
-                <div class="feed-user">
-                    <div class="feed-avatar" style="background:${color}">
-                        ${nickname.charAt(0)}
-                    </div>
-                    <div class="feed-text">
-                        <strong>${nickname}</strong> ${activity}
-                    </div>
-                </div>
-                <span class="feed-time">agora</span>
-            `;
-
+        // ========== COMUNIDADE GAMIFICADA ==========
+        const nicknames = ["ConcurseiroRaiz","FocoNaPRF","FiscalMaster","AprovadaTRT","MissãoSEFAZ","RumoPF","GuerreiraINSS","DeltaPC","MetaReceita","TáticaTJ","ElitePC","RetaFinalPF"];
+        const activities = ["acertou 15 questões seguidas de Direito Constitucional","finalizou a meta diária","subiu para Ouro II","recebeu ajuda em Raciocínio Lógico","entrou na sala de estudos da PF","iniciou simulado da PRF","completou 3h de foco hoje","desbloqueou a conquista Mestre da Disciplina","recebeu ajuda em Direito Penal","finalizou revisão de Informática"];
+        const avatarColors = ["#F97316","#3B82F6","#8B5CF6","#EC4899","#14B8A6","#EAB308","#6366F1","#22C55E"];
+        function getRandomItem(arr){return arr[Math.floor(Math.random()*arr.length)];}
+        function createFeedItem(){
+            const nickname=getRandomItem(nicknames), activity=getRandomItem(activities), color=getRandomItem(avatarColors);
+            const item=document.createElement("div"); item.className="feed-item";
+            item.innerHTML=`<div class="feed-user"><div class="feed-avatar" style="background:${color};color:white;">${nickname.charAt(0)}</div><div class="feed-text"><strong>${nickname}</strong> ${activity}</div></div><span class="feed-time">agora</span>`;
             return item;
         }
-
-        function updateCommunityFeed() {
-            const feed = document.getElementById("communityFeedList");
-            if (!feed) return;
-
-            const newItem = createFeedItem();
-            feed.prepend(newItem);
-
-            while (feed.children.length > 20) {
-                feed.removeChild(feed.lastChild);
-            }
-
-            const online = document.getElementById("onlineCount");
-            if (online) {
-                online.textContent = Math.floor(Math.random() * 47) + 43;
-            }
+        function updateCommunityFeed(){
+            const feed=document.getElementById("communityFeedList"); if(!feed)return;
+            feed.prepend(createFeedItem());
+            while(feed.children.length>20) feed.removeChild(feed.lastChild);
+            const online=document.getElementById("onlineCount"); if(online) online.textContent=Math.floor(Math.random()*47)+43;
         }
-
-        // Inicializa com 8 itens
-        for (let i = 0; i < 8; i++) {
-            updateCommunityFeed();
-        }
-
-        // Intervalo dinâmico entre 4 e 8 segundos
-        setInterval(updateCommunityFeed, Math.floor(Math.random() * 4000) + 4000);
+        for(let i=0;i<8;i++) updateCommunityFeed();
+        setInterval(updateCommunityFeed, Math.floor(Math.random()*4000)+4000);
 
         // ========== SAUDAÇÃO ==========
-        (function() { const g = document.getElementById('sidebarGreeting'); if (g) { const h = new Date().getHours(); let s, e; if (h >= 5 && h < 12) { s = 'Bom dia'; e = '☀️' } else if (h >= 12 && h < 18) { s = 'Boa tarde'; e = '🌤️' } else { s = 'Boa noite'; e = '🌙' } g.innerHTML = `<span id="sidebarNicknameDisplay">${userProfile.nickname}</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Você não está sozinho nessa 💪</span>` } })();
+        (function() { const g = document.getElementById('sidebarGreeting'); if (g) { const h = new Date().getHours(); let s, e; if (h >= 5 && h < 12) { s = 'Bom dia'; e = '☀️'; } else if (h >= 12 && h < 18) { s = 'Boa tarde'; e = '🌤️'; } else { s = 'Boa noite'; e = '🌙'; } g.innerHTML = `<span id="sidebarNicknameDisplay">${userProfile.nickname}</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Você não está sozinho nessa 💪</span>`; } })();
 
-        function spawnConfetti() { const c = document.getElementById('confettiContainer'); if (!c) return; c.innerHTML = ''; const cols = ['#f0b90b', '#fde047', '#ff7a00', '#00c878', '#1155cc', '#ef4444', '#8b5cf6', '#ec4899']; for (let i = 0; i < 50; i++) { const co = document.createElement('div'); co.className = 'confetti'; co.style.left = Math.random() * 100 + '%'; co.style.backgroundColor = cols[Math.floor(Math.random() * cols.length)]; co.style.animationDuration = (2 + Math.random() * 3) + 's'; co.style.animationDelay = Math.random() * 2 + 's'; co.style.width = (6 + Math.random() * 10) + 'px'; co.style.height = (6 + Math.random() * 10) + 'px'; co.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px'; c.appendChild(co) } }
-        (function() { const o = document.getElementById('quemSomosOverlay'); const c = document.getElementById('closeQuemSomosBtn'); function open() { o.classList.add('active'); spawnConfetti() } function close() { o.classList.remove('active') } document.getElementById('quemSomosBtn').addEventListener('click', open); document.getElementById('topbarQuemSomosBtn').addEventListener('click', open); c.addEventListener('click', close); o.addEventListener('click', (e) => { if (e.target === o) close() }) })();
+        function spawnConfetti() { const c = document.getElementById('confettiContainer'); if (!c) return; c.innerHTML = ''; const cols = ['#f0b90b', '#fde047', '#ff7a00', '#00c878', '#1155cc', '#ef4444', '#8b5cf6', '#ec4899']; for (let i = 0; i < 50; i++) { const co = document.createElement('div'); co.className = 'confetti'; co.style.left = Math.random() * 100 + '%'; co.style.backgroundColor = cols[Math.floor(Math.random() * cols.length)]; co.style.animationDuration = (2 + Math.random() * 3) + 's'; co.style.animationDelay = Math.random() * 2 + 's'; co.style.width = (6 + Math.random() * 10) + 'px'; co.style.height = (6 + Math.random() * 10) + 'px'; co.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px'; c.appendChild(co); } }
+        (function() { const o = document.getElementById('quemSomosOverlay'); const c = document.getElementById('closeQuemSomosBtn'); function open() { o.classList.add('active'); spawnConfetti(); } function close() { o.classList.remove('active'); } document.getElementById('quemSomosBtn').addEventListener('click', open); document.getElementById('topbarQuemSomosBtn').addEventListener('click', open); c.addEventListener('click', close); o.addEventListener('click', (e) => { if (e.target === o) close(); }); })();
 
-        (function() { const h = document.documentElement; const i = document.getElementById('theme-icon'); const l = document.getElementById('theme-label'); function set(n) { h.setAttribute('data-theme', n); const is = n === 'light'; i.className = 'fas ' + (is ? 'fa-moon' : 'fa-sun'); l.textContent = is ? 'Escuro' : 'Claro'; const ti = document.getElementById('topbarThemeIcon'); if (ti) ti.className = 'fas ' + (is ? 'fa-sun' : 'fa-moon'); localStorage.setItem('theme', n); setTimeout(refreshDashboard, 100) } const s = localStorage.getItem('theme') || 'light'; set(s); document.getElementById('theme-toggle').addEventListener('click', () => { const c = h.getAttribute('data-theme'); set(c === 'light' ? 'dark' : 'light') }); document.getElementById('topbarThemeToggle').addEventListener('click', () => { document.getElementById('theme-toggle').click() }) })();
+        // ========== TEMA ==========
+        (function() { const h = document.documentElement; const i = document.getElementById('theme-icon'); const l = document.getElementById('theme-label'); function set(n) { h.setAttribute('data-theme', n); const is = n === 'light'; i.className = 'fas ' + (is ? 'fa-moon' : 'fa-sun'); l.textContent = is ? 'Escuro' : 'Claro'; const ti = document.getElementById('topbarThemeIcon'); if (ti) ti.className = 'fas ' + (is ? 'fa-sun' : 'fa-moon'); localStorage.setItem('theme', n); setTimeout(refreshDashboard, 100); } const s = localStorage.getItem('theme') || 'light'; set(s); document.getElementById('theme-toggle').addEventListener('click', () => { const c = h.getAttribute('data-theme'); set(c === 'light' ? 'dark' : 'light'); }); document.getElementById('topbarThemeToggle').addEventListener('click', () => { document.getElementById('theme-toggle').click(); }); })();
 
-        function toast(m, t = '') { const c = document.getElementById('toastContainer'); const e = document.createElement('div'); e.className = 'toast ' + t; const ic = t === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check'; e.innerHTML = `<i class="fas ${ic}" style="color:${t==='error'?'var(--danger)':'var(--secondary)'}"></i> ${m}`; c.appendChild(e); setTimeout(() => { if (e.parentNode) e.remove() }, 3200) }
+        function toast(m, t = '') { const c = document.getElementById('toastContainer'); const e = document.createElement('div'); e.className = 'toast ' + t; const ic = t === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check'; e.innerHTML = `<i class="fas ${ic}" style="color:${t==='error'?'var(--danger)':'var(--secondary)'}"></i> ${m}`; c.appendChild(e); setTimeout(() => { if (e.parentNode) e.remove(); }, 3200); }
 
         let notifications = JSON.parse(localStorage.getItem('vulps_notifications')) || [];
-        function generateMockNotifications() { try { const m = computeMetrics(); const n = []; if (m.streak > 0 && m.streak % 5 === 0) n.push({ id: 'streak_' + m.streak + '_' + new Date().toISOString().split('T')[0], type: 'streak', title: 'Streak!', message: `${m.streak} dias consecutivos! 🔥`, time: new Date().toISOString(), read: false }); if (parseFloat(m.correctPercent) >= 70 && goals.length >= 2) n.push({ id: 'goal_accuracy_' + new Date().toISOString().split('T')[0], type: 'goal', title: 'Meta!', message: `Taxa de ${m.correctPercent}%! 🎯`, time: new Date().toISOString(), read: false }); if (m.todayCount >= 15) n.push({ id: 'today_' + new Date().toISOString().split('T')[0], type: 'goal', title: 'Produtividade!', message: `${m.todayCount} questões hoje! ⚡`, time: new Date().toISOString(), read: false }); return n } catch (e) { return [] } }
-        function addNotification(n) { if (notifications.some(x => x.id === n.id)) return; notifications.unshift(n); if (notifications.length > 50) notifications.pop(); try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)) } catch (e) {} updateNotificationUI() }
-        function updateNotificationUI() { const uc = notifications.filter(n => !n.read).length; const b = document.getElementById('notificationBadge'); const l = document.getElementById('notificationList'); if (b) { b.textContent = uc; b.style.display = uc > 0 ? 'flex' : 'none' } if (l) { if (notifications.length === 0) l.innerHTML = '<div class="notification-empty">🦊 Nenhuma notificação.</div>'; else l.innerHTML = notifications.map((n, i) => `<div class="notification-item${n.read?' read':' unread'}" data-index="${i}"><div class="notification-icon"><i class="fas fa-${n.type==='streak'?'fire':n.type==='goal'?'bullseye':'info-circle'}"></i></div><div class="notification-content"><div>${n.message}</div><div class="notification-time">${new Date(n.time).toLocaleString('pt-BR')}</div></div></div>`).join('') } }
-        function markAllRead() { notifications.forEach(n => n.read = true); try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)) } catch (e) {} updateNotificationUI(); toast('Notificações lidas.') }
-        document.getElementById('notificationBell').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('notificationDropdown').classList.toggle('active') });
-        document.addEventListener('click', (e) => { const d = document.getElementById('notificationDropdown'); if (d && d.classList.contains('active') && !d.contains(e.target) && e.target.id !== 'notificationBell') d.classList.remove('active') });
-        document.getElementById('markAllReadBtn').addEventListener('click', (e) => { e.stopPropagation(); markAllRead() });
-        document.getElementById('notificationList').addEventListener('click', (e) => { const it = e.target.closest('.notification-item'); if (it) { const idx = parseInt(it.dataset.index); if (!isNaN(idx) && notifications[idx]) { notifications[idx].read = true; try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)) } catch (e) {} updateNotificationUI() } } });
+        function generateMockNotifications() { try { const m = computeMetrics(); const n = []; if (m.streak > 0 && m.streak % 5 === 0) n.push({ id: 'streak_' + m.streak + '_' + new Date().toISOString().split('T')[0], type: 'streak', title: 'Streak!', message: `${m.streak} dias consecutivos! 🔥`, time: new Date().toISOString(), read: false }); if (parseFloat(m.correctPercent) >= 70 && goals.length >= 2) n.push({ id: 'goal_accuracy_' + new Date().toISOString().split('T')[0], type: 'goal', title: 'Meta!', message: `Taxa de ${m.correctPercent}%! 🎯`, time: new Date().toISOString(), read: false }); if (m.todayCount >= 15) n.push({ id: 'today_' + new Date().toISOString().split('T')[0], type: 'goal', title: 'Produtividade!', message: `${m.todayCount} questões hoje! ⚡`, time: new Date().toISOString(), read: false }); return n; } catch (e) { return []; } }
+        function addNotification(n) { if (notifications.some(x => x.id === n.id)) return; notifications.unshift(n); if (notifications.length > 50) notifications.pop(); try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {} updateNotificationUI(); }
+        function updateNotificationUI() { const uc = notifications.filter(n => !n.read).length; const b = document.getElementById('notificationBadge'); const l = document.getElementById('notificationList'); if (b) { b.textContent = uc; b.style.display = uc > 0 ? 'flex' : 'none'; } if (l) { if (notifications.length === 0) l.innerHTML = '<div class="notification-empty">🦊 Nenhuma notificação.</div>'; else l.innerHTML = notifications.map((n, i) => `<div class="notification-item${n.read?' read':' unread'}" data-index="${i}"><div class="notification-icon"><i class="fas fa-${n.type==='streak'?'fire':n.type==='goal'?'bullseye':'info-circle'}"></i></div><div class="notification-content"><div>${n.message}</div><div class="notification-time">${new Date(n.time).toLocaleString('pt-BR')}</div></div></div>`).join(''); } }
+        function markAllRead() { notifications.forEach(n => n.read = true); try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {} updateNotificationUI(); toast('Notificações lidas.'); }
+        document.getElementById('notificationBell').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('notificationDropdown').classList.toggle('active'); });
+        document.addEventListener('click', (e) => { const d = document.getElementById('notificationDropdown'); if (d && d.classList.contains('active') && !d.contains(e.target) && e.target.id !== 'notificationBell') d.classList.remove('active'); });
+        document.getElementById('markAllReadBtn').addEventListener('click', (e) => { e.stopPropagation(); markAllRead(); });
+        document.getElementById('notificationList').addEventListener('click', (e) => { const it = e.target.closest('.notification-item'); if (it) { const idx = parseInt(it.dataset.index); if (!isNaN(idx) && notifications[idx]) { notifications[idx].read = true; try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {} updateNotificationUI(); } } });
 
-        (function() { const s = document.getElementById('sidebar'); const o = document.getElementById('sidebarOverlay'); document.getElementById('hamburgerBtn').addEventListener('click', () => { s.classList.add('open'); o.classList.add('active') }); document.getElementById('closeSidebarBtn').addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active') }); o.addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active') }) })();
+        (function() { const s = document.getElementById('sidebar'); const o = document.getElementById('sidebarOverlay'); document.getElementById('hamburgerBtn').addEventListener('click', () => { s.classList.add('open'); o.classList.add('active'); }); document.getElementById('closeSidebarBtn').addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active'); }); o.addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active'); }); })();
 
-        (function() { let camiOpen = false, camiFirst = true; const w = document.getElementById('camiChatWindow'); const f = document.getElementById('camiFAB'); const d = document.getElementById('camiDot'); const ms = document.getElementById('camiChatMessages'); const inp = document.getElementById('camiChatInput'); function toggle() { camiOpen = !camiOpen; if (camiOpen) { w.classList.add('active'); f.classList.add('chat-open'); if (d) d.style.display = 'none'; inp.focus(); if (camiFirst) { camiFirst = false; mostrarDigitando(() => { enviarBot('Olá! 👋 Sou a <strong>Cami</strong>. Pergunte sobre métricas, cronômetro, metas, backup ou perfil! 🦊') }) } } else { w.classList.remove('active'); f.classList.remove('chat-open') } } function mostrarDigitando(cb) { const div = document.createElement('div'); div.className = 'cami-message bot'; div.innerHTML = '<div class="cami-typing"><span></span><span></span><span></span></div>'; ms.appendChild(div); ms.scrollTop = ms.scrollHeight; setTimeout(() => { div.remove(); cb() }, 900 + Math.random() * 600) } function enviarBot(t) { const div = document.createElement('div'); div.className = 'cami-message bot'; div.innerHTML = t; ms.appendChild(div); ms.scrollTop = ms.scrollHeight } function enviarUsuario(t) { const div = document.createElement('div'); div.className = 'cami-message user'; div.textContent = t; ms.appendChild(div); ms.scrollTop = ms.scrollHeight } function processar(t) { enviarUsuario(t); const txt = t.toLowerCase(); mostrarDigitando(() => { if (txt.includes('perfil') || txt.includes('avatar')) enviarBot('Clique no ícone ⚙️ sobre a raposa na sidebar para personalizar seu avatar e nickname! 🎮'); else if (txt.includes('métrica') || txt.includes('kpi')) enviarBot('O painel mostra KPIs como acertos, erros, taxa de acerto, streak e tempo de estudo. 📊'); else if (txt.includes('cronômetro') || txt.includes('timer')) enviarBot('Use o cronômetro, escolha a disciplina e o tipo, clique em Iniciar. Ao salvar, o tempo é registrado. ⏱️'); else if (txt.includes('meta')) enviarBot('Em Metas de Estudo você pode ajustar os 4 objetivos clicando em Ajustar Metas. 🎯'); else if (txt.includes('backup')) enviarBot('Clique em Backup no cabeçalho para exportar/importar seus dados em JSON. 💾'); else enviarBot('Pergunte sobre <strong>métricas</strong>, <strong>cronômetro</strong>, <strong>metas</strong>, <strong>backup</strong> ou <strong>perfil</strong>! 😊') }) } f.addEventListener('click', toggle); document.getElementById('camiChatMinimize').addEventListener('click', () => { camiOpen = true; toggle() }); document.getElementById('camiSendBtn').addEventListener('click', () => { const tx = inp.value.trim(); if (tx) { processar(tx); inp.value = '' } }); inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const tx = inp.value.trim(); if (tx) { processar(tx); inp.value = '' } } }); document.getElementById('camiQuickReplies').addEventListener('click', (e) => { const btn = e.target.closest('.cami-quick-btn'); if (btn && btn.dataset.topic) { const tops = { metricas: 'Como funcionam as métricas?', cronometro: 'Como usar o cronômetro?', metas: 'Como funcionam as metas?', dashboard: 'O que tem no dashboard?', backup: 'Como faço backup?' }; const tx = tops[btn.dataset.topic] || btn.dataset.topic; if (!camiOpen) toggle(); processar(tx) } }); setTimeout(() => { if (!camiOpen && camiFirst && d) d.style.display = 'block' }, 5000) })();
+        (function() { let camiOpen = false, camiFirst = true; const w = document.getElementById('camiChatWindow'); const f = document.getElementById('camiFAB'); const d = document.getElementById('camiDot'); const ms = document.getElementById('camiChatMessages'); const inp = document.getElementById('camiChatInput'); function toggle() { camiOpen = !camiOpen; if (camiOpen) { w.classList.add('active'); f.classList.add('chat-open'); if (d) d.style.display = 'none'; inp.focus(); if (camiFirst) { camiFirst = false; mostrarDigitando(() => { enviarBot('Olá! 👋 Sou a <strong>Cami</strong>. Pergunte sobre métricas, cronômetro, metas, backup ou perfil! 🦊'); }); } } else { w.classList.remove('active'); f.classList.remove('chat-open'); } } function mostrarDigitando(cb) { const div = document.createElement('div'); div.className = 'cami-message bot'; div.innerHTML = '<div class="cami-typing"><span></span><span></span><span></span></div>'; ms.appendChild(div); ms.scrollTop = ms.scrollHeight; setTimeout(() => { div.remove(); cb(); }, 900 + Math.random() * 600); } function enviarBot(t) { const div = document.createElement('div'); div.className = 'cami-message bot'; div.innerHTML = t; ms.appendChild(div); ms.scrollTop = ms.scrollHeight; } function enviarUsuario(t) { const div = document.createElement('div'); div.className = 'cami-message user'; div.textContent = t; ms.appendChild(div); ms.scrollTop = ms.scrollHeight; } function processar(t) { enviarUsuario(t); const txt = t.toLowerCase(); mostrarDigitando(() => { if (txt.includes('perfil') || txt.includes('avatar')) enviarBot('Clique no ícone ⚙️ sobre a raposa na sidebar para personalizar seu avatar e nickname! 🎮'); else if (txt.includes('métrica') || txt.includes('kpi')) enviarBot('O painel mostra KPIs como acertos, erros, taxa de acerto, streak e tempo de estudo. 📊'); else if (txt.includes('cronômetro') || txt.includes('timer')) enviarBot('Use o cronômetro, escolha a disciplina e o tipo, clique em Iniciar. Ao salvar, o tempo é registrado. ⏱️'); else if (txt.includes('meta')) enviarBot('Em Metas de Estudo você pode ajustar os 4 objetivos clicando em Ajustar Metas. 🎯'); else if (txt.includes('backup')) enviarBot('Clique em Backup no cabeçalho para exportar/importar seus dados em JSON. 💾'); else enviarBot('Pergunte sobre <strong>métricas</strong>, <strong>cronômetro</strong>, <strong>metas</strong>, <strong>backup</strong> ou <strong>perfil</strong>! 😊'); }); } f.addEventListener('click', toggle); document.getElementById('camiChatMinimize').addEventListener('click', () => { camiOpen = true; toggle(); }); document.getElementById('camiSendBtn').addEventListener('click', () => { const tx = inp.value.trim(); if (tx) { processar(tx); inp.value = ''; } }); inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const tx = inp.value.trim(); if (tx) { processar(tx); inp.value = ''; } } }); document.getElementById('camiQuickReplies').addEventListener('click', (e) => { const btn = e.target.closest('.cami-quick-btn'); if (btn && btn.dataset.topic) { const tops = { metricas: 'Como funcionam as métricas?', cronometro: 'Como usar o cronômetro?', metas: 'Como funcionam as metas?', dashboard: 'O que tem no dashboard?', backup: 'Como faço backup?' }; const tx = tops[btn.dataset.topic] || btn.dataset.topic; if (!camiOpen) toggle(); processar(tx); } }); setTimeout(() => { if (!camiOpen && camiFirst && d) d.style.display = 'block'; }, 5000); })();
 
         // ========== DADOS ==========
         const disciplinasPredefinidas = ["Língua Portuguesa", "Raciocínio Lógico-Matemático", "Matemática", "Noções de Informática", "Atualidades", "Direito Constitucional", "Direito Administrativo", "Direito Penal", "Direito Processual Penal", "Direito Civil", "Direito do Trabalho", "Direito Tributário", "Administração Geral", "Contabilidade Geral", "Economia e Finanças Públicas", "Estatística", "Gestão de Pessoas", "Ética no Serviço Público", "Segurança da Informação", "Saúde Pública", "Conhecimentos Pedagógicos", "Criminologia"];
         const todasDisciplinasSugestoes = ["Língua Portuguesa", "Raciocínio Lógico-Matemático", "Matemática", "Noções de Informática", "Atualidades", "Direito Constitucional", "Direito Administrativo", "Direito Penal", "Direito Processual Penal", "Direito Civil", "Direito do Trabalho", "Direito Tributário", "Direito Processual Civil", "Direito Ambiental", "Direito Internacional Público", "Direitos Humanos", "Legislação Específica", "Administração Geral", "Administração Pública", "Contabilidade Geral", "Contabilidade Pública", "Economia e Finanças Públicas", "Estatística", "Gestão de Pessoas", "Ética no Serviço Público", "Segurança da Informação", "Saúde Pública", "Conhecimentos Pedagógicos", "Criminologia", "Medicina Legal", "Engenharia Civil", "Arquitetura", "Biblioteconomia", "Arquivologia", "História do Brasil", "Geografia do Brasil", "História Mundial", "Geografia Mundial", "Filosofia", "Sociologia", "Antropologia", "Ciência Política", "Direito Eleitoral", "Direito Previdenciário", "Direito Empresarial", "Direito do Consumidor", "Auditoria", "Controladoria", "Planejamento Estratégico", "Gestão de Projetos", "Matemática Financeira", "Raciocínio Analítico", "Interpretação de Textos", "Redação Oficial", "Inglês", "Espanhol", "Políticas Públicas", "Tecnologia da Informação", "Biologia", "Física", "Química"];
         let data = {}; let events = []; let goals = [{ id: 1, title: 'Questões por dia', target: 20, current: 0, unit: 'questões', period: 'daily' }, { id: 2, title: 'Taxa de acerto', target: 70, current: 0, unit: '%', period: 'overall' }, { id: 3, title: 'Tempo semanal', target: 300, current: 0, unit: 'min', period: 'weekly' }, { id: 4, title: 'Dias consecutivos', target: 30, current: 0, unit: 'dias', period: 'streak' }];
-        try { data = JSON.parse(localStorage.getItem('vulps_discipline_data')) || {} } catch (e) { data = {} }
-        try { events = JSON.parse(localStorage.getItem('user_progress_events')) || [] } catch (e) { events = [] }
-        try { const sg = JSON.parse(localStorage.getItem('vulps_goals')); if (sg && Array.isArray(sg)) goals = sg } catch (e) {}
-        if (Object.keys(data).length === 0) { disciplinasPredefinidas.slice(0, 8).forEach(d => data[d] = { certas: 0, erradas: 0, horasMinutos: 0 }); salvarDados() }
-        function salvarDados() { try { localStorage.setItem('vulps_discipline_data', JSON.stringify(data)) } catch (e) {} }
-        function salvarEventos() { try { localStorage.setItem('user_progress_events', JSON.stringify(events)) } catch (e) {} }
-        function salvarMetas() { try { localStorage.setItem('vulps_goals', JSON.stringify(goals)) } catch (e) {} }
+        try { data = JSON.parse(localStorage.getItem('vulps_discipline_data')) || {}; } catch (e) { data = {}; }
+        try { events = JSON.parse(localStorage.getItem('user_progress_events')) || []; } catch (e) { events = []; }
+        try { const sg = JSON.parse(localStorage.getItem('vulps_goals')); if (sg && Array.isArray(sg)) goals = sg; } catch (e) {}
+        if (Object.keys(data).length === 0) { disciplinasPredefinidas.slice(0, 8).forEach(d => data[d] = { certas: 0, erradas: 0, horasMinutos: 0 }); salvarDados(); }
+        function salvarDados() { try { localStorage.setItem('vulps_discipline_data', JSON.stringify(data)); } catch (e) {} }
+        function salvarEventos() { try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (e) {} }
+        function salvarMetas() { try { localStorage.setItem('vulps_goals', JSON.stringify(goals)); } catch (e) {} }
 
-        document.getElementById('backupBtn').addEventListener('click', () => { const bd = { data, events, goals, version: '1.0', date: new Date().toISOString() }; const blob = new Blob([JSON.stringify(bd, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `vulps_backup_${new Date().toISOString().split('T')[0]}.json`; a.click(); URL.revokeObjectURL(url); toast('✓ Backup exportado!'); const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json'; inp.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const content = JSON.parse(ev.target.result); if (!content.data || !content.events || !content.goals) throw new Error('Inválido'); if (confirm('Restaurar backup? Dados atuais serão substituídos.')) { data = content.data; events = content.events; goals = content.goals; salvarDados(); salvarEventos(); salvarMetas(); atualizarSelects(); renderizarTabela(); refreshDashboard(); toast('✓ Backup restaurado!') } } catch (err) { toast('Arquivo inválido.', 'error') } }; reader.readAsText(file) }; inp.click() });
+        document.getElementById('backupBtn').addEventListener('click', () => { const bd = { data, events, goals, version: '1.0', date: new Date().toISOString() }; const blob = new Blob([JSON.stringify(bd, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `vulps_backup_${new Date().toISOString().split('T')[0]}.json`; a.click(); URL.revokeObjectURL(url); toast('✓ Backup exportado!'); const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json'; inp.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { try { const content = JSON.parse(ev.target.result); if (!content.data || !content.events || !content.goals) throw new Error('Inválido'); if (confirm('Restaurar backup? Dados atuais serão substituídos.')) { data = content.data; events = content.events; goals = content.goals; salvarDados(); salvarEventos(); salvarMetas(); atualizarSelects(); renderizarTabela(); refreshDashboard(); toast('✓ Backup restaurado!'); } } catch (err) { toast('Arquivo inválido.', 'error'); } }; reader.readAsText(file); }; inp.click(); });
 
         // ========== MODAL ADICIONAR DISCIPLINA ==========
         const addDisciplinaModal = document.getElementById('addDisciplinaModal'); const newDisciplinaInput = document.getElementById('newDisciplinaInput'); const suggestionsGrid = document.getElementById('suggestionsGrid');
-        function atualizarSugestoes() { const existentes = new Set(Object.keys(data).map(d => d.toLowerCase().trim())); const disponiveis = todasDisciplinasSugestoes.filter(d => !existentes.has(d.toLowerCase().trim())).slice(0, 18); suggestionsGrid.innerHTML = disponiveis.map(d => `<button class="suggestion-chip" data-name="${d}">${d}</button>`).join('') }
-        document.getElementById('addDisciplinaBtn').addEventListener('click', () => { atualizarSugestoes(); newDisciplinaInput.value = ''; addDisciplinaModal.classList.add('active'); setTimeout(() => newDisciplinaInput.focus(), 100) });
+        function atualizarSugestoes() { const existentes = new Set(Object.keys(data).map(d => d.toLowerCase().trim())); const disponiveis = todasDisciplinasSugestoes.filter(d => !existentes.has(d.toLowerCase().trim())).slice(0, 18); suggestionsGrid.innerHTML = disponiveis.map(d => `<button class="suggestion-chip" data-name="${d}">${d}</button>`).join(''); }
+        document.getElementById('addDisciplinaBtn').addEventListener('click', () => { atualizarSugestoes(); newDisciplinaInput.value = ''; addDisciplinaModal.classList.add('active'); setTimeout(() => newDisciplinaInput.focus(), 100); });
         document.getElementById('closeAddDisciplinaModal').addEventListener('click', () => addDisciplinaModal.classList.remove('active'));
         document.getElementById('cancelAddDisciplinaBtn').addEventListener('click', () => addDisciplinaModal.classList.remove('active'));
-        addDisciplinaModal.addEventListener('click', (e) => { if (e.target === addDisciplinaModal) addDisciplinaModal.classList.remove('active') });
-        suggestionsGrid.addEventListener('click', (e) => { const chip = e.target.closest('.suggestion-chip'); if (chip) { newDisciplinaInput.value = chip.dataset.name; newDisciplinaInput.focus() } });
-        function adicionarNovaDisciplina(nome) { nome = nome.trim(); if (!nome) { toast('Digite um nome válido.', 'error'); return } if (data[nome]) { toast('Esta disciplina já existe.', 'error'); return } data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); renderizarTabela(); refreshDashboard(); toast(`✓ Disciplina "${nome}" adicionada!`) }
-        document.getElementById('confirmAddDisciplinaBtn').addEventListener('click', () => { const nome = newDisciplinaInput.value.trim(); if (!nome) { toast('Digite o nome.', 'error'); return } adicionarNovaDisciplina(nome); addDisciplinaModal.classList.remove('active') });
-        newDisciplinaInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const nome = newDisciplinaInput.value.trim(); if (!nome) { toast('Digite o nome.', 'error'); return } adicionarNovaDisciplina(nome); addDisciplinaModal.classList.remove('active') } });
+        addDisciplinaModal.addEventListener('click', (e) => { if (e.target === addDisciplinaModal) addDisciplinaModal.classList.remove('active'); });
+        suggestionsGrid.addEventListener('click', (e) => { const chip = e.target.closest('.suggestion-chip'); if (chip) { newDisciplinaInput.value = chip.dataset.name; newDisciplinaInput.focus(); } });
+        function adicionarNovaDisciplina(nome) { nome = nome.trim(); if (!nome) { toast('Digite um nome válido.', 'error'); return; } if (data[nome]) { toast('Esta disciplina já existe.', 'error'); return; } data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); renderizarTabela(); refreshDashboard(); toast(`✓ Disciplina "${nome}" adicionada!`); }
+        document.getElementById('confirmAddDisciplinaBtn').addEventListener('click', () => { const nome = newDisciplinaInput.value.trim(); if (!nome) { toast('Digite o nome.', 'error'); return; } adicionarNovaDisciplina(nome); addDisciplinaModal.classList.remove('active'); });
+        newDisciplinaInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const nome = newDisciplinaInput.value.trim(); if (!nome) { toast('Digite o nome.', 'error'); return; } adicionarNovaDisciplina(nome); addDisciplinaModal.classList.remove('active'); } });
 
         // ========== MODAL EDITAR DISCIPLINA ==========
         const editDisciplinaModal = document.getElementById('editDisciplinaModal');
         document.getElementById('closeEditDisciplinaModal').addEventListener('click', () => editDisciplinaModal.classList.remove('active'));
         document.getElementById('cancelEditDisciplinaBtn').addEventListener('click', () => editDisciplinaModal.classList.remove('active'));
-        editDisciplinaModal.addEventListener('click', (e) => { if (e.target === editDisciplinaModal) editDisciplinaModal.classList.remove('active') });
-        document.getElementById('confirmEditDisciplinaBtn').addEventListener('click', () => { const na = document.getElementById('editDisciplinaNomeAntigo').value.trim(); const nn = document.getElementById('editDisciplinaNomeNovo').value.trim(); if (!na || !nn) { toast('Preencha ambos.', 'error'); return } if (na === nn) { editDisciplinaModal.classList.remove('active'); return } if (data[nn]) { toast('Já existe.', 'error'); return } data[nn] = { ...data[na] }; delete data[na]; events.forEach(e => { if (e.subject === na) e.subject = nn }); salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela(); refreshDashboard(); editDisciplinaModal.classList.remove('active'); toast(`✓ Renomeada para "${nn}"!`) });
-        function abrirEditarDisciplina(nome) { document.getElementById('editDisciplinaNomeAntigo').value = nome; document.getElementById('editDisciplinaNomeNovo').value = nome; editDisciplinaModal.classList.add('active') }
+        editDisciplinaModal.addEventListener('click', (e) => { if (e.target === editDisciplinaModal) editDisciplinaModal.classList.remove('active'); });
+        document.getElementById('confirmEditDisciplinaBtn').addEventListener('click', () => { const na = document.getElementById('editDisciplinaNomeAntigo').value.trim(); const nn = document.getElementById('editDisciplinaNomeNovo').value.trim(); if (!na || !nn) { toast('Preencha ambos.', 'error'); return; } if (na === nn) { editDisciplinaModal.classList.remove('active'); return; } if (data[nn]) { toast('Já existe.', 'error'); return; } data[nn] = { ...data[na] }; delete data[na]; events.forEach(e => { if (e.subject === na) e.subject = nn; }); salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela(); refreshDashboard(); editDisciplinaModal.classList.remove('active'); toast(`✓ Renomeada para "${nn}"!`); });
+        function abrirEditarDisciplina(nome) { document.getElementById('editDisciplinaNomeAntigo').value = nome; document.getElementById('editDisciplinaNomeNovo').value = nome; editDisciplinaModal.classList.add('active'); }
 
         // ========== CRONÔMETRO ==========
         let timerInterval = null, segundos = 0, pomodoroActive = true, pomodoroCount = 1, focusModeActive = false, ciclo30min = 0;
         const timerDisplay = document.getElementById('timerDisplay'), focusTimerDisplay = document.getElementById('focusTimerDisplay'), focusOverlay = document.getElementById('focusOverlay');
-        function atualizarTimer() { const h = Math.floor(segundos / 3600), m = Math.floor((segundos % 3600) / 60), s = segundos % 60; const txt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; timerDisplay.textContent = txt; if (focusTimerDisplay) focusTimerDisplay.textContent = txt }
-        function updateCiclo30min() { ciclo30min = segundos % 1800; const ciclo = Math.floor(segundos / 1800) + 1; if (focusModeActive) { document.getElementById('focusCycleCount').textContent = ciclo; drawFocusRing() } }
-        function drawFocusRing() { if (!focusModeActive) return; const canvas = document.getElementById('focusRingCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, cx = w / 2, cy = h / 2, r = 100; const progress = ciclo30min / 1800; ctx.clearRect(0, 0, w, h); ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 14; ctx.stroke(); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff'); ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress)); ctx.strokeStyle = grad; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.stroke() }
-        function salvarTempoNaDisciplina(resetar = true) { const nome = document.getElementById('disciplinaSelect').value; if (!nome || segundos <= 0) { if (!nome) toast('Selecione uma disciplina!', 'error'); return } const minutos = Math.round(segundos / 60); if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; data[nome].horasMinutos = (data[nome].horasMinutos || 0) + minutos; salvarDados(); renderizarTabela(); if (resetar) { segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min() } refreshDashboard(); toast(`✓ ${minutos}min salvos em "${nome}"`) }
-        function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); drawFocusRing() }
-        document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) { toast('Cronômetro já está em execução.', 'error'); return; } timerInterval = setInterval(() => { segundos++; atualizarTimer(); updateCiclo30min(); if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído!`) } }, 1000); toast('▶️ Cronômetro iniciado'); });
+        function atualizarTimer() { const h = Math.floor(segundos / 3600), m = Math.floor((segundos % 3600) / 60), s = segundos % 60; const txt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; timerDisplay.textContent = txt; if (focusTimerDisplay) focusTimerDisplay.textContent = txt; }
+        function updateCiclo30min() { ciclo30min = segundos % 1800; const ciclo = Math.floor(segundos / 1800) + 1; if (focusModeActive) { document.getElementById('focusCycleCount').textContent = ciclo; drawFocusRing(); } }
+        function drawFocusRing() { if (!focusModeActive) return; const canvas = document.getElementById('focusRingCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, cx = w / 2, cy = h / 2, r = 100; const progress = ciclo30min / 1800; ctx.clearRect(0, 0, w, h); ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 14; ctx.stroke(); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff'); ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress)); ctx.strokeStyle = grad; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.stroke(); }
+        function salvarTempoNaDisciplina(resetar = true) { const nome = document.getElementById('disciplinaSelect').value; if (!nome || segundos <= 0) { if (!nome) toast('Selecione uma disciplina!', 'error'); return; } const minutos = Math.round(segundos / 60); if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; data[nome].horasMinutos = (data[nome].horasMinutos || 0) + minutos; salvarDados(); renderizarTabela(); if (resetar) { segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); } refreshDashboard(); toast(`✓ ${minutos}min salvos em "${nome}"`); }
+        function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); drawFocusRing(); }
+        document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) { toast('Cronômetro já está em execução.', 'error'); return; } timerInterval = setInterval(() => { segundos++; atualizarTimer(); updateCiclo30min(); if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído!`); } }, 1000); toast('▶️ Cronômetro iniciado'); });
         document.getElementById('timerPause').addEventListener('click', () => { if (!timerInterval) { toast('Cronômetro já está pausado.'); return; } clearInterval(timerInterval); timerInterval = null; toast('⏸️ Cronômetro pausado'); });
         document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(true));
         document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); toast('🔄 Cronômetro zerado'); });
         document.getElementById('focusModeHighlightBtn').addEventListener('click', abrirModoFoco);
-        document.getElementById('exitFocusBtn').addEventListener('click', () => { focusOverlay.classList.remove('active'); focusModeActive = false });
+        document.getElementById('exitFocusBtn').addEventListener('click', () => { focusOverlay.classList.remove('active'); focusModeActive = false; });
         document.getElementById('focusTimerStart').addEventListener('click', () => document.getElementById('timerStart').click());
         document.getElementById('focusTimerPause').addEventListener('click', () => document.getElementById('timerPause').click());
-        document.querySelectorAll('.timer-type-btn').forEach(b => { b.addEventListener('click', () => { document.querySelectorAll('.timer-type-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); document.getElementById('sessionTypeLabel').textContent = b.dataset.type; document.getElementById('focusSessionLabel').textContent = b.dataset.type; pomodoroActive = b.dataset.type !== 'Pausa' }) });
+        document.querySelectorAll('.timer-type-btn').forEach(b => { b.addEventListener('click', () => { document.querySelectorAll('.timer-type-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); document.getElementById('sessionTypeLabel').textContent = b.dataset.type; document.getElementById('focusSessionLabel').textContent = b.dataset.type; pomodoroActive = b.dataset.type !== 'Pausa'; }); });
 
         // ========== TABELA ==========
         const selectDisciplina = document.getElementById('disciplinaSelect'), registroDisciplinaSelect = document.getElementById('registroDisciplinaSelect'), filtroInput = document.getElementById('filtroTabela'), tbody = document.querySelector('#tabelaDisciplinasBody');
         let tabelaSortBy = null, tabelaSortDir = 'asc';
-        function atualizarSelects() { const disciplinas = Object.keys(data).sort(); const opts = disciplinas.map(d => `<option value="${d}">${d}</option>`).join(''); selectDisciplina.innerHTML = '<option value="">-- Selecione --</option>' + opts; registroDisciplinaSelect.innerHTML = '<option value="">-- Selecione --</option>' + opts }
-        function getDisciplina(nome) { return data[nome] || { certas: 0, erradas: 0, horasMinutos: 0 } }
-        function getStatus(p) { if (p >= 81) return 'Avançado'; if (p >= 61) return 'Intermediário'; return 'Base' }
-        function renderizarTabela(filtro = '', sortBy = null, sortDir = 'asc') { const disciplinas = Object.keys(data); const filtradas = disciplinas.filter(d => d.toLowerCase().includes((filtro || '').toLowerCase())); const rows = filtradas.map(nome => { const d = getDisciplina(nome); const total = d.certas + d.erradas; const perc = total ? (d.certas / total) * 100 : 0; const status = getStatus(perc); const horasMin = d.horasMinutos || 0; return { nome, certas: d.certas, erradas: d.erradas, total, perc, status, horasMin } }); if (sortBy) { rows.sort((a, b) => { let va, vb; if (sortBy === 'disciplina') { va = a.nome.toLowerCase(); vb = b.nome.toLowerCase() } else if (sortBy === 'certas') { va = a.certas; vb = b.certas } else if (sortBy === 'erradas') { va = a.erradas; vb = b.erradas } else if (sortBy === 'total') { va = a.total; vb = b.total } else if (sortBy === 'percentual') { va = a.perc; vb = b.perc } else if (sortBy === 'horas') { va = a.horasMin; vb = b.horasMin } else return 0; if (va < vb) return sortDir === 'asc' ? -1 : 1; if (va > vb) return sortDir === 'asc' ? 1 : -1; return 0 }) } tbody.innerHTML = rows.length === 0 ? `<tr><td colspan="8"><div class="empty-state"><i class="fas fa-book-open"></i><div class="empty-title">Nenhuma disciplina encontrada</div><p>Adicione uma disciplina!</p></div></td></tr>` : rows.map(({ nome, certas, erradas, total, perc, status, horasMin }) => { const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger'); const h = Math.floor(horasMin / 60); const m = horasMin % 60; const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`; return `<tr><td>${nome} <button class="btn btn-sm" style="font-size:0.6rem;padding:2px 6px;min-height:24px;margin-left:6px" onclick="event.stopPropagation();abrirEditarDisciplina('${nome.replace(/'/g,"\\'")}')" title="Renomear"><i class="fas fa-pencil-alt"></i></button></td><td>${certas}</td><td>${erradas}</td><td>${total}</td><td>${perc.toFixed(1)}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm" onclick="iniciarCronometroPara('${nome.replace(/'/g,"\\'")}')"><i class="fas fa-play"></i></button> <button class="btn btn-sm" onclick="excluirDisciplina('${nome.replace(/'/g,"\\'")}')" style="color:var(--danger)"><i class="fas fa-trash-alt"></i></button></td></tr>` }).join(''); document.querySelectorAll('#tabelaDisciplinas th[data-sort]').forEach(th => { th.classList.remove('sorted-asc', 'sorted-desc'); if (th.dataset.sort === sortBy) { th.classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc'); th.querySelector('.sort-icon i').className = sortDir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down' } else { th.querySelector('.sort-icon i').className = 'fas fa-sort' } }) }
-        document.querySelector('#tabelaDisciplinas thead').addEventListener('click', (e) => { const th = e.target.closest('th[data-sort]'); if (!th) return; const sortBy = th.dataset.sort; if (tabelaSortBy === sortBy) { tabelaSortDir = tabelaSortDir === 'asc' ? 'desc' : 'asc' } else { tabelaSortBy = sortBy; tabelaSortDir = 'asc' } renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir) });
-        window.iniciarCronometroPara = function(nome) { if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects() } selectDisciplina.value = nome; document.getElementById('timerStart').click() };
-        window.excluirDisciplina = function(nome) { if (!confirm(`Excluir "${nome}"?`)) return; delete data[nome]; events = events.filter(e => e.subject !== nome); salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela(); if (selectDisciplina.value === nome) selectDisciplina.value = ''; refreshDashboard(); toast(`Disciplina "${nome}" removida.`) };
+        function atualizarSelects() { const disciplinas = Object.keys(data).sort(); const opts = disciplinas.map(d => `<option value="${d}">${d}</option>`).join(''); selectDisciplina.innerHTML = '<option value="">-- Selecione --</option>' + opts; registroDisciplinaSelect.innerHTML = '<option value="">-- Selecione --</option>' + opts; }
+        function getDisciplina(nome) { return data[nome] || { certas: 0, erradas: 0, horasMinutos: 0 }; }
+        function getStatus(p) { if (p >= 81) return 'Avançado'; if (p >= 61) return 'Intermediário'; return 'Base'; }
+        function renderizarTabela(filtro = '', sortBy = null, sortDir = 'asc') { const disciplinas = Object.keys(data); const filtradas = disciplinas.filter(d => d.toLowerCase().includes((filtro || '').toLowerCase())); const rows = filtradas.map(nome => { const d = getDisciplina(nome); const total = d.certas + d.erradas; const perc = total ? (d.certas / total) * 100 : 0; const status = getStatus(perc); const horasMin = d.horasMinutos || 0; return { nome, certas: d.certas, erradas: d.erradas, total, perc, status, horasMin }; }); if (sortBy) { rows.sort((a, b) => { let va, vb; if (sortBy === 'disciplina') { va = a.nome.toLowerCase(); vb = b.nome.toLowerCase(); } else if (sortBy === 'certas') { va = a.certas; vb = b.certas; } else if (sortBy === 'erradas') { va = a.erradas; vb = b.erradas; } else if (sortBy === 'total') { va = a.total; vb = b.total; } else if (sortBy === 'percentual') { va = a.perc; vb = b.perc; } else if (sortBy === 'horas') { va = a.horasMin; vb = b.horasMin; } else return 0; if (va < vb) return sortDir === 'asc' ? -1 : 1; if (va > vb) return sortDir === 'asc' ? 1 : -1; return 0; }); } tbody.innerHTML = rows.length === 0 ? `<tr><td colspan="8"><div class="empty-state"><i class="fas fa-book-open"></i><div class="empty-title">Nenhuma disciplina encontrada</div><p>Adicione uma disciplina!</p></div></td></tr>` : rows.map(({ nome, certas, erradas, total, perc, status, horasMin }) => { const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger'); const h = Math.floor(horasMin / 60); const m = horasMin % 60; const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`; return `<tr><td>${nome} <button class="btn btn-sm" style="font-size:0.6rem;padding:2px 6px;min-height:24px;margin-left:6px" onclick="event.stopPropagation();abrirEditarDisciplina('${nome.replace(/'/g,"\\'")}')" title="Renomear"><i class="fas fa-pencil-alt"></i></button></td><td>${certas}</td><td>${erradas}</td><td>${total}</td><td>${perc.toFixed(1)}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm" onclick="iniciarCronometroPara('${nome.replace(/'/g,"\\'")}')"><i class="fas fa-play"></i></button> <button class="btn btn-sm" onclick="excluirDisciplina('${nome.replace(/'/g,"\\'")}')" style="color:var(--danger)"><i class="fas fa-trash-alt"></i></button></td></tr>`; }).join(''); document.querySelectorAll('#tabelaDisciplinas th[data-sort]').forEach(th => { th.classList.remove('sorted-asc', 'sorted-desc'); if (th.dataset.sort === sortBy) { th.classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc'); th.querySelector('.sort-icon i').className = sortDir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'; } else { th.querySelector('.sort-icon i').className = 'fas fa-sort'; } }); }
+        document.querySelector('#tabelaDisciplinas thead').addEventListener('click', (e) => { const th = e.target.closest('th[data-sort]'); if (!th) return; const sortBy = th.dataset.sort; if (tabelaSortBy === sortBy) { tabelaSortDir = tabelaSortDir === 'asc' ? 'desc' : 'asc'; } else { tabelaSortBy = sortBy; tabelaSortDir = 'asc'; } renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir); });
+        window.iniciarCronometroPara = function(nome) { if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); } selectDisciplina.value = nome; document.getElementById('timerStart').click(); };
+        window.excluirDisciplina = async function(nome) {
+            const confirmed = await window.showConfirmModal('Excluir disciplina', `Tem certeza que deseja excluir "${nome}"? Esta ação não pode ser desfeita.`, true);
+            if (!confirmed) return;
+            delete data[nome];
+            events = events.filter(e => e.subject !== nome);
+            salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela();
+            if (selectDisciplina.value === nome) selectDisciplina.value = '';
+            refreshDashboard();
+            toast(`Disciplina "${nome}" removida.`);
+        };
         filtroInput.addEventListener('input', e => renderizarTabela(e.target.value, tabelaSortBy, tabelaSortDir));
 
-        // ========== REGISTRO RÁPIDO (COM FEEDBACK) ==========
-        document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); toast(`✅ ${qtd} acerto(s) registrado(s) em ${nome}`) });
-        document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); toast(`❌ ${qtd} erro(s) registrado(s) em ${nome}`) });
-        document.getElementById('resetMetricsBtn').addEventListener('click', () => { if (confirm('Zerar TODAS as métricas?')) { try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications') } catch (e) {} location.reload() } });
+        // ========== REGISTRO RÁPIDO ==========
+        document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); toast(`✅ ${qtd} acerto(s) registrado(s) em ${nome}`); });
+        document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); toast(`❌ ${qtd} erro(s) registrado(s) em ${nome}`); });
+        document.getElementById('resetMetricsBtn').addEventListener('click', async () => {
+            const confirmed = await window.showConfirmModal('Zerar métricas', 'Tem certeza que deseja zerar TODAS as métricas? Esta ação não pode ser desfeita.', true);
+            if (!confirmed) return;
+            try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications'); } catch (e) {}
+            location.reload();
+        });
 
         // ========== PDF & SHARE ==========
         const exportModal = document.getElementById('exportModal'), shareModal = document.getElementById('shareModal');
         document.getElementById('exportBtn').addEventListener('click', () => exportModal.classList.add('active'));
         document.getElementById('closeExportModal').addEventListener('click', () => exportModal.classList.remove('active'));
-        document.getElementById('shareBtn').addEventListener('click', () => { const m = computeMetrics(); const s = `📊 VULPS+ · Painel\n━━━━━━━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━━━━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; document.getElementById('shareSummaryText').textContent = s; shareModal.classList.add('active') });
+        document.getElementById('shareBtn').addEventListener('click', () => { const m = computeMetrics(); const s = `📊 VULPS+ · Painel\n━━━━━━━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━━━━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; document.getElementById('shareSummaryText').textContent = s; shareModal.classList.add('active'); });
         document.getElementById('closeShareModal').addEventListener('click', () => shareModal.classList.remove('active'));
-        function getShareSummary() { const m = computeMetrics(); return `📊 VULPS+\n━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}` }
-        document.getElementById('shareWhatsAppBtn').addEventListener('click', () => { const s = getShareSummary(); window.open(`https://wa.me/?text=${encodeURIComponent(s)}`, '_blank') });
-        document.getElementById('shareCopyBtn').addEventListener('click', () => { const s = getShareSummary(); navigator.clipboard.writeText(s).then(() => toast('Copiado!')).catch(() => toast('Falha.', 'error')) });
-        document.getElementById('shareCopyLinkBtn').addEventListener('click', () => { navigator.clipboard.writeText(window.location.href).then(() => toast('Link copiado!')).catch(() => toast('Falha.', 'error')) });
-        [exportModal, shareModal].forEach(m => m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('active') }));
-        function exportPDF(isComplete = true) { try { const { jsPDF } = window.jspdf; const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }); const m = computeMetrics(); doc.setFillColor(255, 122, 0); doc.rect(0, 0, 210, 30, 'F'); doc.setTextColor(255, 255, 255); doc.setFontSize(16); doc.setFont('helvetica', 'bold'); doc.text('VULPS+ · Painel', 105, 15, { align: 'center' }); doc.setFontSize(10); doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' }); let y = 38; doc.setTextColor(15, 23, 42); doc.setFontSize(14); doc.text('Resumo', 15, y); y += 8; doc.setFontSize(10); [`Acertos: ${m.correct}`, `Erros: ${m.wrong}`, `Tempo: ${formatHours(m.totalTime)}`, `Streak: ${m.streak}`, `Taxa: ${m.correctPercent}%`, `Hoje: ${m.todayCount}`].forEach(k => { doc.text('• ' + k, 20, y); y += 6 }); if (isComplete) { y += 6; doc.setFontSize(12); doc.text('Disciplinas', 15, y); y += 8; const td = Object.keys(data).sort().map(n => { const d = getDisciplina(n); const t = d.certas + d.erradas; const p = t ? ((d.certas / t) * 100).toFixed(1) : 0; return [n, String(d.certas), String(d.erradas), String(t), p + '%', getStatus(parseFloat(p)), formatHours(d.horasMinutos || 0)] }); doc.autoTable({ startY: y, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '%', 'Status', 'Horas']], body: td, headStyles: { fillColor: [255, 122, 0], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8 }, alternateRowStyles: { fillColor: [255, 245, 235] } }) } const pc = doc.getNumberOfPages(); for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }) } doc.save(`vulps_${new Date().toISOString().split('T')[0]}.pdf`); toast('PDF exportado!') } catch (e) { toast('Erro no PDF.', 'error') } }
+        function getShareSummary() { const m = computeMetrics(); return `📊 VULPS+\n━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; }
+        document.getElementById('shareWhatsAppBtn').addEventListener('click', () => { const s = getShareSummary(); window.open(`https://wa.me/?text=${encodeURIComponent(s)}`, '_blank'); });
+        document.getElementById('shareCopyBtn').addEventListener('click', () => { const s = getShareSummary(); navigator.clipboard.writeText(s).then(() => toast('Copiado!')).catch(() => toast('Falha.', 'error')); });
+        document.getElementById('shareCopyLinkBtn').addEventListener('click', () => { navigator.clipboard.writeText(window.location.href).then(() => toast('Link copiado!')).catch(() => toast('Falha.', 'error')); });
+        [exportModal, shareModal].forEach(m => m.addEventListener('click', (e) => { if (e.target === m) m.classList.remove('active'); }));
+        function exportPDF(isComplete = true) { try { const { jsPDF } = window.jspdf; const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }); const m = computeMetrics(); doc.setFillColor(255, 122, 0); doc.rect(0, 0, 210, 30, 'F'); doc.setTextColor(255, 255, 255); doc.setFontSize(16); doc.setFont('helvetica', 'bold'); doc.text('VULPS+ · Painel', 105, 15, { align: 'center' }); doc.setFontSize(10); doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' }); let y = 38; doc.setTextColor(15, 23, 42); doc.setFontSize(14); doc.text('Resumo', 15, y); y += 8; doc.setFontSize(10); [`Acertos: ${m.correct}`, `Erros: ${m.wrong}`, `Tempo: ${formatHours(m.totalTime)}`, `Streak: ${m.streak}`, `Taxa: ${m.correctPercent}%`, `Hoje: ${m.todayCount}`].forEach(k => { doc.text('• ' + k, 20, y); y += 6; }); if (isComplete) { y += 6; doc.setFontSize(12); doc.text('Disciplinas', 15, y); y += 8; const td = Object.keys(data).sort().map(n => { const d = getDisciplina(n); const t = d.certas + d.erradas; const p = t ? ((d.certas / t) * 100).toFixed(1) : 0; return [n, String(d.certas), String(d.erradas), String(t), p + '%', getStatus(parseFloat(p)), formatHours(d.horasMinutos || 0)]; }); doc.autoTable({ startY: y, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '%', 'Status', 'Horas']], body: td, headStyles: { fillColor: [255, 122, 0], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8 }, alternateRowStyles: { fillColor: [255, 245, 235] } }); } const pc = doc.getNumberOfPages(); for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }); } doc.save(`vulps_${new Date().toISOString().split('T')[0]}.pdf`); toast('PDF exportado!'); } catch (e) { toast('Erro no PDF.', 'error'); } }
         document.getElementById('exportFullPdfBtn').addEventListener('click', () => exportPDF(true));
         document.getElementById('exportSummaryPdfBtn').addEventListener('click', () => exportPDF(false));
 
         // ========== METAS ==========
         const editGoalsModal = document.getElementById('editGoalsModal');
-        document.getElementById('editAllGoalsBtn').addEventListener('click', () => { for (let i = 0; i < 4; i++) document.getElementById('goalEdit' + i).value = goals[i].target; editGoalsModal.classList.add('active') });
+        document.getElementById('editAllGoalsBtn').addEventListener('click', () => { for (let i = 0; i < 4; i++) document.getElementById('goalEdit' + i).value = goals[i].target; editGoalsModal.classList.add('active'); });
         document.getElementById('closeEditGoalsModal').addEventListener('click', () => editGoalsModal.classList.remove('active'));
         document.getElementById('cancelEditGoalsBtn').addEventListener('click', () => editGoalsModal.classList.remove('active'));
-        editGoalsModal.addEventListener('click', (e) => { if (e.target === editGoalsModal) editGoalsModal.classList.remove('active') });
-        document.getElementById('confirmEditGoalsBtn').addEventListener('click', () => { for (let i = 0; i < 4; i++) { const v = parseInt(document.getElementById('goalEdit' + i).value); if (!isNaN(v) && v > 0) goals[i].target = v } salvarMetas(); renderGoals(); refreshDashboard(); editGoalsModal.classList.remove('active'); toast('✓ Metas atualizadas!') });
+        editGoalsModal.addEventListener('click', (e) => { if (e.target === editGoalsModal) editGoalsModal.classList.remove('active'); });
+        document.getElementById('confirmEditGoalsBtn').addEventListener('click', () => { for (let i = 0; i < 4; i++) { const v = parseInt(document.getElementById('goalEdit' + i).value); if (!isNaN(v) && v > 0) goals[i].target = v; } salvarMetas(); renderGoals(); refreshDashboard(); editGoalsModal.classList.remove('active'); toast('✓ Metas atualizadas!'); });
 
         // ========== DASHBOARD ==========
-        function computeMetrics() { try { const total = events.length; const correct = events.filter(e => e.correct === true).length; const wrong = total - correct; let totalTime = 0; for (const d of Object.values(data)) totalTime += (d.horasMinutos || 0); const avgTime = total > 0 ? Math.round(totalTime / total) : 0; const todayStr = new Date().toISOString().split('T')[0]; const todayCount = events.filter(e => e.timestamp.startsWith(todayStr)).length; const daysArr = [...new Set(events.map(e => e.timestamp.split('T')[0]))].sort(); let streak = 0, maxStreak = 0, cur = 0; if (daysArr.length) { const today = new Date(); let check = new Date(today); if (!daysArr.includes(todayStr)) check.setDate(check.getDate() - 1); while (daysArr.includes(check.toISOString().split('T')[0])) { streak++; check.setDate(check.getDate() - 1) } for (let i = 0; i < daysArr.length; i++) { if (i === 0) cur = 1; else { const diff = (new Date(daysArr[i]) - new Date(daysArr[i - 1])) / 86400000; cur = diff === 1 ? cur + 1 : 1 } maxStreak = Math.max(maxStreak, cur) } } const correctPercent = total ? ((correct / total) * 100).toFixed(1) : '0.0'; return { total, correct, wrong, totalTime, avgTime, todayCount, streak, maxStreak, correctPercent } } catch (e) { return { total: 0, correct: 0, wrong: 0, totalTime: 0, avgTime: 0, todayCount: 0, streak: 0, maxStreak: 0, correctPercent: '0.0' } } }
-        function renderKPIs() { const m = computeMetrics(); document.getElementById('kpiCorrect').textContent = m.correct; document.getElementById('kpiWrong').textContent = m.wrong; document.getElementById('kpiTime').textContent = formatHours(m.totalTime); document.getElementById('kpiStreak').textContent = m.streak; document.getElementById('kpiAccuracy').textContent = m.correctPercent + '%'; document.getElementById('kpiToday').textContent = m.todayCount; document.getElementById('kpiCorrectSub').textContent = m.correctPercent + '% de aproveitamento'; document.getElementById('kpiWrongSub').textContent = (m.total ? ((m.wrong / m.total) * 100).toFixed(1) : '0.0') + '% do total'; document.getElementById('kpiTimeSub').textContent = 'Média: ' + formatTime(m.avgTime) + '/questão'; document.getElementById('kpiStreakSub').textContent = 'Maior streak: ' + m.maxStreak; const ec = document.getElementById('kpiCorrectEnc'); if (ec && m.correct > 0) { const nomes = ["PRFBrabo", "FuturaAuditora", "DelegadoFocus", "CaveiraCESPE", "MaratonaPF"]; ec.querySelector('span').textContent = nomes[Math.floor(Math.random() * nomes.length)] + ' também está evoluindo!' } const es = document.getElementById('kpiStreakEnc'); if (es && m.streak >= 3) es.querySelector('span').textContent = 'Sequência inspiradora!'; else if (es) es.querySelector('span').textContent = 'Consistência leva à aprovação'; document.getElementById('kpiTodaySub').textContent = 'Total: ' + m.total + ' questões'; if (goals.length >= 4) { goals[0].current = m.todayCount; goals[1].current = parseFloat(m.correctPercent); goals[2].current = Math.floor(m.totalTime / 60); goals[3].current = m.streak } }
-        function formatTime(sec) { const m = Math.floor(sec / 60); const s = Math.round(sec % 60); return `${m}:${String(s).padStart(2,'0')}` }
-        function formatHours(mins) { const h = Math.floor(mins / 60); const m = mins % 60; return h > 0 ? `${h}h ${m}min` : `${m}min` }
-        function renderGoals() { const c = document.getElementById('goalsContainer'); c.innerHTML = goals.map(g => { const pct = Math.min(100, Math.round((g.current / g.target) * 100)); const circ = 2 * Math.PI * 26, offset = circ - (pct / 100) * circ; return `<div class="goal-card"><div class="goal-ring"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="goal-ring-bg" cx="28" cy="28" r="26"/><circle class="goal-ring-fill" cx="28" cy="28" r="26" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/></svg><div class="goal-ring-text">${pct}%</div></div><div class="goal-info"><div class="goal-title">${g.title}</div><div class="goal-desc">${g.current}/${g.target} ${g.unit}</div></div></div>` }).join('') }
-        function renderHeatmap() { const grid = document.getElementById('heatmapGrid'); const today = new Date(); const startOfWeek = new Date(today); startOfWeek.setDate(today.getDate() - today.getDay()); const byDay = {}; events.forEach(e => { const d = e.timestamp.split('T')[0]; byDay[d] = (byDay[d] || 0) + 1 }); let html = ''; for (let i = 0; i < 7; i++) { const d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i); const iso = d.toISOString().split('T')[0]; const count = byDay[iso] || 0; let level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4) level = 'level-2'; else if (count >= 1) level = 'level-1'; html += `<div class="heatmap-cell ${level} tooltip">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>` } grid.innerHTML = html }
-        function renderSubjectTable() { renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir) }
-        function renderHistoryTable() { const tb = document.getElementById('historyTableBody'); const sf = document.getElementById('historyFilterSubject').value; const rf = document.getElementById('historyFilterResult').value; const df = document.getElementById('historyFilterDate').value; let filtered = [...events].reverse(); if (sf) filtered = filtered.filter(e => e.subject === sf); if (rf === 'correct') filtered = filtered.filter(e => e.correct); if (rf === 'wrong') filtered = filtered.filter(e => !e.correct); if (df) filtered = filtered.filter(e => e.timestamp.startsWith(df)); tb.innerHTML = filtered.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro</div><p>Registre acertos ou erros!</p></div></td></tr>` : filtered.slice(0, 200).map((e, idx) => { const dt = new Date(e.timestamp); const rb = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>'; const oi = events.indexOf(e); return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${e.subject||'Geral'}</td><td>${rb}</td><td>${e.timeSpent?Math.round(e.timeSpent/60):'-'}</td><td>${(e.questionId||'').substring(0,8)}</td><td><button class="btn btn-sm" onclick="excluirEvento(${oi})" style="color:var(--danger);font-size:0.7rem"><i class="fas fa-trash-alt"></i></button></td></tr>` }).join('') }
-        window.excluirEvento = function(idx) { if (idx < 0 || idx >= events.length) return; const ev = events[idx]; if (!confirm('Excluir este registro?')) return; if (ev.subject && data[ev.subject]) { if (ev.correct) data[ev.subject].certas = Math.max(0, (data[ev.subject].certas || 0) - 1); else data[ev.subject].erradas = Math.max(0, (data[ev.subject].erradas || 0) - 1) } events.splice(idx, 1); salvarDados(); salvarEventos(); renderSubjectTable(); renderHistoryTable(); refreshDashboard(); toast('Registro excluído.') };
-        function populateHistoryFilters() { const subjects = [...new Set(events.map(e => e.subject).filter(Boolean))].sort(); const sel = document.getElementById('historyFilterSubject'); sel.innerHTML = '<option value="">Todas</option>' + subjects.map(s => `<option value="${s}">${s}</option>`).join('') }
-        function renderCharts() { const period = parseInt(document.getElementById('chartPeriod').value) || 7; const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - period); const filtered = events.filter(e => new Date(e.timestamp) >= cutoff); const byDay = {}; filtered.forEach(e => { const day = e.timestamp.split('T')[0]; if (!byDay[day]) byDay[day] = { total: 0, correct: 0 }; byDay[day].total++; if (e.correct) byDay[day].correct++ }); const days = Object.keys(byDay).sort(); const ad = days.map(d => ({ day: d, accuracy: (byDay[d].total ? (byDay[d].correct / byDay[d].total) * 100 : 0) })); const vd = days.map(d => ({ day: d, correct: byDay[d].correct, wrong: byDay[d].total - byDay[d].correct })); drawLineChart('accuracyChart', ad); drawBarChart('volumeChart', vd) }
-        function drawLineChart(cid, data) { const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'), W = canvas.parentElement.clientWidth || 400, H = 300; canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom; ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888'; ctx.fillStyle = textColor; ctx.font = '10px Inter,sans-serif'; ctx.textAlign = 'center'; for (let i = 0; i <= 4; i++) { const y = pad.top + (cH * i / 4); ctx.fillText((100 - i * 25) + '%', pad.left - 10, y + 3) } if (data.length === 0) { ctx.fillText('Sem dados', W / 2, H / 2); return } if (data.length > 1) { ctx.beginPath(); ctx.strokeStyle = accent; ctx.lineWidth = 2.5; data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y) }); ctx.stroke(); data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 2 * Math.PI); ctx.fillStyle = accent; ctx.fill(); ctx.fillText(d.accuracy.toFixed(0) + '%', x, y - 10) }) } ctx.fillStyle = textColor; ctx.font = '9px Inter,sans-serif'; const step = Math.max(1, Math.floor(data.length / 6)); data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / (data.length - 1)); ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20) } }) }
-        function drawBarChart(cid, data) { const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'), W = canvas.parentElement.clientWidth || 400, H = 300; canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom; ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888'; if (data.length === 0) { ctx.fillStyle = textColor; ctx.fillText('Sem dados', W / 2, H / 2); return } const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1); const barW = Math.min(28, cW / data.length * 0.65); const gap = (cW - barW * data.length) / (data.length + 1); data.forEach((d, i) => { const x = pad.left + gap + i * (barW + gap); const totalH = ((d.correct + d.wrong) / maxVal) * cH; const correctH = (d.correct / maxVal) * cH; ctx.fillStyle = secondary; ctx.fillRect(x, H - pad.bottom - totalH, barW, totalH); ctx.fillStyle = accent; ctx.fillRect(x, H - pad.bottom - correctH, barW, correctH); ctx.fillStyle = textColor; ctx.font = '8px Inter'; ctx.fillText((d.correct + d.wrong), x + barW / 2, H - pad.bottom - totalH - 5) }); ctx.fillStyle = textColor; ctx.font = '9px Inter'; const step = Math.max(1, Math.floor(data.length / 6)); data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + gap + i * (barW + gap) + barW / 2; ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20) } }) }
-        window.addEventListener('resize', () => { renderCharts(); if (focusModeActive) drawFocusRing() });
-        function refreshDashboard() { renderKPIs(); renderGoals(); renderHeatmap(); renderSubjectTable(); populateHistoryFilters(); renderHistoryTable(); renderCharts(); try { const nn = generateMockNotifications(); nn.forEach(n => addNotification(n)) } catch (e) {} }
+        function computeMetrics() { try { const total = events.length; const correct = events.filter(e => e.correct === true).length; const wrong = total - correct; let totalTime = 0; for (const d of Object.values(data)) totalTime += (d.horasMinutos || 0); const avgTime = total > 0 ? Math.round(totalTime / total) : 0; const todayStr = new Date().toISOString().split('T')[0]; const todayCount = events.filter(e => e.timestamp.startsWith(todayStr)).length; const daysArr = [...new Set(events.map(e => e.timestamp.split('T')[0]))].sort(); let streak = 0, maxStreak = 0, cur = 0; if (daysArr.length) { const today = new Date(); let check = new Date(today); if (!daysArr.includes(todayStr)) check.setDate(check.getDate() - 1); while (daysArr.includes(check.toISOString().split('T')[0])) { streak++; check.setDate(check.getDate() - 1); } for (let i = 0; i < daysArr.length; i++) { if (i === 0) cur = 1; else { const diff = (new Date(daysArr[i]) - new Date(daysArr[i - 1])) / 86400000; cur = diff === 1 ? cur + 1 : 1; } maxStreak = Math.max(maxStreak, cur); } } const correctPercent = total ? ((correct / total) * 100).toFixed(1) : '0.0'; return { total, correct, wrong, totalTime, avgTime, todayCount, streak, maxStreak, correctPercent }; } catch (e) { return { total: 0, correct: 0, wrong: 0, totalTime: 0, avgTime: 0, todayCount: 0, streak: 0, maxStreak: 0, correctPercent: '0.0' }; } }
+        function renderKPIs() { const m = computeMetrics(); document.getElementById('kpiCorrect').textContent = m.correct; document.getElementById('kpiWrong').textContent = m.wrong; document.getElementById('kpiTime').textContent = formatHours(m.totalTime); document.getElementById('kpiStreak').textContent = m.streak; document.getElementById('kpiAccuracy').textContent = m.correctPercent + '%'; document.getElementById('kpiToday').textContent = m.todayCount; document.getElementById('kpiCorrectSub').textContent = m.correctPercent + '% de aproveitamento'; document.getElementById('kpiWrongSub').textContent = (m.total ? ((m.wrong / m.total) * 100).toFixed(1) : '0.0') + '% do total'; document.getElementById('kpiTimeSub').textContent = 'Média: ' + formatTime(m.avgTime) + '/questão'; document.getElementById('kpiStreakSub').textContent = 'Maior streak: ' + m.maxStreak; const ec = document.getElementById('kpiCorrectEnc'); if (ec && m.correct > 0) { const nomes = ["PRFBrabo", "FuturaAuditora", "DelegadoFocus", "CaveiraCESPE", "MaratonaPF"]; ec.querySelector('span').textContent = nomes[Math.floor(Math.random() * nomes.length)] + ' também está evoluindo!'; } const es = document.getElementById('kpiStreakEnc'); if (es && m.streak >= 3) es.querySelector('span').textContent = 'Sequência inspiradora!'; else if (es) es.querySelector('span').textContent = 'Consistência leva à aprovação'; document.getElementById('kpiTodaySub').textContent = 'Total: ' + m.total + ' questões'; if (goals.length >= 4) { goals[0].current = m.todayCount; goals[1].current = parseFloat(m.correctPercent); goals[2].current = Math.floor(m.totalTime / 60); goals[3].current = m.streak; } }
+        function formatTime(sec) { const m = Math.floor(sec / 60); const s = Math.round(sec % 60); return `${m}:${String(s).padStart(2,'0')}`; }
+        function formatHours(mins) { const h = Math.floor(mins / 60); const m = mins % 60; return h > 0 ? `${h}h ${m}min` : `${m}min`; }
+        function renderGoals() { const c = document.getElementById('goalsContainer'); c.innerHTML = goals.map(g => { const pct = Math.min(100, Math.round((g.current / g.target) * 100)); const circ = 2 * Math.PI * 26, offset = circ - (pct / 100) * circ; return `<div class="goal-card"><div class="goal-ring"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="goal-ring-bg" cx="28" cy="28" r="26"/><circle class="goal-ring-fill" cx="28" cy="28" r="26" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/></svg><div class="goal-ring-text">${pct}%</div></div><div class="goal-info"><div class="goal-title">${g.title}</div><div class="goal-desc">${g.current}/${g.target} ${g.unit}</div></div></div>`; }).join(''); }
+        function renderHeatmap() { const grid = document.getElementById('heatmapGrid'); const today = new Date(); const startOfWeek = new Date(today); startOfWeek.setDate(today.getDate() - today.getDay()); const byDay = {}; events.forEach(e => { const d = e.timestamp.split('T')[0]; byDay[d] = (byDay[d] || 0) + 1; }); let html = ''; for (let i = 0; i < 7; i++) { const d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i); const iso = d.toISOString().split('T')[0]; const count = byDay[iso] || 0; let level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4) level = 'level-2'; else if (count >= 1) level = 'level-1'; html += `<div class="heatmap-cell ${level} tooltip">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`; } grid.innerHTML = html; }
+        function renderSubjectTable() { renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir); }
+        function renderHistoryTable() { const tb = document.getElementById('historyTableBody'); const sf = document.getElementById('historyFilterSubject').value; const rf = document.getElementById('historyFilterResult').value; const df = document.getElementById('historyFilterDate').value; let filtered = [...events].reverse(); if (sf) filtered = filtered.filter(e => e.subject === sf); if (rf === 'correct') filtered = filtered.filter(e => e.correct); if (rf === 'wrong') filtered = filtered.filter(e => !e.correct); if (df) filtered = filtered.filter(e => e.timestamp.startsWith(df)); tb.innerHTML = filtered.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro</div><p>Registre acertos ou erros!</p></div></td></tr>` : filtered.slice(0, 200).map((e, idx) => { const dt = new Date(e.timestamp); const rb = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>'; const oi = events.indexOf(e); return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${e.subject||'Geral'}</td><td>${rb}</td><td>${e.timeSpent?Math.round(e.timeSpent/60):'-'}</td><td>${(e.questionId||'').substring(0,8)}</td><td><button class="btn btn-sm" onclick="excluirEvento(${oi})" style="color:var(--danger);font-size:0.7rem"><i class="fas fa-trash-alt"></i></button></td></tr>`; }).join(''); }
+        window.excluirEvento = async function(idx) {
+            if (idx < 0 || idx >= events.length) return;
+            const ev = events[idx];
+            const confirmed = await window.showConfirmModal('Excluir registro', 'Deseja realmente excluir este registro de atividade?', true);
+            if (!confirmed) return;
+            if (ev.subject && data[ev.subject]) {
+                if (ev.correct) data[ev.subject].certas = Math.max(0, (data[ev.subject].certas || 0) - 1);
+                else data[ev.subject].erradas = Math.max(0, (data[ev.subject].erradas || 0) - 1);
+            }
+            events.splice(idx, 1);
+            salvarDados(); salvarEventos(); renderSubjectTable(); renderHistoryTable(); refreshDashboard();
+            toast('Registro excluído.');
+        };
+        function populateHistoryFilters() { const subjects = [...new Set(events.map(e => e.subject).filter(Boolean))].sort(); const sel = document.getElementById('historyFilterSubject'); sel.innerHTML = '<option value="">Todas</option>' + subjects.map(s => `<option value="${s}">${s}</option>`).join(''); }
+        function renderCharts() { const period = parseInt(document.getElementById('chartPeriod').value) || 7; const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - period); const filtered = events.filter(e => new Date(e.timestamp) >= cutoff); const byDay = {}; filtered.forEach(e => { const day = e.timestamp.split('T')[0]; if (!byDay[day]) byDay[day] = { total: 0, correct: 0 }; byDay[day].total++; if (e.correct) byDay[day].correct++; }); const days = Object.keys(byDay).sort(); const ad = days.map(d => ({ day: d, accuracy: (byDay[d].total ? (byDay[d].correct / byDay[d].total) * 100 : 0) })); const vd = days.map(d => ({ day: d, correct: byDay[d].correct, wrong: byDay[d].total - byDay[d].correct })); drawLineChart('accuracyChart', ad); drawBarChart('volumeChart', vd); }
+        function drawLineChart(cid, data) { const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'), W = canvas.parentElement.clientWidth || 400, H = 300; canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom; ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888'; ctx.fillStyle = textColor; ctx.font = '10px Inter,sans-serif'; ctx.textAlign = 'center'; for (let i = 0; i <= 4; i++) { const y = pad.top + (cH * i / 4); ctx.fillText((100 - i * 25) + '%', pad.left - 10, y + 3); } if (data.length === 0) { ctx.fillText('Sem dados', W / 2, H / 2); return; } if (data.length > 1) { ctx.beginPath(); ctx.strokeStyle = accent; ctx.lineWidth = 2.5; data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }); ctx.stroke(); data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 2 * Math.PI); ctx.fillStyle = accent; ctx.fill(); ctx.fillText(d.accuracy.toFixed(0) + '%', x, y - 10); }); } ctx.fillStyle = textColor; ctx.font = '9px Inter,sans-serif'; const step = Math.max(1, Math.floor(data.length / 6)); data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / (data.length - 1)); ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } }); }
+        function drawBarChart(cid, data) { const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'), W = canvas.parentElement.clientWidth || 400, H = 300; canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom; ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888'; if (data.length === 0) { ctx.fillStyle = textColor; ctx.fillText('Sem dados', W / 2, H / 2); return; } const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1); const barW = Math.min(28, cW / data.length * 0.65); const gap = (cW - barW * data.length) / (data.length + 1); data.forEach((d, i) => { const x = pad.left + gap + i * (barW + gap); const totalH = ((d.correct + d.wrong) / maxVal) * cH; const correctH = (d.correct / maxVal) * cH; ctx.fillStyle = secondary; ctx.fillRect(x, H - pad.bottom - totalH, barW, totalH); ctx.fillStyle = accent; ctx.fillRect(x, H - pad.bottom - correctH, barW, correctH); ctx.fillStyle = textColor; ctx.font = '8px Inter'; ctx.fillText((d.correct + d.wrong), x + barW / 2, H - pad.bottom - totalH - 5); }); ctx.fillStyle = textColor; ctx.font = '9px Inter'; const step = Math.max(1, Math.floor(data.length / 6)); data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + gap + i * (barW + gap) + barW / 2; ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } }); }
+        window.addEventListener('resize', () => { renderCharts(); if (focusModeActive) drawFocusRing(); });
+        function refreshDashboard() { renderKPIs(); renderGoals(); renderHeatmap(); renderSubjectTable(); populateHistoryFilters(); renderHistoryTable(); renderCharts(); try { const nn = generateMockNotifications(); nn.forEach(n => addNotification(n)); } catch (e) {} }
         document.getElementById('chartPeriod').addEventListener('change', renderCharts);
         document.getElementById('historyFilterSubject').addEventListener('change', renderHistoryTable);
         document.getElementById('historyFilterResult').addEventListener('change', renderHistoryTable);
         document.getElementById('historyFilterDate').addEventListener('change', renderHistoryTable);
 
-        // ========== INIT ==========
+        // ========== INICIALIZAÇÃO ==========
         updateAllAvatarDisplays();
         atualizarSelects();
         renderizarTabela('', null, 'asc');
