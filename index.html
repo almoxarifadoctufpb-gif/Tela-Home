@@ -7,7 +7,7 @@
     <meta name="description" content="Acompanhe métricas, metas, cronômetro e progresso nos estudos para concursos." />
     <meta property="og:title" content="VULPS+ · Painel de Desempenho" />
     <meta property="og:description" content="Dashboard completo com KPIs, gráficos, heatmap, metas e cronômetro de estudos." />
-    <meta property="og:image" content="https://i.ibb.co/7d48p20b/logo-branca.png" />
+    <meta property="og:image" content="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
@@ -184,7 +184,11 @@
         .notification-dropdown .notification-item:hover { background: var(--primary-glass); }
         .notification-dropdown .notification-item.unread {
             background: var(--accent-soft); font-weight: 600; color: var(--text-primary);
-            border-left: 3px solid var(--accent);
+            border-left: 4px solid var(--accent);
+            box-shadow: inset 0 1px 4px rgba(255,122,0,0.12);
+        }
+        .notification-dropdown .notification-item.read {
+            opacity: 0.7; border-left: 3px solid transparent;
         }
         .notification-dropdown .notification-item .notification-icon { font-size: 1rem; color: var(--accent); margin-top: 2px; }
         .notification-dropdown .notification-item .notification-content { flex: 1; min-width: 0; }
@@ -276,6 +280,11 @@
         .sidebar-btn[aria-current="page"] .sb-sub { color: rgba(255,255,255,0.85); }
         .sidebar-btn[aria-current="page"] .sb-title { color: #ffffff; }
         .sidebar-btn[aria-current="page"] i { color: var(--secondary); }
+        .sidebar-btn .external-badge {
+            font-size: 0.6rem; background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);
+            padding: 2px 6px; border-radius: var(--radius-pill); margin-left: auto;
+            display: inline-flex; align-items: center; gap: 3px;
+        }
 
         #sidebarOverlay {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -310,7 +319,7 @@
             display: inline-flex; align-items: center; gap: 6px;
             font-size: 0.78rem; color: var(--text-secondary); font-weight: 500;
             background: var(--accent-soft); padding: 4px 12px; border-radius: var(--radius-pill);
-            border: 1px solid rgba(255,122,0,0.2);
+            border: 1px solid rgba(255,122,0,0.2); transition: all var(--transition-base);
         }
         .support-message i { color: var(--accent); font-size: 0.7rem; }
 
@@ -450,7 +459,7 @@
 
         .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 20px; }
         .chart-wrapper { position: relative; background: var(--bg-primary); border-radius: var(--radius-md); padding: 18px; border: 1px solid var(--border-light); }
-        .chart-canvas { width: 100%; height: 260px; display: block; }
+        .chart-canvas { width: 100%; height: 300px; display: block; }
 
         .table-container { overflow-x: auto; border-radius: var(--radius-md); border: 1px solid var(--border-light); }
         .dash-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
@@ -459,8 +468,13 @@
             padding: 12px 14px; text-align: left; font-weight: 700; color: var(--text-secondary);
             font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid var(--border-medium);
             white-space: nowrap; cursor: pointer; user-select: none; transition: color var(--transition-fast);
+            position: relative;
         }
         .dash-table th:hover { color: var(--accent); }
+        .dash-table th .sort-icon { margin-left: 4px; font-size: 0.6rem; color: var(--text-muted); transition: color var(--transition-fast); }
+        .dash-table th:hover .sort-icon { color: var(--accent); }
+        .dash-table th.sorted-asc .sort-icon,
+        .dash-table th.sorted-desc .sort-icon { color: var(--accent); }
         .dash-table td { padding: 12px 14px; border-bottom: 1px solid var(--border-light); color: var(--text-primary); }
         .dash-table tbody tr { transition: background var(--transition-fast); }
         .dash-table tbody tr:hover { background: var(--accent-soft); }
@@ -501,6 +515,17 @@
         .goal-info { flex: 1; min-width: 0; }
         .goal-title { font-weight: 700; color: var(--text-primary); margin-bottom: 2px; font-size: 0.9rem; }
         .goal-desc { font-size: 0.76rem; color: var(--text-muted); font-weight: 500; }
+        .goal-edit-btn {
+            background: none; border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+            padding: 4px 8px; cursor: pointer; color: var(--text-muted); font-size: 0.7rem;
+            transition: all var(--transition-fast); margin-left: 8px;
+        }
+        .goal-edit-btn:hover { color: var(--accent); border-color: var(--accent); }
+        .goal-edit-inline { display: none; gap: 6px; align-items: center; margin-top: 6px; }
+        .goal-edit-inline.active { display: flex; }
+        .goal-edit-inline input {
+            width: 80px; padding: 4px 8px; min-height: 30px; font-size: 0.78rem; margin-bottom: 0;
+        }
 
         .timer-display {
             font-size: 3.5rem; font-weight: 700; font-variant-numeric: tabular-nums;
@@ -548,7 +573,7 @@
             50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(0,200,120,0); }
         }
         .community-feed .feed-list {
-            display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow-y: auto;
         }
         .feed-item {
             display: flex; align-items: center; gap: 10px;
@@ -572,6 +597,31 @@
             font-size: 0.82rem;
         }
         .feed-empty .mascot-icon { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative; display: inline-block;
+        }
+        .tooltip .tooltip-text {
+            visibility: hidden; opacity: 0;
+            background: var(--text-primary); color: var(--bg-card);
+            text-align: center; padding: 6px 10px; border-radius: var(--radius-sm);
+            font-size: 0.72rem; font-weight: 500;
+            position: absolute; z-index: 10; bottom: 130%; left: 50%;
+            transform: translateX(-50%); white-space: nowrap;
+            pointer-events: none; transition: opacity 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center; padding: 40px 20px; color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+        .empty-state i { font-size: 2.5rem; margin-bottom: 12px; display: block; color: var(--border-medium); }
+        .empty-state .empty-title { font-weight: 700; margin-bottom: 6px; color: var(--text-secondary); }
+        .empty-state .empty-action { margin-top: 12px; }
 
         /* Modo Foco - agora com raposa */
         .focus-overlay {
@@ -605,31 +655,31 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .focus-logo { display: none; } /* ocultando a logo antiga */
-        .focus-ring-container { position: relative; width: 220px; height: 220px; margin: 0 auto 20px; }
+        .focus-ring-container { position: relative; width: 240px; height: 240px; margin: 0 auto 20px; }
         canvas#focusRingCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
         .focus-timer {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: clamp(2.5rem, 7vw, 4.5rem); font-weight: 700;
+            font-size: clamp(2.8rem, 7vw, 4.8rem); font-weight: 700;
             font-variant-numeric: tabular-nums; letter-spacing: 3px;
-            color: #fff; text-shadow: 0 0 40px rgba(255,122,0,0.5); z-index: 3; font-family: 'Inter', monospace;
+            color: #fff; text-shadow: 0 0 48px rgba(255,122,0,0.7); z-index: 3; font-family: 'Inter', monospace;
         }
-        .focus-session-label { font-size: 1.1rem; color: #ffffff; margin-top: 8px; font-weight: 500; opacity: 0.9; }
+        .focus-session-label { font-size: 1.2rem; color: #ffffff; margin-top: 8px; font-weight: 600; opacity: 0.95; }
+        .focus-session-label span { color: var(--accent); font-weight: 700; }
         .focus-controls { display: flex; gap: 24px; margin-top: 32px; }
         .focus-btn {
-            width: 56px; height: 56px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25);
-            background: rgba(255,255,255,0.06); color: #fff; font-size: 1.4rem; cursor: pointer;
+            width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.08); color: #fff; font-size: 1.5rem; cursor: pointer;
             transition: all var(--transition-base);
         }
-        .focus-btn:hover { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 32px rgba(255,122,0,0.5); transform: scale(1.05); }
+        .focus-btn:hover { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 36px rgba(255,122,0,0.6); transform: scale(1.08); }
         .focus-exit {
             position: absolute; top: 28px; right: 28px; background: rgba(255,255,255,0.08);
             border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 1.3rem; cursor: pointer;
-            width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all var(--transition-base);
+            width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all var(--transition-base);
         }
         .focus-exit:hover { color: #fff; background: var(--danger); border-color: var(--danger); }
         .focus-encouragement {
-            color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 12px; font-style: italic;
+            color: rgba(255,255,255,0.7); font-size: 0.88rem; margin-top: 12px; font-style: italic;
         }
 
         .modal-overlay {
@@ -815,6 +865,7 @@
             #topbar .topbar-logo span { display: none; }
             .notification-dropdown { width: calc(100vw - 40px); right: -10px; }
             .chart-grid { grid-template-columns: 1fr; }
+            .chart-canvas { height: 250px; }
             .kpi-value { font-size: 1.4rem; }
             .timer-display { font-size: 2rem; min-width: 140px; }
             .focus-ring-container { width: min(65vw, 200px); height: min(65vw, 200px); }
@@ -827,8 +878,9 @@
             .motivational-banner { flex-direction: column; text-align: center; gap: 12px; }
             .motivational-brain { width: 56px; height: 56px; font-size: 1.6rem; }
             .motivational-quote { font-size: 0.9rem; }
-            .community-feed .feed-list { max-height: 160px; }
+            .community-feed .feed-list { max-height: 180px; }
             .focus-fox { width: 90px; height: 90px; font-size: 3rem; }
+            .focus-ring-container { width: 200px; height: 200px; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none; }
@@ -844,17 +896,21 @@
             #closeSidebarBtn { display: flex; }
             #sidebar .sidebar-header .sidebar-logo { width: 100px; }
         }
+
+        .text-right { text-align: right; }
+        .mt-2 { margin-top: 8px; }
+        .mb-2 { margin-bottom: 8px; }
     </style>
 </head>
 <body>
     <header id="topbar" role="banner">
         <a href="#" class="topbar-logo">
-            <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" />
+            <img src="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" alt="VULPS+" />
             <span>VULPS+</span>
         </a>
         <div class="topbar-spacer"></div>
         <div class="topbar-actions">
-            <span class="support-message"><i class="fas fa-users"></i> +12 pessoas estudando agora</span>
+            <span class="support-message" id="supportOnlineMessage"><i class="fas fa-users"></i> <span id="onlineEstudantes">+12</span> pessoas estudando agora</span>
             <div class="notification-bell" id="notificationBell" aria-label="Notificações">
                 <i class="fas fa-bell"></i>
                 <span class="badge" id="notificationBadge" style="display: none;">0</span>
@@ -885,19 +941,19 @@
                     <span class="support-msg">Você não está sozinho nessa 💪</span>
                 </div>
             </div>
-            <img src="https://i.ibb.co/7d48p20b/logo-branca.png" alt="VULPS+" class="sidebar-logo" />
+            <img src="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" alt="VULPS+" class="sidebar-logo" />
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
-        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade VULP</span><span class="sb-sub">Central do Concurseiro</span></span></a>
-        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-route"></i><span class="sb-info"><span class="sb-title">Rota da Aprovação</span><span class="sb-sub">Cronograma de Estudos</span></span></a>
+        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade VULP</span><span class="sb-sub">Central do Concurseiro</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-route"></i><span class="sb-info"><span class="sb-title">Rota da Aprovação</span><span class="sb-sub">Cronograma de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="#" target="_blank" rel="noopener noreferrer" class="sidebar-btn" aria-current="page"><i class="fas fa-chart-bar"></i><span class="sb-info"><span class="sb-title">Painel de Desempenho</span><span class="sb-sub">Métricas e Progresso</span></span></a>
-        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-hourglass-half"></i><span class="sb-info"><span class="sb-title">Modo Caverna</span><span class="sb-sub">Cronômetro</span></span></a>
-        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-door-open"></i><span class="sb-info"><span class="sb-title">Sala de Estudos</span><span class="sb-sub">Leitor de PDF</span></span></a>
-        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-balance-scale"></i><span class="sb-info"><span class="sb-title">Leitor de Leis</span><span class="sb-sub">Memorização de Leis</span></span></a>
-        <a href="https://vulps-anki-memoriza-o.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-seedling"></i><span class="sb-info"><span class="sb-title">Decora+</span><span class="sb-sub">Ank de Memória</span></span></a>
-        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-robot"></i><span class="sb-info"><span class="sb-title">IA Concurseira</span><span class="sb-sub">Questões Comentadas</span></span></a>
-        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-store"></i><span class="sb-info"><span class="sb-title">VULP Store</span><span class="sb-sub">Material de Estudos</span></span></a>
-        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-heart"></i><span class="sb-info"><span class="sb-title">Ajude esse Projeto</span><span class="sb-sub">Apoie a VULP+</span></span></a>
+        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-hourglass-half"></i><span class="sb-info"><span class="sb-title">Modo Caverna</span><span class="sb-sub">Cronômetro</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-door-open"></i><span class="sb-info"><span class="sb-title">Sala de Estudos</span><span class="sb-sub">Leitor de PDF</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-balance-scale"></i><span class="sb-info"><span class="sb-title">Leitor de Leis</span><span class="sb-sub">Memorização de Leis</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-anki-memoriza-o.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-seedling"></i><span class="sb-info"><span class="sb-title">Decora+</span><span class="sb-sub">Ank de Memória</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-robot"></i><span class="sb-info"><span class="sb-title">IA Concurseira</span><span class="sb-sub">Questões Comentadas</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-store"></i><span class="sb-info"><span class="sb-title">VULP Store</span><span class="sb-sub">Material de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-heart"></i><span class="sb-info"><span class="sb-title">Ajude esse Projeto</span><span class="sb-sub">Apoie a VULP+</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
     </div>
 
     <main class="app-container">
@@ -911,6 +967,7 @@
             <div class="header-actions">
                 <button id="exportBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
                 <button id="shareBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-share-alt"></i> Compartilhar</button>
+                <button id="backupBtn" class="btn btn-outline-accent btn-sm" title="Backup/Restaurar dados"><i class="fas fa-cloud-upload-alt"></i> Backup</button>
                 <button id="resetMetricsBtn" class="btn btn-outline-accent btn-sm" title="Zerar métricas"><i class="fas fa-trash-alt"></i> Zerar</button>
                 <button id="quemSomosBtn" class="btn btn-outline-accent btn-sm"><i class="fas fa-users"></i> Quem Somos</button>
                 <button id="theme-toggle" class="btn btn-sm" aria-label="Alternar tema"><i class="fas" id="theme-icon">☀️</i> <span id="theme-label">Escuro</span></button>
@@ -934,10 +991,7 @@
                 <span style="font-size:0.72rem;color:var(--text-muted);">Atividades recentes de colegas</span>
             </div>
             <div class="feed-list" id="communityFeedList">
-                <div class="feed-empty">
-                    <span class="mascot-icon">🦊</span>
-                    Carregando atividades da comunidade...
-                </div>
+                <!-- O feed será preenchido imediatamente pelo JavaScript -->
             </div>
         </div>
 
@@ -1028,14 +1082,14 @@
         <section class="card">
             <div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div>
             <div class="chart-grid">
-                <div class="chart-wrapper"><canvas id="accuracyChart" class="chart-canvas"></canvas></div>
-                <div class="chart-wrapper"><canvas id="volumeChart" class="chart-canvas"></canvas></div>
+                <div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center;">Taxa de Acerto (%)</div><canvas id="accuracyChart" class="chart-canvas"></canvas></div>
+                <div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center;">Questões (Verde: Acertos, Laranja: Erros)</div><canvas id="volumeChart" class="chart-canvas"></canvas></div>
             </div>
         </section>
 
         <div class="chart-grid">
             <div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid"></div></div>
-            <div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2></div><div id="goalsContainer"></div></div>
+            <div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem;"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div>
         </div>
 
         <section class="card">
@@ -1046,12 +1100,17 @@
                     <button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button>
                 </div>
             </div>
-            <div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th>Disciplina</th><th>Certas</th><th>Erradas</th><th>Total</th><th>% Acerto</th><th>Status</th><th>Horas</th><th>Ações</th></tr></thead><tbody></tbody></table></div>
+            <div class="table-container">
+                <table class="dash-table" id="tabelaDisciplinas">
+                    <thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead>
+                    <tbody id="tabelaDisciplinasBody"></tbody>
+                </table>
+            </div>
         </section>
 
         <section class="card">
-            <div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div>
-            <div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo</th><th>ID</th></tr></thead><tbody id="historyTableBody"></tbody></table></div>
+            <div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><input type="date" id="historyFilterDate" class="filter-select" style="min-width:140px;" title="Filtrar por data"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div>
+            <div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo (min)</th><th>ID</th><th>Ações</th></tr></thead><tbody id="historyTableBody"></tbody></table></div>
         </section>
     </main>
 
@@ -1081,7 +1140,7 @@
         <div class="focus-container">
             <div class="focus-fox">🦊</div>
             <div class="focus-ring-container"><canvas id="focusRingCanvas" width="240" height="240"></canvas><div class="focus-timer" id="focusTimerDisplay">00:00:00</div></div>
-            <div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount">1</span></div>
+            <div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount" style="color:var(--accent);font-weight:700;font-size:1.4rem;">1</span></div>
             <div class="focus-controls"><button class="focus-btn" id="focusTimerStart"><i class="fas fa-play"></i></button><button class="focus-btn" id="focusTimerPause"><i class="fas fa-pause"></i></button></div>
             <div class="focus-encouragement">🦊 Foco total! Cada minuto conta.</div>
         </div>
@@ -1126,6 +1185,36 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="editDisciplinaModal">
+        <div class="modal-card">
+            <div class="modal-header"><h3 class="modal-title"><i class="fas fa-edit"></i> Renomear Disciplina</h3><button class="modal-close" id="closeEditDisciplinaModal"><i class="fas fa-times"></i></button></div>
+            <label for="editDisciplinaNomeAntigo">Nome atual</label>
+            <input type="text" id="editDisciplinaNomeAntigo" disabled style="opacity:0.7;">
+            <label for="editDisciplinaNomeNovo">Novo nome</label>
+            <input type="text" id="editDisciplinaNomeNovo" placeholder="Digite o novo nome..." autocomplete="off">
+            <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end;">
+                <button class="btn btn-sm" id="cancelEditDisciplinaBtn">Cancelar</button>
+                <button class="btn btn-primary btn-sm" id="confirmEditDisciplinaBtn"><i class="fas fa-check"></i> Renomear</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="editGoalsModal">
+        <div class="modal-card">
+            <div class="modal-header"><h3 class="modal-title"><i class="fas fa-bullseye"></i> Ajustar Metas</h3><button class="modal-close" id="closeEditGoalsModal"><i class="fas fa-times"></i></button></div>
+            <div id="editGoalsForm">
+                <div class="goal-edit-row" style="margin-bottom:12px;"><label>Meta 1: Questões por dia</label><input type="number" id="goalEdit0" min="1" class="filter-select" style="width:100px;" value="20"></div>
+                <div class="goal-edit-row" style="margin-bottom:12px;"><label>Meta 2: Taxa de acerto (%)</label><input type="number" id="goalEdit1" min="1" max="100" class="filter-select" style="width:100px;" value="70"></div>
+                <div class="goal-edit-row" style="margin-bottom:12px;"><label>Meta 3: Tempo semanal (min)</label><input type="number" id="goalEdit2" min="1" class="filter-select" style="width:100px;" value="300"></div>
+                <div class="goal-edit-row" style="margin-bottom:12px;"><label>Meta 4: Dias consecutivos</label><input type="number" id="goalEdit3" min="1" class="filter-select" style="width:100px;" value="30"></div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end;">
+                <button class="btn btn-sm" id="cancelEditGoalsBtn">Cancelar</button>
+                <button class="btn btn-primary btn-sm" id="confirmEditGoalsBtn"><i class="fas fa-save"></i> Salvar Metas</button>
+            </div>
+        </div>
+    </div>
+
     <div class="modal-overlay" id="quemSomosOverlay">
         <div id="quemSomosModal">
             <button class="close-btn" id="closeQuemSomosBtn"><i class="fas fa-times"></i></button>
@@ -1157,6 +1246,7 @@
             <button class="cami-quick-btn" data-topic="cronometro">Cronômetro</button>
             <button class="cami-quick-btn" data-topic="metas">Metas</button>
             <button class="cami-quick-btn" data-topic="dashboard">Dashboard</button>
+            <button class="cami-quick-btn" data-topic="backup">Backup</button>
         </div>
         <div id="camiChatInputArea">
             <input type="text" id="camiChatInput" placeholder="Digite sua dúvida..." aria-label="Digite sua mensagem">
@@ -1206,16 +1296,17 @@
             return Math.abs(hash) % motivationalPhrases.length;
         }
 
-        function updateMotivationalQuote() {
-            const storedIndex = localStorage.getItem('vulps_motivational_index');
-            let index;
-            if (storedIndex !== null && storedIndex === getDailyPhraseIndex().toString()) {
-                index = parseInt(storedIndex);
-            } else {
-                index = getDailyPhraseIndex();
+        function updateMotivationalQuote(forceDaily = false) {
+            if (forceDaily) {
+                const index = getDailyPhraseIndex();
                 localStorage.setItem('vulps_motivational_index', index.toString());
             }
-            const phrase = motivationalPhrases[index];
+            let storedIndex = localStorage.getItem('vulps_motivational_index');
+            if (storedIndex === null) {
+                storedIndex = getDailyPhraseIndex();
+                localStorage.setItem('vulps_motivational_index', storedIndex.toString());
+            }
+            const phrase = motivationalPhrases[parseInt(storedIndex) % motivationalPhrases.length];
             document.getElementById('motivationalQuote').textContent = `"${phrase.quote}"`;
             document.getElementById('motivationalAuthor').textContent = phrase.author;
         }
@@ -1227,65 +1318,95 @@
         }
 
         document.getElementById('motivationalRefreshBtn').addEventListener('click', refreshMotivationalQuote);
-        updateMotivationalQuote();
+        updateMotivationalQuote(true);
 
-        // ========== FEED DA COMUNIDADE ==========
+        // ========== INDICADOR ONLINE DINÂMICO ==========
+        function atualizarOnlineEstudantes() {
+            const base = 14; const variacao = Math.floor(Math.random() * 22);
+            document.getElementById('onlineEstudantes').textContent = '+' + (base + variacao);
+            setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000);
+        }
+        atualizarOnlineEstudantes();
+
+        // ========== FEED DA COMUNIDADE (CORRIGIDO: INICIALIZAÇÃO IMEDIATA) ==========
         const comunidadeNomes = [
             "Maria", "João", "Ana", "Pedro", "Carla", "Lucas", "Juliana", "Rafael",
             "Fernanda", "Bruno", "Amanda", "Gustavo", "Patrícia", "Felipe", "Larissa",
-            "Diego", "Camila", "Thiago", "Beatriz", "Marcos"
+            "Diego", "Camila", "Thiago", "Beatriz", "Marcos", "Vanessa", "André",
+            "Luana", "Ricardo", "Tatiane", "Gabriel", "Priscila", "Fábio", "Natália", "Leonardo"
         ];
         const comunidadeDisciplinas = [
             "Direito Constitucional", "Língua Portuguesa", "Raciocínio Lógico", "Direito Administrativo",
             "Matemática", "Informática", "Direito Penal", "Contabilidade", "Atualidades",
-            "Direito do Trabalho", "Economia", "Gestão de Pessoas", "Direito Tributário"
+            "Direito do Trabalho", "Economia", "Gestão de Pessoas", "Direito Tributário",
+            "Direito Civil", "Inglês", "Direito Processual Civil", "Direito Eleitoral",
+            "Administração Pública", "Estatística", "Raciocínio Analítico"
         ];
 
         function gerarFeedComunidade() {
             const eventos = [];
             const agora = new Date();
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 12; i++) {
                 const nome = comunidadeNomes[Math.floor(Math.random() * comunidadeNomes.length)];
                 const disciplina = comunidadeDisciplinas[Math.floor(Math.random() * comunidadeDisciplinas.length)];
-                const minutosAtras = Math.floor(Math.random() * 180);
-                const tempo = new Date(agora - minutosAtras * 60000);
-                const acoes = [
-                    `completou <strong>${Math.floor(Math.random() * 50 + 10)} questões</strong> de`,
-                    `iniciou estudos em`,
-                    `atingiu <strong>${Math.floor(Math.random() * 20 + 5)} dias</strong> de streak em`,
-                    `acertou <strong>${Math.floor(Math.random() * 30 + 5)} questões seguidas</strong> de`,
-                    `alcançou <strong>${Math.floor(Math.random() * 91 + 10)}% de acerto</strong> em`
+                const minutosAtras = Math.floor(Math.random() * 120);
+                const horasAtras = Math.random() > 0.7 ? Math.floor(Math.random() * 3) : 0;
+                const tempoRelativo = horasAtras > 0 ? `há ${horasAtras}h` : (minutosAtras < 2 ? 'agora mesmo' : (minutosAtras === 1 ? 'há 1 min' : `há ${minutosAtras}min`));
+
+                const tiposAcao = [
+                    () => `completou <strong>${Math.floor(Math.random() * 60 + 10)} questões</strong> de`,
+                    () => `iniciou estudos em`,
+                    () => `atingiu <strong>${Math.floor(Math.random() * 25 + 5)} dias</strong> de streak em`,
+                    () => `acertou <strong>${Math.floor(Math.random() * 35 + 5)} questões seguidas</strong> de`,
+                    () => `alcançou <strong>${Math.floor(Math.random() * 91 + 10)}% de acerto</strong> em`,
+                    () => `estudou <strong>${Math.floor(Math.random() * 150 + 30)} minutos</strong> de`,
+                    () => `revisou <strong>${Math.floor(Math.random() * 40 + 5)} flashcards</strong> de`,
+                    () => `concluiu simulado de`,
+                    () => `assistiu videoaula de`,
+                    () => `bateu recorde pessoal em`,
+                    () => `resolveu prova anterior de`,
+                    () => `iniciou revisão intensiva de`
                 ];
-                const acao = acoes[Math.floor(Math.random() * acoes.length)];
+                const acao = tiposAcao[Math.floor(Math.random() * tiposAcao.length)]();
+
                 eventos.push({
-                    nome, disciplina, acao,
-                    tempoStr: minutosAtras < 5 ? 'agora mesmo' : `há ${minutosAtras}min`,
-                    avatarCor: Math.floor(Math.random() * 5)
+                    nome, disciplina, acao, tempoStr: tempoRelativo,
+                    avatarCor: Math.floor(Math.random() * 6)
                 });
             }
-            eventos.sort((a, b) => a.tempoStr === 'agora mesmo' ? -1 : 0);
+            eventos.sort((a, b) => {
+                if (a.tempoStr === 'agora mesmo') return -1;
+                if (b.tempoStr === 'agora mesmo') return 1;
+                return a.tempoStr.localeCompare(b.tempoStr);
+            });
             return eventos;
         }
 
         function renderizarFeedComunidade() {
             const feedList = document.getElementById('communityFeedList');
-            const eventos = gerarFeedComunidade();
-            const coresAvatar = ['#ff7a00', '#00c878', '#1155cc', '#ef4444', '#8b5cf6'];
-            feedList.innerHTML = eventos.map(e => {
-                const inicial = e.nome.charAt(0);
-                const cor = coresAvatar[e.avatarCor];
-                return `
-                    <div class="feed-item">
-                        <div class="feed-avatar highlight" style="background:${cor}20;color:${cor};">${inicial}</div>
-                        <div class="feed-content"><strong>${e.nome}</strong> ${e.acao} <strong>${e.disciplina}</strong></div>
-                        <div class="feed-time">${e.tempoStr}</div>
-                    </div>`;
-            }).join('');
+            if (!feedList) return;
+            try {
+                const eventos = gerarFeedComunidade();
+                const coresAvatar = ['#ff7a00', '#00c878', '#1155cc', '#ef4444', '#8b5cf6', '#e11d48'];
+                feedList.innerHTML = eventos.map(e => {
+                    const inicial = e.nome.charAt(0);
+                    const cor = coresAvatar[e.avatarCor];
+                    return `
+                        <div class="feed-item">
+                            <div class="feed-avatar highlight" style="background:${cor}20;color:${cor};">${inicial}</div>
+                            <div class="feed-content"><strong>${e.nome}</strong> ${e.acao} <strong>${e.disciplina}</strong></div>
+                            <div class="feed-time"><i class="fas fa-clock" style="margin-right:3px;font-size:0.6rem;"></i>${e.tempoStr}</div>
+                        </div>`;
+                }).join('');
+            } catch (e) {
+                console.error('Erro ao renderizar feed:', e);
+                feedList.innerHTML = '<div class="feed-empty"><span class="mascot-icon">🦊</span>Atualizando atividades...</div>';
+            }
         }
 
         function atualizarFeedPeriodicamente() {
             renderizarFeedComunidade();
-            setInterval(renderizarFeedComunidade, 45000 + Math.random() * 30000);
+            setInterval(renderizarFeedComunidade, 22000 + Math.random() * 20000);
         }
 
         // ========== SAUDAÇÃO DINÂMICA ==========
@@ -1346,13 +1467,13 @@
                 const topbarIcon = document.getElementById('topbarThemeIcon');
                 if (topbarIcon) topbarIcon.className = 'fas ' + (isLight ? 'fa-sun' : 'fa-moon');
                 localStorage.setItem('theme', name);
+                setTimeout(refreshDashboard, 100);
             }
             const saved = localStorage.getItem('theme') || 'light';
             setTheme(saved);
             document.getElementById('theme-toggle').addEventListener('click', () => {
                 const current = html.getAttribute('data-theme');
                 setTheme(current === 'light' ? 'dark' : 'light');
-                refreshDashboard();
             });
             document.getElementById('topbarThemeToggle').addEventListener('click', () => {
                 document.getElementById('theme-toggle').click();
@@ -1385,7 +1506,7 @@
                         time: new Date().toISOString(), read: false
                     });
                 }
-                if (m.correctPercent >= 70 && goals.length >= 2) {
+                if (parseFloat(m.correctPercent) >= 70 && goals.length >= 2) {
                     newNotifs.push({
                         id: 'goal_accuracy_' + new Date().toISOString().split('T')[0],
                         type: 'goal', title: 'Meta de Acerto!',
@@ -1424,7 +1545,7 @@
                     list.innerHTML = '<div class="notification-empty">🦊 Nenhuma notificação no momento.</div>';
                 } else {
                     list.innerHTML = notifications.map((n, i) => `
-                        <div class="notification-item${n.read ? '' : ' unread'}" data-index="${i}">
+                        <div class="notification-item${n.read ? ' read' : ' unread'}" data-index="${i}">
                             <div class="notification-icon"><i class="fas fa-${n.type === 'streak' ? 'fire' : n.type === 'goal' ? 'bullseye' : 'info-circle'}"></i></div>
                             <div class="notification-content"><div>${n.message}</div><div class="notification-time">${new Date(n.time).toLocaleString('pt-BR')}</div></div>
                         </div>`).join('');
@@ -1471,7 +1592,7 @@
             overlay.addEventListener('click', () => { sidebar.classList.remove('open'); overlay.classList.remove('active'); });
         })();
 
-        // ========== CHATBOT CAMI ==========
+        // ========== CHATBOT CAMI (MELHORADO) ==========
         (function() {
             let camiOpen = false, camiFirstInteraction = true;
             const win = document.getElementById('camiChatWindow');
@@ -1488,7 +1609,7 @@
                     input.focus();
                     if (camiFirstInteraction) {
                         camiFirstInteraction = false;
-                        mostrarDigitando(() => { enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente da VULPS+. Posso ajudar com métricas, cronômetro, metas e como usar o dashboard. 🦊 Lembre-se: <strong>ninguém estuda sozinho!</strong> 💚'); });
+                        mostrarDigitando(() => { enviarBot('Olá! 👋 Eu sou a <strong>Cami</strong>, assistente da VULPS+. Posso ajudar com métricas, cronômetro, metas, backup de dados e como usar o dashboard. 🦊 Lembre-se: <strong>ninguém estuda sozinho!</strong> 💚'); });
                     }
                 } else { win.classList.remove('active'); fab.classList.remove('chat-open'); }
             }
@@ -1497,7 +1618,7 @@
                 const d = document.createElement('div'); d.className = 'cami-message bot';
                 d.innerHTML = '<div class="cami-typing"><span></span><span></span><span></span></div>';
                 msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
-                setTimeout(() => { d.remove(); cb(); }, 1200 + Math.random() * 800);
+                setTimeout(() => { d.remove(); cb(); }, 900 + Math.random() * 600);
             }
 
             function enviarBot(t) {
@@ -1514,16 +1635,22 @@
                 enviarUsuario(texto);
                 const t = texto.toLowerCase();
                 mostrarDigitando(() => {
-                    if (t.includes('métrica') || t.includes('kpi')) {
+                    if (t.includes('métrica') || t.includes('kpi') || t.includes('desempenho')) {
                         enviarBot('O <strong>Painel de Desempenho</strong> mostra KPIs como acertos, erros, taxa de acerto, streak de dias e tempo de estudo. Tudo atualiza automaticamente! 📊');
-                    } else if (t.includes('cronômetro') || t.includes('timer')) {
-                        enviarBot('Use o <strong>cronômetro</strong> para registrar tempo de estudo. Escolha a disciplina, o tipo e clique em <strong>Iniciar</strong>. Depois é só salvar! ⏱️');
-                    } else if (t.includes('meta')) {
-                        enviarBot('A seção de <strong>Metas de Estudo</strong> acompanha 4 objetivos com anéis de progresso. Visualize sua evolução! 🎯');
-                    } else if (t.includes('comunidade')) {
+                    } else if (t.includes('cronômetro') || t.includes('timer') || t.includes('tempo')) {
+                        enviarBot('Use o <strong>cronômetro</strong> para registrar tempo de estudo. Escolha a disciplina, o tipo e clique em <strong>Iniciar</strong>. Ao salvar, o tempo é registrado e o contador reseta. ⏱️');
+                    } else if (t.includes('meta') || t.includes('objetivo') || t.includes('alvo')) {
+                        enviarBot('A seção de <strong>Metas de Estudo</strong> acompanha 4 objetivos com anéis de progresso. Clique em <strong>Ajustar Metas</strong> para personalizá-las! 🎯');
+                    } else if (t.includes('comunidade') || t.includes('feed')) {
                         enviarBot('No <strong>Feed da Comunidade</strong> você vê o que outros concurseiros estão estudando. É motivador ver que tem mais gente na mesma jornada! 🦊💚');
+                    } else if (t.includes('backup') || t.includes('salvar') || t.includes('exportar') || t.includes('dados')) {
+                        enviarBot('Clique no botão <strong>Backup</strong> no cabeçalho para exportar ou importar todos os seus dados em formato JSON. Assim você não perde seu histórico! 💾');
+                    } else if (t.includes('disciplina') || t.includes('matéria') || t.includes('editar')) {
+                        enviarBot('Você pode <strong>adicionar</strong> novas disciplinas, <strong>renomear</strong> clicando no ícone de lápis na tabela, ou <strong>excluir</strong>. Tudo fica salvo automaticamente! 📚');
+                    } else if (t.includes('gráfico') || t.includes('evolução')) {
+                        enviarBot('Os gráficos mostram sua evolução ao longo do tempo. Use o seletor de período (7, 14, 30 ou 90 dias) e veja as legendas nos eixos! 📈');
                     } else {
-                        enviarBot('Estou aqui para ajudar! 😊 Pergunte sobre <strong>métricas</strong>, <strong>cronômetro</strong>, <strong>metas</strong> ou <strong>comunidade</strong>.');
+                        enviarBot('Estou aqui para ajudar! 😊 Pergunte sobre <strong>métricas</strong>, <strong>cronômetro</strong>, <strong>metas</strong>, <strong>backup</strong>, <strong>disciplinas</strong> ou <strong>gráficos</strong>.');
                     }
                 });
             }
@@ -1539,7 +1666,7 @@
             document.getElementById('camiQuickReplies').addEventListener('click', (e) => {
                 const btn = e.target.closest('.cami-quick-btn');
                 if (btn && btn.dataset.topic) {
-                    const topicos = { metricas: 'Como funcionam as métricas?', cronometro: 'Como usar o cronômetro?', metas: 'Como funcionam as metas?', dashboard: 'O que tem no dashboard?' };
+                    const topicos = { metricas: 'Como funcionam as métricas?', cronometro: 'Como usar o cronômetro?', metas: 'Como funcionam as metas?', dashboard: 'O que tem no dashboard?', backup: 'Como faço backup dos meus dados?' };
                     const texto = topicos[btn.dataset.topic] || btn.dataset.topic;
                     if (!camiOpen) toggleChat();
                     processarMensagem(texto);
@@ -1594,6 +1721,41 @@
 
         function salvarDados() { try { localStorage.setItem('vulps_discipline_data', JSON.stringify(data)); } catch (e) {} }
         function salvarEventos() { try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (e) {} }
+        function salvarMetas() { try { localStorage.setItem('vulps_goals', JSON.stringify(goals)); } catch (e) {} }
+
+        // ========== BACKUP E RESTAURAÇÃO ==========
+        document.getElementById('backupBtn').addEventListener('click', () => {
+            const backupData = { data, events, goals, version: '1.0', date: new Date().toISOString() };
+            const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `vulps_backup_${new Date().toISOString().split('T')[0]}.json`;
+            a.click(); URL.revokeObjectURL(url);
+            toast('✓ Backup exportado com sucesso!');
+
+            const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+            input.onchange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (ev) => {
+                    try {
+                        const content = JSON.parse(ev.target.result);
+                        if (!content.data || !content.events || !content.goals) throw new Error('Formato inválido');
+                        if (confirm('Deseja restaurar este backup? Os dados atuais serão substituídos.')) {
+                            data = content.data;
+                            events = content.events;
+                            goals = content.goals;
+                            salvarDados(); salvarEventos(); salvarMetas();
+                            atualizarSelects(); renderizarTabela(); refreshDashboard();
+                            toast('✓ Backup restaurado com sucesso!');
+                        }
+                    } catch (err) { toast('Arquivo inválido.', 'error'); }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        });
 
         // ========== MODAL ADICIONAR DISCIPLINA ==========
         const addDisciplinaModal = document.getElementById('addDisciplinaModal');
@@ -1602,7 +1764,7 @@
 
         function atualizarSugestoes() {
             const existentes = new Set(Object.keys(data).map(d => d.toLowerCase().trim()));
-            const disponiveis = todasDisciplinasSugestoes.filter(d => !existentes.has(d.toLowerCase().trim()));
+            const disponiveis = todasDisciplinasSugestoes.filter(d => !existentes.has(d.toLowerCase().trim())).slice(0, 18);
             suggestionsGrid.innerHTML = disponiveis.map(d => `<button class="suggestion-chip" data-name="${d}">${d}</button>`).join('');
         }
 
@@ -1625,11 +1787,10 @@
         function adicionarNovaDisciplina(nome) {
             nome = nome.trim();
             if (!nome) { toast('Digite um nome válido.', 'error'); return; }
-            const nomeNormalizado = nome;
-            if (data[nomeNormalizado]) { toast('Esta disciplina já existe.', 'error'); return; }
-            data[nomeNormalizado] = { certas: 0, erradas: 0, horasMinutos: 0 };
+            if (data[nome]) { toast('Esta disciplina já existe.', 'error'); return; }
+            data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 };
             salvarDados(); atualizarSelects(); renderizarTabela(); refreshDashboard();
-            toast(`✓ Disciplina "${nomeNormalizado}" adicionada!`);
+            toast(`✓ Disciplina "${nome}" adicionada!`);
         }
 
         document.getElementById('confirmAddDisciplinaBtn').addEventListener('click', () => {
@@ -1649,7 +1810,33 @@
             }
         });
 
-        // ========== CRONÔMETRO ==========
+        // ========== MODAL EDITAR DISCIPLINA ==========
+        const editDisciplinaModal = document.getElementById('editDisciplinaModal');
+        document.getElementById('closeEditDisciplinaModal').addEventListener('click', () => editDisciplinaModal.classList.remove('active'));
+        document.getElementById('cancelEditDisciplinaBtn').addEventListener('click', () => editDisciplinaModal.classList.remove('active'));
+        editDisciplinaModal.addEventListener('click', (e) => { if (e.target === editDisciplinaModal) editDisciplinaModal.classList.remove('active'); });
+
+        document.getElementById('confirmEditDisciplinaBtn').addEventListener('click', () => {
+            const nomeAntigo = document.getElementById('editDisciplinaNomeAntigo').value.trim();
+            const nomeNovo = document.getElementById('editDisciplinaNomeNovo').value.trim();
+            if (!nomeAntigo || !nomeNovo) { toast('Preencha ambos os campos.', 'error'); return; }
+            if (nomeAntigo === nomeNovo) { editDisciplinaModal.classList.remove('active'); return; }
+            if (data[nomeNovo]) { toast('Já existe uma disciplina com este nome.', 'error'); return; }
+            data[nomeNovo] = { ...data[nomeAntigo] };
+            delete data[nomeAntigo];
+            events.forEach(e => { if (e.subject === nomeAntigo) e.subject = nomeNovo; });
+            salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela(); refreshDashboard();
+            editDisciplinaModal.classList.remove('active');
+            toast(`✓ Disciplina renomeada para "${nomeNovo}"!`);
+        });
+
+        function abrirEditarDisciplina(nome) {
+            document.getElementById('editDisciplinaNomeAntigo').value = nome;
+            document.getElementById('editDisciplinaNomeNovo').value = nome;
+            editDisciplinaModal.classList.add('active');
+        }
+
+        // ========== CRONÔMETRO (CORRIGIDO: RESETA APÓS SALVAR) ==========
         let timerInterval = null, segundos = 0, pomodoroActive = true, pomodoroCount = 1, focusModeActive = false, ciclo30min = 0;
         const timerDisplay = document.getElementById('timerDisplay');
         const focusTimerDisplay = document.getElementById('focusTimerDisplay');
@@ -1677,14 +1864,14 @@
             const progress = ciclo30min / 1800;
             ctx.clearRect(0, 0, w, h);
             ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI);
-            ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 12; ctx.stroke();
+            ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 14; ctx.stroke();
             const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
             const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff');
             ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress));
-            ctx.strokeStyle = grad; ctx.lineWidth = 12; ctx.lineCap = 'round'; ctx.stroke();
+            ctx.strokeStyle = grad; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.stroke();
         }
 
-        function salvarTempoNaDisciplina(resetar = false) {
+        function salvarTempoNaDisciplina(resetar = true) {
             const nome = document.getElementById('disciplinaSelect').value;
             if (!nome || segundos <= 0) { if (!nome) toast('Selecione uma disciplina!', 'error'); return; }
             const minutos = Math.round(segundos / 60);
@@ -1696,7 +1883,7 @@
             toast(`✓ ${minutos}min salvos em "${nome}"`);
         }
 
-        function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); }
+        function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); drawFocusRing(); }
 
         document.getElementById('timerStart').addEventListener('click', () => {
             if (timerInterval) return;
@@ -1706,7 +1893,7 @@
             }, 1000);
         });
         document.getElementById('timerPause').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; });
-        document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(false));
+        document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(true));
         document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); });
         document.getElementById('focusModeHighlightBtn').addEventListener('click', abrirModoFoco);
         document.getElementById('exitFocusBtn').addEventListener('click', () => { focusOverlay.classList.remove('active'); focusModeActive = false; });
@@ -1722,11 +1909,12 @@
             });
         });
 
-        // ========== TABELA DE DISCIPLINAS ==========
+        // ========== TABELA DE DISCIPLINAS COM ORDENAÇÃO ==========
         const selectDisciplina = document.getElementById('disciplinaSelect');
         const registroDisciplinaSelect = document.getElementById('registroDisciplinaSelect');
         const filtroInput = document.getElementById('filtroTabela');
-        const tbody = document.querySelector('#tabelaDisciplinas tbody');
+        const tbody = document.querySelector('#tabelaDisciplinasBody');
+        let tabelaSortBy = null, tabelaSortDir = 'asc';
 
         function atualizarSelects() {
             const disciplinas = Object.keys(data).sort();
@@ -1738,19 +1926,65 @@
         function getDisciplina(nome) { return data[nome] || { certas: 0, erradas: 0, horasMinutos: 0 }; }
         function getStatus(p) { if (p >= 81) return 'Avançado'; if (p >= 61) return 'Intermediário'; return 'Base'; }
 
-        function renderizarTabela(filtro = '') {
-            const disciplinas = Object.keys(data).sort();
+        function renderizarTabela(filtro = '', sortBy = null, sortDir = 'asc') {
+            const disciplinas = Object.keys(data);
             const filtradas = disciplinas.filter(d => d.toLowerCase().includes((filtro || '').toLowerCase()));
-            tbody.innerHTML = filtradas.map(nome => {
+            const rows = filtradas.map(nome => {
                 const d = getDisciplina(nome); const total = d.certas + d.erradas;
-                const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0;
+                const perc = total ? (d.certas / total) * 100 : 0;
                 const status = getStatus(perc);
-                const h = Math.floor((d.horasMinutos || 0) / 60); const m = (d.horasMinutos || 0) % 60;
-                const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`;
-                const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger');
-                return `<tr><td>${nome}</td><td>${d.certas}</td><td>${d.erradas}</td><td>${total}</td><td>${perc}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm" onclick="iniciarCronometroPara('${nome}')"><i class="fas fa-play"></i></button> <button class="btn btn-sm" onclick="excluirDisciplina('${nome}')" style="color:var(--danger);"><i class="fas fa-trash-alt"></i></button></td></tr>`;
-            }).join('');
+                const horasMin = d.horasMinutos || 0;
+                return { nome, certas: d.certas, erradas: d.erradas, total, perc, status, horasMin };
+            });
+
+            if (sortBy) {
+                rows.sort((a, b) => {
+                    let va, vb;
+                    if (sortBy === 'disciplina') { va = a.nome.toLowerCase(); vb = b.nome.toLowerCase(); }
+                    else if (sortBy === 'certas') { va = a.certas; vb = b.certas; }
+                    else if (sortBy === 'erradas') { va = a.erradas; vb = b.erradas; }
+                    else if (sortBy === 'total') { va = a.total; vb = b.total; }
+                    else if (sortBy === 'percentual') { va = a.perc; vb = b.perc; }
+                    else if (sortBy === 'horas') { va = a.horasMin; vb = b.horasMin; }
+                    else return 0;
+                    if (va < vb) return sortDir === 'asc' ? -1 : 1;
+                    if (va > vb) return sortDir === 'asc' ? 1 : -1;
+                    return 0;
+                });
+            }
+
+            tbody.innerHTML = rows.length === 0
+                ? `<tr><td colspan="8"><div class="empty-state"><i class="fas fa-book-open"></i><div class="empty-title">Nenhuma disciplina encontrada</div><p>Adicione uma disciplina para começar a acompanhar seu desempenho!</p></div></td></tr>`
+                : rows.map(({ nome, certas, erradas, total, perc, status, horasMin }) => {
+                    const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger');
+                    const h = Math.floor(horasMin / 60); const m = horasMin % 60;
+                    const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`;
+                    return `<tr><td>${nome} <button class="btn btn-sm" style="font-size:0.6rem;padding:2px 6px;min-height:24px;margin-left:6px;" onclick="event.stopPropagation();abrirEditarDisciplina('${nome.replace(/'/g, "\\'")}')" title="Renomear"><i class="fas fa-pencil-alt"></i></button></td><td>${certas}</td><td>${erradas}</td><td>${total}</td><td>${perc.toFixed(1)}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm" onclick="iniciarCronometroPara('${nome.replace(/'/g, "\\'")}')"><i class="fas fa-play"></i></button> <button class="btn btn-sm" onclick="excluirDisciplina('${nome.replace(/'/g, "\\'")}')" style="color:var(--danger);"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                }).join('');
+
+            document.querySelectorAll('#tabelaDisciplinas th[data-sort]').forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+                if (th.dataset.sort === sortBy) {
+                    th.classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+                    th.querySelector('.sort-icon i').className = sortDir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
+                } else {
+                    th.querySelector('.sort-icon i').className = 'fas fa-sort';
+                }
+            });
         }
+
+        document.querySelector('#tabelaDisciplinas thead').addEventListener('click', (e) => {
+            const th = e.target.closest('th[data-sort]');
+            if (!th) return;
+            const sortBy = th.dataset.sort;
+            if (tabelaSortBy === sortBy) {
+                tabelaSortDir = tabelaSortDir === 'asc' ? 'desc' : 'asc';
+            } else {
+                tabelaSortBy = sortBy;
+                tabelaSortDir = 'asc';
+            }
+            renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir);
+        });
 
         window.iniciarCronometroPara = function(nome) {
             if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); }
@@ -1758,12 +1992,15 @@
             document.getElementById('timerStart').click();
         };
         window.excluirDisciplina = function(nome) {
-            if (!confirm(`Excluir "${nome}"?`)) return;
-            delete data[nome]; salvarDados(); atualizarSelects(); renderizarTabela();
+            if (!confirm(`Excluir "${nome}"? Esta ação removerá todo o histórico desta disciplina.`)) return;
+            delete data[nome];
+            events = events.filter(e => e.subject !== nome);
+            salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela();
             if (selectDisciplina.value === nome) selectDisciplina.value = '';
             refreshDashboard();
+            toast(`Disciplina "${nome}" removida.`);
         };
-        filtroInput.addEventListener('input', e => renderizarTabela(e.target.value));
+        filtroInput.addEventListener('input', e => renderizarTabela(e.target.value, tabelaSortBy, tabelaSortDir));
 
         // ========== REGISTRO RÁPIDO ==========
         document.getElementById('registroAcertarBtn').addEventListener('click', () => {
@@ -1772,7 +2009,8 @@
             if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; }
             const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1;
             data[nome].certas += qtd;
-            for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() });
+            const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random();
+            for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i });
             salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard();
         });
         document.getElementById('registroErrarBtn').addEventListener('click', () => {
@@ -1781,13 +2019,14 @@
             if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; }
             const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1;
             data[nome].erradas += qtd;
-            for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString() });
+            const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random();
+            for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i });
             salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard();
         });
 
         // ========== RESET ==========
         document.getElementById('resetMetricsBtn').addEventListener('click', () => {
-            if (confirm('Zerar TODAS as métricas? Esta ação não pode ser desfeita.')) {
+            if (confirm('Zerar TODAS as métricas? Esta ação não pode ser desfeita. Recomendamos fazer um backup antes.')) {
                 try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications'); } catch (e) {}
                 location.reload();
             }
@@ -1836,7 +2075,7 @@
                 if (isComplete) {
                     yPos += 6; doc.setFontSize(12); doc.setFont('helvetica', 'bold'); doc.text('Desempenho por Disciplina', 15, yPos); yPos += 8;
                     const disciplinas = Object.keys(data).sort();
-                    const tableData = disciplinas.map(nome => { const d = getDisciplina(nome); const total = d.certas + d.erradas; const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0; const status = getStatus(perc); const horas = formatHours(d.horasMinutos || 0); return [nome, String(d.certas), String(d.erradas), String(total), perc + '%', status, horas]; });
+                    const tableData = disciplinas.map(nome => { const d = getDisciplina(nome); const total = d.certas + d.erradas; const perc = total ? ((d.certas / total) * 100).toFixed(1) : 0; const status = getStatus(parseFloat(perc)); const horas = formatHours(d.horasMinutos || 0); return [nome, String(d.certas), String(d.erradas), String(total), perc + '%', status, horas]; });
                     doc.autoTable({ startY: yPos, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '% Acerto', 'Status', 'Horas']], body: tableData, headStyles: { fillColor: [255, 122, 0], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8, textColor: [15, 23, 42] }, alternateRowStyles: { fillColor: [255, 245, 235] } });
                 }
                 const pageCount = doc.getNumberOfPages();
@@ -1848,6 +2087,25 @@
 
         document.getElementById('exportFullPdfBtn').addEventListener('click', () => exportPDF(true));
         document.getElementById('exportSummaryPdfBtn').addEventListener('click', () => exportPDF(false));
+
+        // ========== METAS EDITÁVEIS ==========
+        const editGoalsModal = document.getElementById('editGoalsModal');
+        document.getElementById('editAllGoalsBtn').addEventListener('click', () => {
+            for (let i = 0; i < 4; i++) document.getElementById('goalEdit' + i).value = goals[i].target;
+            editGoalsModal.classList.add('active');
+        });
+        document.getElementById('closeEditGoalsModal').addEventListener('click', () => editGoalsModal.classList.remove('active'));
+        document.getElementById('cancelEditGoalsBtn').addEventListener('click', () => editGoalsModal.classList.remove('active'));
+        editGoalsModal.addEventListener('click', (e) => { if (e.target === editGoalsModal) editGoalsModal.classList.remove('active'); });
+        document.getElementById('confirmEditGoalsBtn').addEventListener('click', () => {
+            for (let i = 0; i < 4; i++) {
+                const val = parseInt(document.getElementById('goalEdit' + i).value);
+                if (!isNaN(val) && val > 0) goals[i].target = val;
+            }
+            salvarMetas(); renderGoals(); refreshDashboard();
+            editGoalsModal.classList.remove('active');
+            toast('✓ Metas atualizadas!');
+        });
 
         // ========== DASHBOARD ==========
         function computeMetrics() {
@@ -1928,27 +2186,45 @@
                 const d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i);
                 const iso = d.toISOString().split('T')[0]; const count = byDay[iso] || 0;
                 let level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4) level = 'level-2'; else if (count >= 1) level = 'level-1';
-                html += `<div class="heatmap-cell ${level}">${d.getDate()}</div>`;
+                html += `<div class="heatmap-cell ${level} tooltip">${d.getDate()}<span class="tooltip-text">${count} questão${count !== 1 ? 'ões' : ''}</span></div>`;
             }
             grid.innerHTML = html;
         }
 
-        function renderSubjectTable() { renderizarTabela(filtroInput.value); }
+        function renderSubjectTable() { renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir); }
 
         function renderHistoryTable() {
             const tbodyH = document.getElementById('historyTableBody');
             const subjFilter = document.getElementById('historyFilterSubject').value;
             const resultFilter = document.getElementById('historyFilterResult').value;
+            const dateFilter = document.getElementById('historyFilterDate').value;
             let filtered = [...events].reverse();
             if (subjFilter) filtered = filtered.filter(e => e.subject === subjFilter);
             if (resultFilter === 'correct') filtered = filtered.filter(e => e.correct);
             if (resultFilter === 'wrong') filtered = filtered.filter(e => !e.correct);
-            tbodyH.innerHTML = filtered.slice(0, 100).map(e => {
-                const dt = new Date(e.timestamp);
-                const resultBadge = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>';
-                return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${e.subject || 'Geral'}</td><td>${resultBadge}</td><td>${formatTime(e.timeSpent||0)}</td><td>${(e.questionId||'').substring(0,8)}</td></tr>`;
-            }).join('');
+            if (dateFilter) filtered = filtered.filter(e => e.timestamp.startsWith(dateFilter));
+            tbodyH.innerHTML = filtered.length === 0
+                ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro encontrado</div><p>Registre acertos, erros ou tempo de estudo para visualizar o histórico.</p></div></td></tr>`
+                : filtered.slice(0, 200).map((e, idx) => {
+                    const dt = new Date(e.timestamp);
+                    const resultBadge = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>';
+                    const originalIndex = events.indexOf(e);
+                    return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${e.subject || 'Geral'}</td><td>${resultBadge}</td><td>${e.timeSpent ? Math.round(e.timeSpent / 60) : '-'}</td><td>${(e.questionId||'').substring(0,8)}</td><td><button class="btn btn-sm" onclick="excluirEvento(${originalIndex})" style="color:var(--danger);font-size:0.7rem;" title="Excluir registro"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                }).join('');
         }
+
+        window.excluirEvento = function(index) {
+            if (index < 0 || index >= events.length) return;
+            const ev = events[index];
+            if (!confirm('Excluir este registro do histórico? As métricas da disciplina serão ajustadas.')) return;
+            if (ev.subject && data[ev.subject]) {
+                if (ev.correct) data[ev.subject].certas = Math.max(0, (data[ev.subject].certas || 0) - 1);
+                else data[ev.subject].erradas = Math.max(0, (data[ev.subject].erradas || 0) - 1);
+            }
+            events.splice(index, 1);
+            salvarDados(); salvarEventos(); renderSubjectTable(); renderHistoryTable(); refreshDashboard();
+            toast('Registro excluído.');
+        };
 
         function populateHistoryFilters() {
             const subjects = [...new Set(events.map(e => e.subject).filter(Boolean))].sort();
@@ -1970,43 +2246,70 @@
         }
 
         function drawLineChart(canvasId, data) {
-            const canvas = document.getElementById(canvasId); if (!canvas || data.length === 0) return;
-            const ctx = canvas.getContext('2d'); const W = canvas.parentElement.clientWidth || 400, H = 280;
-            canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+            const canvas = document.getElementById(canvasId); if (!canvas) return;
+            const ctx = canvas.getContext('2d'); const W = canvas.parentElement.clientWidth || 400, H = 300;
+            canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 };
             const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
             ctx.clearRect(0, 0, W, H);
             const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
-            const border = getComputedStyle(document.documentElement).getPropertyValue('--border-light').trim();
-            ctx.strokeStyle = border; ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
+            const border = getComputedStyle(document.documentElement).getPropertyValue('--border-light').trim() || '#ccc';
+            const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
+            ctx.fillStyle = textColor; ctx.font = '10px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            for (let i = 0; i <= 4; i++) {
+                const y = pad.top + (cH * i / 4);
+                ctx.beginPath(); ctx.strokeStyle = border; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+                ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke(); ctx.setLineDash([]);
+                ctx.fillText((100 - i * 25) + '%', pad.left - 10, y + 3);
+            }
+            ctx.textAlign = 'right'; ctx.fillText('100%', pad.left - 10, pad.top - 4);
+            if (data.length === 0) { ctx.fillStyle = textColor; ctx.font = '12px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('Sem dados no período', W/2, H/2); return; }
             if (data.length > 1) {
-                ctx.beginPath(); ctx.strokeStyle = accent; ctx.lineWidth = 2.5;
+                ctx.beginPath(); ctx.strokeStyle = accent; ctx.lineWidth = 2.5; ctx.setLineDash([]);
                 data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
                 ctx.stroke();
+                data.forEach((d, i) => {
+                    const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH;
+                    ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 2*Math.PI); ctx.fillStyle = accent; ctx.fill();
+                    ctx.fillStyle = textColor; ctx.font = '8px Inter, sans-serif'; ctx.textAlign = 'center';
+                    ctx.fillText(d.accuracy.toFixed(0) + '%', x, y - 10);
+                });
             }
+            ctx.fillStyle = textColor; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+            const step = Math.max(1, Math.floor(data.length / 6));
+            data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / (data.length - 1)); ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } });
         }
 
         function drawBarChart(canvasId, data) {
-            const canvas = document.getElementById(canvasId); if (!canvas || data.length === 0) return;
-            const ctx = canvas.getContext('2d'); const W = canvas.parentElement.clientWidth || 400, H = 280;
-            canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 40, left: 50 };
+            const canvas = document.getElementById(canvasId); if (!canvas) return;
+            const ctx = canvas.getContext('2d'); const W = canvas.parentElement.clientWidth || 400, H = 300;
+            canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 };
             const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
             ctx.clearRect(0, 0, W, H);
             const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
             const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878';
-            const border = getComputedStyle(document.documentElement).getPropertyValue('--border-light').trim();
-            ctx.strokeStyle = border; ctx.lineWidth = 1;
-            ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, H - pad.bottom); ctx.lineTo(W - pad.right, H - pad.bottom); ctx.stroke();
+            const border = getComputedStyle(document.documentElement).getPropertyValue('--border-light').trim() || '#ccc';
+            const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
+            ctx.fillStyle = textColor; ctx.font = '10px Inter, sans-serif'; ctx.textAlign = 'center';
+            if (data.length === 0) { ctx.fillStyle = textColor; ctx.font = '12px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('Sem dados no período', W/2, H/2); return; }
             const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1);
-            const barW = Math.min(30, cW / data.length * 0.6); const gap = (cW - barW * data.length) / (data.length + 1);
+            const barW = Math.min(28, cW / data.length * 0.65);
+            const gap = (cW - barW * data.length) / (data.length + 1);
             data.forEach((d, i) => {
                 const x = pad.left + gap + i * (barW + gap);
                 const totalH = ((d.correct + d.wrong) / maxVal) * cH;
                 const correctH = (d.correct / maxVal) * cH;
                 ctx.fillStyle = secondary; ctx.fillRect(x, H - pad.bottom - totalH, barW, totalH);
                 ctx.fillStyle = accent; ctx.fillRect(x, H - pad.bottom - correctH, barW, correctH);
+                ctx.fillStyle = textColor; ctx.font = '8px Inter, sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText((d.correct + d.wrong), x + barW/2, H - pad.bottom - totalH - 5);
             });
+            ctx.fillStyle = textColor; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+            const step = Math.max(1, Math.floor(data.length / 6));
+            data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + gap + i * (barW + gap) + barW/2; ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } });
         }
+
+        window.addEventListener('resize', () => { renderCharts(); if (focusModeActive) drawFocusRing(); });
 
         function refreshDashboard() {
             renderKPIs(); renderGoals(); renderHeatmap(); renderSubjectTable();
@@ -2017,10 +2320,11 @@
         document.getElementById('chartPeriod').addEventListener('change', renderCharts);
         document.getElementById('historyFilterSubject').addEventListener('change', renderHistoryTable);
         document.getElementById('historyFilterResult').addEventListener('change', renderHistoryTable);
+        document.getElementById('historyFilterDate').addEventListener('change', renderHistoryTable);
 
         // ========== INICIALIZAÇÃO ==========
         atualizarSelects();
-        renderizarTabela();
+        renderizarTabela('', null, 'asc');
         atualizarTimer();
         refreshDashboard();
         atualizarFeedPeriodicamente();
