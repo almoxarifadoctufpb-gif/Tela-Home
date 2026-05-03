@@ -1510,148 +1510,113 @@
             min-width: 130px;
         }
 
+        /* NOVA SEÇÃO DE COMUNIDADE */
         .community-feed {
             background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 20px 24px;
             border: 1px solid var(--border-light);
+            border-radius: 18px;
+            padding: 20px;
             box-shadow: var(--shadow-xs);
         }
 
-        .community-feed .feed-header {
+        .feed-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 14px;
+            align-items: center;
+            margin-bottom: 18px;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        .community-feed .feed-title {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-primary);
+        .feed-title {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 0.95rem;
         }
 
-        .community-feed .feed-title i {
-            color: var(--accent);
+        .feed-title i {
+            color: #F97316;
         }
 
-        .community-feed .feed-title .live-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--secondary);
-            animation: livePulse 1.5s infinite;
-            display: inline-block;
+        .online-badge {
+            background: #DCFCE7;
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        @keyframes livePulse {
-            0%,
-            100% {
-                opacity: 1;
-                box-shadow: 0 0 0 0 rgba(0, 200, 120, 0.6)
-            }
-            50% {
-                opacity: 0.6;
-                box-shadow: 0 0 0 6px rgba(0, 200, 120, 0)
-            }
+        .feed-live {
+            font-size: 0.78rem;
+            color: var(--text-muted);
         }
 
-        .community-feed .feed-list {
+        .feed-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            max-height: 240px;
+            gap: 10px;
+            max-height: 300px;
             overflow-y: auto;
+            padding-right: 4px;
         }
 
         .feed-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
-            border-radius: var(--radius-md);
+            justify-content: space-between;
+            padding: 14px 16px;
             background: var(--bg-primary);
             border: 1px solid var(--border-light);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            transition: all var(--transition-base);
-            animation: feedItemIn 0.4s ease;
+            border-radius: 14px;
+            gap: 12px;
         }
 
-        @keyframes feedItemIn {
-            from { opacity: 0; transform: translateX(-8px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .feed-item:hover {
-            border-color: var(--accent);
-            background: var(--accent-soft);
-            transform: translateY(-1px);
-        }
-
-        .feed-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            flex-shrink: 0;
+        .feed-user {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.85rem;
-            background: var(--primary-soft);
-            color: var(--primary);
-            font-weight: 700;
-            position: relative;
-            overflow: visible;
-        }
-
-        .feed-avatar img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .feed-avatar .rank-badge {
-            position: absolute;
-            bottom: -3px;
-            right: -3px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            font-size: 0.55rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid var(--bg-card);
-            box-shadow: var(--shadow-xs);
-            line-height: 1;
-        }
-
-        .rank-ouro { background: #f0b90b; color: #5c3d00; }
-        .rank-prata { background: #c0c0c0; color: #3a3a3a; }
-        .rank-bronze { background: #cd7f32; color: #fff; }
-
-        .feed-content {
-            flex: 1;
+            gap: 12px;
             min-width: 0;
         }
 
-        .feed-content strong {
-            color: var(--text-primary);
+        .feed-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .feed-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .feed-text strong {
+            color: var(--text-primary);
         }
 
         .feed-time {
-            font-size: 0.68rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             white-space: nowrap;
+            flex-shrink: 0;
         }
+
+        /* FIM NOVA SEÇÃO COMUNIDADE */
 
         .tooltip {
             position: relative;
@@ -2695,13 +2660,14 @@
             .motivational-banner { flex-direction: column; text-align: center; gap: 12px }
             .motivational-brain { width: 56px; height: 56px; font-size: 1.6rem }
             .motivational-quote { font-size: 0.9rem }
-            .community-feed .feed-list { max-height: 180px }
+            .feed-list { max-height: 280px; }
+            .feed-item { flex-wrap: wrap; gap: 8px; }
+            .feed-time { margin-left: auto; }
             .focus-fox { width: 90px; height: 90px; font-size: 3rem }
             .focus-ring-container { width: 200px; height: 200px }
             .avatar-game-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
             .avatar-game-img-wrap { width: 70px; height: 70px; }
             .feed-avatar { width: 30px; height: 30px; }
-            .feed-item { font-size: 0.75rem; padding: 8px 10px; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none }
@@ -2795,11 +2761,22 @@
                 <div class="motivational-author" id="motivationalAuthor"></div>
             </div><button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button></div>
 
-        <div class="community-feed">
+        <!-- NOVA SEÇÃO COMUNIDADE -->
+        <section class="community-feed">
             <div class="feed-header">
-                <div class="feed-title"><i class="fas fa-users"></i> Comunidade VULP+ <span class="live-dot"></span></div><span style="font-size:0.72rem;color:var(--text-muted)">Atividades recentes de colegas</span></div>
-            <div class="feed-list" id="communityFeedList"></div>
-        </div>
+                <div class="feed-title">
+                    <i class="fas fa-users"></i>
+                    <span>Comunidade VULP+</span>
+                    <div class="online-badge">
+                        🔥 <span id="onlineCount">47</span> online agora
+                    </div>
+                </div>
+                <span class="feed-live">Atividades em tempo real</span>
+            </div>
+            <div class="feed-list" id="communityFeedList">
+                <!-- itens gerados dinamicamente -->
+            </div>
+        </section>
 
         <section class="dashboard-grid" id="kpiGrid">
             <div class="kpi-card"><div class="kpi-icon acertos"><i class="fas fa-check-circle"></i></div><div class="kpi-info"><div class="kpi-label">Acertos Totais</div><div class="kpi-value" id="kpiCorrect">0</div><div class="kpi-sub" id="kpiCorrectSub">0% de aproveitamento</div><div class="kpi-encouragement" id="kpiCorrectEnc"><i class="fas fa-users"></i><span></span></div></div></div>
@@ -2996,138 +2973,67 @@
         function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000) }
         atualizarOnlineEstudantes();
 
-        // ========== SISTEMA DE FEED DA COMUNIDADE APRIMORADO ==========
-        const usuariosSimulados = [
-            // Categoria: Militar
-            { nickname: 'PRFBrabo', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Masculino_otkj87.png', categoria: 'Militar', ranking: 'ouro' },
-            { nickname: 'CaveiraCESPE', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Militar_Masculino_tsnjgq.png', categoria: 'Militar', ranking: 'prata' },
-            { nickname: 'MaratonaPF', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policia_Federal_Masculino_nu98oa.png', categoria: 'Militar', ranking: 'ouro' },
-            { nickname: 'GuerreiraPRF', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Feminino_apgwco.png', categoria: 'Militar', ranking: 'prata' },
-            { nickname: 'SoldadoDaAprovação', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_Exercito_Feminino_hjf8ag.png', categoria: 'Militar', ranking: 'bronze' },
-            { nickname: 'MarinhaGuerreiro', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_Marinha_Masculino_k5b0vw.png', categoria: 'Militar', ranking: 'prata' },
-            { nickname: 'BombeiroElite', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/Bombeiro_Militar_Masculino_buojec.png', categoria: 'Militar', ranking: 'ouro' },
-            { nickname: 'FABConcurseira', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Militar_aeron%C3%A1utica_Feminino_flrs3k.png', categoria: 'Militar', ranking: 'bronze' },
-            { nickname: 'AeronautaFocado', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_aeron%C3%A1utica_Masculino_d1brfn.png', categoria: 'Militar', ranking: 'prata' },
-            { nickname: 'PolicialFederal2026', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Federal_Feminino_hsysup.png', categoria: 'Militar', ranking: 'bronze' },
-            { nickname: 'GuardaMunicipalSP', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Masculino_ywfzrl.png', categoria: 'Militar', ranking: 'bronze' },
-            { nickname: 'PenalMaster', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Masculino_ijydfq.png', categoria: 'Militar', ranking: 'prata' },
-            { nickname: 'GuardaFemFoco', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Feminino_fajwzx.png', categoria: 'Militar', ranking: 'bronze' },
-            { nickname: 'AgentePenitenciaria', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Feminino_cbm6hi.png', categoria: 'Militar', ranking: 'bronze' },
-
-            // Categoria: Fiscal
-            { nickname: 'FuturaAuditora', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', categoria: 'Fiscal', ranking: 'ouro' },
-            { nickname: 'MissãoReceita', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', categoria: 'Fiscal', ranking: 'prata' },
-            { nickname: 'SEFAZPro', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', categoria: 'Fiscal', ranking: 'ouro' },
-            { nickname: 'ControleTotal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_pzh0ut.png', categoria: 'Fiscal', ranking: 'prata' },
-            { nickname: 'TCUemFoco', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_Mulher_plstuz.png', categoria: 'Fiscal', ranking: 'bronze' },
-            { nickname: 'CGUAnalista', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_pzh0ut.png', categoria: 'Fiscal', ranking: 'prata' },
-            { nickname: 'AuditorFiscalRJ', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', categoria: 'Fiscal', ranking: 'ouro' },
-
-            // Categoria: Jurídico
-            { nickname: 'DelegadoFocus', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Masculino_lyvelg.png', categoria: 'Jurídico', ranking: 'ouro' },
-            { nickname: 'ConstitucionalPro', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Jurídico', ranking: 'prata' },
-            { nickname: 'LeiSecaMaster', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Jurídico', ranking: 'bronze' },
-            { nickname: 'PlantãoJurídico', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Perito_criminal_Masculino_kokwg1.png', categoria: 'Jurídico', ranking: 'prata' },
-            { nickname: 'DefensorElite', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Perito_criminal_Feminino_ukovop.png', categoria: 'Jurídico', ranking: 'bronze' },
-            { nickname: 'ProcuradoraFoco', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Jurídico', ranking: 'ouro' },
-
-            // Categoria: Tribunais
-            { nickname: 'TribunaisElite', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Tribunais', ranking: 'prata' },
-            { nickname: 'AnalistaTRT', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Tribunais', ranking: 'bronze' },
-            { nickname: 'TécnicoJud', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/drilldown_izbwg8.png', categoria: 'Tribunais', ranking: 'bronze' },
-
-            // Categoria: Saúde
-            { nickname: 'EnfermeiraAprovada', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Saúde', ranking: 'prata' },
-            { nickname: 'MedicinaLegal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Perito_criminal_Masculino_kokwg1.png', categoria: 'Saúde', ranking: 'ouro' },
-            { nickname: 'FarmacêuticoPúblico', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Saúde', ranking: 'bronze' },
-
-            // Categoria: Educação
-            { nickname: 'ProfessorFederal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Educação', ranking: 'prata' },
-            { nickname: 'ProfMunicipal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Educação', ranking: 'bronze' },
-
-            // Categoria: Administrativo
-            { nickname: 'GestorPúblico', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Administrativo', ranking: 'prata' },
-            { nickname: 'AnalistaADM', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Administrativo', ranking: 'bronze' },
-
-            // Categoria: Técnico / Geral
-            { nickname: 'AnaFiscal2026', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', categoria: 'Geral', ranking: 'ouro' },
-            { nickname: 'EstudaQuePassa', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
-            { nickname: 'VagaÉMinha', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'prata' },
-            { nickname: 'RumoAoTopo', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
-            { nickname: 'AprovadoEmConstrução', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'bronze' },
-            { nickname: 'JornadaSEFAZ', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', categoria: 'Geral', ranking: 'prata' },
-            { nickname: 'EstratégiaFederal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policia_Federal_Masculino_nu98oa.png', categoria: 'Geral', ranking: 'ouro' },
-            { nickname: 'FocoNoEdital', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
-            { nickname: 'MetaAprovação', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'prata' },
-            { nickname: 'DisciplinaTotal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
-            { nickname: 'ConsistênciaJá', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'prata' },
-            { nickname: 'CicloDeEstudos', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/drilldown_izbwg8.png', categoria: 'Geral', ranking: 'bronze' },
-            { nickname: 'SimuladosBr', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'prata' },
-            { nickname: 'RevisãoTotal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'bronze' }
+        // ========== NOVO FEED DA COMUNIDADE ==========
+        const nomesAtividades = ['Amanda', 'Renata', 'Larissa', 'Tatiane', 'Simone', 'Carlos', 'Pedro', 'Juliana', 'Marcos', 'Fernanda', 'Beatriz', 'Rafael', 'Patrícia', 'Bruno', 'Camila'];
+        const acoesAtividades = [
+            'recebeu ajuda em', 'respondeu dúvida sobre', 'compartilhou resumo de',
+            'finalizou simulado de', 'iniciou revisão de', 'concluiu ciclo de',
+            'desbloqueou conquista em', 'comentou no tópico de', 'revisou flashcards de'
         ];
-
-        const disciplinasComunidade = [
+        const disciplinasFeed = [
             "Direito Constitucional", "Língua Portuguesa", "Raciocínio Lógico",
             "Direito Administrativo", "Matemática", "Informática", "Direito Penal",
-            "Direito Tributário", "Contabilidade", "Atualidades", "AFO",
-            "Direito do Trabalho", "Economia"
+            "Direito Tributário", "Contabilidade", "Atualidades"
         ];
+        const coresAvatar = ['#F97316', '#3B82F6', '#06B6D4', '#8B5CF6', '#A855F7', '#EC4899', '#14B8A6', '#EAB308', '#6366F1', '#F43F5E'];
 
-        function gerarFeedComunidade() {
-            const itens = [];
+        function gerarAtividades() {
+            const atividades = [];
             const usados = new Set();
-            const maxItens = 7;
-            for (let i = 0; i < maxItens; i++) {
-                let usuario;
-                do { usuario = usuariosSimulados[Math.floor(Math.random() * usuariosSimulados.length)]; }
-                while (usados.has(usuario.nickname) && usados.size < usuariosSimulados.length);
-                usados.add(usuario.nickname);
-                const disciplina = disciplinasComunidade[Math.floor(Math.random() * disciplinasComunidade.length)];
-                const minutosAtras = Math.floor(Math.random() * 180);
-                const acoes = [
-                    { texto: `completou <strong>${Math.floor(Math.random() * 40 + 10)} questões</strong> de`, icone: 'fa-check-circle' },
-                    { texto: `entrou no <strong>Modo Caverna</strong>`, icone: 'fa-door-open' },
-                    { texto: `desbloqueou <strong>ranking ${usuario.ranking.charAt(0).toUpperCase() + usuario.ranking.slice(1)}</strong>`, icone: 'fa-trophy' },
-                    { texto: `iniciou <strong>revisão</strong> de`, icone: 'fa-sync-alt' },
-                    { texto: `acertou <strong>${Math.floor(Math.random() * 20 + 5)} questões consecutivas</strong> de`, icone: 'fa-fire' },
-                    { texto: `alcançou <strong>${Math.floor(Math.random() * 20 + 75)}% de aproveitamento</strong> em`, icone: 'fa-bullseye' },
-                    { texto: `compartilhou <strong>resumo</strong> de`, icone: 'fa-share-alt' },
-                    { texto: `finalizou <strong>simulado</strong> de`, icone: 'fa-file-alt' },
-                    { texto: `começou <strong>ciclo de estudos</strong> de`, icone: 'fa-redo-alt' },
-                    { texto: `atingiu <strong>${Math.floor(Math.random() * 10 + 3)} dias</strong> de streak em`, icone: 'fa-calendar-check' }
-                ];
-                const acao = acoes[Math.floor(Math.random() * acoes.length)];
-                const tempoStr = minutosAtras < 3 ? 'agora mesmo' : (minutosAtras < 60 ? `há ${minutosAtras}min` : `há ${Math.floor(minutosAtras / 60)}h`);
-                itens.push({ usuario, disciplina, acao, tempoStr, tempoMin: minutosAtras });
+            for (let i = 0; i < 7; i++) {
+                let nome;
+                do { nome = nomesAtividades[Math.floor(Math.random() * nomesAtividades.length)]; }
+                while (usados.has(nome) && usados.size < nomesAtividades.length);
+                usados.add(nome);
+                const acao = acoesAtividades[Math.floor(Math.random() * acoesAtividades.length)];
+                const disciplina = disciplinasFeed[Math.floor(Math.random() * disciplinasFeed.length)];
+                const minutos = Math.floor(Math.random() * 120) + 1;
+                const tempo = minutos < 5 ? 'agora mesmo' : `há ${minutos}min`;
+                const cor = coresAvatar[Math.floor(Math.random() * coresAvatar.length)];
+                atividades.push({ nome, acao, disciplina, tempo, cor });
             }
-            itens.sort((a, b) => a.tempoMin - b.tempoMin);
-            return itens;
+            return atividades;
         }
 
-        function renderizarFeedComunidade() {
+        function renderizarFeed() {
             const lista = document.getElementById('communityFeedList');
-            const eventos = gerarFeedComunidade();
-            const iconesRanking = { ouro: '👑', prata: '🥈', bronze: '🥉' };
-            lista.innerHTML = eventos.map(e => {
-                const rankClass = `rank-${e.usuario.ranking}`;
-                const rankIcon = iconesRanking[e.usuario.ranking] || '';
-                return `<div class="feed-item">
-                    <div class="feed-avatar">
-                        <img src="${e.usuario.avatarUrl}" alt="${e.usuario.nickname}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'fas fa-user-circle\\'></i>';">
-                        <span class="rank-badge ${rankClass}">${rankIcon || e.usuario.ranking.charAt(0).toUpperCase()}</span>
+            const atividades = gerarAtividades();
+            lista.innerHTML = atividades.map(a => `
+                <div class="feed-item">
+                    <div class="feed-user">
+                        <div class="feed-avatar" style="background:${a.cor}; color:white;">${a.nome.charAt(0)}</div>
+                        <div class="feed-text">
+                            <strong>${a.nome}</strong> ${a.acao} ${a.disciplina}
+                        </div>
                     </div>
-                    <div class="feed-content">
-                        <strong>${e.usuario.nickname}</strong> ${e.acao.texto}${e.acao.texto.endsWith('de') ? ` <strong>${e.disciplina}</strong>` : ''}
-                        <span style="font-size:0.65rem;color:var(--text-muted);margin-left:4px;">· ${e.usuario.categoria}</span>
-                    </div>
-                    <div class="feed-time">${e.tempoStr}</div>
-                </div>`;
-            }).join('');
+                    <div class="feed-time">${a.tempo}</div>
+                </div>
+            `).join('');
         }
 
-        function atualizarFeedPeriodicamente() {
-            renderizarFeedComunidade();
-            setInterval(renderizarFeedComunidade, 35000 + Math.random() * 25000);
+        // Contador online
+        function atualizarContadorOnline() {
+            const onlineEl = document.getElementById('onlineCount');
+            if (onlineEl) {
+                onlineEl.textContent = Math.floor(Math.random() * 10) + 43;
+            }
+        }
+
+        // Inicialização do feed
+        function iniciarFeedComunidade() {
+            renderizarFeed();
+            setInterval(renderizarFeed, 35000); // atualiza feed a cada 35s
+            setInterval(atualizarContadorOnline, 4000); // contador online a cada 4s
         }
 
         // ========== SAUDAÇÃO ==========
@@ -3273,7 +3179,7 @@
         renderizarTabela('', null, 'asc');
         atualizarTimer();
         refreshDashboard();
-        atualizarFeedPeriodicamente();
+        iniciarFeedComunidade();
     </script>
 </body>
 </html>
