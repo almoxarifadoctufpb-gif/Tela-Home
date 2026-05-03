@@ -12,10 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
         :root {
             --primary: #1155cc;
@@ -1582,16 +1580,23 @@
             font-size: 0.8rem;
             color: var(--text-secondary);
             transition: all var(--transition-base);
+            animation: feedItemIn 0.4s ease;
+        }
+
+        @keyframes feedItemIn {
+            from { opacity: 0; transform: translateX(-8px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .feed-item:hover {
             border-color: var(--accent);
             background: var(--accent-soft);
+            transform: translateY(-1px);
         }
 
         .feed-avatar {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             flex-shrink: 0;
             display: flex;
@@ -1601,12 +1606,36 @@
             background: var(--primary-soft);
             color: var(--primary);
             font-weight: 700;
+            position: relative;
+            overflow: visible;
         }
 
-        .feed-avatar.highlight {
-            background: var(--accent-soft);
-            color: var(--accent);
+        .feed-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
         }
+
+        .feed-avatar .rank-badge {
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            font-size: 0.55rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--bg-card);
+            box-shadow: var(--shadow-xs);
+            line-height: 1;
+        }
+
+        .rank-ouro { background: #f0b90b; color: #5c3d00; }
+        .rank-prata { background: #c0c0c0; color: #3a3a3a; }
+        .rank-bronze { background: #cd7f32; color: #fff; }
 
         .feed-content {
             flex: 1;
@@ -1615,6 +1644,7 @@
 
         .feed-content strong {
             color: var(--text-primary);
+            font-weight: 700;
         }
 
         .feed-time {
@@ -1727,21 +1757,13 @@
 
         @keyframes foxFloat {
             0%,
-            100% {
-                transform: translateY(0)
-            }
-            50% {
-                transform: translateY(-8px)
-            }
+            100% { transform: translateY(0) }
+            50% { transform: translateY(-8px) }
         }
 
         @keyframes spinSlow {
-            from {
-                transform: rotate(0deg)
-            }
-            to {
-                transform: rotate(360deg)
-            }
+            from { transform: rotate(0deg) }
+            to { transform: rotate(360deg) }
         }
 
         .focus-ring-container {
@@ -1958,7 +1980,6 @@
             box-shadow: var(--shadow-xs);
         }
 
-        /* ========== NOVOS ESTILOS PARA TELA DE AVATAR GAME ========== */
         .avatar-category-bar {
             display: flex;
             gap: 10px;
@@ -2095,8 +2116,6 @@
             max-width: 100%;
         }
 
-        /* ========== FIM NOVOS ESTILOS ========== */
-
         .profile-avatar-display {
             width: 100px;
             height: 100px;
@@ -2214,13 +2233,8 @@
             animation: trophyFloat 3s ease-in-out infinite;
         }
         @keyframes trophyFloat {
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-            50% {
-                transform: translateY(-10px)
-            }
+            0%, 100% { transform: translateY(0) }
+            50% { transform: translateY(-10px) }
         }
         .confetti-container {
             position: absolute;
@@ -2241,14 +2255,8 @@
             animation: confettiFall 3s linear infinite;
         }
         @keyframes confettiFall {
-            0% {
-                transform: translateY(-40px) rotate(0deg);
-                opacity: 1
-            }
-            100% {
-                transform: translateY(320px) rotate(720deg);
-                opacity: 0
-            }
+            0% { transform: translateY(-40px) rotate(0deg); opacity: 1 }
+            100% { transform: translateY(320px) rotate(720deg); opacity: 0 }
         }
         #quemSomosModal .manifesto-text {
             text-align: left;
@@ -2322,13 +2330,8 @@
             transform: rotate(180deg);
         }
         @keyframes camiPulse {
-            0%,
-            100% {
-                box-shadow: 0 3px 14px rgba(255, 122, 0, 0.3)
-            }
-            50% {
-                box-shadow: 0 6px 24px rgba(255, 122, 0, 0.5)
-            }
+            0%, 100% { box-shadow: 0 3px 14px rgba(255, 122, 0, 0.3) }
+            50% { box-shadow: 0 6px 24px rgba(255, 122, 0, 0.5) }
         }
         #camiFAB .cami-notification-dot {
             position: absolute;
@@ -2343,13 +2346,8 @@
             animation: camiDotPulse 2s infinite;
         }
         @keyframes camiDotPulse {
-            0%,
-            100% {
-                transform: scale(1)
-            }
-            50% {
-                transform: scale(1.5)
-            }
+            0%, 100% { transform: scale(1) }
+            50% { transform: scale(1.5) }
         }
         #camiChatWindow {
             position: fixed;
@@ -2442,14 +2440,8 @@
             animation: camiMsgIn 0.3s ease;
         }
         @keyframes camiMsgIn {
-            from {
-                opacity: 0;
-                transform: translateY(8px)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
+            from { opacity: 0; transform: translateY(8px) }
+            to { opacity: 1; transform: translateY(0) }
         }
         .cami-message.bot {
             background: var(--bg-primary);
@@ -2476,21 +2468,11 @@
             background: var(--text-muted);
             animation: camiTypingBounce 1.4s infinite;
         }
-        .cami-message .cami-typing span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        .cami-message .cami-typing span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
+        .cami-message .cami-typing span:nth-child(2) { animation-delay: 0.2s; }
+        .cami-message .cami-typing span:nth-child(3) { animation-delay: 0.4s; }
         @keyframes camiTypingBounce {
-            0%,
-            60%,
-            100% {
-                transform: translateY(0)
-            }
-            30% {
-                transform: translateY(-7px)
-            }
+            0%, 60%, 100% { transform: translateY(0) }
+            30% { transform: translateY(-7px) }
         }
         #camiQuickReplies {
             display: flex;
@@ -2592,24 +2574,12 @@
             border-color: var(--danger);
         }
         @keyframes toastIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
+            from { opacity: 0; transform: translateY(16px) }
+            to { opacity: 1; transform: translateY(0) }
         }
         @keyframes toastOut {
-            from {
-                opacity: 1;
-                transform: translateY(0)
-            }
-            to {
-                opacity: 0;
-                transform: translateY(16px)
-            }
+            from { opacity: 1; transform: translateY(0) }
+            to { opacity: 0; transform: translateY(16px) }
         }
 
         .app-footer {
@@ -2702,139 +2672,50 @@
             margin: 0 3px;
         }
         @keyframes heartBeat {
-            0%,
-            100% {
-                transform: scale(1)
-            }
-            25% {
-                transform: scale(1.2)
-            }
-            50% {
-                transform: scale(1)
-            }
+            0%, 100% { transform: scale(1) }
+            25% { transform: scale(1.2) }
+            50% { transform: scale(1) }
         }
 
         @media (max-width: 768px) {
-            #topbar {
-                padding: 0 12px
-            }
-            #topbar .topbar-logo span {
-                display: none
-            }
-            .notification-dropdown {
-                width: calc(100vw - 40px);
-                right: -10px
-            }
-            .chart-grid {
-                grid-template-columns: 1fr
-            }
-            .chart-canvas {
-                height: 250px
-            }
-            .kpi-value {
-                font-size: 1.4rem
-            }
-            .timer-display {
-                font-size: 2rem;
-                min-width: 140px
-            }
-            .focus-ring-container {
-                width: min(65vw, 200px);
-                height: min(65vw, 200px)
-            }
-            .sidebar-logo {
-                width: 110px !important
-            }
-            .sidebar-avatar {
-                width: 48px;
-                height: 48px
-            }
-            #camiChatWindow {
-                width: calc(100vw - 32px);
-                left: 16px;
-                bottom: 96px;
-                height: 440px
-            }
-            #camiFAB {
-                bottom: 24px;
-                left: 16px;
-                width: 50px;
-                height: 50px
-            }
-            .app-header {
-                flex-direction: column
-            }
-            .header-actions {
-                width: 100%;
-                justify-content: flex-start
-            }
-            .motivational-banner {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px
-            }
-            .motivational-brain {
-                width: 56px;
-                height: 56px;
-                font-size: 1.6rem
-            }
-            .motivational-quote {
-                font-size: 0.9rem
-            }
-            .community-feed .feed-list {
-                max-height: 180px
-            }
-            .focus-fox {
-                width: 90px;
-                height: 90px;
-                font-size: 3rem
-            }
-            .focus-ring-container {
-                width: 200px;
-                height: 200px
-            }
-            .avatar-game-grid {
-                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-            }
-            .avatar-game-img-wrap {
-                width: 70px;
-                height: 70px;
-            }
+            #topbar { padding: 0 12px }
+            #topbar .topbar-logo span { display: none }
+            .notification-dropdown { width: calc(100vw - 40px); right: -10px }
+            .chart-grid { grid-template-columns: 1fr }
+            .chart-canvas { height: 250px }
+            .kpi-value { font-size: 1.4rem }
+            .timer-display { font-size: 2rem; min-width: 140px }
+            .focus-ring-container { width: min(65vw, 200px); height: min(65vw, 200px) }
+            .sidebar-logo { width: 110px !important }
+            .sidebar-avatar { width: 48px; height: 48px }
+            #camiChatWindow { width: calc(100vw - 32px); left: 16px; bottom: 96px; height: 440px }
+            #camiFAB { bottom: 24px; left: 16px; width: 50px; height: 50px }
+            .app-header { flex-direction: column }
+            .header-actions { width: 100%; justify-content: flex-start }
+            .motivational-banner { flex-direction: column; text-align: center; gap: 12px }
+            .motivational-brain { width: 56px; height: 56px; font-size: 1.6rem }
+            .motivational-quote { font-size: 0.9rem }
+            .community-feed .feed-list { max-height: 180px }
+            .focus-fox { width: 90px; height: 90px; font-size: 3rem }
+            .focus-ring-container { width: 200px; height: 200px }
+            .avatar-game-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+            .avatar-game-img-wrap { width: 70px; height: 70px; }
+            .feed-avatar { width: 30px; height: 30px; }
+            .feed-item { font-size: 0.75rem; padding: 8px 10px; }
         }
         @media (min-width: 48em) {
-            #hamburgerBtn {
-                display: none
-            }
-            #sidebar {
-                transform: translateX(0);
-                z-index: 50
-            }
-            #sidebarOverlay {
-                display: none
-            }
-            body {
-                padding-left: var(--sidebar-width)
-            }
-            #topbar {
-                left: var(--sidebar-width)
-            }
-            .app-footer {
-                padding-left: calc(var(--sidebar-width) + 24px)
-            }
-            #camiFAB {
-                left: calc(var(--sidebar-width) + 28px)
-            }
+            #hamburgerBtn { display: none }
+            #sidebar { transform: translateX(0); z-index: 50 }
+            #sidebarOverlay { display: none }
+            body { padding-left: var(--sidebar-width) }
+            #topbar { left: var(--sidebar-width) }
+            .app-footer { padding-left: calc(var(--sidebar-width) + 24px) }
+            #camiFAB { left: calc(var(--sidebar-width) + 28px) }
         }
         @media (max-width: 47.99em) {
-            #topbar {
-                left: 0
-            }
-            #closeSidebarBtn {
-                display: flex
-            }
-            #sidebar .sidebar-header .sidebar-logo {
-                width: 100px
-            }
+            #topbar { left: 0 }
+            #closeSidebarBtn { display: flex }
+            #sidebar .sidebar-header .sidebar-logo { width: 100px }
         }
     </style>
 </head>
@@ -2967,7 +2848,7 @@
         <div id="avatarGridContainer" class="avatar-game-grid"></div>
     </div></div></div>
 
-    <!-- MODAIS EXISTENTES (mantidos) -->
+    <!-- DEMAIS MODAIS (mantidos) -->
     <div class="modal-overlay" id="exportModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Gere um relatório profissional em PDF:</p><div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button><button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button></div><div class="share-summary-box" id="pdfPreviewInfo"><strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br><strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.</div></div></div>
     <div class="modal-overlay" id="shareModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-share-alt"></i> Compartilhar</h3><button class="modal-close" id="closeShareModal"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Compartilhe seu desempenho:</p><div class="share-summary-box" id="shareSummaryText"></div><div class="share-actions"><button class="btn btn-whatsapp btn-sm" id="shareWhatsAppBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button><button class="btn btn-sm" id="shareCopyBtn"><i class="fas fa-copy"></i> Copiar</button><button class="btn btn-sm" id="shareCopyLinkBtn"><i class="fas fa-link"></i> Link</button></div></div></div>
     <div class="modal-overlay" id="addDisciplinaModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-plus-circle"></i> Adicionar Disciplina</h3><button class="modal-close" id="closeAddDisciplinaModal"><i class="fas fa-times"></i></button></div><label for="newDisciplinaInput">Nome da disciplina</label><input type="text" id="newDisciplinaInput" placeholder="Digite o nome..." autocomplete="off"><p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px">Sugestões:</p><div class="suggestions-grid" id="suggestionsGrid"></div><div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end"><button class="btn btn-sm" id="cancelAddDisciplinaBtn">Cancelar</button><button class="btn btn-primary btn-sm" id="confirmAddDisciplinaBtn"><i class="fas fa-check"></i> Adicionar</button></div></div></div>
@@ -2979,7 +2860,7 @@
     <div id="camiChatWindow"><div id="camiChatHeader"><div class="cami-avatar">🦊</div><div class="cami-header-info"><div class="cami-header-name">Cami · Assistente</div><div class="cami-header-status">Online</div></div><button id="camiChatMinimize">✕</button></div><div id="camiChatMessages"></div><div id="camiQuickReplies"><button class="cami-quick-btn" data-topic="metricas">Métricas</button><button class="cami-quick-btn" data-topic="cronometro">Cronômetro</button><button class="cami-quick-btn" data-topic="metas">Metas</button><button class="cami-quick-btn" data-topic="dashboard">Dashboard</button><button class="cami-quick-btn" data-topic="backup">Backup</button></div><div id="camiChatInputArea"><input type="text" id="camiChatInput" placeholder="Digite sua dúvida..."><button id="camiSendBtn"><i class="fas fa-paper-plane"></i></button></div></div>
 
     <script>
-        // ========== SVG DEFAULT (RAPOSA) ==========
+        // ========== SVG DEFAULT ==========
         function createFoxAvatarSvg() {
             return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="50" cy="50" r="48" fill="#ff7a00"/>
@@ -2994,9 +2875,8 @@
             </svg>`;
         }
 
-        // ========== NOVOS AVATARES GAME (IMAGENS) ==========
+        // ========== AVATARES GAME ==========
         const gameAvatars = [
-            // MILITAR
             { name: 'PRF Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Feminino_apgwco.png', category: 'militar' },
             { name: 'PRF Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Masculino_otkj87.png', category: 'militar' },
             { name: 'PM Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Militar_Masculino_tsnjgq.png', category: 'militar' },
@@ -3013,7 +2893,6 @@
             { name: 'Guarda Municipal Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Feminino_fajwzx.png', category: 'militar' },
             { name: 'Agente Penitenciário Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Feminino_cbm6hi.png', category: 'militar' },
             { name: 'Agente Penitenciário Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Masculino_ijydfq.png', category: 'militar' },
-            // NÃO MILITAR
             { name: 'Concurseiro', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', category: 'civil' },
             { name: 'Concurseira', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', category: 'civil' },
             { name: 'Controle Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_pzh0ut.png', category: 'civil' },
@@ -3033,7 +2912,6 @@
             const svgContainers = [document.getElementById('sidebarAvatarSvg'), document.getElementById('profileAvatarSvg')];
             const imgEls = [document.getElementById('sidebarAvatarImg'), document.getElementById('profileAvatarImg')];
             const defaultSvg = createFoxAvatarSvg();
-
             const showImg = (url) => {
                 svgContainers.forEach(el => { if (el) el.style.display = 'none'; });
                 imgEls.forEach(el => { if (el) { el.src = url; el.style.display = 'block'; } });
@@ -3042,7 +2920,6 @@
                 imgEls.forEach(el => { if (el) el.style.display = 'none'; });
                 svgContainers.forEach(el => { if (el) { el.innerHTML = defaultSvg; el.style.display = 'block'; } });
             };
-
             if (userProfile.avatarType === 'photo' && userProfile.avatarPhoto) {
                 showImg(userProfile.avatarPhoto);
             } else if (userProfile.avatarType === 'game' && userProfile.avatarGameUrl) {
@@ -3056,7 +2933,6 @@
         }
 
         let currentAvatarCategory = 'militar';
-
         function buildAvatarGrid() {
             const container = document.getElementById('avatarGridContainer');
             if (!container) return;
@@ -3066,11 +2942,8 @@
                 container.innerHTML = filtered.map(av => {
                     const selected = (userProfile.avatarType === 'game' && userProfile.avatarGameUrl === av.url) ? ' selected' : '';
                     return `<div class="avatar-game-card${selected}" data-url="${av.url}" onclick="selectGameAvatar('${av.url.replace(/'/g,"\\'")}')">
-                        <div class="avatar-game-img-wrap">
-                            <img src="${av.url}" alt="${av.name}" class="avatar-game-img" loading="lazy">
-                        </div>
-                        <span class="avatar-game-label">${av.name}</span>
-                    </div>`;
+                        <div class="avatar-game-img-wrap"><img src="${av.url}" alt="${av.name}" class="avatar-game-img" loading="lazy"></div>
+                        <span class="avatar-game-label">${av.name}</span></div>`;
                 }).join('');
                 container.style.opacity = '1';
             }, 150);
@@ -3087,7 +2960,6 @@
             toast('🎮 Avatar selecionado!');
         };
 
-        // Eventos da barra de categorias
         document.querySelectorAll('.avatar-category-btn').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 document.querySelectorAll('.avatar-category-btn').forEach(b => b.classList.remove('active'));
@@ -3097,7 +2969,6 @@
             });
         });
 
-        // Botões de abertura do perfil e editor
         document.getElementById('sidebarAvatar').addEventListener('click', () => { updateAllAvatarDisplays(); document.getElementById('profileModal').classList.add('active'); });
         document.getElementById('sidebarEditBadge').addEventListener('click', (e) => { e.stopPropagation(); updateAllAvatarDisplays(); document.getElementById('profileModal').classList.add('active'); });
         document.getElementById('topbarProfileBtn').addEventListener('click', () => { updateAllAvatarDisplays(); document.getElementById('profileModal').classList.add('active'); });
@@ -3108,11 +2979,7 @@
         document.getElementById('profileEditBadge').addEventListener('click', (e) => { e.stopPropagation(); document.getElementById('profileModal').classList.remove('active'); document.getElementById('editProfileModal').classList.add('active'); buildAvatarGrid(); document.querySelector('.profile-tab[data-tab="avatars"]').click(); });
         document.getElementById('closeEditProfileModal').addEventListener('click', () => document.getElementById('editProfileModal').classList.remove('active'));
         document.getElementById('editProfileModal').addEventListener('click', (e) => { if (e.target === document.getElementById('editProfileModal')) document.getElementById('editProfileModal').classList.remove('active'); });
-
-        // Tabs foto/avatar
         document.querySelectorAll('.profile-tab').forEach(tab => { tab.addEventListener('click', () => { document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active')); tab.classList.add('active'); document.getElementById('tabPhoto').style.display = tab.dataset.tab === 'photo' ? 'block' : 'none'; document.getElementById('tabAvatars').style.display = tab.dataset.tab === 'avatars' ? 'block' : 'none'; }); });
-
-        // Upload de foto
         document.getElementById('photoUploadArea').addEventListener('click', () => document.getElementById('photoFileInput').click());
         document.getElementById('photoFileInput').addEventListener('change', (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (ev) => { const img = new Image(); img.onload = () => { const canvas = document.createElement('canvas'); const size = 200; canvas.width = size; canvas.height = size; const ctx = canvas.getContext('2d'); const minDim = Math.min(img.width, img.height); const sx = (img.width - minDim) / 2, sy = (img.height - minDim) / 2; ctx.beginPath(); ctx.arc(size/2, size/2, size/2, 0, Math.PI*2); ctx.clip(); ctx.drawImage(img, sx, sy, minDim, minDim, 0, 0, size, size); const dataUrl = canvas.toDataURL('image/jpeg', 0.85); document.getElementById('photoPreview').src = dataUrl; document.getElementById('photoPreview').style.display = 'block'; document.getElementById('photoPreview').dataset.tempPhoto = dataUrl; }; img.src = ev.target.result; }; reader.readAsDataURL(file); });
         document.getElementById('savePhotoBtn').addEventListener('click', () => { const temp = document.getElementById('photoPreview').dataset.tempPhoto; if (temp) { userProfile.avatarType = 'photo'; userProfile.avatarPhoto = temp; userProfile.avatarGameUrl = null; saveProfile(); updateAllAvatarDisplays(); buildAvatarGrid(); toast('📸 Foto salva!'); } });
@@ -3129,12 +2996,139 @@
         function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000) }
         atualizarOnlineEstudantes();
 
-        // ========== FEED DA COMUNIDADE ==========
-        const comunidadeNomes = ["Maria", "João", "Ana", "Pedro", "Carla", "Lucas", "Juliana", "Rafael", "Fernanda", "Bruno", "Amanda", "Gustavo", "Patrícia", "Felipe", "Larissa", "Diego", "Camila", "Thiago", "Beatriz", "Marcos"];
-        const comunidadeDisciplinas = ["Direito Constitucional", "Língua Portuguesa", "Raciocínio Lógico", "Direito Administrativo", "Matemática", "Informática", "Direito Penal", "Contabilidade", "Atualidades", "Direito do Trabalho", "Economia", "Gestão de Pessoas", "Direito Tributário"];
-        function gerarFeedComunidade() { const e = []; for (let i = 0; i < 8; i++) { const n = comunidadeNomes[Math.floor(Math.random() * comunidadeNomes.length)]; const d = comunidadeDisciplinas[Math.floor(Math.random() * comunidadeDisciplinas.length)]; const m = Math.floor(Math.random() * 180); const acoes = [`completou <strong>${Math.floor(Math.random() * 50 + 10)} questões</strong> de`, `iniciou estudos em`, `atingiu <strong>${Math.floor(Math.random() * 20 + 5)} dias</strong> de streak em`, `acertou <strong>${Math.floor(Math.random() * 30 + 5)} questões seguidas</strong> de`, `alcançou <strong>${Math.floor(Math.random() * 91 + 10)}% de acerto</strong> em`]; const ac = acoes[Math.floor(Math.random() * acoes.length)]; e.push({ nome: n, disciplina: d, acao: ac, tempoStr: m < 5 ? 'agora mesmo' : `há ${m}min`, avatarCor: Math.floor(Math.random() * 5) }) } e.sort((a, b) => a.tempoStr === 'agora mesmo' ? -1 : 0); return e }
-        function renderizarFeedComunidade() { const fl = document.getElementById('communityFeedList'); const ev = gerarFeedComunidade(); const ca = ['#ff7a00', '#00c878', '#1155cc', '#ef4444', '#8b5cf6']; fl.innerHTML = ev.map(e => { const ini = e.nome.charAt(0); const cor = ca[e.avatarCor]; return `<div class="feed-item"><div class="feed-avatar highlight" style="background:${cor}20;color:${cor}">${ini}</div><div class="feed-content"><strong>${e.nome}</strong> ${e.acao} <strong>${e.disciplina}</strong></div><div class="feed-time">${e.tempoStr}</div></div>` }).join('') }
-        function atualizarFeedPeriodicamente() { renderizarFeedComunidade(); setInterval(renderizarFeedComunidade, 45000 + Math.random() * 30000) }
+        // ========== SISTEMA DE FEED DA COMUNIDADE APRIMORADO ==========
+        const usuariosSimulados = [
+            // Categoria: Militar
+            { nickname: 'PRFBrabo', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Masculino_otkj87.png', categoria: 'Militar', ranking: 'ouro' },
+            { nickname: 'CaveiraCESPE', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Militar_Masculino_tsnjgq.png', categoria: 'Militar', ranking: 'prata' },
+            { nickname: 'MaratonaPF', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policia_Federal_Masculino_nu98oa.png', categoria: 'Militar', ranking: 'ouro' },
+            { nickname: 'GuerreiraPRF', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Feminino_apgwco.png', categoria: 'Militar', ranking: 'prata' },
+            { nickname: 'SoldadoDaAprovação', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_Exercito_Feminino_hjf8ag.png', categoria: 'Militar', ranking: 'bronze' },
+            { nickname: 'MarinhaGuerreiro', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_Marinha_Masculino_k5b0vw.png', categoria: 'Militar', ranking: 'prata' },
+            { nickname: 'BombeiroElite', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/Bombeiro_Militar_Masculino_buojec.png', categoria: 'Militar', ranking: 'ouro' },
+            { nickname: 'FABConcurseira', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Militar_aeron%C3%A1utica_Feminino_flrs3k.png', categoria: 'Militar', ranking: 'bronze' },
+            { nickname: 'AeronautaFocado', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_aeron%C3%A1utica_Masculino_d1brfn.png', categoria: 'Militar', ranking: 'prata' },
+            { nickname: 'PolicialFederal2026', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Federal_Feminino_hsysup.png', categoria: 'Militar', ranking: 'bronze' },
+            { nickname: 'GuardaMunicipalSP', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Masculino_ywfzrl.png', categoria: 'Militar', ranking: 'bronze' },
+            { nickname: 'PenalMaster', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Masculino_ijydfq.png', categoria: 'Militar', ranking: 'prata' },
+            { nickname: 'GuardaFemFoco', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Feminino_fajwzx.png', categoria: 'Militar', ranking: 'bronze' },
+            { nickname: 'AgentePenitenciaria', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Feminino_cbm6hi.png', categoria: 'Militar', ranking: 'bronze' },
+
+            // Categoria: Fiscal
+            { nickname: 'FuturaAuditora', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', categoria: 'Fiscal', ranking: 'ouro' },
+            { nickname: 'MissãoReceita', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', categoria: 'Fiscal', ranking: 'prata' },
+            { nickname: 'SEFAZPro', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', categoria: 'Fiscal', ranking: 'ouro' },
+            { nickname: 'ControleTotal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_pzh0ut.png', categoria: 'Fiscal', ranking: 'prata' },
+            { nickname: 'TCUemFoco', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_Mulher_plstuz.png', categoria: 'Fiscal', ranking: 'bronze' },
+            { nickname: 'CGUAnalista', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_pzh0ut.png', categoria: 'Fiscal', ranking: 'prata' },
+            { nickname: 'AuditorFiscalRJ', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', categoria: 'Fiscal', ranking: 'ouro' },
+
+            // Categoria: Jurídico
+            { nickname: 'DelegadoFocus', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Masculino_lyvelg.png', categoria: 'Jurídico', ranking: 'ouro' },
+            { nickname: 'ConstitucionalPro', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Jurídico', ranking: 'prata' },
+            { nickname: 'LeiSecaMaster', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Jurídico', ranking: 'bronze' },
+            { nickname: 'PlantãoJurídico', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Perito_criminal_Masculino_kokwg1.png', categoria: 'Jurídico', ranking: 'prata' },
+            { nickname: 'DefensorElite', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Perito_criminal_Feminino_ukovop.png', categoria: 'Jurídico', ranking: 'bronze' },
+            { nickname: 'ProcuradoraFoco', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Jurídico', ranking: 'ouro' },
+
+            // Categoria: Tribunais
+            { nickname: 'TribunaisElite', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Tribunais', ranking: 'prata' },
+            { nickname: 'AnalistaTRT', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Tribunais', ranking: 'bronze' },
+            { nickname: 'TécnicoJud', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/drilldown_izbwg8.png', categoria: 'Tribunais', ranking: 'bronze' },
+
+            // Categoria: Saúde
+            { nickname: 'EnfermeiraAprovada', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Saúde', ranking: 'prata' },
+            { nickname: 'MedicinaLegal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Perito_criminal_Masculino_kokwg1.png', categoria: 'Saúde', ranking: 'ouro' },
+            { nickname: 'FarmacêuticoPúblico', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Saúde', ranking: 'bronze' },
+
+            // Categoria: Educação
+            { nickname: 'ProfessorFederal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Educação', ranking: 'prata' },
+            { nickname: 'ProfMunicipal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Educação', ranking: 'bronze' },
+
+            // Categoria: Administrativo
+            { nickname: 'GestorPúblico', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Administrativo', ranking: 'prata' },
+            { nickname: 'AnalistaADM', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Administrativo', ranking: 'bronze' },
+
+            // Categoria: Técnico / Geral
+            { nickname: 'AnaFiscal2026', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', categoria: 'Geral', ranking: 'ouro' },
+            { nickname: 'EstudaQuePassa', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
+            { nickname: 'VagaÉMinha', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'prata' },
+            { nickname: 'RumoAoTopo', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
+            { nickname: 'AprovadoEmConstrução', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'bronze' },
+            { nickname: 'JornadaSEFAZ', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', categoria: 'Geral', ranking: 'prata' },
+            { nickname: 'EstratégiaFederal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policia_Federal_Masculino_nu98oa.png', categoria: 'Geral', ranking: 'ouro' },
+            { nickname: 'FocoNoEdital', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
+            { nickname: 'MetaAprovação', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'prata' },
+            { nickname: 'DisciplinaTotal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'bronze' },
+            { nickname: 'ConsistênciaJá', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'prata' },
+            { nickname: 'CicloDeEstudos', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/drilldown_izbwg8.png', categoria: 'Geral', ranking: 'bronze' },
+            { nickname: 'SimuladosBr', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', categoria: 'Geral', ranking: 'prata' },
+            { nickname: 'RevisãoTotal', avatarUrl: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', categoria: 'Geral', ranking: 'bronze' }
+        ];
+
+        const disciplinasComunidade = [
+            "Direito Constitucional", "Língua Portuguesa", "Raciocínio Lógico",
+            "Direito Administrativo", "Matemática", "Informática", "Direito Penal",
+            "Direito Tributário", "Contabilidade", "Atualidades", "AFO",
+            "Direito do Trabalho", "Economia"
+        ];
+
+        function gerarFeedComunidade() {
+            const itens = [];
+            const usados = new Set();
+            const maxItens = 7;
+            for (let i = 0; i < maxItens; i++) {
+                let usuario;
+                do { usuario = usuariosSimulados[Math.floor(Math.random() * usuariosSimulados.length)]; }
+                while (usados.has(usuario.nickname) && usados.size < usuariosSimulados.length);
+                usados.add(usuario.nickname);
+                const disciplina = disciplinasComunidade[Math.floor(Math.random() * disciplinasComunidade.length)];
+                const minutosAtras = Math.floor(Math.random() * 180);
+                const acoes = [
+                    { texto: `completou <strong>${Math.floor(Math.random() * 40 + 10)} questões</strong> de`, icone: 'fa-check-circle' },
+                    { texto: `entrou no <strong>Modo Caverna</strong>`, icone: 'fa-door-open' },
+                    { texto: `desbloqueou <strong>ranking ${usuario.ranking.charAt(0).toUpperCase() + usuario.ranking.slice(1)}</strong>`, icone: 'fa-trophy' },
+                    { texto: `iniciou <strong>revisão</strong> de`, icone: 'fa-sync-alt' },
+                    { texto: `acertou <strong>${Math.floor(Math.random() * 20 + 5)} questões consecutivas</strong> de`, icone: 'fa-fire' },
+                    { texto: `alcançou <strong>${Math.floor(Math.random() * 20 + 75)}% de aproveitamento</strong> em`, icone: 'fa-bullseye' },
+                    { texto: `compartilhou <strong>resumo</strong> de`, icone: 'fa-share-alt' },
+                    { texto: `finalizou <strong>simulado</strong> de`, icone: 'fa-file-alt' },
+                    { texto: `começou <strong>ciclo de estudos</strong> de`, icone: 'fa-redo-alt' },
+                    { texto: `atingiu <strong>${Math.floor(Math.random() * 10 + 3)} dias</strong> de streak em`, icone: 'fa-calendar-check' }
+                ];
+                const acao = acoes[Math.floor(Math.random() * acoes.length)];
+                const tempoStr = minutosAtras < 3 ? 'agora mesmo' : (minutosAtras < 60 ? `há ${minutosAtras}min` : `há ${Math.floor(minutosAtras / 60)}h`);
+                itens.push({ usuario, disciplina, acao, tempoStr, tempoMin: minutosAtras });
+            }
+            itens.sort((a, b) => a.tempoMin - b.tempoMin);
+            return itens;
+        }
+
+        function renderizarFeedComunidade() {
+            const lista = document.getElementById('communityFeedList');
+            const eventos = gerarFeedComunidade();
+            const iconesRanking = { ouro: '👑', prata: '🥈', bronze: '🥉' };
+            lista.innerHTML = eventos.map(e => {
+                const rankClass = `rank-${e.usuario.ranking}`;
+                const rankIcon = iconesRanking[e.usuario.ranking] || '';
+                return `<div class="feed-item">
+                    <div class="feed-avatar">
+                        <img src="${e.usuario.avatarUrl}" alt="${e.usuario.nickname}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'fas fa-user-circle\\'></i>';">
+                        <span class="rank-badge ${rankClass}">${rankIcon || e.usuario.ranking.charAt(0).toUpperCase()}</span>
+                    </div>
+                    <div class="feed-content">
+                        <strong>${e.usuario.nickname}</strong> ${e.acao.texto}${e.acao.texto.endsWith('de') ? ` <strong>${e.disciplina}</strong>` : ''}
+                        <span style="font-size:0.65rem;color:var(--text-muted);margin-left:4px;">· ${e.usuario.categoria}</span>
+                    </div>
+                    <div class="feed-time">${e.tempoStr}</div>
+                </div>`;
+            }).join('');
+        }
+
+        function atualizarFeedPeriodicamente() {
+            renderizarFeedComunidade();
+            setInterval(renderizarFeedComunidade, 35000 + Math.random() * 25000);
+        }
 
         // ========== SAUDAÇÃO ==========
         (function() { const g = document.getElementById('sidebarGreeting'); if (g) { const h = new Date().getHours(); let s, e; if (h >= 5 && h < 12) { s = 'Bom dia'; e = '☀️' } else if (h >= 12 && h < 18) { s = 'Boa tarde'; e = '🌤️' } else { s = 'Boa noite'; e = '🌙' } g.innerHTML = `<span id="sidebarNicknameDisplay">${userProfile.nickname}</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Você não está sozinho nessa 💪</span>` } })();
@@ -3254,7 +3248,7 @@
 
         // ========== DASHBOARD ==========
         function computeMetrics() { try { const total = events.length; const correct = events.filter(e => e.correct === true).length; const wrong = total - correct; let totalTime = 0; for (const d of Object.values(data)) totalTime += (d.horasMinutos || 0); const avgTime = total > 0 ? Math.round(totalTime / total) : 0; const todayStr = new Date().toISOString().split('T')[0]; const todayCount = events.filter(e => e.timestamp.startsWith(todayStr)).length; const daysArr = [...new Set(events.map(e => e.timestamp.split('T')[0]))].sort(); let streak = 0, maxStreak = 0, cur = 0; if (daysArr.length) { const today = new Date(); let check = new Date(today); if (!daysArr.includes(todayStr)) check.setDate(check.getDate() - 1); while (daysArr.includes(check.toISOString().split('T')[0])) { streak++; check.setDate(check.getDate() - 1) } for (let i = 0; i < daysArr.length; i++) { if (i === 0) cur = 1; else { const diff = (new Date(daysArr[i]) - new Date(daysArr[i - 1])) / 86400000; cur = diff === 1 ? cur + 1 : 1 } maxStreak = Math.max(maxStreak, cur) } } const correctPercent = total ? ((correct / total) * 100).toFixed(1) : '0.0'; return { total, correct, wrong, totalTime, avgTime, todayCount, streak, maxStreak, correctPercent } } catch (e) { return { total: 0, correct: 0, wrong: 0, totalTime: 0, avgTime: 0, todayCount: 0, streak: 0, maxStreak: 0, correctPercent: '0.0' } } }
-        function renderKPIs() { const m = computeMetrics(); document.getElementById('kpiCorrect').textContent = m.correct; document.getElementById('kpiWrong').textContent = m.wrong; document.getElementById('kpiTime').textContent = formatHours(m.totalTime); document.getElementById('kpiStreak').textContent = m.streak; document.getElementById('kpiAccuracy').textContent = m.correctPercent + '%'; document.getElementById('kpiToday').textContent = m.todayCount; document.getElementById('kpiCorrectSub').textContent = m.correctPercent + '% de aproveitamento'; document.getElementById('kpiWrongSub').textContent = (m.total ? ((m.wrong / m.total) * 100).toFixed(1) : '0.0') + '% do total'; document.getElementById('kpiTimeSub').textContent = 'Média: ' + formatTime(m.avgTime) + '/questão'; document.getElementById('kpiStreakSub').textContent = 'Maior streak: ' + m.maxStreak; const ec = document.getElementById('kpiCorrectEnc'); if (ec && m.correct > 0) { const nomes = ["Maria", "João", "Ana", "Pedro", "Carla"]; ec.querySelector('span').textContent = nomes[Math.floor(Math.random() * nomes.length)] + ' também está evoluindo!' } const es = document.getElementById('kpiStreakEnc'); if (es && m.streak >= 3) es.querySelector('span').textContent = 'Sequência inspiradora!'; else if (es) es.querySelector('span').textContent = 'Consistência leva à aprovação'; document.getElementById('kpiTodaySub').textContent = 'Total: ' + m.total + ' questões'; if (goals.length >= 4) { goals[0].current = m.todayCount; goals[1].current = parseFloat(m.correctPercent); goals[2].current = Math.floor(m.totalTime / 60); goals[3].current = m.streak } }
+        function renderKPIs() { const m = computeMetrics(); document.getElementById('kpiCorrect').textContent = m.correct; document.getElementById('kpiWrong').textContent = m.wrong; document.getElementById('kpiTime').textContent = formatHours(m.totalTime); document.getElementById('kpiStreak').textContent = m.streak; document.getElementById('kpiAccuracy').textContent = m.correctPercent + '%'; document.getElementById('kpiToday').textContent = m.todayCount; document.getElementById('kpiCorrectSub').textContent = m.correctPercent + '% de aproveitamento'; document.getElementById('kpiWrongSub').textContent = (m.total ? ((m.wrong / m.total) * 100).toFixed(1) : '0.0') + '% do total'; document.getElementById('kpiTimeSub').textContent = 'Média: ' + formatTime(m.avgTime) + '/questão'; document.getElementById('kpiStreakSub').textContent = 'Maior streak: ' + m.maxStreak; const ec = document.getElementById('kpiCorrectEnc'); if (ec && m.correct > 0) { const nomes = ["PRFBrabo", "FuturaAuditora", "DelegadoFocus", "CaveiraCESPE", "MaratonaPF"]; ec.querySelector('span').textContent = nomes[Math.floor(Math.random() * nomes.length)] + ' também está evoluindo!' } const es = document.getElementById('kpiStreakEnc'); if (es && m.streak >= 3) es.querySelector('span').textContent = 'Sequência inspiradora!'; else if (es) es.querySelector('span').textContent = 'Consistência leva à aprovação'; document.getElementById('kpiTodaySub').textContent = 'Total: ' + m.total + ' questões'; if (goals.length >= 4) { goals[0].current = m.todayCount; goals[1].current = parseFloat(m.correctPercent); goals[2].current = Math.floor(m.totalTime / 60); goals[3].current = m.streak } }
         function formatTime(sec) { const m = Math.floor(sec / 60); const s = Math.round(sec % 60); return `${m}:${String(s).padStart(2,'0')}` }
         function formatHours(mins) { const h = Math.floor(mins / 60); const m = mins % 60; return h > 0 ? `${h}h ${m}min` : `${m}min` }
         function renderGoals() { const c = document.getElementById('goalsContainer'); c.innerHTML = goals.map(g => { const pct = Math.min(100, Math.round((g.current / g.target) * 100)); const circ = 2 * Math.PI * 26, offset = circ - (pct / 100) * circ; return `<div class="goal-card"><div class="goal-ring"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="goal-ring-bg" cx="28" cy="28" r="26"/><circle class="goal-ring-fill" cx="28" cy="28" r="26" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/></svg><div class="goal-ring-text">${pct}%</div></div><div class="goal-info"><div class="goal-title">${g.title}</div><div class="goal-desc">${g.current}/${g.target} ${g.unit}</div></div></div>` }).join('') }
