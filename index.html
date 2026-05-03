@@ -366,14 +366,14 @@
         }
 
         .sidebar-avatar {
-            width: 80px; /* aumentado de 58px */
-            height: 80px;
+            width: 96px;
+            height: 96px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #fff;
             border: 3px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
@@ -416,15 +416,15 @@
             position: absolute;
             bottom: -2px;
             right: -2px;
-            width: 22px;
-            height: 22px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             background: var(--accent);
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
             z-index: 5;
             cursor: pointer;
             border: 2px solid var(--bg-card);
@@ -1576,6 +1576,12 @@
             border: 1px solid var(--border-light);
             border-radius: 14px;
             gap: 12px;
+            animation: slideInFeed 0.4s ease-out;
+        }
+
+        @keyframes slideInFeed {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .feed-user {
@@ -2048,8 +2054,8 @@
         }
 
         .avatar-game-img-wrap {
-            width: 110px; /* aumentado de 90px */
-            height: 110px; /* aumentado de 90px */
+            width: 130px;
+            height: 130px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2080,15 +2086,15 @@
         }
 
         .profile-avatar-display {
-            width: 120px; /* aumentado de 100px */
-            height: 120px; /* aumentado de 100px */
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             margin: 0 auto 16px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: #fff;
             border: 4px solid var(--bg-card);
             box-shadow: 0 0 0 3px var(--accent), 0 8px 24px rgba(255, 122, 0, 0.3);
@@ -2118,17 +2124,17 @@
         }
         .profile-avatar-display .edit-badge {
             position: absolute;
-            bottom: 2px;
-            right: 2px;
-            width: 28px;
-            height: 28px;
+            bottom: 4px;
+            right: 4px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: var(--accent);
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             z-index: 5;
             cursor: pointer;
             border: 3px solid var(--bg-card);
@@ -2650,7 +2656,7 @@
             .timer-display { font-size: 2rem; min-width: 140px }
             .focus-ring-container { width: min(65vw, 200px); height: min(65vw, 200px) }
             .sidebar-logo { width: 110px !important }
-            .sidebar-avatar { width: 60px !important; height: 60px !important; }
+            .sidebar-avatar { width: 72px !important; height: 72px !important; }
             #camiChatWindow { width: calc(100vw - 32px); left: 16px; bottom: 96px; height: 440px }
             #camiFAB { bottom: 24px; left: 16px; width: 50px; height: 50px }
             .app-header { flex-direction: column }
@@ -2664,8 +2670,8 @@
             .focus-fox { width: 90px; height: 90px; font-size: 3rem }
             .focus-ring-container { width: 200px; height: 200px }
             .avatar-game-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
-            .avatar-game-img-wrap { width: 80px !important; height: 80px !important; }
-            .profile-avatar-display { width: 100px !important; height: 100px !important; }
+            .avatar-game-img-wrap { width: 90px !important; height: 90px !important; }
+            .profile-avatar-display { width: 110px !important; height: 110px !important; }
             .feed-avatar { width: 30px; height: 30px; }
         }
         @media (min-width: 48em) {
@@ -2810,10 +2816,8 @@
 
     <div class="focus-overlay" id="focusOverlay"><button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button><div class="focus-container"><div class="focus-fox">🦊</div><div class="focus-ring-container"><canvas id="focusRingCanvas" width="240" height="240"></canvas><div class="focus-timer" id="focusTimerDisplay">00:00:00</div></div><div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount" style="color:var(--accent);font-weight:700;font-size:1.4rem">1</span></div><div class="focus-controls"><button class="focus-btn" id="focusTimerStart"><i class="fas fa-play"></i></button><button class="focus-btn" id="focusTimerPause"><i class="fas fa-pause"></i></button></div><div class="focus-encouragement">🦊 Foco total! Cada minuto conta.</div></div></div>
 
-    <!-- MODAL PERFIL -->
     <div class="modal-overlay" id="profileModal"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-user-circle"></i> Meu Perfil</h3><button class="modal-close" id="closeProfileModal"><i class="fas fa-times"></i></button></div><div class="profile-avatar-display" id="profileAvatarDisplay"><div class="avatar-svg" id="profileAvatarSvg"></div><img id="profileAvatarImg" src="" alt="Avatar" style="display:none"/><div class="edit-badge" id="profileEditBadge" title="Editar avatar"><i class="fas fa-cog"></i></div></div><div class="profile-nickname" id="profileNicknameDisplay">Concurseiro(a)</div><div class="profile-nickname-edit"><input type="text" id="profileNicknameInput" placeholder="Seu nickname" maxlength="20"/><button class="btn btn-sm btn-primary" id="saveNicknameBtn"><i class="fas fa-check"></i></button></div><button class="btn btn-accent btn-sm" id="openEditProfileBtn" style="width:100%;margin-top:8px"><i class="fas fa-gamepad"></i> Escolher Avatar</button></div></div>
 
-    <!-- MODAL EDIÇÃO DE PERFIL -->
     <div class="modal-overlay" id="editProfileModal"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-gamepad"></i> Escolher Avatar</h3><button class="modal-close" id="closeEditProfileModal"><i class="fas fa-times"></i></button></div><div class="profile-tabs"><button class="profile-tab active" data-tab="photo">📸 Minha Foto</button><button class="profile-tab" data-tab="avatars">🎮 Avatares Game</button></div><div id="tabPhoto"><div class="photo-upload-area" id="photoUploadArea"><i class="fas fa-camera"></i><p style="font-weight:600;margin-bottom:4px">Clique para enviar sua foto</p><p style="font-size:0.72rem;color:var(--text-muted)">JPG, PNG ou WebP</p><input type="file" id="photoFileInput" accept="image/*" style="display:none"/></div><div style="text-align:center;margin-top:12px"><img id="photoPreview" class="photo-preview" src="" alt="Preview" style="display:none"/></div><button class="btn btn-primary btn-sm" id="savePhotoBtn" style="width:100%;margin-top:12px"><i class="fas fa-save"></i> Usar esta foto</button><button class="btn btn-sm" id="removePhotoBtn" style="width:100%;margin-top:6px;color:var(--danger)"><i class="fas fa-undo"></i> Voltar para avatar padrão</button></div><div id="tabAvatars" style="display:none">
         <div class="avatar-category-bar">
             <button class="avatar-category-btn active" data-category="militar"><i class="fas fa-shield-alt"></i> ⚔️ Militar</button>
@@ -2822,7 +2826,6 @@
         <div id="avatarGridContainer" class="avatar-game-grid"></div>
     </div></div></div>
 
-    <!-- DEMAIS MODAIS (mantidos) -->
     <div class="modal-overlay" id="exportModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Gere um relatório profissional em PDF:</p><div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button><button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button></div><div class="share-summary-box" id="pdfPreviewInfo"><strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br><strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.</div></div></div>
     <div class="modal-overlay" id="shareModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-share-alt"></i> Compartilhar</h3><button class="modal-close" id="closeShareModal"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Compartilhe seu desempenho:</p><div class="share-summary-box" id="shareSummaryText"></div><div class="share-actions"><button class="btn btn-whatsapp btn-sm" id="shareWhatsAppBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button><button class="btn btn-sm" id="shareCopyBtn"><i class="fas fa-copy"></i> Copiar</button><button class="btn btn-sm" id="shareCopyLinkBtn"><i class="fas fa-link"></i> Link</button></div></div></div>
     <div class="modal-overlay" id="addDisciplinaModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-plus-circle"></i> Adicionar Disciplina</h3><button class="modal-close" id="closeAddDisciplinaModal"><i class="fas fa-times"></i></button></div><label for="newDisciplinaInput">Nome da disciplina</label><input type="text" id="newDisciplinaInput" placeholder="Digite o nome..." autocomplete="off"><p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px">Sugestões:</p><div class="suggestions-grid" id="suggestionsGrid"></div><div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end"><button class="btn btn-sm" id="cancelAddDisciplinaBtn">Cancelar</button><button class="btn btn-primary btn-sm" id="confirmAddDisciplinaBtn"><i class="fas fa-check"></i> Adicionar</button></div></div></div>
@@ -2992,7 +2995,7 @@
         function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000) }
         atualizarOnlineEstudantes();
 
-        // ========== FEED DA COMUNIDADE ==========
+        // ========== FEED DA COMUNIDADE (DINÂMICO COM ANIMAÇÃO) ==========
         const nomesAtividades = ['Amanda', 'Renata', 'Larissa', 'Tatiane', 'Simone', 'Carlos', 'Pedro', 'Juliana', 'Marcos', 'Fernanda', 'Beatriz', 'Rafael', 'Patrícia', 'Bruno', 'Camila'];
         const acoesAtividades = [
             'recebeu ajuda em', 'respondeu dúvida sobre', 'compartilhou resumo de',
@@ -3006,38 +3009,48 @@
         ];
         const coresAvatar = ['#F97316', '#3B82F6', '#06B6D4', '#8B5CF6', '#A855F7', '#EC4899', '#14B8A6', '#EAB308', '#6366F1', '#F43F5E'];
 
-        function gerarAtividades() {
-            const atividades = [];
-            const usados = new Set();
-            for (let i = 0; i < 7; i++) {
-                let nome;
-                do { nome = nomesAtividades[Math.floor(Math.random() * nomesAtividades.length)]; }
-                while (usados.has(nome) && usados.size < nomesAtividades.length);
-                usados.add(nome);
-                const acao = acoesAtividades[Math.floor(Math.random() * acoesAtividades.length)];
-                const disciplina = disciplinasFeed[Math.floor(Math.random() * disciplinasFeed.length)];
-                const minutos = Math.floor(Math.random() * 120) + 1;
-                const tempo = minutos < 5 ? 'agora mesmo' : `há ${minutos}min`;
-                const cor = coresAvatar[Math.floor(Math.random() * coresAvatar.length)];
-                atividades.push({ nome, acao, disciplina, tempo, cor });
-            }
-            return atividades;
+        function gerarAtividadeAleatoria() {
+            const nome = nomesAtividades[Math.floor(Math.random() * nomesAtividades.length)];
+            const acao = acoesAtividades[Math.floor(Math.random() * acoesAtividades.length)];
+            const disciplina = disciplinasFeed[Math.floor(Math.random() * disciplinasFeed.length)];
+            const minutos = Math.floor(Math.random() * 120) + 1;
+            const tempo = minutos < 5 ? 'agora mesmo' : `há ${minutos}min`;
+            const cor = coresAvatar[Math.floor(Math.random() * coresAvatar.length)];
+            return { nome, acao, disciplina, tempo, cor };
         }
 
-        function renderizarFeed() {
-            const lista = document.getElementById('communityFeedList');
-            const atividades = gerarAtividades();
-            lista.innerHTML = atividades.map(a => `
-                <div class="feed-item">
-                    <div class="feed-user">
-                        <div class="feed-avatar" style="background:${a.cor}; color:white;">${a.nome.charAt(0)}</div>
-                        <div class="feed-text">
-                            <strong>${a.nome}</strong> ${a.acao} ${a.disciplina}
-                        </div>
+        function criarItemAtividade(atividade) {
+            const div = document.createElement('div');
+            div.className = 'feed-item';
+            div.innerHTML = `
+                <div class="feed-user">
+                    <div class="feed-avatar" style="background:${atividade.cor}; color:white;">${atividade.nome.charAt(0)}</div>
+                    <div class="feed-text">
+                        <strong>${atividade.nome}</strong> ${atividade.acao} ${atividade.disciplina}
                     </div>
-                    <div class="feed-time">${a.tempo}</div>
                 </div>
-            `).join('');
+                <div class="feed-time">${atividade.tempo}</div>
+            `;
+            return div;
+        }
+
+        function adicionarNovaAtividade() {
+            const lista = document.getElementById('communityFeedList');
+            const novaAtividade = gerarAtividadeAleatoria();
+            const item = criarItemAtividade(novaAtividade);
+            if (lista.children.length >= 7) {
+                lista.removeChild(lista.lastElementChild);
+            }
+            lista.insertBefore(item, lista.firstChild);
+        }
+
+        function popularFeedInicial() {
+            const lista = document.getElementById('communityFeedList');
+            lista.innerHTML = '';
+            for (let i = 0; i < 7; i++) {
+                const atividade = gerarAtividadeAleatoria();
+                lista.appendChild(criarItemAtividade(atividade));
+            }
         }
 
         function atualizarContadorOnline() {
@@ -3048,8 +3061,8 @@
         }
 
         function iniciarFeedComunidade() {
-            renderizarFeed();
-            setInterval(renderizarFeed, 35000);
+            popularFeedInicial();
+            setInterval(adicionarNovaAtividade, 10000); // nova atividade a cada 10s
             setInterval(atualizarContadorOnline, 4000);
         }
 
@@ -3119,10 +3132,10 @@
         function drawFocusRing() { if (!focusModeActive) return; const canvas = document.getElementById('focusRingCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, cx = w / 2, cy = h / 2, r = 100; const progress = ciclo30min / 1800; ctx.clearRect(0, 0, w, h); ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 14; ctx.stroke(); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff'); ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress)); ctx.strokeStyle = grad; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.stroke() }
         function salvarTempoNaDisciplina(resetar = true) { const nome = document.getElementById('disciplinaSelect').value; if (!nome || segundos <= 0) { if (!nome) toast('Selecione uma disciplina!', 'error'); return } const minutos = Math.round(segundos / 60); if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; data[nome].horasMinutos = (data[nome].horasMinutos || 0) + minutos; salvarDados(); renderizarTabela(); if (resetar) { segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min() } refreshDashboard(); toast(`✓ ${minutos}min salvos em "${nome}"`) }
         function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); drawFocusRing() }
-        document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) return; timerInterval = setInterval(() => { segundos++; atualizarTimer(); updateCiclo30min(); if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído!`) } }, 1000) });
-        document.getElementById('timerPause').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null });
+        document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) { toast('Cronômetro já está em execução.', 'error'); return; } timerInterval = setInterval(() => { segundos++; atualizarTimer(); updateCiclo30min(); if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído!`) } }, 1000); toast('▶️ Cronômetro iniciado'); });
+        document.getElementById('timerPause').addEventListener('click', () => { if (!timerInterval) { toast('Cronômetro já está pausado.'); return; } clearInterval(timerInterval); timerInterval = null; toast('⏸️ Cronômetro pausado'); });
         document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(true));
-        document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min() });
+        document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); toast('🔄 Cronômetro zerado'); });
         document.getElementById('focusModeHighlightBtn').addEventListener('click', abrirModoFoco);
         document.getElementById('exitFocusBtn').addEventListener('click', () => { focusOverlay.classList.remove('active'); focusModeActive = false });
         document.getElementById('focusTimerStart').addEventListener('click', () => document.getElementById('timerStart').click());
@@ -3141,9 +3154,9 @@
         window.excluirDisciplina = function(nome) { if (!confirm(`Excluir "${nome}"?`)) return; delete data[nome]; events = events.filter(e => e.subject !== nome); salvarDados(); salvarEventos(); atualizarSelects(); renderizarTabela(); if (selectDisciplina.value === nome) selectDisciplina.value = ''; refreshDashboard(); toast(`Disciplina "${nome}" removida.`) };
         filtroInput.addEventListener('input', e => renderizarTabela(e.target.value, tabelaSortBy, tabelaSortDir));
 
-        // ========== REGISTRO RÁPIDO ==========
-        document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard() });
-        document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard() });
+        // ========== REGISTRO RÁPIDO (COM FEEDBACK) ==========
+        document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); toast(`✅ ${qtd} acerto(s) registrado(s) em ${nome}`) });
+        document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); toast(`❌ ${qtd} erro(s) registrado(s) em ${nome}`) });
         document.getElementById('resetMetricsBtn').addEventListener('click', () => { if (confirm('Zerar TODAS as métricas?')) { try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications') } catch (e) {} location.reload() } });
 
         // ========== PDF & SHARE ==========
