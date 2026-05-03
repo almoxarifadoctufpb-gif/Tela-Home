@@ -1510,13 +1510,13 @@
             min-width: 130px;
         }
 
-        /* SEÇÃO COMUNIDADE */
+        /* SEÇÃO COMUNIDADE GAMIFICADA */
         .community-feed {
             background: var(--bg-card);
-            border: 1px solid var(--border-light);
             border-radius: 18px;
             padding: 20px;
-            box-shadow: var(--shadow-xs);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
         }
 
         .feed-header {
@@ -1525,7 +1525,7 @@
             align-items: center;
             margin-bottom: 18px;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 12px;
         }
 
         .feed-title {
@@ -1534,23 +1534,19 @@
             gap: 10px;
             font-weight: 700;
             color: var(--text-primary);
-            font-size: 0.95rem;
         }
 
         .feed-title i {
-            color: #F97316;
+            color: var(--accent);
         }
 
         .online-badge {
-            background: #DCFCE7;
-            color: #166534;
+            background: rgba(34, 197, 94, 0.12);
+            color: #16A34A;
             padding: 4px 10px;
             border-radius: 999px;
             font-size: 0.75rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            font-weight: 700;
         }
 
         .feed-live {
@@ -1562,33 +1558,26 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            max-height: 300px;
+            max-height: 340px;
             overflow-y: auto;
             padding-right: 4px;
         }
 
         .feed-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             padding: 14px 16px;
             background: var(--bg-primary);
             border: 1px solid var(--border-light);
             border-radius: 14px;
-            gap: 12px;
-            animation: slideInFeed 0.4s ease-out;
-        }
-
-        @keyframes slideInFeed {
-            from { opacity: 0; transform: translateY(-12px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: fadeSlideIn 0.5s ease;
         }
 
         .feed-user {
             display: flex;
             align-items: center;
             gap: 12px;
-            min-width: 0;
         }
 
         .feed-avatar {
@@ -1599,16 +1588,14 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
             color: white;
+            font-size: 0.85rem;
             flex-shrink: 0;
         }
 
         .feed-text {
+            font-size: 0.88rem;
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.4;
-            word-break: break-word;
         }
 
         .feed-text strong {
@@ -1616,10 +1603,20 @@
         }
 
         .feed-time {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
             white-space: nowrap;
-            flex-shrink: 0;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .tooltip {
@@ -2766,6 +2763,7 @@
                 <div class="motivational-author" id="motivationalAuthor"></div>
             </div><button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button></div>
 
+        <!-- SEÇÃO COMUNIDADE GAMIFICADA -->
         <section class="community-feed">
             <div class="feed-header">
                 <div class="feed-title">
@@ -2777,8 +2775,7 @@
                 </div>
                 <span class="feed-live">Atividades em tempo real</span>
             </div>
-            <div class="feed-list" id="communityFeedList">
-            </div>
+            <div class="feed-list" id="communityFeedList"></div>
         </section>
 
         <section class="dashboard-grid" id="kpiGrid">
@@ -2995,76 +2992,82 @@
         function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000) }
         atualizarOnlineEstudantes();
 
-        // ========== FEED DA COMUNIDADE (DINÂMICO COM ANIMAÇÃO) ==========
-        const nomesAtividades = ['Amanda', 'Renata', 'Larissa', 'Tatiane', 'Simone', 'Carlos', 'Pedro', 'Juliana', 'Marcos', 'Fernanda', 'Beatriz', 'Rafael', 'Patrícia', 'Bruno', 'Camila'];
-        const acoesAtividades = [
-            'recebeu ajuda em', 'respondeu dúvida sobre', 'compartilhou resumo de',
-            'finalizou simulado de', 'iniciou revisão de', 'concluiu ciclo de',
-            'desbloqueou conquista em', 'comentou no tópico de', 'revisou flashcards de'
+        // ========== SIMULADOR COMUNIDADE GAMIFICADA ==========
+        const nicknames = [
+            "ConcurseiroRaiz", "FocoNaPRF", "FiscalMaster", "AprovadaTRT",
+            "MissãoSEFAZ", "RumoPF", "GuerreiraINSS", "DeltaPC",
+            "MetaReceita", "TáticaTJ", "ElitePC", "RetaFinalPF"
         ];
-        const disciplinasFeed = [
-            "Direito Constitucional", "Língua Portuguesa", "Raciocínio Lógico",
-            "Direito Administrativo", "Matemática", "Informática", "Direito Penal",
-            "Direito Tributário", "Contabilidade", "Atualidades"
-        ];
-        const coresAvatar = ['#F97316', '#3B82F6', '#06B6D4', '#8B5CF6', '#A855F7', '#EC4899', '#14B8A6', '#EAB308', '#6366F1', '#F43F5E'];
 
-        function gerarAtividadeAleatoria() {
-            const nome = nomesAtividades[Math.floor(Math.random() * nomesAtividades.length)];
-            const acao = acoesAtividades[Math.floor(Math.random() * acoesAtividades.length)];
-            const disciplina = disciplinasFeed[Math.floor(Math.random() * disciplinasFeed.length)];
-            const minutos = Math.floor(Math.random() * 120) + 1;
-            const tempo = minutos < 5 ? 'agora mesmo' : `há ${minutos}min`;
-            const cor = coresAvatar[Math.floor(Math.random() * coresAvatar.length)];
-            return { nome, acao, disciplina, tempo, cor };
+        const activities = [
+            "acertou 15 questões seguidas de Direito Constitucional",
+            "finalizou a meta diária",
+            "subiu para Ouro II",
+            "recebeu ajuda em Raciocínio Lógico",
+            "entrou na sala de estudos da PF",
+            "iniciou simulado da PRF",
+            "completou 3h de foco hoje",
+            "desbloqueou a conquista Mestre da Disciplina",
+            "recebeu ajuda em Direito Penal",
+            "finalizou revisão de Informática"
+        ];
+
+        const avatarColors = [
+            "#F97316", "#3B82F6", "#8B5CF6", "#EC4899",
+            "#14B8A6", "#EAB308", "#6366F1", "#22C55E"
+        ];
+
+        function getRandomItem(arr) {
+            return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        function criarItemAtividade(atividade) {
-            const div = document.createElement('div');
-            div.className = 'feed-item';
-            div.innerHTML = `
+        function createFeedItem() {
+            const nickname = getRandomItem(nicknames);
+            const activity = getRandomItem(activities);
+            const color = getRandomItem(avatarColors);
+
+            const item = document.createElement("div");
+            item.className = "feed-item";
+
+            item.innerHTML = `
                 <div class="feed-user">
-                    <div class="feed-avatar" style="background:${atividade.cor}; color:white;">${atividade.nome.charAt(0)}</div>
+                    <div class="feed-avatar" style="background:${color}">
+                        ${nickname.charAt(0)}
+                    </div>
                     <div class="feed-text">
-                        <strong>${atividade.nome}</strong> ${atividade.acao} ${atividade.disciplina}
+                        <strong>${nickname}</strong> ${activity}
                     </div>
                 </div>
-                <div class="feed-time">${atividade.tempo}</div>
+                <span class="feed-time">agora</span>
             `;
-            return div;
+
+            return item;
         }
 
-        function adicionarNovaAtividade() {
-            const lista = document.getElementById('communityFeedList');
-            const novaAtividade = gerarAtividadeAleatoria();
-            const item = criarItemAtividade(novaAtividade);
-            if (lista.children.length >= 7) {
-                lista.removeChild(lista.lastElementChild);
+        function updateCommunityFeed() {
+            const feed = document.getElementById("communityFeedList");
+            if (!feed) return;
+
+            const newItem = createFeedItem();
+            feed.prepend(newItem);
+
+            while (feed.children.length > 20) {
+                feed.removeChild(feed.lastChild);
             }
-            lista.insertBefore(item, lista.firstChild);
-        }
 
-        function popularFeedInicial() {
-            const lista = document.getElementById('communityFeedList');
-            lista.innerHTML = '';
-            for (let i = 0; i < 7; i++) {
-                const atividade = gerarAtividadeAleatoria();
-                lista.appendChild(criarItemAtividade(atividade));
-            }
-        }
-
-        function atualizarContadorOnline() {
-            const onlineEl = document.getElementById('onlineCount');
-            if (onlineEl) {
-                onlineEl.textContent = Math.floor(Math.random() * 10) + 43;
+            const online = document.getElementById("onlineCount");
+            if (online) {
+                online.textContent = Math.floor(Math.random() * 47) + 43;
             }
         }
 
-        function iniciarFeedComunidade() {
-            popularFeedInicial();
-            setInterval(adicionarNovaAtividade, 10000); // nova atividade a cada 10s
-            setInterval(atualizarContadorOnline, 4000);
+        // Inicializa com 8 itens
+        for (let i = 0; i < 8; i++) {
+            updateCommunityFeed();
         }
+
+        // Intervalo dinâmico entre 4 e 8 segundos
+        setInterval(updateCommunityFeed, Math.floor(Math.random() * 4000) + 4000);
 
         // ========== SAUDAÇÃO ==========
         (function() { const g = document.getElementById('sidebarGreeting'); if (g) { const h = new Date().getHours(); let s, e; if (h >= 5 && h < 12) { s = 'Bom dia'; e = '☀️' } else if (h >= 12 && h < 18) { s = 'Boa tarde'; e = '🌤️' } else { s = 'Boa noite'; e = '🌙' } g.innerHTML = `<span id="sidebarNicknameDisplay">${userProfile.nickname}</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Você não está sozinho nessa 💪</span>` } })();
@@ -3209,7 +3212,6 @@
         renderizarTabela('', null, 'asc');
         atualizarTimer();
         refreshDashboard();
-        iniciarFeedComunidade();
     </script>
 </body>
 </html>
