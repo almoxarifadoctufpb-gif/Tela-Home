@@ -366,8 +366,8 @@
         }
 
         .sidebar-avatar {
-            width: 58px;
-            height: 58px;
+            width: 80px; /* aumentado de 58px */
+            height: 80px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
             display: flex;
@@ -1510,7 +1510,7 @@
             min-width: 130px;
         }
 
-        /* NOVA SEÇÃO DE COMUNIDADE */
+        /* SEÇÃO COMUNIDADE */
         .community-feed {
             background: var(--bg-card);
             border: 1px solid var(--border-light);
@@ -1615,8 +1615,6 @@
             white-space: nowrap;
             flex-shrink: 0;
         }
-
-        /* FIM NOVA SEÇÃO COMUNIDADE */
 
         .tooltip {
             position: relative;
@@ -2050,8 +2048,8 @@
         }
 
         .avatar-game-img-wrap {
-            width: 90px;
-            height: 90px;
+            width: 110px; /* aumentado de 90px */
+            height: 110px; /* aumentado de 90px */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2082,8 +2080,8 @@
         }
 
         .profile-avatar-display {
-            width: 100px;
-            height: 100px;
+            width: 120px; /* aumentado de 100px */
+            height: 120px; /* aumentado de 100px */
             border-radius: 50%;
             margin: 0 auto 16px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
@@ -2652,7 +2650,7 @@
             .timer-display { font-size: 2rem; min-width: 140px }
             .focus-ring-container { width: min(65vw, 200px); height: min(65vw, 200px) }
             .sidebar-logo { width: 110px !important }
-            .sidebar-avatar { width: 48px; height: 48px }
+            .sidebar-avatar { width: 60px !important; height: 60px !important; }
             #camiChatWindow { width: calc(100vw - 32px); left: 16px; bottom: 96px; height: 440px }
             #camiFAB { bottom: 24px; left: 16px; width: 50px; height: 50px }
             .app-header { flex-direction: column }
@@ -2666,7 +2664,8 @@
             .focus-fox { width: 90px; height: 90px; font-size: 3rem }
             .focus-ring-container { width: 200px; height: 200px }
             .avatar-game-grid { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
-            .avatar-game-img-wrap { width: 70px; height: 70px; }
+            .avatar-game-img-wrap { width: 80px !important; height: 80px !important; }
+            .profile-avatar-display { width: 100px !important; height: 100px !important; }
             .feed-avatar { width: 30px; height: 30px; }
         }
         @media (min-width: 48em) {
@@ -2761,7 +2760,6 @@
                 <div class="motivational-author" id="motivationalAuthor"></div>
             </div><button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button></div>
 
-        <!-- NOVA SEÇÃO COMUNIDADE -->
         <section class="community-feed">
             <div class="feed-header">
                 <div class="feed-title">
@@ -2774,7 +2772,6 @@
                 <span class="feed-live">Atividades em tempo real</span>
             </div>
             <div class="feed-list" id="communityFeedList">
-                <!-- itens gerados dinamicamente -->
             </div>
         </section>
 
@@ -2852,33 +2849,55 @@
             </svg>`;
         }
 
-        // ========== AVATARES GAME ==========
+        // ========== NOVOS AVATARES ==========
         const gameAvatars = [
-            { name: 'PRF Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Feminino_apgwco.png', category: 'militar' },
-            { name: 'PRF Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820954/Policial_Rodovi%C3%A1rio_Federal_Masculino_otkj87.png', category: 'militar' },
-            { name: 'PM Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Militar_Masculino_tsnjgq.png', category: 'militar' },
-            { name: 'PF Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policia_Federal_Masculino_nu98oa.png', category: 'militar' },
-            { name: 'Policial Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Masculino_lyvelg.png', category: 'militar' },
-            { name: 'PF Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Policial_Federal_Feminino_hsysup.png', category: 'militar' },
-            { name: 'Marinha Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_Marinha_Masculino_k5b0vw.png', category: 'militar' },
-            { name: 'Exército Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_Exercito_Feminino_hjf8ag.png', category: 'militar' },
-            { name: 'Aeronáutica Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Militar_aeron%C3%A1utica_Masculino_d1brfn.png', category: 'militar' },
-            { name: 'Aeronáutica Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Militar_aeron%C3%A1utica_Feminino_flrs3k.png', category: 'militar' },
-            { name: 'Bombeiro Militar Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Bombeiro_Militar_Feminino_updqvm.png', category: 'militar' },
-            { name: 'Bombeiro Militar Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/Bombeiro_Militar_Masculino_buojec.png', category: 'militar' },
-            { name: 'Guarda Municipal Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Masculino_ywfzrl.png', category: 'militar' },
-            { name: 'Guarda Municipal Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Guarda_Municipal_Feminino_fajwzx.png', category: 'militar' },
-            { name: 'Agente Penitenciário Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Feminino_cbm6hi.png', category: 'militar' },
-            { name: 'Agente Penitenciário Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Agente_Penitenci%C3%A1rio_Masculino_ijydfq.png', category: 'militar' },
-            { name: 'Concurseiro', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_kbifbl.png', category: 'civil' },
-            { name: 'Concurseira', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Concurseiro_mulher_iqd4wz.png', category: 'civil' },
-            { name: 'Controle Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_pzh0ut.png', category: 'civil' },
-            { name: 'Controle Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Carreira_Controle_Mulher_plstuz.png', category: 'civil' },
-            { name: 'Auditora Fiscal', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditora_Fiscal_ribyhy.png', category: 'civil' },
-            { name: 'Auditor Fiscal', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820951/Auditor_Fiscal_r25z1z.png', category: 'civil' },
-            { name: 'Perito Criminal Masculino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820953/Perito_criminal_Masculino_kokwg1.png', category: 'civil' },
-            { name: 'Perito Criminal Feminino', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777820952/Perito_criminal_Feminino_ukovop.png', category: 'civil' },
-            { name: 'Drilldown (extra)', url: 'https://res.cloudinary.com/dqmuoc3o0/image/upload/v1777823579/drilldown_izbwg8.png', category: 'civil' }
+            { name: 'VULP 46', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP46_lkd2sm.png', category: 'militar' },
+            { name: 'VULP 47', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP47_fcrjur.png', category: 'civil' },
+            { name: 'VULP 42', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP42_rdfqau.png', category: 'militar' },
+            { name: 'VULP 45', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP45_eopqbj.png', category: 'civil' },
+            { name: 'VULP 39', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP39_lorvpi.png', category: 'militar' },
+            { name: 'VULP 43', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP43_lffq2v.png', category: 'civil' },
+            { name: 'VULP 44', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP44_ewiflg.png', category: 'militar' },
+            { name: 'VULP 41', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP41_trit3t.png', category: 'civil' },
+            { name: 'VULP 40', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP40_j8wfxj.png', category: 'militar' },
+            { name: 'VULP 37', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP37_bgllac.png', category: 'civil' },
+            { name: 'VULP 35', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP35_lymfxs.png', category: 'militar' },
+            { name: 'VULP 38', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP38_cb64ys.png', category: 'civil' },
+            { name: 'VULP 36', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP36_glmhjy.png', category: 'militar' },
+            { name: 'VULP 34', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP34_bhshtq.png', category: 'civil' },
+            { name: 'VULP 33', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP33_khj7nb.png', category: 'militar' },
+            { name: 'VULP 32', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP32_iifhfn.png', category: 'civil' },
+            { name: 'VULP 31', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP31_lenbiu.png', category: 'militar' },
+            { name: 'VULP 30', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP30_qm64uv.png', category: 'civil' },
+            { name: 'VULP 29', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP29_tls20e.png', category: 'militar' },
+            { name: 'VULP 28', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP28_a11kpl.png', category: 'civil' },
+            { name: 'VULP 27', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP27_bec4ya.png', category: 'militar' },
+            { name: 'VULP 26', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP26_jozm5p.png', category: 'civil' },
+            { name: 'VULP 24', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP24_afxtwy.png', category: 'militar' },
+            { name: 'VULP 25', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP25_t5xsms.png', category: 'civil' },
+            { name: 'VULP 23', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP23_qjzqfq.png', category: 'militar' },
+            { name: 'VULP 22', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP22_g0utji.png', category: 'civil' },
+            { name: 'VULP 20', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP20_wmv9m7.png', category: 'militar' },
+            { name: 'VULP 21', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP21_yuiv7e.png', category: 'civil' },
+            { name: 'VULP 18', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP18_byar0n.png', category: 'militar' },
+            { name: 'VULP 17', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP17_kcwyre.png', category: 'civil' },
+            { name: 'VULP 19', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP19_lbavcx.png', category: 'militar' },
+            { name: 'VULP 16', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP16_selwpj.png', category: 'civil' },
+            { name: 'VULP 15', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP15_xy2mvf.png', category: 'militar' },
+            { name: 'VULP 14', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP14_fr0ykj.png', category: 'civil' },
+            { name: 'VULP 13', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP13_s9nbde.png', category: 'militar' },
+            { name: 'VULP 12', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP12_u9np0c.png', category: 'civil' },
+            { name: 'VULP 9', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP9_omlfho.png', category: 'militar' },
+            { name: 'VULP 3', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP3_xukjtp.png', category: 'civil' },
+            { name: 'VULP 11', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP11_vojnqw.png', category: 'militar' },
+            { name: 'VULP 10', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP10_uz35n0.png', category: 'civil' },
+            { name: 'VULP 8', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP8_dvwyis.png', category: 'militar' },
+            { name: 'VULP 7', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP7_srdiie.png', category: 'civil' },
+            { name: 'VULP 4', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP4_zmmc0x.png', category: 'militar' },
+            { name: 'VULP 2', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP2_a4sr8l.png', category: 'civil' },
+            { name: 'VULP 1', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP1_ixtdse.png', category: 'militar' },
+            { name: 'VULP 6', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP6_dtyhee.png', category: 'civil' },
+            { name: 'VULP 4', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834511/VULP4_jtl3wv.png', category: 'militar' },
         ];
 
         // ========== PERFIL DO USUÁRIO ==========
@@ -2973,7 +2992,7 @@
         function atualizarOnlineEstudantes() { const b = 14; const v = Math.floor(Math.random() * 22); document.getElementById('onlineEstudantes').textContent = '+' + (b + v); setTimeout(atualizarOnlineEstudantes, 25000 + Math.random() * 20000) }
         atualizarOnlineEstudantes();
 
-        // ========== NOVO FEED DA COMUNIDADE ==========
+        // ========== FEED DA COMUNIDADE ==========
         const nomesAtividades = ['Amanda', 'Renata', 'Larissa', 'Tatiane', 'Simone', 'Carlos', 'Pedro', 'Juliana', 'Marcos', 'Fernanda', 'Beatriz', 'Rafael', 'Patrícia', 'Bruno', 'Camila'];
         const acoesAtividades = [
             'recebeu ajuda em', 'respondeu dúvida sobre', 'compartilhou resumo de',
@@ -3021,7 +3040,6 @@
             `).join('');
         }
 
-        // Contador online
         function atualizarContadorOnline() {
             const onlineEl = document.getElementById('onlineCount');
             if (onlineEl) {
@@ -3029,11 +3047,10 @@
             }
         }
 
-        // Inicialização do feed
         function iniciarFeedComunidade() {
             renderizarFeed();
-            setInterval(renderizarFeed, 35000); // atualiza feed a cada 35s
-            setInterval(atualizarContadorOnline, 4000); // contador online a cada 4s
+            setInterval(renderizarFeed, 35000);
+            setInterval(atualizarContadorOnline, 4000);
         }
 
         // ========== SAUDAÇÃO ==========
