@@ -126,6 +126,184 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* ========== SPLASH SCREEN (BOAS-VINDAS) ========== */
+        #splashOverlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0a1930 0%, #1a2f50 50%, #0d1f3c 100%);
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(16px, 5vw, 40px);
+            overflow-y: auto;
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            font-family: 'Inter', sans-serif;
+        }
+        #splashOverlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: scale(0.98);
+        }
+        .splash-container {
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+            text-align: center;
+        }
+        .splash-mascot {
+            width: min(220px, 60vw);
+            height: auto;
+            filter: drop-shadow(0 0 24px rgba(255, 122, 0, 0.35)) drop-shadow(0 12px 20px rgba(0,0,0,0.25));
+            animation: mascotFloat 4s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
+        @keyframes mascotFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .splash-title {
+            font-size: clamp(1.6rem, 7vw, 2.4rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+        .splash-subtitle {
+            font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.5;
+            max-width: 360px;
+        }
+        .splash-subtitle .highlight {
+            color: #ff7a00;
+            font-weight: 700;
+        }
+        .splash-features {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            text-align: left;
+        }
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: rgba(255, 122, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff7a00;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(255,122,0,0.2);
+        }
+        .feature-text h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+        .feature-text p {
+            font-size: 0.78rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.4;
+        }
+        .splash-cta {
+            width: 100%;
+            background: linear-gradient(135deg, #ff7a00 0%, #e06a00 100%);
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            padding: 16px 28px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(255, 122, 0, 0.45);
+            transition: all 0.25s ease;
+            letter-spacing: 0.02em;
+            margin-top: 8px;
+        }
+        .splash-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(255, 122, 0, 0.6);
+        }
+        .splash-cta:active {
+            transform: scale(0.96);
+        }
+        .splash-login {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            transition: color 0.2s;
+            margin-top: 6px;
+        }
+        .splash-login:hover {
+            color: #ff7a00;
+        }
+        .splash-footer-phrase {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 4px;
+            font-style: italic;
+        }
+        .splash-bg-icons {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+        .splash-bg-icon {
+            position: absolute;
+            font-size: clamp(2rem, 10vw, 5rem);
+            color: rgba(255, 255, 255, 0.04);
+            user-select: none;
+        }
+        .splash-bg-icon:nth-child(1) { top: 10%; left: 8%; transform: rotate(-15deg); }
+        .splash-bg-icon:nth-child(2) { bottom: 15%; right: 6%; transform: rotate(10deg); font-size: 4rem; }
+        .splash-bg-icon:nth-child(3) { top: 45%; left: 3%; transform: rotate(5deg); font-size: 3rem; }
+        .splash-bg-icon:nth-child(4) { bottom: 25%; left: 12%; transform: rotate(-8deg); font-size: 4.5rem; }
+        #splashSkip {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.08);
+            border: none;
+            color: rgba(255,255,255,0.7);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+            z-index: 2;
+            transition: background 0.2s;
+        }
+        #splashSkip:hover {
+            background: rgba(255,255,255,0.18);
+            color: #fff;
+        }
+
         #topbar {
             position: fixed;
             top: 0;
@@ -2849,6 +3027,10 @@
             .profile-avatar-display { width: 110px !important; height: 110px !important; }
             .feed-avatar { width: 30px; height: 30px; }
             .onboarding-tooltip { max-width: 280px; padding: 16px 18px; }
+            .splash-container { gap: 20px; }
+            .splash-mascot { width: min(180px, 50vw); }
+            .splash-features { padding: 16px; }
+            .feature-icon { width: 34px; height: 34px; font-size: 1rem; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none }
@@ -2867,6 +3049,58 @@
     </style>
 </head>
 <body>
+    <!-- SPLASH SCREEN -->
+    <div id="splashOverlay" aria-hidden="false">
+        <button id="splashSkip" aria-label="Pular introdução"><i class="fas fa-times"></i></button>
+        <div class="splash-bg-icons">
+            <i class="fas fa-book splash-bg-icon"></i>
+            <i class="fas fa-chart-line splash-bg-icon"></i>
+            <i class="fas fa-graduation-cap splash-bg-icon"></i>
+            <i class="fas fa-trophy splash-bg-icon"></i>
+        </div>
+        <div class="splash-container">
+            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777913280/ChatGPT_Image_4_de_mai._de_2026_13_45_20_qsaqzq.png"
+                 alt="Mascote VULPS+" class="splash-mascot" />
+            <h1 class="splash-title">Bem-vindo ao VULPS+!</h1>
+            <p class="splash-subtitle">
+                Seu parceiro inteligente para organizar, acompanhar e impulsionar sua <span class="highlight">jornada de estudos</span>.
+            </p>
+            <div class="splash-features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-chart-simple"></i></div>
+                    <div class="feature-text">
+                        <h4>Acompanhe seu desempenho</h4>
+                        <p>Métricas e gráficos para você evoluir todos os dias.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="feature-text">
+                        <h4>Defina metas e conquiste</h4>
+                        <p>Planeje, foque e celebre cada conquista.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                    <div class="feature-text">
+                        <h4>Estude com mais foco</h4>
+                        <p>Cronômetro inteligente para mantê-lo no ritmo.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="feature-text">
+                        <h4>Transforme esforço em aprovação</h4>
+                        <p>Constância hoje, conquista amanhã.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="splash-cta" id="splashCtaBtn">Começar agora</button>
+            <span class="splash-login" id="splashLoginLink">Já tem conta? Entrar</span>
+            <p class="splash-footer-phrase">Você sonha. Você estuda. Você conquista. O VULPS+ está com você!</p>
+        </div>
+    </div>
+
     <header id="topbar" role="banner">
         <a href="#" class="topbar-logo"><img src="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" alt="VULPS+"/><span>VULPS+</span></a>
         <div class="topbar-spacer"></div>
@@ -3095,6 +3329,23 @@
     </div>
 
     <script>
+        // ========== SPLASH SCREEN CONTROLE ==========
+        (function() {
+            const SPLASH_KEY = 'vulps_splash_dismissed';
+            if (localStorage.getItem(SPLASH_KEY) === 'true') {
+                const splash = document.getElementById('splashOverlay');
+                if (splash) splash.classList.add('hidden');
+            }
+            function dismissSplash() {
+                const splash = document.getElementById('splashOverlay');
+                if (splash) splash.classList.add('hidden');
+                try { localStorage.setItem(SPLASH_KEY, 'true'); } catch(e) {}
+            }
+            document.getElementById('splashCtaBtn').addEventListener('click', dismissSplash);
+            document.getElementById('splashSkip').addEventListener('click', dismissSplash);
+            document.getElementById('splashLoginLink').addEventListener('click', dismissSplash);
+        })();
+
         // ========== SVG DEFAULT ==========
         function createFoxAvatarSvg() {
             return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -3490,7 +3741,7 @@
                     if (camiFirst) {
                         camiFirst = false;
                         mostrarDigitando(() => {
-                            enviarBot('Olá! 👋 Sou a <strong>Cami</strong>. Pergunte sobre métricas, cronômetro, metas, backup ou perfil! 🦊');
+                            enviarBot('Olá! ☀️ Sou a <strong>Cami</strong>. Pergunte sobre métricas, cronômetro, metas, backup ou perfil! 🦊');
                         });
                     }
                 } else {
@@ -3528,19 +3779,12 @@
                 ms.scrollTop = ms.scrollHeight;
             }
 
-            /**
-             * NOVA FUNÇÃO: Alerta interativo da Cami.
-             * Envia uma mensagem automaticamente e notifica o usuário se o chat estiver fechado.
-             */
             window.camiAlert = function(message) {
-                // Adiciona mensagem da Cami ao chat
                 const div = document.createElement('div');
                 div.className = 'cami-message bot';
                 div.innerHTML = message;
                 ms.appendChild(div);
                 ms.scrollTop = ms.scrollHeight;
-
-                // Se o chat não estiver aberto, marca que há mensagens não lidas
                 if (!camiOpen) {
                     camiUnread = true;
                     updateDot();
@@ -3592,7 +3836,6 @@
                 }
             });
 
-            // Exibe dot inicial após 5 segundos se o chat nunca foi aberto
             setTimeout(() => {
                 if (!camiOpen && camiFirst && d) d.style.display = 'block';
             }, 5000);
@@ -3620,10 +3863,7 @@
         document.getElementById('cancelAddDisciplinaBtn').addEventListener('click', () => addDisciplinaModal.classList.remove('active'));
         addDisciplinaModal.addEventListener('click', (e) => { if (e.target === addDisciplinaModal) addDisciplinaModal.classList.remove('active'); });
         suggestionsGrid.addEventListener('click', (e) => { const chip = e.target.closest('.suggestion-chip'); if (chip) { newDisciplinaInput.value = chip.dataset.name; newDisciplinaInput.focus(); } });
-        function adicionarNovaDisciplina(nome) { nome = nome.trim(); if (!nome) { toast('Digite um nome válido.', 'error'); return; } if (data[nome]) { toast('Esta disciplina já existe.', 'error'); return; } data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); renderizarTabela(); refreshDashboard();
-            // ALERTA CAMI
-            if (typeof camiAlert === 'function') camiAlert(`📚 Nova disciplina <strong>"${nome}"</strong> adicionada! Bons estudos com esse novo conteúdo! 🚀`);
-            toast(`✓ Disciplina "${nome}" adicionada!`); }
+        function adicionarNovaDisciplina(nome) { nome = nome.trim(); if (!nome) { toast('Digite um nome válido.', 'error'); return; } if (data[nome]) { toast('Esta disciplina já existe.', 'error'); return; } data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); renderizarTabela(); refreshDashboard(); if (typeof camiAlert === 'function') camiAlert(`📚 Nova disciplina <strong>"${nome}"</strong> adicionada! Bons estudos com esse novo conteúdo! 🚀`); toast(`✓ Disciplina "${nome}" adicionada!`); }
         document.getElementById('confirmAddDisciplinaBtn').addEventListener('click', () => { const nome = newDisciplinaInput.value.trim(); if (!nome) { toast('Digite o nome.', 'error'); return; } adicionarNovaDisciplina(nome); addDisciplinaModal.classList.remove('active'); });
         newDisciplinaInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); const nome = newDisciplinaInput.value.trim(); if (!nome) { toast('Digite o nome.', 'error'); return; } adicionarNovaDisciplina(nome); addDisciplinaModal.classList.remove('active'); } });
 
@@ -3641,19 +3881,10 @@
         function atualizarTimer() { const h = Math.floor(segundos / 3600), m = Math.floor((segundos % 3600) / 60), s = segundos % 60; const txt = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; timerDisplay.textContent = txt; if (focusTimerDisplay) focusTimerDisplay.textContent = txt; }
         function updateCiclo30min() { ciclo30min = segundos % 1800; const ciclo = Math.floor(segundos / 1800) + 1; if (focusModeActive) { document.getElementById('focusCycleCount').textContent = ciclo; drawFocusRing(); } }
         function drawFocusRing() { if (!focusModeActive) return; const canvas = document.getElementById('focusRingCanvas'); if (!canvas) return; const ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, cx = w / 2, cy = h / 2, r = 100; const progress = ciclo30min / 1800; ctx.clearRect(0, 0, w, h); ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 14; ctx.stroke(); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff'); ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress)); ctx.strokeStyle = grad; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.stroke(); }
-        function salvarTempoNaDisciplina(resetar = true) { const nome = document.getElementById('disciplinaSelect').value; if (!nome || segundos <= 0) { if (!nome) toast('Selecione uma disciplina!', 'error'); return; } const minutos = Math.round(segundos / 60); if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; data[nome].horasMinutos = (data[nome].horasMinutos || 0) + minutos; salvarDados(); renderizarTabela(); if (resetar) { segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); } refreshDashboard();
-            // ALERTA CAMI
-            if (typeof camiAlert === 'function') camiAlert(`💾 <strong>${minutos} minutos</strong> de estudo salvos em "${nome}"! Continue assim! ⏱️`);
-            toast(`✓ ${minutos}min salvos em "${nome}"`); }
+        function salvarTempoNaDisciplina(resetar = true) { const nome = document.getElementById('disciplinaSelect').value; if (!nome || segundos <= 0) { if (!nome) toast('Selecione uma disciplina!', 'error'); return; } const minutos = Math.round(segundos / 60); if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; data[nome].horasMinutos = (data[nome].horasMinutos || 0) + minutos; salvarDados(); renderizarTabela(); if (resetar) { segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); } refreshDashboard(); if (typeof camiAlert === 'function') camiAlert(`💾 <strong>${minutos} minutos</strong> de estudo salvos em "${nome}"! Continue assim! ⏱️`); toast(`✓ ${minutos}min salvos em "${nome}"`); }
         function abrirModoFoco() { focusOverlay.classList.add('active'); focusModeActive = true; updateCiclo30min(); drawFocusRing(); }
-        document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) { toast('Cronômetro já está em execução.', 'error'); return; } timerInterval = setInterval(() => { segundos++; atualizarTimer(); updateCiclo30min(); if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído!`); if (typeof camiAlert === 'function') camiAlert(`🍅 Pomodoro <strong>#${pomodoroCount}</strong> concluído! Hora de uma pausa rápida! ☕`); } }, 1000);
-            // ALERTA CAMI
-            if (typeof camiAlert === 'function') camiAlert('⏱️ Cronômetro iniciado! Foco total nos estudos! 🎯');
-            toast('▶️ Cronômetro iniciado'); });
-        document.getElementById('timerPause').addEventListener('click', () => { if (!timerInterval) { toast('Cronômetro já está pausado.'); return; } clearInterval(timerInterval); timerInterval = null;
-            // ALERTA CAMI
-            if (typeof camiAlert === 'function') camiAlert('⏸️ Cronômetro pausado. Que tal um alongamento rápido? 🧘');
-            toast('⏸️ Cronômetro pausado'); });
+        document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) { toast('Cronômetro já está em execução.', 'error'); return; } timerInterval = setInterval(() => { segundos++; atualizarTimer(); updateCiclo30min(); if (pomodoroActive && segundos % 1500 === 0) { clearInterval(timerInterval); timerInterval = null; toast(`🍅 Pomodoro ${pomodoroCount++} concluído!`); if (typeof camiAlert === 'function') camiAlert(`🍅 Pomodoro <strong>#${pomodoroCount}</strong> concluído! Hora de uma pausa rápida! ☕`); } }, 1000); if (typeof camiAlert === 'function') camiAlert('⏱️ Cronômetro iniciado! Foco total nos estudos! 🎯'); toast('▶️ Cronômetro iniciado'); });
+        document.getElementById('timerPause').addEventListener('click', () => { if (!timerInterval) { toast('Cronômetro já está pausado.'); return; } clearInterval(timerInterval); timerInterval = null; if (typeof camiAlert === 'function') camiAlert('⏸️ Cronômetro pausado. Que tal um alongamento rápido? 🧘'); toast('⏸️ Cronômetro pausado'); });
         document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(true));
         document.getElementById('timerReset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; segundos = 0; atualizarTimer(); ciclo30min = 0; updateCiclo30min(); toast('🔄 Cronômetro zerado'); });
         document.getElementById('focusModeHighlightBtn').addEventListener('click', abrirModoFoco);
@@ -3684,14 +3915,8 @@
         filtroInput.addEventListener('input', e => renderizarTabela(e.target.value, tabelaSortBy, tabelaSortDir));
 
         // ========== REGISTRO RÁPIDO ==========
-        document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard();
-            // ALERTA CAMI
-            if (typeof camiAlert === 'function') camiAlert(`✅ <strong>${qtd} acerto(s)</strong> registrado(s) em "${nome}"! Você está no caminho certo! 🌟`);
-            toast(`✅ ${qtd} acerto(s) registrado(s) em ${nome}`); });
-        document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard();
-            // ALERTA CAMI
-            if (typeof camiAlert === 'function') camiAlert(`❌ <strong>${qtd} erro(s)</strong> registrado(s) em "${nome}". Cada erro é uma oportunidade de aprendizado! 📖`);
-            toast(`❌ ${qtd} erro(s) registrado(s) em ${nome}`); });
+        document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); if (typeof camiAlert === 'function') camiAlert(`✅ <strong>${qtd} acerto(s)</strong> registrado(s) em "${nome}"! Você está no caminho certo! 🌟`); toast(`✅ ${qtd} acerto(s) registrado(s) em ${nome}`); });
+        document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); if (typeof camiAlert === 'function') camiAlert(`❌ <strong>${qtd} erro(s)</strong> registrado(s) em "${nome}". Cada erro é uma oportunidade de aprendizado! 📖`); toast(`❌ ${qtd} erro(s) registrado(s) em ${nome}`); });
         document.getElementById('resetMetricsBtn').addEventListener('click', async () => {
             const confirmed = await window.showConfirmModal('Zerar métricas', 'Tem certeza que deseja zerar TODAS as métricas? Esta ação não pode ser desfeita.', true);
             if (!confirmed) return;
