@@ -150,19 +150,32 @@
         }
         .splash-container {
             width: 100%;
-            max-width: 420px;
+            max-width: 900px;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 28px;
-            text-align: center;
+        }
+        .splash-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+        }
+        .splash-text {
+            flex: 1;
+            max-width: 480px;
+        }
+        .splash-image {
+            flex-shrink: 0;
         }
         .splash-mascot {
-            width: min(220px, 60vw);
+            width: 230px;
             height: auto;
             filter: drop-shadow(0 0 24px rgba(255, 122, 0, 0.35)) drop-shadow(0 12px 20px rgba(0,0,0,0.25));
             animation: mascotFloat 4s ease-in-out infinite;
-            margin-bottom: 8px;
         }
         @keyframes mascotFloat {
             0%, 100% { transform: translateY(0); }
@@ -302,6 +315,20 @@
         #splashSkip:hover {
             background: rgba(255,255,255,0.18);
             color: #fff;
+        }
+
+        /* Responsivo: empilhado em telas menores */
+        @media (max-width: 767px) {
+            .splash-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .splash-mascot {
+                width: min(180px, 50vw);
+            }
+            .splash-text {
+                max-width: 100%;
+            }
         }
 
         #topbar {
@@ -1800,7 +1827,6 @@
             }
         }
 
-        /* SISTEMA DE ABAS */
         .tab-nav {
             display: flex;
             background: var(--bg-card);
@@ -1864,7 +1890,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ONBOARDING TOUR */
         .onboarding-overlay {
             position: fixed;
             inset: 0;
@@ -1943,7 +1968,6 @@
             font-size: 0.75rem;
         }
 
-        /* MODAL CONFIRMAÇÃO */
         #confirmModal .modal-card {
             max-width: 440px;
             text-align: center;
@@ -3049,7 +3073,7 @@
     </style>
 </head>
 <body>
-    <!-- SPLASH SCREEN -->
+    <!-- SPLASH SCREEN CORRIGIDO -->
     <div id="splashOverlay" aria-hidden="false">
         <button id="splashSkip" aria-label="Pular introdução"><i class="fas fa-times"></i></button>
         <div class="splash-bg-icons">
@@ -3059,40 +3083,46 @@
             <i class="fas fa-trophy splash-bg-icon"></i>
         </div>
         <div class="splash-container">
-            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777913280/ChatGPT_Image_4_de_mai._de_2026_13_45_20_qsaqzq.png"
-                 alt="Mascote VULPS+" class="splash-mascot" />
-            <h1 class="splash-title">Bem-vindo ao VULPS+!</h1>
-            <p class="splash-subtitle">
-                Seu parceiro inteligente para organizar, acompanhar e impulsionar sua <span class="highlight">jornada de estudos</span>.
-            </p>
-            <div class="splash-features">
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-chart-simple"></i></div>
-                    <div class="feature-text">
-                        <h4>Acompanhe seu desempenho</h4>
-                        <p>Métricas e gráficos para você evoluir todos os dias.</p>
+            <div class="splash-content">
+                <div class="splash-text">
+                    <h1 class="splash-title">Bem-vindo ao VULPS+!</h1>
+                    <p class="splash-subtitle">
+                        Seu parceiro inteligente para organizar, acompanhar e impulsionar sua <span class="highlight">jornada de estudos</span>.
+                    </p>
+                    <div class="splash-features">
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-chart-simple"></i></div>
+                            <div class="feature-text">
+                                <h4>Acompanhe seu desempenho</h4>
+                                <p>Métricas e gráficos para você evoluir todos os dias.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
+                            <div class="feature-text">
+                                <h4>Defina metas e conquiste</h4>
+                                <p>Planeje, foque e celebre cada conquista.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                            <div class="feature-text">
+                                <h4>Estude com mais foco</h4>
+                                <p>Cronômetro inteligente para mantê-lo no ritmo.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+                            <div class="feature-text">
+                                <h4>Transforme esforço em aprovação</h4>
+                                <p>Constância hoje, conquista amanhã.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-bullseye"></i></div>
-                    <div class="feature-text">
-                        <h4>Defina metas e conquiste</h4>
-                        <p>Planeje, foque e celebre cada conquista.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-clock"></i></div>
-                    <div class="feature-text">
-                        <h4>Estude com mais foco</h4>
-                        <p>Cronômetro inteligente para mantê-lo no ritmo.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon"><i class="fas fa-rocket"></i></div>
-                    <div class="feature-text">
-                        <h4>Transforme esforço em aprovação</h4>
-                        <p>Constância hoje, conquista amanhã.</p>
-                    </div>
+                <div class="splash-image">
+                    <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777913280/ChatGPT_Image_4_de_mai._de_2026_13_45_20_qsaqzq.png"
+                         alt="Mascote VULPS+" class="splash-mascot" />
                 </div>
             </div>
             <button class="splash-cta" id="splashCtaBtn">Começar agora</button>
@@ -3102,7 +3132,7 @@
     </div>
 
     <header id="topbar" role="banner">
-        <a href="#" class="topbar-logo"><img src="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" alt="VULPS+"/><span>VULPS+</span></a>
+        <a href="#" class="topbar-logo"><img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777972823/LOGO-removebg-preview_m5vwud.png" alt="VULPS+"/><span>VULPS+</span></a>
         <div class="topbar-spacer"></div>
         <div class="topbar-actions">
             <span class="support-message"><i class="fas fa-users"></i> <span id="onlineEstudantes">+12</span> pessoas estudando agora</span>
@@ -3137,7 +3167,7 @@
                     <span class="support-msg">Você não está sozinho nessa 💪</span>
                 </div>
             </div>
-            <img src="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" alt="VULPS+" class="sidebar-logo" />
+            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777972823/LOGO-removebg-preview_m5vwud.png" alt="VULPS+" class="sidebar-logo" />
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
         <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade VULP</span><span class="sb-sub">Central do Concurseiro</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
@@ -3177,30 +3207,16 @@
                 <div class="motivational-author" id="motivationalAuthor"></div>
             </div><button class="motivational-refresh" id="motivationalRefreshBtn" title="Nova frase motivacional"><i class="fas fa-sync-alt"></i></button></div>
 
-        <!-- SISTEMA DE ABAS -->
         <nav class="tab-nav" id="tabNav">
-            <button class="tab-btn active" data-tab="principal">
-                <i class="fas fa-clock"></i> Principal
-            </button>
-            <button class="tab-btn" data-tab="metricas">
-                <i class="fas fa-chart-bar"></i> Métricas
-            </button>
-            <button class="tab-btn" data-tab="historico">
-                <i class="fas fa-history"></i> Histórico
-            </button>
+            <button class="tab-btn active" data-tab="principal"><i class="fas fa-clock"></i> Principal</button>
+            <button class="tab-btn" data-tab="metricas"><i class="fas fa-chart-bar"></i> Métricas</button>
+            <button class="tab-btn" data-tab="historico"><i class="fas fa-history"></i> Histórico</button>
         </nav>
 
-        <!-- CONTEÚDO ABA PRINCIPAL -->
         <div class="tab-content active" id="tab-principal">
             <section class="community-feed">
                 <div class="feed-header">
-                    <div class="feed-title">
-                        <i class="fas fa-users"></i>
-                        <span>Comunidade VULP+</span>
-                        <div class="online-badge">
-                            🔥 <span id="onlineCount">47</span> online agora
-                        </div>
-                    </div>
+                    <div class="feed-title"><i class="fas fa-users"></i><span>Comunidade VULP+</span><div class="online-badge">🔥 <span id="onlineCount">47</span> online agora</div></div>
                     <span class="feed-live">Atividades em tempo real</span>
                 </div>
                 <div class="feed-list" id="communityFeedList"></div>
@@ -3226,7 +3242,6 @@
             <div class="registro-card"><div class="controle-grupo"><label>Disciplina</label><select id="registroDisciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="controle-grupo" style="max-width:100px"><label>Qtd</label><input type="number" id="registroQuantidade" value="1" min="1" step="1" style="text-align:center"></div><div style="display:flex;gap:8px"><button id="registroAcertarBtn" class="btn btn-sm" style="border-color:var(--secondary);color:var(--secondary)"><i class="fas fa-check"></i> Acertos</button><button id="registroErrarBtn" class="btn btn-sm" style="border-color:var(--danger);color:var(--danger)"><i class="fas fa-times"></i> Erros</button></div></div>
         </div>
 
-        <!-- CONTEÚDO ABA MÉTRICAS -->
         <div class="tab-content" id="tab-metricas">
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div><div class="chart-grid"><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Taxa de Acerto (%)</div><canvas id="accuracyChart" class="chart-canvas"></canvas></div><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Questões (Verde: Acertos, Laranja: Erros)</div><canvas id="volumeChart" class="chart-canvas"></canvas></div></div></section>
 
@@ -3235,7 +3250,6 @@
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
         </div>
 
-        <!-- CONTEÚDO ABA HISTÓRICO -->
         <div class="tab-content" id="tab-historico">
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><input type="date" id="historyFilterDate" class="filter-select" style="min-width:140px" title="Filtrar por data"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option></select></div></div><div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo (min)</th><th>ID</th><th>Ações</th></tr></thead><tbody id="historyTableBody"></tbody></table></div></section>
         </div>
@@ -3266,7 +3280,6 @@
     <div class="modal-overlay" id="editGoalsModal"><div class="modal-card"><div class="modal-header"><h3 class="modal-title"><i class="fas fa-bullseye"></i> Ajustar Metas</h3><button class="modal-close" id="closeEditGoalsModal"><i class="fas fa-times"></i></button></div><div id="editGoalsForm"><div style="margin-bottom:12px"><label>Meta 1: Questões por dia</label><input type="number" id="goalEdit0" min="1" class="filter-select" style="width:100px" value="20"></div><div style="margin-bottom:12px"><label>Meta 2: Taxa de acerto (%)</label><input type="number" id="goalEdit1" min="1" max="100" class="filter-select" style="width:100px" value="70"></div><div style="margin-bottom:12px"><label>Meta 3: Tempo semanal (min)</label><input type="number" id="goalEdit2" min="1" class="filter-select" style="width:100px" value="300"></div><div style="margin-bottom:12px"><label>Meta 4: Dias consecutivos</label><input type="number" id="goalEdit3" min="1" class="filter-select" style="width:100px" value="30"></div></div><div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end"><button class="btn btn-sm" id="cancelEditGoalsBtn">Cancelar</button><button class="btn btn-primary btn-sm" id="confirmEditGoalsBtn"><i class="fas fa-save"></i> Salvar Metas</button></div></div></div>
     <div class="modal-overlay" id="quemSomosOverlay"><div id="quemSomosModal"><button class="close-btn" id="closeQuemSomosBtn"><i class="fas fa-times"></i></button><div class="trophy-container"><div class="confetti-container" id="confettiContainer"></div><i class="fas fa-trophy trophy-icon"></i></div><div class="manifesto-text"><p><strong>Manifesto</strong></p><p>O mercado de concursos públicos está cada vez mais competitivo...</p><p>A <span class="brand-name">VULP+</span> nasce para democratizar o aprendizado.</p><p><span class="brand-name">vulp+</span><br><strong>Ecossistema de Estudos</strong></p><p>Aqui, ninguém estuda sozinho.</p></div></div></div>
 
-    <!-- MODAL DE CONFIRMAÇÃO -->
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
             <div class="modal-header" style="justify-content: center;">
@@ -3280,7 +3293,6 @@
         </div>
     </div>
 
-    <!-- ONBOARDING TOUR -->
     <div class="onboarding-overlay" id="onboardingOverlay">
         <div class="onboarding-spotlight" id="onboardingSpotlight"></div>
         <div class="onboarding-tooltip" id="onboardingTooltip">
@@ -3298,13 +3310,11 @@
 
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- BOTÃO FLUTUANTE DO CHATBOT (IMAGEM NOVA) -->
     <button id="camiFAB" aria-label="Abrir assistente Cami">
         <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777888784/chatbot_rdbz8j.png" class="cami-icon-img" alt="Cami" loading="lazy">
         <span class="cami-notification-dot" id="camiDot"></span>
     </button>
 
-    <!-- JANELA DO CHATBOT -->
     <div id="camiChatWindow">
         <div id="camiChatHeader">
             <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777888784/chatbot_rdbz8j.png" class="cami-avatar-img" alt="Cami" loading="lazy">
