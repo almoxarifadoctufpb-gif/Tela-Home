@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-    <title>VULPS+ · Painel de Desempenho</title>
+    <title>VULPS+ · Sala de Operações - QG</title>
     <meta name="description" content="Acompanhe métricas, metas, cronômetro e progresso nos estudos para concursos." />
-    <meta property="og:title" content="VULPS+ · Painel de Desempenho" />
+    <meta property="og:title" content="VULPS+ · Sala de Operações - QG" />
     <meta property="og:description" content="Dashboard completo com KPIs, gráficos, heatmap, metas e cronômetro de estudos." />
     <meta property="og:image" content="https://i.ibb.co/ymzBH3qQ/Foto-sem-Fundo-Nero-AI-Image-Upscaler-Photo-Face.png" />
     <meta property="og:type" content="website" />
@@ -74,6 +74,7 @@
             --transition-fast: 0.15s ease;
             --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --default-avatar-url: url('https://res.cloudinary.com/dew6hgzpv/image/upload/v1778061747/ChatGPT_Image_6_de_mai._de_2026_06_32_40_bjwzv6.png');
         }
 
         html[data-theme="dark"] {
@@ -680,23 +681,6 @@
             margin: 0;
             line-height: 1.25;
             letter-spacing: -0.01em;
-        }
-
-        .brand-text h1 .mascot-icon {
-            display: inline-block;
-            font-size: 1.4rem;
-            margin-right: 6px;
-            animation: mascotBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes mascotBounce {
-            0%,
-            100% {
-                transform: translateY(0)
-            }
-            50% {
-                transform: translateY(-6px)
-            }
         }
 
         .brand-text h1 i {
@@ -1764,84 +1748,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .onboarding-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .onboarding-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .onboarding-overlay::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: rgba(8, 15, 30, 0.75);
-            z-index: 0;
-        }
-
-        .onboarding-spotlight {
-            position: fixed;
-            border-radius: var(--radius-md);
-            box-shadow: 0 0 0 9999px rgba(8, 15, 30, 0.75);
-            z-index: 1;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: none;
-        }
-
-        .onboarding-tooltip {
-            position: fixed;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 20px 24px;
-            box-shadow: var(--shadow-lg);
-            z-index: 2;
-            max-width: 340px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .onboarding-step-indicator {
-            font-size: 0.72rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .onboarding-tooltip h4 {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-
-        .onboarding-tooltip p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
-
-        .onboarding-actions {
-            display: flex;
-            gap: 8px;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #onboardingSkipBtn {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-        }
-
         #confirmModal .modal-card {
             max-width: 440px;
             text-align: center;
@@ -2214,55 +2120,6 @@
             outline-offset: 1px;
         }
 
-        .avatar-category-bar {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .avatar-category-btn {
-            flex: 1;
-            min-width: 160px;
-            padding: 12px 18px;
-            border-radius: var(--radius-pill);
-            background: var(--bg-primary);
-            border: 2px solid var(--border-light);
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all var(--transition-base);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: var(--text-secondary);
-            position: relative;
-        }
-
-        .avatar-category-btn i {
-            font-size: 1.1rem;
-        }
-
-        .avatar-category-btn:hover {
-            border-color: var(--accent);
-            background: var(--accent-soft);
-            color: var(--accent);
-        }
-
-        .avatar-category-btn.active {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 4px 16px rgba(255, 122, 0, 0.3);
-        }
-
-        .avatar-category-btn:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
         .avatar-game-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -2388,12 +2245,6 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            position: relative;
-            z-index: 1;
-        }
-        .profile-avatar-display .avatar-svg {
-            width: 100%;
-            height: 100%;
             position: relative;
             z-index: 1;
         }
@@ -3041,7 +2892,6 @@
             .avatar-game-img-wrap { width: 90px !important; height: 90px !important; }
             .profile-avatar-display { width: 110px !important; height: 110px !important; }
             .feed-avatar { width: 30px; height: 30px; }
-            .onboarding-tooltip { max-width: 280px; padding: 16px 18px; }
         }
         @media (min-width: 48em) {
             #hamburgerBtn { display: none }
@@ -3066,7 +2916,6 @@
         <div class="topbar-actions">
             <span class="support-message"><i class="fas fa-users"></i> <span id="onlineEstudantes">+12</span> pessoas estudando agora</span>
             <button id="topbarProfileBtn" class="btn btn-sm" title="Meu Perfil"><i class="fas fa-user-circle"></i> Perfil</button>
-            <button id="helpTourBtn" class="btn btn-sm" title="Tour guiado"><i class="fas fa-question-circle"></i></button>
             <div class="notification-bell" id="notificationBell" aria-label="Notificações" tabindex="0" role="button" aria-expanded="false">
                 <i class="fas fa-bell"></i><span class="badge" id="notificationBadge" style="display:none">0</span>
                 <div class="notification-dropdown" id="notificationDropdown" role="menu" aria-label="Lista de notificações">
@@ -3088,8 +2937,7 @@
         <div class="sidebar-header">
             <div class="sidebar-profile">
                 <div class="sidebar-avatar" id="sidebarAvatar" title="Ver perfil" tabindex="0" role="button" aria-label="Abrir perfil">
-                    <div class="avatar-svg" id="sidebarAvatarSvg"></div>
-                    <img class="avatar-img" id="sidebarAvatarImg" src="" alt="Avatar" style="display:none" />
+                    <img class="avatar-img" id="sidebarAvatarImg" src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1778061747/ChatGPT_Image_6_de_mai._de_2026_06_32_40_bjwzv6.png" alt="Avatar" />
                     <div class="edit-badge" id="sidebarEditBadge" title="Editar perfil"><i class="fas fa-cog"></i></div>
                 </div>
                 <div class="sidebar-greeting" id="sidebarGreeting">
@@ -3102,7 +2950,7 @@
         </div>
         <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade VULP</span><span class="sb-sub">Central do Concurseiro</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-route"></i><span class="sb-info"><span class="sb-title">Rota da Aprovação</span><span class="sb-sub">Cronograma de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="#" target="_blank" rel="noopener noreferrer" class="sidebar-btn" aria-current="page"><i class="fas fa-chart-bar"></i><span class="sb-info"><span class="sb-title">Painel de Desempenho</span><span class="sb-sub">Métricas e Progresso</span></span></a>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="sidebar-btn" aria-current="page"><i class="fas fa-chart-bar"></i><span class="sb-info"><span class="sb-title">Sala de Operações - QG</span><span class="sb-sub">Métricas e Progresso</span></span></a>
         <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-hourglass-half"></i><span class="sb-info"><span class="sb-title">Modo Caverna</span><span class="sb-sub">Cronômetro</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-door-open"></i><span class="sb-info"><span class="sb-title">Sala de Estudos</span><span class="sb-sub">Leitor de PDF</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-balance-scale"></i><span class="sb-info"><span class="sb-title">Leitor de Leis</span><span class="sb-sub">Memorização de Leis</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
@@ -3116,7 +2964,7 @@
         <div class="app-header">
             <div class="header-brand">
                 <div class="brand-text">
-                    <h1><span class="mascot-icon">🦊</span> Painel de Desempenho</h1>
+                    <h1>Sala de Operações - QG</h1>
                     <p><i class="fas fa-users" style="color:var(--accent)"></i> Ecossistema de Estudos Colaborativo</p>
                 </div>
             </div>
@@ -3193,13 +3041,9 @@
     <div class="focus-overlay" id="focusOverlay"><button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button><div class="focus-container"><div class="focus-fox">🦊</div><div class="focus-ring-container"><canvas id="focusRingCanvas" width="240" height="240"></canvas><div class="focus-timer" id="focusTimerDisplay">00:00:00</div></div><div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount" style="color:var(--accent);font-weight:700;font-size:1.4rem">1</span></div><div class="focus-controls"><button class="focus-btn" id="focusTimerStart"><i class="fas fa-play"></i></button><button class="focus-btn" id="focusTimerPause"><i class="fas fa-pause"></i></button></div><div class="focus-encouragement">🦊 Foco total! Cada minuto conta.</div></div></div>
 
     <!-- MODAIS -->
-    <div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title" id="profileModalTitle"><i class="fas fa-user-circle"></i> Meu Perfil</h3><button class="modal-close" id="closeProfileModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><div class="profile-avatar-display" id="profileAvatarDisplay"><div class="avatar-svg" id="profileAvatarSvg"></div><img id="profileAvatarImg" src="" alt="Avatar" style="display:none"/><div class="edit-badge" id="profileEditBadge" title="Editar avatar"><i class="fas fa-cog"></i></div></div><div class="profile-nickname" id="profileNicknameDisplay">Concurseiro(a)</div><div class="profile-nickname-edit"><input type="text" id="profileNicknameInput" placeholder="Seu nickname" maxlength="20" aria-label="Nickname"/><button class="btn btn-sm btn-primary" id="saveNicknameBtn"><i class="fas fa-check"></i></button></div><button class="btn btn-accent btn-sm" id="openEditProfileBtn" style="width:100%;margin-top:8px"><i class="fas fa-gamepad"></i> Escolher Avatar</button></div></div>
+    <div class="modal-overlay" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title" id="profileModalTitle"><i class="fas fa-user-circle"></i> Meu Perfil</h3><button class="modal-close" id="closeProfileModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><div class="profile-avatar-display" id="profileAvatarDisplay"><img id="profileAvatarImg" src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1778061747/ChatGPT_Image_6_de_mai._de_2026_06_32_40_bjwzv6.png" alt="Avatar"/><div class="edit-badge" id="profileEditBadge" title="Editar avatar"><i class="fas fa-cog"></i></div></div><div class="profile-nickname" id="profileNicknameDisplay">Concurseiro(a)</div><div class="profile-nickname-edit"><input type="text" id="profileNicknameInput" placeholder="Seu nickname" maxlength="20" aria-label="Nickname"/><button class="btn btn-sm btn-primary" id="saveNicknameBtn"><i class="fas fa-check"></i></button></div><button class="btn btn-accent btn-sm" id="openEditProfileBtn" style="width:100%;margin-top:8px"><i class="fas fa-gamepad"></i> Escolher Avatar</button></div></div>
 
-    <div class="modal-overlay" id="editProfileModal" role="dialog" aria-modal="true" aria-labelledby="editProfileModalTitle"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title" id="editProfileModalTitle"><i class="fas fa-gamepad"></i> Escolher Avatar</h3><button class="modal-close" id="closeEditProfileModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><div class="profile-tabs"><button class="profile-tab active" data-tab="photo">📸 Minha Foto</button><button class="profile-tab" data-tab="avatars">🎮 Avatares Game</button></div><div id="tabPhoto"><div class="photo-upload-area" id="photoUploadArea"><i class="fas fa-camera"></i><p style="font-weight:600;margin-bottom:4px">Clique para enviar sua foto</p><p style="font-size:0.72rem;color:var(--text-muted)">JPG, PNG ou WebP</p><input type="file" id="photoFileInput" accept="image/*" style="display:none"/></div><div style="text-align:center;margin-top:12px"><img id="photoPreview" class="photo-preview" src="" alt="Preview" style="display:none"/></div><button class="btn btn-primary btn-sm" id="savePhotoBtn" style="width:100%;margin-top:12px"><i class="fas fa-save"></i> Usar esta foto</button><button class="btn btn-sm" id="removePhotoBtn" style="width:100%;margin-top:6px;color:var(--danger)"><i class="fas fa-undo"></i> Voltar para avatar padrão</button></div><div id="tabAvatars" style="display:none">
-        <div class="avatar-category-bar">
-            <button class="avatar-category-btn active" data-category="militar"><i class="fas fa-shield-alt"></i> ⚔️ Militar</button>
-            <button class="avatar-category-btn" data-category="civil"><i class="fas fa-briefcase"></i> 📋 Não Militar</button>
-        </div>
+    <div class="modal-overlay" id="editProfileModal" role="dialog" aria-modal="true" aria-labelledby="editProfileModalTitle"><div class="modal-card wide"><div class="modal-header"><h3 class="modal-title" id="editProfileModalTitle"><i class="fas fa-gamepad"></i> Escolher Avatar</h3><button class="modal-close" id="closeEditProfileModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><div class="profile-tabs"><button class="profile-tab active" data-tab="photo">📸 Minha Foto</button><button class="profile-tab" data-tab="avatars">🎮 Seu avatar</button></div><div id="tabPhoto"><div class="photo-upload-area" id="photoUploadArea"><i class="fas fa-camera"></i><p style="font-weight:600;margin-bottom:4px">Clique para enviar sua foto</p><p style="font-size:0.72rem;color:var(--text-muted)">JPG, PNG ou WebP</p><input type="file" id="photoFileInput" accept="image/*" style="display:none"/></div><div style="text-align:center;margin-top:12px"><img id="photoPreview" class="photo-preview" src="" alt="Preview" style="display:none"/></div><button class="btn btn-primary btn-sm" id="savePhotoBtn" style="width:100%;margin-top:12px"><i class="fas fa-save"></i> Usar esta foto</button><button class="btn btn-sm" id="removePhotoBtn" style="width:100%;margin-top:6px;color:var(--danger)"><i class="fas fa-undo"></i> Voltar para avatar padrão</button></div><div id="tabAvatars" style="display:none">
         <div id="avatarGridContainer" class="avatar-game-grid"></div>
     </div></div></div>
 
@@ -3223,31 +3067,16 @@
         </div>
     </div>
 
-    <div class="onboarding-overlay" id="onboardingOverlay">
-        <div class="onboarding-spotlight" id="onboardingSpotlight"></div>
-        <div class="onboarding-tooltip" id="onboardingTooltip" role="dialog" aria-modal="true" aria-labelledby="onboardingTitle">
-            <div class="onboarding-step-indicator">
-                <span id="onboardingStepDot">●</span> Passo <span id="onboardingCurrentStep">1</span> de <span id="onboardingTotalSteps">4</span>
-            </div>
-            <h4 id="onboardingTitle"></h4>
-            <p id="onboardingDescription"></p>
-            <div class="onboarding-actions">
-                <button class="btn btn-sm" id="onboardingSkipBtn">Pular tour</button>
-                <button class="btn btn-sm btn-primary" id="onboardingNextBtn">Próximo →</button>
-            </div>
-        </div>
-    </div>
-
     <div class="toast-container" id="toastContainer"></div>
 
     <button id="camiFAB" aria-label="Abrir assistente Cami">
-        <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777888784/chatbot_rdbz8j.png" class="cami-icon-img" alt="Cami" loading="lazy">
+        <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777995838/ChatGPT_Image_5_de_mai._de_2026_12_21_38_aqah1x.png" class="cami-icon-img" alt="Cami" loading="lazy">
         <span class="cami-notification-dot" id="camiDot"></span>
     </button>
 
     <div id="camiChatWindow" role="dialog" aria-modal="true" aria-labelledby="camiHeaderName">
         <div id="camiChatHeader">
-            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777888784/chatbot_rdbz8j.png" class="cami-avatar-img" alt="Cami" loading="lazy">
+            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/v1777995838/ChatGPT_Image_5_de_mai._de_2026_12_21_38_aqah1x.png" class="cami-avatar-img" alt="Cami" loading="lazy">
             <div class="cami-header-info">
                 <div class="cami-header-name" id="camiHeaderName">Cami · Assistente</div>
                 <div class="cami-header-status">Online</div>
@@ -3273,6 +3102,8 @@
             /* ================================================================
                UTILITÁRIOS GERAIS
                ================================================================ */
+            const DEFAULT_AVATAR_URL = 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1778061747/ChatGPT_Image_6_de_mai._de_2026_06_32_40_bjwzv6.png';
+
             function escapeHtml(str) {
                 if (!str || typeof str !== 'string') return '';
                 return str
@@ -3287,69 +3118,54 @@
                 return str.replace(/<[^>]*>?/gm, '');
             }
 
-            /* ========== SVG DEFAULT ========== */
-            function createFoxAvatarSvg() {
-                return `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="50" cy="50" r="48" fill="#ff7a00"/>
-                    <ellipse cx="50" cy="65" rx="28" ry="24" fill="#fff"/>
-                    <circle cx="38" cy="48" r="6" fill="#0f172a"/>
-                    <circle cx="62" cy="48" r="6" fill="#0f172a"/>
-                    <ellipse cx="50" cy="58" rx="5" ry="3" fill="#0f172a"/>
-                    <path d="M10 30 L22 22 L26 36 Z" fill="#ff7a00" stroke="#e06a00" stroke-width="2"/>
-                    <path d="M90 30 L78 22 L74 36 Z" fill="#ff7a00" stroke="#e06a00" stroke-width="2"/>
-                    <circle cx="42" cy="42" r="2" fill="#fff"/>
-                    <circle cx="58" cy="42" r="2" fill="#fff"/>
-                </svg>`;
-            }
-
             /* ========== AVATARES GAME ========== */
             const gameAvatars = [
-                { name: 'VULP 46', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP46_lkd2sm.png', category: 'militar' },
-                { name: 'VULP 47', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP47_fcrjur.png', category: 'civil' },
-                { name: 'VULP 42', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP42_rdfqau.png', category: 'militar' },
-                { name: 'VULP 45', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP45_eopqbj.png', category: 'civil' },
-                { name: 'VULP 39', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP39_lorvpi.png', category: 'militar' },
-                { name: 'VULP 43', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP43_lffq2v.png', category: 'civil' },
-                { name: 'VULP 44', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP44_ewiflg.png', category: 'militar' },
-                { name: 'VULP 41', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP41_trit3t.png', category: 'civil' },
-                { name: 'VULP 40', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP40_j8wfxj.png', category: 'militar' },
-                { name: 'VULP 37', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP37_bgllac.png', category: 'civil' },
-                { name: 'VULP 35', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP35_lymfxs.png', category: 'militar' },
-                { name: 'VULP 38', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP38_cb64ys.png', category: 'civil' },
-                { name: 'VULP 36', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP36_glmhjy.png', category: 'militar' },
-                { name: 'VULP 34', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP34_bhshtq.png', category: 'civil' },
-                { name: 'VULP 33', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP33_khj7nb.png', category: 'militar' },
-                { name: 'VULP 32', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP32_iifhfn.png', category: 'civil' },
-                { name: 'VULP 31', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP31_lenbiu.png', category: 'militar' },
-                { name: 'VULP 30', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP30_qm64uv.png', category: 'civil' },
-                { name: 'VULP 29', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP29_tls20e.png', category: 'militar' },
-                { name: 'VULP 28', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP28_a11kpl.png', category: 'civil' },
-                { name: 'VULP 27', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP27_bec4ya.png', category: 'militar' },
-                { name: 'VULP 26', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP26_jozm5p.png', category: 'civil' },
-                { name: 'VULP 24', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP24_afxtwy.png', category: 'militar' },
-                { name: 'VULP 25', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP25_t5xsms.png', category: 'civil' },
-                { name: 'VULP 23', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP23_qjzqfq.png', category: 'militar' },
-                { name: 'VULP 22', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP22_g0utji.png', category: 'civil' },
-                { name: 'VULP 20', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP20_wmv9m7.png', category: 'militar' },
-                { name: 'VULP 21', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP21_yuiv7e.png', category: 'civil' },
-                { name: 'VULP 18', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP18_byar0n.png', category: 'militar' },
-                { name: 'VULP 17', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP17_kcwyre.png', category: 'civil' },
-                { name: 'VULP 19', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP19_lbavcx.png', category: 'militar' },
-                { name: 'VULP 16', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP16_selwpj.png', category: 'civil' },
-                { name: 'VULP 15', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP15_xy2mvf.png', category: 'militar' },
-                { name: 'VULP 14', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP14_fr0ykj.png', category: 'civil' },
-                { name: 'VULP 13', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP13_s9nbde.png', category: 'militar' },
-                { name: 'VULP 12', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP12_u9np0c.png', category: 'civil' },
-                { name: 'VULP 9', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP9_omlfho.png', category: 'militar' },
-                { name: 'VULP 3', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP3_xukjtp.png', category: 'civil' },
-                { name: 'VULP 11', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP11_vojnqw.png', category: 'militar' },
-                { name: 'VULP 10', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP10_uz35n0.png', category: 'civil' },
-                { name: 'VULP 8', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP8_dvwyis.png', category: 'militar' },
-                { name: 'VULP 7', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP7_srdiie.png', category: 'civil' },
-                { name: 'VULP 4', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP4_zmmc0x.png', category: 'militar' },
-                { name: 'VULP 2', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP2_a4sr8l.png', category: 'civil' },
-                { name: 'VULP 1', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP1_ixtdse.png', category: 'militar' },
-                { name: 'VULP 6', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP6_dtyhee.png', category: 'civil' },
+                { name: 'VULP 46', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP46_lkd2sm.png' },
+                { name: 'VULP 47', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP47_fcrjur.png' },
+                { name: 'VULP 42', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP42_rdfqau.png' },
+                { name: 'VULP 45', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP45_eopqbj.png' },
+                { name: 'VULP 39', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP39_lorvpi.png' },
+                { name: 'VULP 43', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP43_lffq2v.png' },
+                { name: 'VULP 44', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP44_ewiflg.png' },
+                { name: 'VULP 41', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834555/VULP41_trit3t.png' },
+                { name: 'VULP 40', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP40_j8wfxj.png' },
+                { name: 'VULP 37', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP37_bgllac.png' },
+                { name: 'VULP 35', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP35_lymfxs.png' },
+                { name: 'VULP 38', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP38_cb64ys.png' },
+                { name: 'VULP 36', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP36_glmhjy.png' },
+                { name: 'VULP 34', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP34_bhshtq.png' },
+                { name: 'VULP 33', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834554/VULP33_khj7nb.png' },
+                { name: 'VULP 32', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP32_iifhfn.png' },
+                { name: 'VULP 31', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP31_lenbiu.png' },
+                { name: 'VULP 30', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP30_qm64uv.png' },
+                { name: 'VULP 29', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP29_tls20e.png' },
+                { name: 'VULP 28', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP28_a11kpl.png' },
+                { name: 'VULP 27', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP27_bec4ya.png' },
+                { name: 'VULP 26', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834553/VULP26_jozm5p.png' },
+                { name: 'VULP 24', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP24_afxtwy.png' },
+                { name: 'VULP 25', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP25_t5xsms.png' },
+                { name: 'VULP 23', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP23_qjzqfq.png' },
+                { name: 'VULP 22', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP22_g0utji.png' },
+                { name: 'VULP 20', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP20_wmv9m7.png' },
+                { name: 'VULP 21', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP21_yuiv7e.png' },
+                { name: 'VULP 18', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP18_byar0n.png' },
+                { name: 'VULP 17', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP17_kcwyre.png' },
+                { name: 'VULP 19', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834552/VULP19_lbavcx.png' },
+                { name: 'VULP 16', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP16_selwpj.png' },
+                { name: 'VULP 15', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP15_xy2mvf.png' },
+                { name: 'VULP 14', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP14_fr0ykj.png' },
+                { name: 'VULP 13', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP13_s9nbde.png' },
+                { name: 'VULP 12', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP12_u9np0c.png' },
+                { name: 'VULP 9', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834551/VULP9_omlfho.png' },
+                { name: 'VULP 3', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP3_xukjtp.png' },
+                { name: 'VULP 11', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP11_vojnqw.png' },
+                { name: 'VULP 10', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP10_uz35n0.png' },
+                { name: 'VULP 8', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP8_dvwyis.png' },
+                { name: 'VULP 7', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834550/VULP7_srdiie.png' },
+                { name: 'VULP 4', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP4_zmmc0x.png' },
+                { name: 'VULP 2', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP2_a4sr8l.png' },
+                { name: 'VULP 1', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP1_ixtdse.png' },
+                { name: 'VULP 6', url: 'https://res.cloudinary.com/dew6hgzpv/image/upload/v1777834549/VULP6_dtyhee.png' },
             ];
 
             /* ========== PERFIL DO USUÁRIO ========== */
@@ -3357,37 +3173,28 @@
             function saveProfile() { try { localStorage.setItem('vulps_user_profile', JSON.stringify(userProfile)); } catch (e) {} }
 
             function updateAllAvatarDisplays() {
-                const svgContainers = [document.getElementById('sidebarAvatarSvg'), document.getElementById('profileAvatarSvg')];
                 const imgEls = [document.getElementById('sidebarAvatarImg'), document.getElementById('profileAvatarImg')];
-                const defaultSvg = createFoxAvatarSvg();
                 const showImg = (url) => {
-                    svgContainers.forEach(el => { if (el) el.style.display = 'none'; });
                     imgEls.forEach(el => { if (el) { el.src = url; el.style.display = 'block'; } });
-                };
-                const showSvg = () => {
-                    imgEls.forEach(el => { if (el) el.style.display = 'none'; });
-                    svgContainers.forEach(el => { if (el) { el.innerHTML = defaultSvg; el.style.display = 'block'; } });
                 };
                 if (userProfile.avatarType === 'photo' && userProfile.avatarPhoto) {
                     showImg(userProfile.avatarPhoto);
                 } else if (userProfile.avatarType === 'game' && userProfile.avatarGameUrl) {
                     showImg(userProfile.avatarGameUrl);
                 } else {
-                    showSvg();
+                    showImg(DEFAULT_AVATAR_URL);
                 }
                 document.getElementById('profileNicknameDisplay').textContent = escapeHtml(userProfile.nickname);
                 document.getElementById('sidebarNicknameDisplay').textContent = escapeHtml(userProfile.nickname);
                 document.getElementById('profileNicknameInput').value = userProfile.nickname;
             }
 
-            let currentAvatarCategory = 'militar';
             function buildAvatarGrid() {
                 const container = document.getElementById('avatarGridContainer');
                 if (!container) return;
-                const filtered = gameAvatars.filter(a => a.category === currentAvatarCategory);
                 container.style.opacity = '0';
                 setTimeout(() => {
-                    container.innerHTML = filtered.map(av => {
+                    container.innerHTML = gameAvatars.map(av => {
                         const selected = (userProfile.avatarType === 'game' && userProfile.avatarGameUrl === av.url) ? ' selected' : '';
                         return `<div class="avatar-game-card${selected}" data-url="${escapeHtml(av.url)}" tabindex="0" role="button" aria-label="Avatar ${escapeHtml(av.name)}">
                             <div class="avatar-game-img-wrap"><img src="${escapeHtml(av.url)}" alt="${escapeHtml(av.name)}" class="avatar-game-img" loading="lazy"></div>
@@ -3507,110 +3314,7 @@
                 trapFocusInModal(overlay);
             })();
 
-            /* ========== ONBOARDING TOUR ========== */
-            (function() {
-                const overlay = document.getElementById('onboardingOverlay');
-                const spotlight = document.getElementById('onboardingSpotlight');
-                const tooltip = document.getElementById('onboardingTooltip');
-                const titleEl = document.getElementById('onboardingTitle');
-                const descEl = document.getElementById('onboardingDescription');
-                const stepEl = document.getElementById('onboardingCurrentStep');
-                const totalStepsEl = document.getElementById('onboardingTotalSteps');
-                const nextBtn = document.getElementById('onboardingNextBtn');
-                const skipBtn = document.getElementById('onboardingSkipBtn');
-                const helpBtn = document.getElementById('helpTourBtn');
-                const HAS_SEEN_TOUR_KEY = 'vulps_has_seen_tour';
-                let currentStep = 0;
-
-                const steps = [
-                    { selector: '#timerCard', title: '⏱️ Cronômetro de Estudos', description: 'Inicie o cronômetro, escolha a disciplina e o tipo de sessão. Seu tempo será salvo no histórico.', position: 'bottom' },
-                    { selector: '.registro-card', title: '📝 Registro Rápido', description: 'Registre acertos e erros manualmente. Isso alimenta seus KPIs, gráficos e metas de estudo.', position: 'bottom' },
-                    { selector: '#kpiGrid', title: '📊 Seus KPIs', description: 'Acompanhe acertos, erros, tempo de estudo, streak e taxa de aproveitamento em tempo real.', position: 'bottom' },
-                    { selector: '.community-feed', title: '🦊 Comunidade Viva', description: 'Veja atividades de outros concurseiros em tempo real. Você não estuda sozinho!', position: 'top' }
-                ];
-
-                function spotlightElement(el) {
-                    const rect = el.getBoundingClientRect();
-                    const padding = 8;
-                    spotlight.style.top = (rect.top - padding) + 'px';
-                    spotlight.style.left = (rect.left - padding) + 'px';
-                    spotlight.style.width = (rect.width + padding * 2) + 'px';
-                    spotlight.style.height = (rect.height + padding * 2) + 'px';
-                    spotlight.style.borderRadius = 'var(--radius-md)';
-                }
-
-                function positionTooltip(targetEl, position) {
-                    const rect = targetEl.getBoundingClientRect();
-                    const tooltipW = tooltip.offsetWidth;
-                    const tooltipH = tooltip.offsetHeight;
-                    const gap = 16;
-                    let top, left;
-                    if (position === 'bottom') {
-                        top = rect.bottom + gap;
-                        left = Math.max(16, Math.min(rect.left + rect.width / 2 - tooltipW / 2, window.innerWidth - tooltipW - 16));
-                        if (top + tooltipH > window.innerHeight - 16) top = rect.top - tooltipH - gap;
-                    } else {
-                        top = rect.top - tooltipH - gap;
-                        left = Math.max(16, Math.min(rect.left + rect.width / 2 - tooltipW / 2, window.innerWidth - tooltipW - 16));
-                        if (top < 16) top = rect.bottom + gap;
-                    }
-                    tooltip.style.top = top + 'px';
-                    tooltip.style.left = left + 'px';
-                }
-
-                function showStep(stepIndex) {
-                    if (stepIndex >= steps.length) { finishTour(); return; }
-                    const step = steps[stepIndex];
-                    const targetEl = document.querySelector(step.selector);
-                    if (!targetEl) { showStep(stepIndex + 1); return; }
-                    const tabContent = targetEl.closest('.tab-content');
-                    if (tabContent && !tabContent.classList.contains('active')) {
-                        const tabId = tabContent.id.replace('tab-', '');
-                        const tabBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-                        if (tabBtn) tabBtn.click();
-                    }
-                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    setTimeout(() => {
-                        spotlightElement(targetEl);
-                        positionTooltip(targetEl, step.position);
-                        titleEl.textContent = step.title;
-                        descEl.textContent = step.description;
-                        stepEl.textContent = stepIndex + 1;
-                        currentStep = stepIndex;
-                        nextBtn.textContent = stepIndex === steps.length - 1 ? '✓ Começar a estudar!' : 'Próximo →';
-                    }, 400);
-                }
-
-                function startTour() { currentStep = 0; totalStepsEl.textContent = steps.length; overlay.classList.add('active'); showStep(0); }
-                function finishTour() { overlay.classList.remove('active'); localStorage.setItem(HAS_SEEN_TOUR_KEY, 'true'); }
-
-                nextBtn.addEventListener('click', () => currentStep >= steps.length - 1 ? finishTour() : showStep(currentStep + 1));
-                skipBtn.addEventListener('click', finishTour);
-                if (helpBtn) helpBtn.addEventListener('click', () => { localStorage.removeItem(HAS_SEEN_TOUR_KEY); startTour(); });
-                window.addEventListener('load', () => { if (!localStorage.getItem(HAS_SEEN_TOUR_KEY)) setTimeout(startTour, 1500); });
-                let resizeDebounce;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeDebounce);
-                    resizeDebounce = setTimeout(() => {
-                        if (overlay.classList.contains('active') && currentStep < steps.length) {
-                            const step = steps[currentStep];
-                            const targetEl = document.querySelector(step.selector);
-                            if (targetEl) { spotlightElement(targetEl); positionTooltip(targetEl, step.position); }
-                        }
-                    }, 150);
-                });
-            })();
-
             /* ========== EVENTOS DE PERFIL E AVATARES ========== */
-            document.querySelectorAll('.avatar-category-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    document.querySelectorAll('.avatar-category-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentAvatarCategory = this.dataset.category;
-                    buildAvatarGrid();
-                });
-            });
-
             const sidebarAvatar = document.getElementById('sidebarAvatar');
             sidebarAvatar.addEventListener('click', () => { updateAllAvatarDisplays(); openModal('profileModal'); });
             sidebarAvatar.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); updateAllAvatarDisplays(); openModal('profileModal'); } });
@@ -3721,7 +3425,7 @@
 
             (function() { const s = document.getElementById('sidebar'); const o = document.getElementById('sidebarOverlay'); document.getElementById('hamburgerBtn').addEventListener('click', () => { s.classList.add('open'); o.classList.add('active'); }); document.getElementById('closeSidebarBtn').addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active'); }); o.addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active'); }); })();
 
-            /* ========== CHATBOT CAMI (COM ALERTAS INTERATIVOS E SANITIZAÇÃO) ========== */
+            /* ========== CHATBOT CAMI ========== */
             (function() {
                 let camiOpen = false, camiFirst = true, camiUnread = false;
                 const w = document.getElementById('camiChatWindow');
@@ -3770,7 +3474,7 @@
                 function enviarBot(t) {
                     const div = document.createElement('div');
                     div.className = 'cami-message bot';
-                    div.innerHTML = t; // conteúdo fixo do sistema, seguro
+                    div.innerHTML = t;
                     ms.appendChild(div);
                     ms.scrollTop = ms.scrollHeight;
                 }
@@ -3778,7 +3482,7 @@
                 function enviarUsuario(t) {
                     const div = document.createElement('div');
                     div.className = 'cami-message user';
-                    div.textContent = t; // textContent seguro contra XSS
+                    div.textContent = t;
                     ms.appendChild(div);
                     ms.scrollTop = ms.scrollHeight;
                 }
@@ -3786,7 +3490,7 @@
                 window.camiAlert = function(message) {
                     const div = document.createElement('div');
                     div.className = 'cami-message bot';
-                    div.innerHTML = message; // conteúdo do sistema, seguro
+                    div.innerHTML = message;
                     ms.appendChild(div);
                     ms.scrollTop = ms.scrollHeight;
                     if (!camiOpen) {
@@ -3858,7 +3562,6 @@
             function salvarEventos() { try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (e) {} }
             function salvarMetas() { try { localStorage.setItem('vulps_goals', JSON.stringify(goals)); } catch (e) {} }
 
-            // Verificar disponibilidade do jsPDF
             function isJsPDFAvailable() { return typeof window.jspdf !== 'undefined' && typeof window.jspdf.jsPDF === 'function'; }
             (function updatePdfAvailability() {
                 const msg = document.getElementById('pdfUnavailableMsg');
@@ -3872,7 +3575,6 @@
             })();
 
             document.getElementById('backupBtn').addEventListener('click', () => { const bd = { data, events, goals, version: '1.0', date: new Date().toISOString() }; const blob = new Blob([JSON.stringify(bd, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `vulps_backup_${new Date().toISOString().split('T')[0]}.json`; a.click(); URL.revokeObjectURL(url); toast('✓ Backup exportado!'); const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json'; inp.onchange = (e) => { const file = e.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = async (ev) => { try { const content = JSON.parse(ev.target.result); if (!content.data || typeof content.data !== 'object' || !Array.isArray(content.events) || !Array.isArray(content.goals)) { throw new Error('Formato inválido: estrutura esperada não encontrada.'); } if (!content.version) { const proceed = await showConfirmModal('Backup sem versão', 'Este backup não possui versão. Deseja continuar mesmo assim?', true); if (!proceed) return; } const confirmed = await showConfirmModal('Restaurar backup', 'Dados atuais serão substituídos. Continuar?', true); if (!confirmed) return;
-                    // Sanitizar dados importados
                     const sanitizedData = {};
                     for (const key of Object.keys(content.data)) {
                         const sanitizedKey = sanitizeInput(key);
@@ -3925,7 +3627,7 @@
             function salvarNotificacoes() { try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {} }
             function abrirEditarDisciplina(nome) { document.getElementById('editDisciplinaNomeAntigo').value = nome; document.getElementById('editDisciplinaNomeNovo').value = nome; editDisciplinaModal.classList.add('active'); }
 
-            /* ========== CRONÔMETRO (MELHORADO COM PRECISÃO POR TIMESTAMP) ========== */
+            /* ========== CRONÔMETRO ========== */
             let timerStartTime = null;
             let timerAccumulated = 0;
             let timerInterval = null;
@@ -4000,7 +3702,6 @@
                 if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 };
                 data[nome].horasMinutos = (data[nome].horasMinutos || 0) + minutos;
                 salvarDados();
-
                 const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random();
                 events.push({
                     timestamp: new Date().toISOString(),
@@ -4011,7 +3712,6 @@
                     questionId: uuid
                 });
                 salvarEventos();
-
                 if (resetar) {
                     timerAccumulated = 0;
                     timerStartTime = null;
@@ -4114,67 +3814,18 @@
             function getDisciplina(nome) { return data[nome] || { certas: 0, erradas: 0, horasMinutos: 0 }; }
             function getStatus(p) { if (p >= 81) return 'Avançado'; if (p >= 61) return 'Intermediário'; return 'Base'; }
             function renderizarTabela(filtro = '', sortBy = null, sortDir = 'asc') { const disciplinas = Object.keys(data); const filtradas = disciplinas.filter(d => d.toLowerCase().includes((filtro || '').toLowerCase())); const rows = filtradas.map(nome => { const d = getDisciplina(nome); const total = d.certas + d.erradas; const perc = total ? (d.certas / total) * 100 : 0; const status = getStatus(perc); const horasMin = d.horasMinutos || 0; return { nome, certas: d.certas, erradas: d.erradas, total, perc, status, horasMin }; }); if (sortBy) { rows.sort((a, b) => { let va, vb; if (sortBy === 'disciplina') { va = a.nome.toLowerCase(); vb = b.nome.toLowerCase(); } else if (sortBy === 'certas') { va = a.certas; vb = b.certas; } else if (sortBy === 'erradas') { va = a.erradas; vb = b.erradas; } else if (sortBy === 'total') { va = a.total; vb = b.total; } else if (sortBy === 'percentual') { va = a.perc; vb = b.perc; } else if (sortBy === 'horas') { va = a.horasMin; vb = b.horasMin; } else return 0; if (va < vb) return sortDir === 'asc' ? -1 : 1; if (va > vb) return sortDir === 'asc' ? 1 : -1; return 0; }); } tbody.innerHTML = rows.length === 0 ? `<tr><td colspan="8"><div class="empty-state"><i class="fas fa-book-open"></i><div class="empty-title">Nenhuma disciplina encontrada</div><p>Adicione uma disciplina!</p></div></td></tr>` : rows.map(({ nome, certas, erradas, total, perc, status, horasMin }) => { const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger'); const h = Math.floor(horasMin / 60); const m = horasMin % 60; const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`; return `<tr><td><button class="btn btn-sm disciplina-nome-btn" data-nome="${escapeHtml(nome)}">${escapeHtml(nome)} <i class="fas fa-pencil-alt" style="font-size:0.6rem;opacity:0.7"></i></button></td><td>${certas}</td><td>${erradas}</td><td>${total}</td><td>${perc.toFixed(1)}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm btn-play-disciplina" data-nome="${escapeHtml(nome)}" title="Iniciar cronômetro"><i class="fas fa-play"></i></button> <button class="btn btn-sm btn-excluir-disciplina" data-nome="${escapeHtml(nome)}" title="Excluir" style="color:var(--danger)"><i class="fas fa-trash-alt"></i></button></td></tr>`; }).join('');
-
-                attachTabelaListeners();
-                updateSortHeaders(sortBy, sortDir);
-            }
-
-            function attachTabelaListeners() {
-                document.querySelectorAll('.disciplina-nome-btn').forEach(btn => {
-                    btn.addEventListener('click', function() { abrirEditarDisciplina(this.dataset.nome); });
-                });
-                document.querySelectorAll('.btn-play-disciplina').forEach(btn => {
-                    btn.addEventListener('click', function() { iniciarCronometroPara(this.dataset.nome); });
-                });
-                document.querySelectorAll('.btn-excluir-disciplina').forEach(btn => {
-                    btn.addEventListener('click', function() { excluirDisciplina(this.dataset.nome); });
-                });
-            }
-
-            function updateSortHeaders(sortBy, sortDir) {
-                document.querySelectorAll('#tabelaDisciplinas th[data-sort]').forEach(th => {
-                    th.classList.remove('sorted-asc', 'sorted-desc');
-                    if (th.dataset.sort === sortBy) {
-                        th.classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
-                        th.querySelector('.sort-icon i').className = sortDir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down';
-                    } else {
-                        th.querySelector('.sort-icon i').className = 'fas fa-sort';
-                    }
-                });
-            }
-
+                attachTabelaListeners(); updateSortHeaders(sortBy, sortDir); }
+            function attachTabelaListeners() { document.querySelectorAll('.disciplina-nome-btn').forEach(btn => { btn.addEventListener('click', function() { abrirEditarDisciplina(this.dataset.nome); }); }); document.querySelectorAll('.btn-play-disciplina').forEach(btn => { btn.addEventListener('click', function() { iniciarCronometroPara(this.dataset.nome); }); }); document.querySelectorAll('.btn-excluir-disciplina').forEach(btn => { btn.addEventListener('click', function() { excluirDisciplina(this.dataset.nome); }); }); }
+            function updateSortHeaders(sortBy, sortDir) { document.querySelectorAll('#tabelaDisciplinas th[data-sort]').forEach(th => { th.classList.remove('sorted-asc', 'sorted-desc'); if (th.dataset.sort === sortBy) { th.classList.add(sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc'); th.querySelector('.sort-icon i').className = sortDir === 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'; } else { th.querySelector('.sort-icon i').className = 'fas fa-sort'; } }); }
             document.querySelector('#tabelaDisciplinas thead').addEventListener('click', (e) => { const th = e.target.closest('th[data-sort]'); if (!th) return; const sortBy = th.dataset.sort; if (tabelaSortBy === sortBy) { tabelaSortDir = tabelaSortDir === 'asc' ? 'desc' : 'asc'; } else { tabelaSortBy = sortBy; tabelaSortDir = 'asc'; } renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir); });
-
-            function iniciarCronometroPara(nome) {
-                if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); }
-                selectDisciplina.value = nome;
-                document.getElementById('timerStart').click();
-            }
-
-            async function excluirDisciplina(nome) {
-                const confirmed = await window.showConfirmModal('Excluir disciplina', `Tem certeza que deseja excluir "${escapeHtml(nome)}"? Esta ação não pode ser desfeita.`, true);
-                if (!confirmed) return;
-                delete data[nome];
-                events = events.filter(e => e.subject !== nome);
-                notifications = notifications.filter(n => !n.message || !n.message.includes(nome));
-                salvarDados(); salvarEventos(); salvarNotificacoes(); atualizarSelects(); renderizarTabela();
-                if (selectDisciplina.value === nome) selectDisciplina.value = '';
-                refreshDashboard();
-                updateNotificationUI();
-                toast(`Disciplina "${escapeHtml(nome)}" removida.`);
-            }
-
+            function iniciarCronometroPara(nome) { if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); } selectDisciplina.value = nome; document.getElementById('timerStart').click(); }
+            async function excluirDisciplina(nome) { const confirmed = await window.showConfirmModal('Excluir disciplina', `Tem certeza que deseja excluir "${escapeHtml(nome)}"? Esta ação não pode ser desfeita.`, true); if (!confirmed) return; delete data[nome]; events = events.filter(e => e.subject !== nome); notifications = notifications.filter(n => !n.message || !n.message.includes(nome)); salvarDados(); salvarEventos(); salvarNotificacoes(); atualizarSelects(); renderizarTabela(); if (selectDisciplina.value === nome) selectDisciplina.value = ''; refreshDashboard(); updateNotificationUI(); toast(`Disciplina "${escapeHtml(nome)}" removida.`); }
             filtroInput.addEventListener('input', e => renderizarTabela(e.target.value, tabelaSortBy, tabelaSortDir));
 
             /* ========== REGISTRO RÁPIDO ========== */
             document.getElementById('registroAcertarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].certas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, type: 'question', questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); if (typeof camiAlert === 'function') camiAlert(`✅ <strong>${qtd} acerto(s)</strong> registrado(s) em "${escapeHtml(nome)}"! Você está no caminho certo! 🌟`); toast(`✅ ${qtd} acerto(s) registrado(s) em ${escapeHtml(nome)}`); });
             document.getElementById('registroErrarBtn').addEventListener('click', () => { const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; } if (!data[nome]) data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; const qtd = parseInt(document.getElementById('registroQuantidade').value) || 1; data[nome].erradas += qtd; const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random(); for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, type: 'question', questionId: uuid + '_' + i }); salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard(); if (typeof camiAlert === 'function') camiAlert(`❌ <strong>${qtd} erro(s)</strong> registrado(s) em "${escapeHtml(nome)}". Cada erro é uma oportunidade de aprendizado! 📖`); toast(`❌ ${qtd} erro(s) registrado(s) em ${escapeHtml(nome)}`); });
-            document.getElementById('resetMetricsBtn').addEventListener('click', async () => {
-                const confirmed = await window.showConfirmModal('Zerar métricas', 'Tem certeza que deseja zerar TODAS as métricas? Esta ação não pode ser desfeita.', true);
-                if (!confirmed) return;
-                try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications'); } catch (e) {}
-                location.reload();
-            });
+            document.getElementById('resetMetricsBtn').addEventListener('click', async () => { const confirmed = await window.showConfirmModal('Zerar métricas', 'Tem certeza que deseja zerar TODAS as métricas? Esta ação não pode ser desfeita.', true); if (!confirmed) return; try { localStorage.removeItem('vulps_discipline_data'); localStorage.removeItem('user_progress_events'); localStorage.removeItem('vulps_goals'); localStorage.removeItem('vulps_notifications'); } catch (e) {} location.reload(); });
 
             /* ========== PDF & SHARE ========== */
             const exportModal = document.getElementById('exportModal'), shareModal = document.getElementById('shareModal');
@@ -4182,59 +3833,16 @@
             document.getElementById('closeExportModal').addEventListener('click', () => closeModal('exportModal'));
             exportModal.addEventListener('click', (e) => { if (e.target === exportModal) closeModal('exportModal'); });
             trapFocusInModal(exportModal);
-
-            document.getElementById('shareBtn').addEventListener('click', () => { const m = computeMetrics(); const s = `📊 VULPS+ · Painel\n━━━━━━━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━━━━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; document.getElementById('shareSummaryText').textContent = s; openModal('shareModal'); });
+            document.getElementById('shareBtn').addEventListener('click', () => { const m = computeMetrics(); const s = `📊 VULPS+ · Sala de Operações - QG\n━━━━━━━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━━━━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; document.getElementById('shareSummaryText').textContent = s; openModal('shareModal'); });
             document.getElementById('closeShareModal').addEventListener('click', () => closeModal('shareModal'));
             shareModal.addEventListener('click', (e) => { if (e.target === shareModal) closeModal('shareModal'); });
             trapFocusInModal(shareModal);
-
-            function getShareSummary() { const m = computeMetrics(); return `📊 VULPS+\n━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; }
+            function getShareSummary() { const m = computeMetrics(); return `📊 VULPS+ · Sala de Operações - QG\n━━━━\n📈 Total: ${m.total}\n✅ Acertos: ${m.correct} (${m.correctPercent}%)\n❌ Erros: ${m.wrong}\n⏱️ Tempo: ${formatHours(m.totalTime)}\n🔥 Streak: ${m.streak} dias\n🏆 Taxa: ${m.correctPercent}%\n━━━━\n🦊 VULP+ · Ninguém estuda sozinho\n🔗 ${window.location.href}`; }
             document.getElementById('shareWhatsAppBtn').addEventListener('click', () => { const s = getShareSummary(); window.open(`https://wa.me/?text=${encodeURIComponent(s)}`, '_blank'); });
             document.getElementById('shareCopyBtn').addEventListener('click', () => { const s = getShareSummary(); navigator.clipboard.writeText(s).then(() => toast('Copiado!')).catch(() => toast('Falha.', 'error')); });
             document.getElementById('shareCopyLinkBtn').addEventListener('click', () => { navigator.clipboard.writeText(window.location.href).then(() => toast('Link copiado!')).catch(() => toast('Falha.', 'error')); });
 
-            function exportPDF(isComplete = true) {
-                if (!isJsPDFAvailable()) {
-                    toast('Serviço de PDF temporariamente indisponível. Tente novamente.', 'error');
-                    return;
-                }
-                try {
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-                    const m = computeMetrics();
-                    doc.setFillColor(255, 122, 0);
-                    doc.rect(0, 0, 210, 30, 'F');
-                    doc.setTextColor(255, 255, 255);
-                    doc.setFontSize(16);
-                    doc.setFont('helvetica', 'bold');
-                    doc.text('VULPS+ · Painel', 105, 15, { align: 'center' });
-                    doc.setFontSize(10);
-                    doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' });
-                    let y = 38;
-                    doc.setTextColor(15, 23, 42);
-                    doc.setFontSize(14);
-                    doc.text('Resumo', 15, y);
-                    y += 8;
-                    doc.setFontSize(10);
-                    [`Acertos: ${m.correct}`, `Erros: ${m.wrong}`, `Tempo: ${formatHours(m.totalTime)}`, `Streak: ${m.streak}`, `Taxa: ${m.correctPercent}%`, `Hoje: ${m.todayCount}`].forEach(k => { doc.text('• ' + k, 20, y); y += 6; });
-                    if (isComplete) {
-                        y += 6;
-                        doc.setFontSize(12);
-                        doc.text('Disciplinas', 15, y);
-                        y += 8;
-                        const td = Object.keys(data).sort().map(n => { const d = getDisciplina(n); const t = d.certas + d.erradas; const p = t ? ((d.certas / t) * 100).toFixed(1) : 0; return [n, String(d.certas), String(d.erradas), String(t), p + '%', getStatus(parseFloat(p)), formatHours(d.horasMinutos || 0)]; });
-                        if (td.length > 0) {
-                            doc.autoTable({ startY: y, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '%', 'Status', 'Horas']], body: td, headStyles: { fillColor: [255, 122, 0], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8 }, alternateRowStyles: { fillColor: [255, 245, 235] } });
-                        }
-                    }
-                    const pc = doc.getNumberOfPages();
-                    for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }); }
-                    doc.save(`vulps_${new Date().toISOString().split('T')[0]}.pdf`);
-                    toast('PDF exportado!');
-                } catch (e) {
-                    toast('Erro ao gerar PDF.', 'error');
-                }
-            }
+            function exportPDF(isComplete = true) { if (!isJsPDFAvailable()) { toast('Serviço de PDF temporariamente indisponível. Tente novamente.', 'error'); return; } try { const { jsPDF } = window.jspdf; const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' }); const m = computeMetrics(); doc.setFillColor(255, 122, 0); doc.rect(0, 0, 210, 30, 'F'); doc.setTextColor(255, 255, 255); doc.setFontSize(16); doc.setFont('helvetica', 'bold'); doc.text('VULPS+ · Sala de Operações - QG', 105, 15, { align: 'center' }); doc.setFontSize(10); doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' }); let y = 38; doc.setTextColor(15, 23, 42); doc.setFontSize(14); doc.text('Resumo', 15, y); y += 8; doc.setFontSize(10); [`Acertos: ${m.correct}`, `Erros: ${m.wrong}`, `Tempo: ${formatHours(m.totalTime)}`, `Streak: ${m.streak}`, `Taxa: ${m.correctPercent}%`, `Hoje: ${m.todayCount}`].forEach(k => { doc.text('• ' + k, 20, y); y += 6; }); if (isComplete) { y += 6; doc.setFontSize(12); doc.text('Disciplinas', 15, y); y += 8; const td = Object.keys(data).sort().map(n => { const d = getDisciplina(n); const t = d.certas + d.erradas; const p = t ? ((d.certas / t) * 100).toFixed(1) : 0; return [n, String(d.certas), String(d.erradas), String(t), p + '%', getStatus(parseFloat(p)), formatHours(d.horasMinutos || 0)]; }); if (td.length > 0) { doc.autoTable({ startY: y, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '%', 'Status', 'Horas']], body: td, headStyles: { fillColor: [255, 122, 0], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8 }, alternateRowStyles: { fillColor: [255, 245, 235] } }); } } const pc = doc.getNumberOfPages(); for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }); } doc.save(`vulps_${new Date().toISOString().split('T')[0]}.pdf`); toast('PDF exportado!'); } catch (e) { toast('Erro ao gerar PDF.', 'error'); } }
             document.getElementById('exportFullPdfBtn').addEventListener('click', () => exportPDF(true));
             document.getElementById('exportSummaryPdfBtn').addEventListener('click', () => exportPDF(false));
 
@@ -4254,77 +3862,20 @@
             function formatHours(mins) { const h = Math.floor(mins / 60); const m = mins % 60; return h > 0 ? `${h}h ${m}min` : `${m}min`; }
             function renderGoals() { const c = document.getElementById('goalsContainer'); c.innerHTML = goals.map(g => { const pct = Math.min(100, Math.round((g.current / g.target) * 100)); const circ = 2 * Math.PI * 26, offset = circ - (pct / 100) * circ; return `<div class="goal-card"><div class="goal-ring"><svg width="56" height="56" viewBox="0 0 56 56"><circle class="goal-ring-bg" cx="28" cy="28" r="26"/><circle class="goal-ring-fill" cx="28" cy="28" r="26" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"/></svg><div class="goal-ring-text">${pct}%</div></div><div class="goal-info"><div class="goal-title">${escapeHtml(g.title)}</div><div class="goal-desc">${g.current}/${g.target} ${escapeHtml(g.unit)}</div></div></div>`; }).join(''); }
             function renderHeatmap() { const grid = document.getElementById('heatmapGrid'); const today = new Date(); const startOfWeek = new Date(today); startOfWeek.setDate(today.getDate() - today.getDay()); const byDay = {}; events.forEach(e => { const d = e.timestamp.split('T')[0]; byDay[d] = (byDay[d] || 0) + 1; }); let html = ''; for (let i = 0; i < 7; i++) { const d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i); const iso = d.toISOString().split('T')[0]; const count = byDay[iso] || 0; let level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4) level = 'level-2'; else if (count >= 1) level = 'level-1'; html += `<div class="heatmap-cell ${level} tooltip" tabindex="0" role="button" aria-label="${count} questão${count!==1?'ões':''} em ${d.toLocaleDateString('pt-BR', {weekday:'short', day:'2-digit'})}">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`; } grid.innerHTML = html; attachHeatmapListeners(); }
-            function attachHeatmapListeners() {
-                document.querySelectorAll('.heatmap-cell').forEach(cell => {
-                    cell.addEventListener('click', function() {
-                        this.classList.toggle('show-tooltip');
-                        setTimeout(() => this.classList.remove('show-tooltip'), 2500);
-                    });
-                    cell.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            this.classList.toggle('show-tooltip');
-                            setTimeout(() => this.classList.remove('show-tooltip'), 2500);
-                        }
-                    });
-                });
-            }
+            function attachHeatmapListeners() { document.querySelectorAll('.heatmap-cell').forEach(cell => { cell.addEventListener('click', function() { this.classList.toggle('show-tooltip'); setTimeout(() => this.classList.remove('show-tooltip'), 2500); }); cell.addEventListener('keydown', function(e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); this.classList.toggle('show-tooltip'); setTimeout(() => this.classList.remove('show-tooltip'), 2500); } }); }); }
             function renderSubjectTable() { renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir); }
             function renderHistoryTable() { const tb = document.getElementById('historyTableBody'); const sf = document.getElementById('historyFilterSubject').value; const rf = document.getElementById('historyFilterResult').value; const df = document.getElementById('historyFilterDate').value; let filtered = [...events].reverse(); if (sf) filtered = filtered.filter(e => e.subject === sf); if (rf === 'correct') filtered = filtered.filter(e => e.correct === true); if (rf === 'wrong') filtered = filtered.filter(e => e.correct === false); if (rf === 'timer') filtered = filtered.filter(e => e.type === 'timer'); if (df) filtered = filtered.filter(e => e.timestamp.startsWith(df)); tb.innerHTML = filtered.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro</div><p>Registre acertos, erros ou salve seu tempo!</p></div></td></tr>` : filtered.slice(0, 200).map((e, idx) => { const dt = new Date(e.timestamp); let rb; if (e.type === 'timer') { rb = '<span class="badge badge-warning">⏱️ Tempo</span>'; } else { rb = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>'; } const oi = events.indexOf(e); return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${escapeHtml(e.subject||'Geral')}</td><td>${rb}</td><td>${e.timeSpent?Math.round(e.timeSpent):'-'}</td><td>${escapeHtml((e.questionId||'').substring(0,8))}</td><td><button class="btn btn-sm btn-excluir-evento" data-idx="${oi}" style="color:var(--danger);font-size:0.7rem"><i class="fas fa-trash-alt"></i></button></td></tr>`; }).join(''); attachHistoryListeners(); }
-            function attachHistoryListeners() {
-                document.querySelectorAll('.btn-excluir-evento').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        excluirEvento(parseInt(this.dataset.idx));
-                    });
-                });
-            }
-            async function excluirEvento(idx) {
-                if (idx < 0 || idx >= events.length) return;
-                const ev = events[idx];
-                const confirmed = await window.showConfirmModal('Excluir registro', 'Deseja realmente excluir este registro de atividade?', true);
-                if (!confirmed) return;
-                if (ev.subject && data[ev.subject] && ev.type !== 'timer') {
-                    if (ev.correct) data[ev.subject].certas = Math.max(0, (data[ev.subject].certas || 0) - 1);
-                    else data[ev.subject].erradas = Math.max(0, (data[ev.subject].erradas || 0) - 1);
-                }
-                if (ev.subject && data[ev.subject] && ev.type === 'timer') {
-                    data[ev.subject].horasMinutos = Math.max(0, (data[ev.subject].horasMinutos || 0) - (ev.timeSpent || 0));
-                }
-                events.splice(idx, 1);
-                salvarDados(); salvarEventos(); renderSubjectTable(); renderHistoryTable(); refreshDashboard();
-                toast('Registro excluído.');
-            }
+            function attachHistoryListeners() { document.querySelectorAll('.btn-excluir-evento').forEach(btn => { btn.addEventListener('click', function() { excluirEvento(parseInt(this.dataset.idx)); }); }); }
+            async function excluirEvento(idx) { if (idx < 0 || idx >= events.length) return; const ev = events[idx]; const confirmed = await window.showConfirmModal('Excluir registro', 'Deseja realmente excluir este registro de atividade?', true); if (!confirmed) return; if (ev.subject && data[ev.subject] && ev.type !== 'timer') { if (ev.correct) data[ev.subject].certas = Math.max(0, (data[ev.subject].certas || 0) - 1); else data[ev.subject].erradas = Math.max(0, (data[ev.subject].erradas || 0) - 1); } if (ev.subject && data[ev.subject] && ev.type === 'timer') { data[ev.subject].horasMinutos = Math.max(0, (data[ev.subject].horasMinutos || 0) - (ev.timeSpent || 0)); } events.splice(idx, 1); salvarDados(); salvarEventos(); renderSubjectTable(); renderHistoryTable(); refreshDashboard(); toast('Registro excluído.'); }
             function populateHistoryFilters() { const subjects = [...new Set(events.map(e => e.subject).filter(Boolean))].sort(); const sel = document.getElementById('historyFilterSubject'); sel.innerHTML = '<option value="">Todas</option>' + subjects.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join(''); }
             function renderCharts() { const period = parseInt(document.getElementById('chartPeriod').value) || 7; const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - period); const filtered = events.filter(e => new Date(e.timestamp) >= cutoff); const byDay = {}; filtered.forEach(e => { const day = e.timestamp.split('T')[0]; if (!byDay[day]) byDay[day] = { total: 0, correct: 0 }; byDay[day].total++; if (e.correct) byDay[day].correct++; }); const days = Object.keys(byDay).sort(); const ad = days.map(d => ({ day: d, accuracy: (byDay[d].total ? (byDay[d].correct / byDay[d].total) * 100 : 0) })); const vd = days.map(d => ({ day: d, correct: byDay[d].correct, wrong: byDay[d].total - byDay[d].correct })); drawLineChart('accuracyChart', ad); drawBarChart('volumeChart', vd); }
             function drawLineChart(cid, data) { const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'); const container = canvas.parentElement; const W = container.clientWidth || 400; const H = 300; canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom; ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888'; ctx.fillStyle = textColor; ctx.font = '10px Inter,sans-serif'; ctx.textAlign = 'center'; for (let i = 0; i <= 4; i++) { const y = pad.top + (cH * i / 4); ctx.fillText((100 - i * 25) + '%', pad.left - 10, y + 3); } if (data.length === 0) { ctx.fillText('Sem dados', W / 2, H / 2); return; } if (data.length > 1) { ctx.beginPath(); ctx.strokeStyle = accent; ctx.lineWidth = 2.5; data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }); ctx.stroke(); data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 2 * Math.PI); ctx.fillStyle = accent; ctx.fill(); ctx.fillText(d.accuracy.toFixed(0) + '%', x, y - 10); }); } ctx.fillStyle = textColor; ctx.font = '9px Inter,sans-serif'; const step = Math.max(1, Math.floor(data.length / 6)); data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / (data.length - 1)); ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } }); }
             function drawBarChart(cid, data) { const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'); const container = canvas.parentElement; const W = container.clientWidth || 400; const H = 300; canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom; ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888'; if (data.length === 0) { ctx.fillStyle = textColor; ctx.fillText('Sem dados', W / 2, H / 2); return; } const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1); const groups = data.length; const totalBarWidth = cW / groups * 0.7; const singleBarW = totalBarWidth / 2; const gap = cW / groups * 0.15; data.forEach((d, i) => { const groupX = pad.left + i * (cW / groups) + gap; const xCorrect = groupX; const xWrong = groupX + singleBarW; const correctH = (d.correct / maxVal) * cH; const wrongH = (d.wrong / maxVal) * cH; ctx.fillStyle = secondary; ctx.fillRect(xCorrect, H - pad.bottom - correctH, singleBarW, correctH); ctx.fillStyle = accent; ctx.fillRect(xWrong, H - pad.bottom - wrongH, singleBarW, wrongH); ctx.fillStyle = textColor; ctx.font = '8px Inter'; ctx.textAlign = 'center'; ctx.fillText((d.correct + d.wrong), groupX + singleBarW, H - pad.bottom - Math.max(correctH, wrongH) - 5); }); ctx.fillStyle = textColor; ctx.font = '9px Inter'; const step = Math.max(1, Math.floor(data.length / 6)); data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / data.length) + cW / data.length / 2; ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } }); }
 
             let resizeDebounceTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeDebounceTimer);
-                resizeDebounceTimer = setTimeout(() => {
-                    const activeTab = document.querySelector('.tab-content.active');
-                    if (activeTab && activeTab.id === 'tab-metricas') {
-                        renderCharts();
-                    }
-                    if (focusModeActive) drawFocusRing();
-                }, 200);
-            });
+            window.addEventListener('resize', () => { clearTimeout(resizeDebounceTimer); resizeDebounceTimer = setTimeout(() => { const activeTab = document.querySelector('.tab-content.active'); if (activeTab && activeTab.id === 'tab-metricas') { renderCharts(); } if (focusModeActive) drawFocusRing(); }, 200); });
 
-            function refreshDashboard() {
-                renderKPIs();
-                renderGoals();
-                renderHeatmap();
-                renderSubjectTable();
-                populateHistoryFilters();
-                renderHistoryTable();
-                const activeMetricas = document.getElementById('tab-metricas').classList.contains('active');
-                if (activeMetricas) {
-                    setTimeout(() => renderCharts(), 100);
-                }
-                try { const nn = generateMockNotifications(); nn.forEach(n => addNotification(n)); } catch (e) {}
-                cleanOrphanNotifications();
-            }
+            function refreshDashboard() { renderKPIs(); renderGoals(); renderHeatmap(); renderSubjectTable(); populateHistoryFilters(); renderHistoryTable(); const activeMetricas = document.getElementById('tab-metricas').classList.contains('active'); if (activeMetricas) { setTimeout(() => renderCharts(), 100); } try { const nn = generateMockNotifications(); nn.forEach(n => addNotification(n)); } catch (e) {} cleanOrphanNotifications(); }
 
             document.getElementById('chartPeriod').addEventListener('change', renderCharts);
             document.getElementById('historyFilterSubject').addEventListener('change', renderHistoryTable);
@@ -4340,7 +3891,6 @@
             cleanOrphanNotifications();
             updateNotificationUI();
 
-            // Limpar intervalos ao fechar a página
             window.addEventListener('beforeunload', () => {
                 if (timerInterval) clearInterval(timerInterval);
                 if (feedIntervalId) clearInterval(feedIntervalId);
