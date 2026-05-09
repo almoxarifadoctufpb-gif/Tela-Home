@@ -1897,10 +1897,9 @@
             }
         }
 
-        /* Ajustes mobile */
         @media (max-width: 768px) {
             .chart-grid {
-                grid-template-columns: 1fr;
+                template-columns: 1fr;
             }
             .chart-canvas {
                 height: 250px;
@@ -2084,7 +2083,7 @@
 
     <div class="focus-overlay" id="focusOverlay"><button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button><div class="focus-container"><div class="focus-fox">🦊</div><div class="focus-ring-container"><canvas id="focusRingCanvas" width="240" height="240"></canvas><div class="focus-timer" id="focusTimerDisplay">00:00:00</div></div><div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount" style="color:var(--accent);font-weight:700;font-size:1.4rem">1</span></div><div class="focus-controls"><button class="focus-btn" id="focusTimerStart"><i class="fas fa-play"></i></button><button class="focus-btn" id="focusTimerPause"><i class="fas fa-pause"></i></button></div><div class="focus-encouragement">🦊 Foco total! Cada minuto conta.</div></div></div>
 
-    <!-- MODAIS MANTIDOS: Export, Share, Add/Edit Disciplina, Edit Goals, Confirm -->
+    <!-- MODAIS -->
     <div class="modal-overlay" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle"><div class="modal-card"><div class="modal-header"><h3 class="modal-title" id="exportModalTitle"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Gere um relatório profissional em PDF:</p><div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button><button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button></div><div class="share-summary-box" id="pdfPreviewInfo"><strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br><strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.<br><span id="pdfUnavailableMsg" style="display:none;color:var(--danger);font-weight:600;">⚠️ Serviço de PDF temporariamente indisponível.</span></div></div></div>
     <div class="modal-overlay" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle"><div class="modal-card"><div class="modal-header"><h3 class="modal-title" id="shareModalTitle"><i class="fas fa-share-alt"></i> Compartilhar</h3><button class="modal-close" id="closeShareModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Compartilhe seu desempenho:</p><div class="share-summary-box" id="shareSummaryText"></div><div class="share-actions"><button class="btn btn-whatsapp btn-sm" id="shareWhatsAppBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button><button class="btn btn-sm" id="shareCopyBtn"><i class="fas fa-copy"></i> Copiar</button><button class="btn btn-sm" id="shareCopyLinkBtn"><i class="fas fa-link"></i> Link</button></div></div></div>
     <div class="modal-overlay" id="addDisciplinaModal" role="dialog" aria-modal="true" aria-labelledby="addDisciplinaModalTitle"><div class="modal-card"><div class="modal-header"><h3 class="modal-title" id="addDisciplinaModalTitle"><i class="fas fa-plus-circle"></i> Adicionar Disciplina</h3><button class="modal-close" id="closeAddDisciplinaModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><label for="newDisciplinaInput">Nome da disciplina</label><input type="text" id="newDisciplinaInput" placeholder="Digite o nome..." autocomplete="off"><p style="font-size:0.78rem;color:var(--text-muted);margin-top:8px">Sugestões:</p><div class="suggestions-grid" id="suggestionsGrid"></div><div style="display:flex;gap:10px;margin-top:20px;justify-content:flex-end"><button class="btn btn-sm" id="cancelAddDisciplinaBtn">Cancelar</button><button class="btn btn-primary btn-sm" id="confirmAddDisciplinaBtn"><i class="fas fa-check"></i> Adicionar</button></div></div></div>
@@ -2104,6 +2103,9 @@
     </div>
 
     <div class="toast-container" id="toastContainer"></div>
+
+    <!-- SOM DE RÁDIO MILITAR (AMBIENTE) -->
+    <audio id="bg-radio" loop preload="auto" src="https://res.cloudinary.com/dew6hgzpv/video/upload/sonido_de_radio_militar___military_radio_sound_-_Sound_Free_720p_h264_youtube_lrogw7.mp3"></audio>
 
     <script>
         (function() {
@@ -3063,6 +3065,28 @@
             document.getElementById('historyFilterSubject').addEventListener('change', renderHistoryTable);
             document.getElementById('historyFilterResult').addEventListener('change', renderHistoryTable);
             document.getElementById('historyFilterDate').addEventListener('change', renderHistoryTable);
+
+            /* ========== ÁUDIO AMBIENTE ========== */
+            (function() {
+                const bgRadio = document.getElementById('bg-radio');
+                if (bgRadio) {
+                    bgRadio.volume = 0.08; // volume bem baixo para não incomodar
+                    let radioStarted = false;
+
+                    function startRadio() {
+                        if (!radioStarted) {
+                            bgRadio.play().catch(() => {});
+                            radioStarted = true;
+                        }
+                    }
+
+                    // Tentar autoplay; se falhar, aguarda interação do usuário
+                    bgRadio.play().catch(() => {
+                        document.addEventListener('click', startRadio, { once: true });
+                        document.addEventListener('touchstart', startRadio, { once: true });
+                    });
+                }
+            })();
 
             /* ========== INICIALIZAÇÃO ========== */
             atualizarSelects();
