@@ -15,10 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Share+Tech+Mono&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
         :root {
             --primary: #1155cc;
@@ -332,6 +330,17 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--sidebar-shadow);
             transform: translateX(-100%);
+
+            /* Esconde a barra de rolagem */
+            scrollbar-width: none;
+            /* Firefox */
+            -ms-overflow-style: none;
+            /* IE 10+ */
+        }
+
+        #sidebar::-webkit-scrollbar {
+            display: none;
+            /* Chrome, Safari, Edge */
         }
 
         #sidebar.open {
@@ -943,27 +952,22 @@
             background: var(--secondary-soft);
             color: var(--secondary);
         }
-
         .kpi-icon.erros {
             background: var(--danger-soft);
             color: var(--danger);
         }
-
         .kpi-icon.tempo {
             background: var(--warning-soft);
             color: var(--warning);
         }
-
         .kpi-icon.streak {
             background: var(--accent-soft);
             color: var(--accent);
         }
-
         .kpi-icon.taxa {
             background: var(--secondary-soft);
             color: var(--secondary);
         }
-
         .kpi-icon.hoje {
             background: var(--accent-soft);
             color: var(--accent);
@@ -1899,7 +1903,7 @@
 
         @media (max-width: 768px) {
             .chart-grid {
-                template-columns: 1fr;
+                grid-template-columns: 1fr;
             }
             .chart-canvas {
                 height: 250px;
@@ -1981,7 +1985,7 @@
     <button id="hamburgerBtn" aria-label="Abrir menu"><i class="fas fa-bars"></i></button>
     <div id="sidebarOverlay"></div>
 
-    <!-- SIDEBAR ATUALIZADA -->
+    <!-- SIDEBAR ATUALIZADA com os três novos links -->
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
             <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/BRAS%C3%83O_TROPA_VULP_ewkjig.png" alt="Brasão VULPS+" class="sidebar-brasao" />
@@ -2001,6 +2005,10 @@
         <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-route"></i><span class="sb-info"><span class="sb-title">Logística de Combate</span><span class="sb-sub">Rota de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-id-card"></i><span class="sb-info"><span class="sb-title">Identidade Funcional</span><span class="sb-sub">Perfil do Operador</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-user-graduate"></i><span class="sb-info"><span class="sb-title">Operação Recruta-Zero</span><span class="sb-sub">Comunidade Tática</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <!-- NOVOS LINKS -->
+        <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-boxes-stacked"></i><span class="sb-info"><span class="sb-title">Arsenal de Questões</span><span class="sb-sub">Banco de Questões</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-crown"></i><span class="sb-info"><span class="sb-title">Protocolo de Elite</span><span class="sb-sub">Material Exclusivo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade</span><span class="sb-sub">Fórum VULP+</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-chalkboard-user"></i><span class="sb-info"><span class="sb-title">Centro de Instrução Tática</span><span class="sb-sub">Aulas e Treinamento</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
     </div>
 
@@ -2070,11 +2078,11 @@
 
             <div class="chart-grid"><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid"></div></div><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div></div>
 
-            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
+            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px" aria-label="Filtrar disciplinas"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
         </div>
 
         <div class="tab-content" id="tab-historico" role="tabpanel">
-            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><input type="date" id="historyFilterDate" class="filter-select" style="min-width:140px" title="Filtrar por data"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option><option value="timer">Tempo</option></select></div></div><div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo (min)</th><th>ID</th><th>Ações</th></tr></thead><tbody id="historyTableBody"></tbody></table></div></section>
+            <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-history"></i> Histórico Detalhado</h2><div class="section-filters"><input type="date" id="historyFilterDate" class="filter-select" style="min-width:140px" title="Filtrar por data" aria-label="Filtrar histórico por data"><select class="filter-select" id="historyFilterSubject"><option value="">Todas as disciplinas</option></select><select class="filter-select" id="historyFilterResult"><option value="">Todos</option><option value="correct">Acertos</option><option value="wrong">Erros</option><option value="timer">Tempo</option></select></div></div><div class="table-container"><table class="dash-table" id="historyTable"><thead><tr><th>Data/Hora</th><th>Disciplina</th><th>Resultado</th><th>Tempo (min)</th><th>ID</th><th>Ações</th></tr></thead><tbody id="historyTableBody"></tbody></table></div></section>
         </div>
     </main>
 
@@ -2116,7 +2124,8 @@
             */
             function escapeHtml(str) {
                 if (!str || typeof str !== 'string') return '';
-                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+                return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g,
+                    '&#039;');
             }
 
             function sanitizeInput(str) {
@@ -2154,7 +2163,8 @@
 
             /* ========== TRAP DE FOCO PARA MODAIS ========== */
             function trapFocusInModal(modalElement) {
-                const focusable = modalElement.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const focusable = modalElement.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
                 if (focusable.length === 0) return;
                 const first = focusable[0];
                 const last = focusable[focusable.length - 1];
@@ -2221,7 +2231,8 @@
                         e = '☀️'; } else if (h >= 12 && h < 18) { s = 'Boa tarde';
                         e = '🌤️'; } else { s = 'Boa noite';
                         e = '🌙'; }
-                    g.innerHTML = `<span id="sidebarNicknameDisplay">Concurseiro(a)</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Ninguém estuda sozinho 🦊</span>`;
+                    g.innerHTML =
+                        `<span id="sidebarNicknameDisplay">Concurseiro(a)</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Ninguém estuda sozinho 🦊</span>`;
                 }
             })();
 
@@ -2230,13 +2241,15 @@
                 { quote: "A disciplina é a ponte entre metas e realizações.", author: "Jim Rohn" }, { quote: "O conhecimento é o único recurso que se multiplica quando compartilhado.", author: "Adam Grant" }, { quote: "O amanhã pertence àqueles que se preparam hoje.", author: "Malcolm X" }
             ];
 
-            function getDailyPhraseIndex() { const t = new Date().toISOString().split('T')[0]; let h = 0; for (let i = 0; i < t.length; i++) { h = ((h << 5) - h) + t.charCodeAt(i);
+            function getDailyPhraseIndex() { const t = new Date().toISOString().split('T')[0]; let h = 0; for (let i = 0; i < t
+                    .length; i++) { h = ((h << 5) - h) + t.charCodeAt(i);
                     h |= 0; } return Math.abs(h) % motivationalPhrases.length; }
 
             function updateMotivationalQuote(f) { if (f) { const i = getDailyPhraseIndex();
-                    localStorage.setItem('vulps_motivational_index', i.toString()); } let s = localStorage.getItem('vulps_motivational_index'); if (s === null) { s = getDailyPhraseIndex()
-                    .toString();
-                    localStorage.setItem('vulps_motivational_index', s); } const p = motivationalPhrases[parseInt(s) % motivationalPhrases.length];
+                    localStorage.setItem('vulps_motivational_index', i.toString()); } let s = localStorage.getItem(
+                    'vulps_motivational_index'); if (s === null) { s = getDailyPhraseIndex().toString();
+                    localStorage.setItem('vulps_motivational_index', s); } const p = motivationalPhrases[parseInt(s) % motivationalPhrases
+                    .length];
                 document.getElementById('motivationalQuote').textContent = `"${p.quote}"`;
                 document.getElementById('motivationalAuthor').textContent = p.author; }
 
@@ -2252,12 +2265,13 @@
             atualizarOnlineEstudantes();
 
             /* ========== COMUNIDADE GAMIFICADA ========== */
-            const nicknames = ["ConcurseiroRaiz", "FocoNaPRF", "FiscalMaster", "AprovadaTRT", "MissãoSEFAZ", "RumoPF", "GuerreiraINSS", "DeltaPC",
-                "MetaReceita", "TáticaTJ", "ElitePC", "RetaFinalPF"
+            const nicknames = ["ConcurseiroRaiz", "FocoNaPRF", "FiscalMaster", "AprovadaTRT", "MissãoSEFAZ", "RumoPF",
+                "GuerreiraINSS", "DeltaPC", "MetaReceita", "TáticaTJ", "ElitePC", "RetaFinalPF"
             ];
             const activities = ["acertou 15 questões seguidas de Direito Constitucional", "finalizou a meta diária",
-                "subiu para Ouro II", "recebeu ajuda em Raciocínio Lógico", "entrou na sala de estudos da PF", "iniciou simulado da PRF",
-                "completou 3h de foco hoje", "desbloqueou a conquista Mestre da Disciplina", "recebeu ajuda em Direito Penal",
+                "subiu para Ouro II", "recebeu ajuda em Raciocínio Lógico", "entrou na sala de estudos da PF",
+                "iniciou simulado da PRF", "completou 3h de foco hoje",
+                "desbloqueou a conquista Mestre da Disciplina", "recebeu ajuda em Direito Penal",
                 "finalizou revisão de Informática"
             ];
             const avatarColors = ["#F97316", "#3B82F6", "#8B5CF6", "#EC4899", "#14B8A6", "#EAB308", "#6366F1", "#22C55E"];
@@ -2289,8 +2303,8 @@
 
             document.addEventListener('visibilitychange', () => {
                 if (document.hidden) { clearInterval(feedIntervalId);
-                    feedIntervalId = null; } else { if (!feedIntervalId) { feedIntervalId = setInterval(updateCommunityFeed, Math.floor(Math
-                            .random() * 4000) + 4000); } }
+                    feedIntervalId = null; } else { if (!feedIntervalId) { feedIntervalId = setInterval(updateCommunityFeed, Math
+                            .floor(Math.random() * 4000) + 4000); } }
             });
 
             /* ========== TEMA ========== */
@@ -2361,7 +2375,7 @@
                     b.style.display = uc > 0 ? 'flex' : 'none'; } if (l) { if (notifications.length === 0) l.innerHTML =
                         '<div class="notification-empty">🦊 Nenhuma notificação.</div>'; else l.innerHTML = notifications.map((n, i) =>
                         `<div class="notification-item${n.read?' read':' unread'}" data-index="${i}"><div class="notification-icon"><i class="fas fa-${n.type==='streak'?'fire':n.type==='goal'?'bullseye':'info-circle'}"></i></div><div class="notification-content"><div>${escapeHtml(n.message)}</div><div class="notification-time">${new Date(n.time).toLocaleString('pt-BR')}</div></div></div>`
-                        ).join(''); } }
+                    ).join(''); } }
 
             function markAllRead() { notifications.forEach(n => n.read = true); try { localStorage.setItem('vulps_notifications', JSON
                     .stringify(notifications)); } catch (e) {}
@@ -2398,11 +2412,12 @@
                     o.classList.remove('active'); }); })();
 
             /* ========== DADOS ========== */
-            const disciplinasPredefinidas = ["Língua Portuguesa", "Raciocínio Lógico-Matemático", "Matemática", "Noções de Informática",
-                "Atualidades", "Direito Constitucional", "Direito Administrativo", "Direito Penal", "Direito Processual Penal",
-                "Direito Civil", "Direito do Trabalho", "Direito Tributário", "Administração Geral", "Contabilidade Geral",
-                "Economia e Finanças Públicas", "Estatística", "Gestão de Pessoas", "Ética no Serviço Público",
-                "Segurança da Informação", "Saúde Pública", "Conhecimentos Pedagógicos", "Criminologia"
+            const disciplinasPredefinidas = ["Língua Portuguesa", "Raciocínio Lógico-Matemático", "Matemática",
+                "Noções de Informática", "Atualidades", "Direito Constitucional", "Direito Administrativo", "Direito Penal",
+                "Direito Processual Penal", "Direito Civil", "Direito do Trabalho", "Direito Tributário",
+                "Administração Geral", "Contabilidade Geral", "Economia e Finanças Públicas", "Estatística",
+                "Gestão de Pessoas", "Ética no Serviço Público", "Segurança da Informação", "Saúde Pública",
+                "Conhecimentos Pedagógicos", "Criminologia"
             ];
             const todasDisciplinasSugestoes = ["Língua Portuguesa", "Raciocínio Lógico-Matemático", "Matemática",
                 "Noções de Informática", "Atualidades", "Direito Constitucional", "Direito Administrativo", "Direito Penal",
@@ -2410,13 +2425,13 @@
                 "Direito Processual Civil", "Direito Ambiental", "Direito Internacional Público", "Direitos Humanos",
                 "Legislação Específica", "Administração Geral", "Administração Pública", "Contabilidade Geral",
                 "Contabilidade Pública", "Economia e Finanças Públicas", "Estatística", "Gestão de Pessoas",
-                "Ética no Serviço Público", "Segurança da Informação", "Saúde Pública", "Conhecimentos Pedagógicos", "Criminologia",
-                "Medicina Legal", "Engenharia Civil", "Arquitetura", "Biblioteconomia", "Arquivologia", "História do Brasil",
-                "Geografia do Brasil", "História Mundial", "Geografia Mundial", "Filosofia", "Sociologia", "Antropologia",
-                "Ciência Política", "Direito Eleitoral", "Direito Previdenciário", "Direito Empresarial",
+                "Ética no Serviço Público", "Segurança da Informação", "Saúde Pública", "Conhecimentos Pedagógicos",
+                "Criminologia", "Medicina Legal", "Engenharia Civil", "Arquitetura", "Biblioteconomia", "Arquivologia",
+                "História do Brasil", "Geografia do Brasil", "História Mundial", "Geografia Mundial", "Filosofia", "Sociologia",
+                "Antropologia", "Ciência Política", "Direito Eleitoral", "Direito Previdenciário", "Direito Empresarial",
                 "Direito do Consumidor", "Auditoria", "Controladoria", "Planejamento Estratégico", "Gestão de Projetos",
-                "Matemática Financeira", "Raciocínio Analítico", "Interpretação de Textos", "Redação Oficial", "Inglês", "Espanhol",
-                "Políticas Públicas", "Tecnologia da Informação", "Biologia", "Física", "Química"
+                "Matemática Financeira", "Raciocínio Analítico", "Interpretação de Textos", "Redação Oficial", "Inglês",
+                "Espanhol", "Políticas Públicas", "Tecnologia da Informação", "Biologia", "Física", "Química"
             ];
             let data = {}; let events = []; let goals = [{ id: 1, title: 'Questões por dia', target: 20, current: 0, unit: 'questões',
                     period: 'daily' }, { id: 2, title: 'Taxa de acerto', target: 70, current: 0, unit: '%', period: 'overall' }, { id: 3,
@@ -2432,21 +2447,20 @@
 
             function salvarDados() { try { localStorage.setItem('vulps_discipline_data', JSON.stringify(data)); } catch (e) {} }
 
-            function salvarEventos() { try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (e) {} }
+            // PODA AUTOMÁTICA DE EVENTOS
+            function trimEvents(max = 5000) { if (events.length > max) { events = events.slice(-max);
+                    salvarEventos(); } }
+
+            function salvarEventos() { trimEvents(5000); try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (
+                e) {} }
 
             function salvarMetas() { try { localStorage.setItem('vulps_goals', JSON.stringify(goals)); } catch (e) {} }
 
             function isJsPDFAvailable() { return typeof window.jspdf !== 'undefined' && typeof window.jspdf.jsPDF === 'function'; }
-            (function updatePdfAvailability() {
-                const msg = document.getElementById('pdfUnavailableMsg');
-                if (msg) {
-                    if (!isJsPDFAvailable()) {
-                        msg.style.display = 'block';
+            (function updatePdfAvailability() { const msg = document.getElementById('pdfUnavailableMsg'); if (msg) { if (!
+                        isJsPDFAvailable()) { msg.style.display = 'block';
                         document.getElementById('exportFullPdfBtn').disabled = true;
-                        document.getElementById('exportSummaryPdfBtn').disabled = true;
-                    }
-                }
-            })();
+                        document.getElementById('exportSummaryPdfBtn').disabled = true; } } })();
 
             document.getElementById('backupBtn').addEventListener('click', () => { const bd = { data, events, goals, version: '1.0',
                     date: new Date().toISOString() }; const blob = new Blob([JSON.stringify(bd, null, 2)], { type: 'application/json' });
@@ -2630,8 +2644,11 @@
                 updateCiclo30min();
                 drawFocusRing(); }
 
-            document.getElementById('timerStart').addEventListener('click', () => { if (timerInterval) { toast(
-                    'Cronômetro já está em execução.', 'error'); return; }
+            // BOTÃO INICIAR: valida seleção de disciplina
+            document.getElementById('timerStart').addEventListener('click', function(e) { if (!document.getElementById(
+                        'disciplinaSelect').value) { toast('Selecione uma disciplina antes de iniciar o cronômetro.', 'error');
+                    e.preventDefault();
+                    e.stopPropagation(); return; } if (timerInterval) { toast('Cronômetro já está em execução.', 'error'); return; }
                 timerStartTime = Date.now();
                 timerInterval = setInterval(() => { atualizarTimer();
                     updateCiclo30min(); if (pomodoroActive) { const segundos = getCurrentSeconds(); if (segundos > 0 && segundos %
@@ -2676,17 +2693,25 @@
                     document.getElementById('focusSessionLabel').textContent = b.dataset.type;
                     pomodoroActive = b.dataset.type !== 'Pausa'; }); });
 
+            // ALERTA AO TROCAR DE DISCIPLINA COM TEMPO NÃO SALVO
+            const disciplinaSelect = document.getElementById('disciplinaSelect');
+            if (disciplinaSelect) { disciplinaSelect.addEventListener('change', async function() { const segundos =
+                        getCurrentSeconds(); if (segundos > 0) { const confirmed = await window.showConfirmModal(
+                        'Tempo não salvo',
+                        `Você tem tempo de estudo acumulado (${formatTime(segundos)}). Deseja salvar antes de trocar de disciplina?`,
+                        false); if (confirmed) salvarTempoNaDisciplina(true); } }); }
+
             /* ========== TABELA ========== */
-            const selectDisciplina = document.getElementById('disciplinaSelect'),
-                registroDisciplinaSelect = document.getElementById('registroDisciplinaSelect'),
+            const registroDisciplinaSelect = document.getElementById('registroDisciplinaSelect'),
                 filtroInput = document.getElementById('filtroTabela'),
                 tbody = document.querySelector('#tabelaDisciplinasBody');
             let tabelaSortBy = null,
                 tabelaSortDir = 'asc';
 
             function atualizarSelects() { const disciplinas = Object.keys(data).sort(); const opts = disciplinas.map(d =>
-                    `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join('');
-                selectDisciplina.innerHTML = '<option value="">-- Selecione --</option>' + opts;
+                    `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join(''); if (document.getElementById(
+                        'disciplinaSelect')) document.getElementById('disciplinaSelect').innerHTML =
+                    '<option value="">-- Selecione --</option>' + opts;
                 registroDisciplinaSelect.innerHTML = '<option value="">-- Selecione --</option>' + opts; }
 
             function getDisciplina(nome) { return data[nome] || { certas: 0, erradas: 0, horasMinutos: 0 }; }
@@ -2735,8 +2760,8 @@
 
             function iniciarCronometroPara(nome) { if (!data[nome]) { data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 };
                     salvarDados();
-                    atualizarSelects(); }
-                selectDisciplina.value = nome;
+                    atualizarSelects(); } if (document.getElementById('disciplinaSelect')) document.getElementById('disciplinaSelect')
+                    .value = nome;
                 document.getElementById('timerStart').click(); }
             async function excluirDisciplina(nome) { const confirmed = await window.showConfirmModal('Excluir disciplina',
                     `Tem certeza que deseja excluir "${escapeHtml(nome)}"? Esta ação não pode ser desfeita.`, true); if (!confirmed)
@@ -2748,7 +2773,8 @@
                 salvarEventos();
                 salvarNotificacoes();
                 atualizarSelects();
-                renderizarTabela(); if (selectDisciplina.value === nome) selectDisciplina.value = '';
+                renderizarTabela(); if (document.getElementById('disciplinaSelect') && document.getElementById('disciplinaSelect')
+                    .value === nome) document.getElementById('disciplinaSelect').value = '';
                 refreshDashboard();
                 updateNotificationUI();
                 toast(`Disciplina "${escapeHtml(nome)}" removida.`); }
@@ -2777,13 +2803,22 @@
                 renderizarTabela();
                 refreshDashboard();
                 toast(`❌ ${qtd} erro(s) registrado(s) em ${escapeHtml(nome)}`); });
+
+            // ZERAR MÉTRICAS SEM RELOAD
             document.getElementById('resetMetricsBtn').addEventListener('click', async () => { const confirmed = await window
-                .showConfirmModal('Zerar métricas', 'Tem certeza que deseja zerar TODAS as métricas? Esta ação não pode ser desfeita.',
-                    true); if (!confirmed) return; try { localStorage.removeItem('vulps_discipline_data');
+                .showConfirmModal('Zerar métricas',
+                    'Tem certeza que deseja zerar TODAS as métricas? Esta ação não pode ser desfeita.', true); if (!confirmed) return;
+                data = {};
+                events = [];
+                goals = goals.map(g => ({ ...g, current: 0 }));
+                notifications = []; try { localStorage.removeItem('vulps_discipline_data');
                     localStorage.removeItem('user_progress_events');
-                    localStorage.removeItem('vulps_goals');
-                    localStorage.removeItem('vulps_notifications'); } catch (e) {}
-                location.reload(); });
+                    localStorage.removeItem('vulps_notifications');
+                    localStorage.setItem('vulps_goals', JSON.stringify(goals)); } catch (e) {}
+                atualizarSelects();
+                renderizarTabela();
+                refreshDashboard();
+                toast('Métricas zeradas com sucesso.'); });
 
             /* ========== PDF & SHARE ========== */
             const exportModal = document.getElementById('exportModal'),
@@ -2867,23 +2902,20 @@
                 toast('✓ Metas atualizadas!'); });
 
             /* ========== DASHBOARD ========== */
-            function computeMetrics() { try { const total = events.length; const correct = events.filter(e => e.correct === true).length;
-                    const wrong = total - correct; let totalTime = 0; for (const d of Object.values(data)) totalTime += (d.horasMinutos ||
-                        0); const timedEvents = events.filter(e => e.timeSpent > 0); const avgTime = timedEvents.length > 0 ? Math.round(
-                        totalTime / timedEvents.length) : 0; const todayStr = new Date().toISOString().split('T')[0]; const todayCount =
-                        events.filter(e => e.timestamp.startsWith(todayStr)).length; const daysArr = [...new Set(events.map(e => e.timestamp
-                            .split('T')[0]))].sort(); let streak = 0,
-                        maxStreak = 0,
-                        cur = 0; if (daysArr.length) { const today = new Date(); let check = new Date(today); if (!daysArr.includes(
-                            todayStr)) check.setDate(check.getDate() - 1); while (daysArr.includes(check.toISOString().split('T')[
-                            0])) { streak++;
-                            check.setDate(check.getDate() - 1); } for (let i = 0; i < daysArr.length; i++) { if (i === 0) cur = 1;
-                            else { const diff = (new Date(daysArr[i]) - new Date(daysArr[i - 1])) / 86400000;
-                                cur = diff === 1 ? cur + 1 : 1; }
-                            maxStreak = Math.max(maxStreak, cur); } } const correctPercent = total ? ((correct / total) * 100).toFixed(1) :
-                        '0.0'; return { total, correct, wrong, totalTime, avgTime, todayCount, streak, maxStreak, correctPercent }; } catch
-                    (e) { return { total: 0, correct: 0, wrong: 0, totalTime: 0, avgTime: 0, todayCount: 0, streak: 0, maxStreak: 0,
-                            correctPercent: '0.0' }; } }
+            function computeMetrics() { const todayStr = new Date().toISOString().split('T')[0]; let total = 0,
+                    correct = 0, wrong = 0, totalTime = 0, timedCount = 0; let todayCount = 0; const daysSet = new Set(); let streak = 0,
+                    maxStreak = 0, cur = 0; for (const e of events) { total++; if (e.correct === true) correct++; else if (e.correct ===
+                        false) wrong++; if (e.timeSpent > 0) { totalTime += e.timeSpent;
+                        timedCount++; } const day = e.timestamp.split('T')[0]; if (day === todayStr) todayCount++;
+                    daysSet.add(day); } const daysArr = [...daysSet].sort(); if (daysArr.length) { const today = new Date(); let check =
+                        new Date(today); if (!daysSet.has(todayStr)) check.setDate(check.getDate() - 1); while (daysSet.has(check
+                        .toISOString().split('T')[0])) { streak++;
+                        check.setDate(check.getDate() - 1); } for (let i = 0; i < daysArr.length; i++) { if (i === 0) cur = 1; else { const
+                                diff = (new Date(daysArr[i]) - new Date(daysArr[i - 1])) / 86400000;
+                            cur = diff === 1 ? cur + 1 : 1; }
+                        maxStreak = Math.max(maxStreak, cur); } } const avgTime = timedCount ? Math.round(totalTime / timedCount) : 0; const
+                    correctPercent = total ? ((correct / total) * 100).toFixed(1) : '0.0'; return { total, correct, wrong, totalTime,
+                        avgTime, todayCount, streak, maxStreak, correctPercent }; }
 
             function renderKPIs() { const m = computeMetrics();
                 document.getElementById('kpiCorrect').textContent = m.correct;
@@ -2930,7 +2962,7 @@
                     level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4)
                         level = 'level-2'; else if (count >= 1) level = 'level-1';
                     html +=
-                        `<div class="heatmap-cell ${level} tooltip" tabindex="0" role="button">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`; }
+                        `<div class="heatmap-cell ${level} tooltip" tabindex="0" role="button" aria-label="Dia ${d.getDate()}: ${count} questões">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`; }
                 grid.innerHTML = html;
                 attachHeatmapListeners(); }
 
@@ -3069,24 +3101,13 @@
             document.getElementById('historyFilterDate').addEventListener('change', renderHistoryTable);
 
             /* ========== ÁUDIO AMBIENTE ========== */
-            (function() {
-                const bgRadio = document.getElementById('bg-radio');
-                if (bgRadio) {
-                    bgRadio.volume = 0.08;
-                    let radioStarted = false;
+            (function() { const bgRadio = document.getElementById('bg-radio'); if (bgRadio) { bgRadio.volume = 0.08; let radioStarted =
+                        false;
 
-                    function startRadio() {
-                        if (!radioStarted) {
-                            bgRadio.play().catch(() => {});
-                            radioStarted = true;
-                        }
-                    }
-                    bgRadio.play().catch(() => {
-                        document.addEventListener('click', startRadio, { once: true });
-                        document.addEventListener('touchstart', startRadio, { once: true });
-                    });
-                }
-            })();
+                    function startRadio() { if (!radioStarted) { bgRadio.play().catch(() => {});
+                            radioStarted = true; } }
+                    bgRadio.play().catch(() => { document.addEventListener('click', startRadio, { once: true });
+                        document.addEventListener('touchstart', startRadio, { once: true }); }); } })();
 
             /* ========== INICIALIZAÇÃO ========== */
             atualizarSelects();
@@ -3096,11 +3117,8 @@
             cleanOrphanNotifications();
             updateNotificationUI();
 
-            window.addEventListener('beforeunload', () => {
-                if (timerInterval) clearInterval(timerInterval);
-                if (feedIntervalId) clearInterval(feedIntervalId);
-                if (focusRingAnimFrame) cancelAnimationFrame(focusRingAnimFrame);
-            });
+            window.addEventListener('beforeunload', () => { if (timerInterval) clearInterval(timerInterval); if (feedIntervalId)
+                clearInterval(feedIntervalId); if (focusRingAnimFrame) cancelAnimationFrame(focusRingAnimFrame); });
         })();
     </script>
 </body>
