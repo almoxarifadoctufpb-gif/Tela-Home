@@ -413,13 +413,6 @@
             text-align: center;
         }
 
-        .sidebar-btn .sb-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1px;
-            line-height: 1.25;
-        }
-
         .sidebar-btn .sb-title {
             font-weight: 600;
             font-size: 0.85rem;
@@ -1725,27 +1718,31 @@
             border-radius: var(--radius-pill);
             padding: 10px 22px;
             font-weight: 600;
-            animation: toastIn 0.35s ease, toastOut 0.35s ease 2.8s forwards;
+            animation: toastIn 0.35s cubic-bezier(0.4,0,0.2,1), toastOut 0.35s cubic-bezier(0.4,0,0.2,1) 2.8s forwards;
             font-size: 0.84rem;
             pointer-events: auto;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
 
         .toast.error {
             border-color: var(--danger);
         }
 
+        .toast i {
+            font-size: 1.1rem;
+        }
+
         @keyframes toastIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         @keyframes toastOut {
-            from { opacity: 1; transform: translateY(0); }
-            to { opacity: 0; transform: translateY(16px); }
+            from { opacity: 1; transform: translateY(0) scale(1); }
+            to { opacity: 0; transform: translateY(16px) scale(0.95); }
         }
 
         .app-footer {
@@ -1849,6 +1846,47 @@
             50% { transform: scale(1); }
         }
 
+        /* Donut Chart Wrapper */
+        .donut-chart-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .donut-chart-canvas {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+        }
+
+        .donut-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .donut-pct {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: var(--font-display);
+            color: var(--text-primary);
+        }
+
+        .donut-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
         @media (max-width: 768px) {
             .chart-grid { grid-template-columns: 1fr; }
             .chart-canvas { height: 250px; }
@@ -1856,6 +1894,7 @@
             .timer-display { font-size: clamp(1.6rem, 8vw, 2.5rem); min-width: 140px; padding: 0.4rem 1rem; }
             .focus-ring-container { width: min(65vw, 200px); height: min(65vw, 200px); }
             #sidebar .sidebar-brasao { width: 120px; }
+            .donut-pct { font-size: 2rem; }
         }
 
         @media (min-width: 48em) {
@@ -1900,80 +1939,78 @@
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
             <img src="https://res.cloudinary.com/dk8ta3dfy/image/upload/LogotipoVULP_Oficial_gyojn4.png" alt="Logotipo VULP+" class="sidebar-brasao" />
-            <div class="sidebar-greeting" id="sidebarGreeting">
-                <!-- Preenchido dinamicamente conforme horário -->
-            </div>
+            <div class="sidebar-greeting" id="sidebarGreeting"></div>
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
-        <!-- Links SEM subtítulos -->
         <a href="https://vulpmais-portalde-estudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-flag"></i>
-            <span class="sb-info"><span class="sb-title">Portal VULP+</span></span>
+            <span class="sb-title">Portal VULP+</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-gauge-high"></i>
-            <span class="sb-info"><span class="sb-title">Painel Principal (Dashboard)</span></span>
+            <span class="sb-title">Painel Principal (Dashboard)</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
+        <!-- Ícone moderno (clipboard-check) para Simulado CESPE -->
         <a href="https://vulp-blog.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-file-circle-question"></i>
-            <span class="sb-info"><span class="sb-title">Simulador CESPE (Questões)</span></span>
+            <i class="fas fa-clipboard-check"></i>
+            <span class="sb-title">Simulador CESPE (Questões)</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-globe"></i>
-            <span class="sb-info"><span class="sb-title">Simulador Todas as Bancas (Questões)</span></span>
+            <span class="sb-title">Simulador Todas as Bancas (Questões)</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-book-open-reader"></i>
-            <span class="sb-info"><span class="sb-title">Cabine de Leitura</span></span>
+            <span class="sb-title">Cabine de Leitura</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-stopwatch"></i>
-            <span class="sb-info"><span class="sb-title">Cronômetro (Gestão do Tempo)</span></span>
+            <span class="sb-title">Cronômetro (Gestão do Tempo)</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-scale-balanced"></i>
-            <span class="sb-info"><span class="sb-title">Controle de Leitura das Leis</span></span>
+            <span class="sb-title">Controle de Leitura das Leis</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-calendar-days"></i>
-            <span class="sb-info"><span class="sb-title">Planejador de Estudos</span></span>
+            <span class="sb-title">Planejador de Estudos</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-id-card"></i>
-            <span class="sb-info"><span class="sb-title">Sala VULP+</span></span>
+            <span class="sb-title">Sala VULP+</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-briefcase"></i>
-            <span class="sb-info"><span class="sb-title">Meu primeiro cargo</span></span>
+            <span class="sb-title">Meu primeiro cargo</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-database"></i>
-            <span class="sb-info"><span class="sb-title">Banco de Questões</span></span>
+            <span class="sb-title">Banco de Questões</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-store"></i>
-            <span class="sb-info"><span class="sb-title">VULP Store</span></span>
+            <span class="sb-title">VULP Store</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-users"></i>
-            <span class="sb-info"><span class="sb-title">Comunidade</span></span>
+            <span class="sb-title">Comunidade</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
         <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-chalkboard-user"></i>
-            <span class="sb-info"><span class="sb-title">Aprenda Aqui</span></span>
+            <span class="sb-title">Aprenda Aqui</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
     </div>
@@ -2029,6 +2066,20 @@
                 <div class="kpi-card" aria-label="Melhor disciplina em desempenho"><div class="kpi-icon" style="background: var(--secondary-soft); color: var(--secondary);"><i class="fas fa-trophy"></i></div><div class="kpi-info"><div class="kpi-label">Melhor Disciplina</div><div class="kpi-value" id="kpiBestSubject">-</div><div class="kpi-sub" id="kpiBestSubjectPerc">Registre questões para análise</div></div></div>
                 <div class="kpi-card" aria-label="Pior disciplina em desempenho"><div class="kpi-icon" style="background: var(--danger-soft); color: var(--danger);"><i class="fas fa-exclamation-triangle"></i></div><div class="kpi-info"><div class="kpi-label">Pior Disciplina</div><div class="kpi-value" id="kpiWorstSubject">-</div><div class="kpi-sub" id="kpiWorstSubjectPerc">Registre questões para análise</div></div></div>
             </section>
+
+            <!-- NOVA CARTA: Gráfico Donut -->
+            <div class="card" style="text-align:center">
+                <div class="section-header">
+                    <h2 class="section-title"><i class="fas fa-chart-pie"></i> Taxa de Acertos</h2>
+                </div>
+                <div class="donut-chart-wrapper">
+                    <canvas id="donutChart" class="donut-chart-canvas" width="280" height="280"></canvas>
+                    <div class="donut-center-text">
+                        <div class="donut-pct" id="donutPct">0%</div>
+                        <div class="donut-label">Taxa de acertos</div>
+                    </div>
+                </div>
+            </div>
 
             <div class="card" style="text-align:center" id="timerCard">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px"><div style="text-align:left"><label for="disciplinaSelect">Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="timer-type-selector"><button class="timer-type-btn active" data-type="Teoria"><i class="fas fa-book-open"></i> Teoria</button><button class="timer-type-btn" data-type="Questões"><i class="fas fa-question-circle"></i> Questões</button><button class="timer-type-btn" data-type="Revisão"><i class="fas fa-sync-alt"></i> Revisão</button><button class="timer-type-btn" data-type="Pausa"><i class="fas fa-coffee"></i> Pausa</button></div></div>
@@ -2203,7 +2254,7 @@
                 trapFocusInModal(overlay);
             })();
 
-            /* ========== SAUDAÇÃO (Olá, Bom dia/Boa tarde/Boa noite) ========== */
+            /* ========== SAUDAÇÃO ========== */
             (function() {
                 const g = document.getElementById('sidebarGreeting');
                 if (g) {
@@ -2329,8 +2380,9 @@
                 const c = document.getElementById('toastContainer');
                 const e = document.createElement('div');
                 e.className = 'toast ' + t;
-                const ic = t === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check';
-                e.innerHTML = `<i class="fas ${ic}" style="color:${t==='error'?'var(--danger)':'var(--secondary)'}"></i> ${escapeHtml(m)}`;
+                const ic = t === 'error' ? 'fa-circle-exclamation' : (t === 'warning' ? 'fa-exclamation-triangle' : 'fa-circle-check');
+                const iconColor = t === 'error' ? 'var(--danger)' : (t === 'warning' ? 'var(--warning)' : 'var(--secondary)');
+                e.innerHTML = `<i class="fas ${ic}" style="color:${iconColor}"></i> ${escapeHtml(m)}`;
                 c.appendChild(e);
                 setTimeout(() => { if (e.parentNode) e.remove(); }, 3200);
             }
@@ -2456,7 +2508,7 @@
                 if (segundos > 0 && ciclo !== ultimoCicloAlarme && ciclo30min === 0) {
                     if (alarmeAudio) { alarmeAudio.currentTime = 0; alarmeAudio.play().catch(() => {}); }
                     ultimoCicloAlarme = ciclo;
-                    toast('⏰ 30 minutos completados!');
+                    toast('⏰ 30 minutos completados!', 'warning');
                 }
             }
 
@@ -2642,7 +2694,7 @@
                 const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random();
                 for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: true, timeSpent: 0, type: 'question', questionId: uuid + '_' + i });
                 salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard();
-                toast(`✅ ${qtd} acerto(s) registrado(s) em ${escapeHtml(nome)}`);
+                toast('🎯 Questão correta registrada');
             });
             document.getElementById('registroErrarBtn').addEventListener('click', () => {
                 const nome = registroDisciplinaSelect.value; if (!nome) { toast('Selecione uma disciplina!', 'error'); return; }
@@ -2652,7 +2704,7 @@
                 const uuid = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function' ? crypto.randomUUID() : Date.now().toString() + Math.random();
                 for (let i = 0; i < qtd; i++) events.push({ timestamp: new Date().toISOString(), subject: nome, correct: false, timeSpent: 0, type: 'question', questionId: uuid + '_' + i });
                 salvarDados(); salvarEventos(); renderizarTabela(); refreshDashboard();
-                toast(`❌ ${qtd} erro(s) registrado(s) em ${escapeHtml(nome)}`);
+                toast('📌 Questão errada registrada');
             });
 
             document.getElementById('resetMetricsBtn').addEventListener('click', async () => {
@@ -2749,7 +2801,7 @@
                 return { best, worst };
             }
 
-            /* ========== DASHBOARD (com data local corrigida) ========== */
+            /* ========== DASHBOARD ========== */
             function computeMetrics() {
                 const todayStr = new Date().toLocaleDateString('pt-BR');
                 let total = 0, correct = 0, wrong = 0, totalTime = 0, timedCount = 0, todayCount = 0;
@@ -2785,6 +2837,60 @@
                 return { total, correct, wrong, totalTime, avgTime, todayCount, streak, maxStreak, correctPercent };
             }
 
+            function drawDonutChart() {
+                const canvas = document.getElementById('donutChart');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const m = computeMetrics();
+                const total = m.correct + m.wrong;
+                const pct = total ? (m.correct / total) * 100 : 0;
+                const w = canvas.width, h = canvas.height;
+                const cx = w / 2, cy = h / 2;
+                const radius = Math.min(w, h) * 0.38;
+                const cutout = radius * 0.55;
+
+                ctx.clearRect(0, 0, w, h);
+
+                // Background ring
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius, 0, 2 * Math.PI);
+                ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+                ctx.lineWidth = 14;
+                ctx.stroke();
+
+                const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878';
+                const dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--danger').trim() || '#ef4444';
+                const bgCard = getComputedStyle(document.documentElement).getPropertyValue('--bg-card').trim() || '#1a2332';
+
+                // Erros first (red), then acertos (green) over it
+                const startAngle = -Math.PI / 2;
+                const erroAngle = (total ? (m.wrong / total) * 2 * Math.PI : 0);
+                const acertoAngle = (total ? (m.correct / total) * 2 * Math.PI : 0);
+
+                // Draw error portion
+                if (total > 0 && m.wrong > 0) {
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, startAngle, startAngle + erroAngle);
+                    ctx.strokeStyle = dangerColor;
+                    ctx.lineWidth = 14;
+                    ctx.lineCap = 'round';
+                    ctx.stroke();
+                }
+
+                // Draw correct portion
+                if (total > 0 && m.correct > 0) {
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, radius, startAngle + erroAngle, startAngle + erroAngle + acertoAngle);
+                    ctx.strokeStyle = accentColor;
+                    ctx.lineWidth = 14;
+                    ctx.lineCap = 'round';
+                    ctx.stroke();
+                }
+
+                // Center text
+                document.getElementById('donutPct').textContent = total ? pct.toFixed(0) + '%' : '0%';
+            }
+
             function renderKPIs() {
                 const m = computeMetrics();
                 document.getElementById('kpiCorrect').textContent = m.correct;
@@ -2807,6 +2913,8 @@
                 document.getElementById('kpiBestSubjectPerc').textContent = best ? best.perc.toFixed(1) + '%' : 'Registre questões para análise';
                 document.getElementById('kpiWorstSubject').textContent = worst ? worst.nome : '-';
                 document.getElementById('kpiWorstSubjectPerc').textContent = worst ? worst.perc.toFixed(1) + '%' : 'Registre questões para análise';
+
+                drawDonutChart();
             }
 
             function formatTime(sec) { if (sec <= 0) return '0:00'; const m = Math.floor(sec / 60); const s = Math.round(sec % 60); return `${m}:${String(s).padStart(2,'0')}`; }
@@ -3026,6 +3134,7 @@
                     const activeTab = document.querySelector('.tab-content.active');
                     if (activeTab && activeTab.id === 'tab-metricas') renderCharts();
                     if (focusModeActive) drawFocusRing();
+                    drawDonutChart();
                 }, 200);
             });
 
@@ -3134,7 +3243,7 @@
                 renderizarTabela();
                 refreshDashboard();
                 closeModal('addDisciplinaModal');
-                toast(`✓ Disciplina "${escapeHtml(nome)}" adicionada!`);
+                toast('✅ Disciplina adicionada com sucesso');
             });
             document.getElementById('closeEditDisciplinaModal').addEventListener('click', () => closeModal('editDisciplinaModal'));
             document.getElementById('cancelEditDisciplinaBtn').addEventListener('click', () => closeModal('editDisciplinaModal'));
