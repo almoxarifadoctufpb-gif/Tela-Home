@@ -353,29 +353,14 @@
         }
 
         .sidebar-greeting {
-            font-size: 0.82rem;
+            font-size: 0.95rem;
             font-weight: 600;
             color: #fff;
             letter-spacing: 0.2px;
             text-align: center;
             line-height: 1.3;
-            opacity: 0.9;
+            opacity: 0.95;
             text-shadow: 0 1px 4px rgba(0,0,0,0.2);
-        }
-
-        .sidebar-greeting .greeting-emoji {
-            display: inline-block;
-            margin-left: 2px;
-        }
-
-        .sidebar-greeting .support-msg {
-            display: block;
-            font-size: 0.68rem;
-            font-weight: 400;
-            opacity: 0.65;
-            margin-top: 2px;
-            color: var(--secondary);
-            font-style: italic;
         }
 
         #closeSidebarBtn {
@@ -439,13 +424,6 @@
             font-weight: 600;
             font-size: 0.85rem;
             color: #fff;
-            transition: color 0.25s;
-        }
-
-        .sidebar-btn .sb-sub {
-            font-weight: 400;
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.65);
             transition: color 0.25s;
         }
 
@@ -1923,25 +1901,81 @@
         <div class="sidebar-header">
             <img src="https://res.cloudinary.com/dk8ta3dfy/image/upload/LogotipoVULP_Oficial_gyojn4.png" alt="Logotipo VULP+" class="sidebar-brasao" />
             <div class="sidebar-greeting" id="sidebarGreeting">
-                <span id="sidebarNicknameDisplay">Concurseiro(a)</span> <span class="greeting-emoji">☀️</span>
-                <span class="support-msg">Ninguém estuda sozinho 🦊</span>
+                <!-- Preenchido dinamicamente conforme horário -->
             </div>
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
-        <a href="https://vulpmais-portalde-estudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-flag"></i><span class="sb-info"><span class="sb-title">Portal VULP+</span><span class="sb-sub">Central de Comando</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-gauge-high"></i><span class="sb-info"><span class="sb-title">Painel Principal (Dashboard)</span><span class="sb-sub">Painel de Missão</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-blog.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-file-circle-question"></i><span class="sb-info"><span class="sb-title">Simulador CESPE (Questões)</span><span class="sb-sub">Instrução Tática CESPE</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-globe"></i><span class="sb-info"><span class="sb-title">Simulador Todas as Bancas (Questões)</span><span class="sb-sub">Instrução Universal</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-book-open-reader"></i><span class="sb-info"><span class="sb-title">Cabine de Leitura</span><span class="sb-sub">Material de Combate</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-stopwatch"></i><span class="sb-info"><span class="sb-title">Cronômetro (Gestão do Tempo)</span><span class="sb-sub">Gestão de Tempo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-scale-balanced"></i><span class="sb-info"><span class="sb-title">Controle de Leitura das Leis</span><span class="sb-sub">Doutrina de Lei Seca</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-calendar-days"></i><span class="sb-info"><span class="sb-title">Planejador de Estudos</span><span class="sb-sub">Rota de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-id-card"></i><span class="sb-info"><span class="sb-title">Sala VULP+</span><span class="sb-sub">Perfil do Operador</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-briefcase"></i><span class="sb-info"><span class="sb-title">Meu primeiro cargo</span><span class="sb-sub">Comunidade Tática</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-database"></i><span class="sb-info"><span class="sb-title">Banco de Questões</span><span class="sb-sub">Banco de Questões</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-store"></i><span class="sb-info"><span class="sb-title">VULP Store</span><span class="sb-sub">Material Exclusivo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade</span><span class="sb-sub">Fórum VULP+</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-chalkboard-user"></i><span class="sb-info"><span class="sb-title">Aprenda Aqui</span><span class="sb-sub">Aulas e Treinamento</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <!-- Links SEM subtítulos -->
+        <a href="https://vulpmais-portalde-estudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-flag"></i>
+            <span class="sb-info"><span class="sb-title">Portal VULP+</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-gauge-high"></i>
+            <span class="sb-info"><span class="sb-title">Painel Principal (Dashboard)</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulp-blog.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-file-circle-question"></i>
+            <span class="sb-info"><span class="sb-title">Simulador CESPE (Questões)</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-globe"></i>
+            <span class="sb-info"><span class="sb-title">Simulador Todas as Bancas (Questões)</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-book-open-reader"></i>
+            <span class="sb-info"><span class="sb-title">Cabine de Leitura</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-stopwatch"></i>
+            <span class="sb-info"><span class="sb-title">Cronômetro (Gestão do Tempo)</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-scale-balanced"></i>
+            <span class="sb-info"><span class="sb-title">Controle de Leitura das Leis</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-calendar-days"></i>
+            <span class="sb-info"><span class="sb-title">Planejador de Estudos</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-id-card"></i>
+            <span class="sb-info"><span class="sb-title">Sala VULP+</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-briefcase"></i>
+            <span class="sb-info"><span class="sb-title">Meu primeiro cargo</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-database"></i>
+            <span class="sb-info"><span class="sb-title">Banco de Questões</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-store"></i>
+            <span class="sb-info"><span class="sb-title">VULP Store</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-users"></i>
+            <span class="sb-info"><span class="sb-title">Comunidade</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
+        <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
+            <i class="fas fa-chalkboard-user"></i>
+            <span class="sb-info"><span class="sb-title">Aprenda Aqui</span></span>
+            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
+        </a>
     </div>
 
     <main class="app-container">
@@ -1976,7 +2010,6 @@
             <button class="tab-btn" data-tab="historico" role="tab" aria-selected="false"><i class="fas fa-history"></i> Histórico</button>
         </nav>
 
-        <!-- Abas de conteúdo (mantidas exatamente como na última versão funcional, apenas com os novos KPIs) -->
         <div class="tab-content active" id="tab-principal" role="tabpanel">
             <section class="community-feed">
                 <div class="feed-header">
@@ -2042,7 +2075,6 @@
     </div>
 
     <audio id="alarmeAudio" preload="auto" src="https://res.cloudinary.com/dew6hgzpv/video/upload/alarme_hmovis.mp3"></audio>
-    <!-- Som de clique nativo -->
     <audio id="clickSound" preload="auto" src="https://res.cloudinary.com/dew6hgzpv/video/upload/CLIQUE_fiqvgx.mp4"></audio>
 
     <div class="modal-overlay" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle"><div class="modal-card"><div class="modal-header"><h3 class="modal-title" id="exportModalTitle"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Gere um relatório profissional em PDF:</p><div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button><button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button></div><div class="share-summary-box" id="pdfPreviewInfo"><strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br><strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.<br><span id="pdfUnavailableMsg" style="display:none;color:var(--danger);font-weight:600;">⚠️ Serviço de PDF temporariamente indisponível.</span></div></div></div>
@@ -2171,16 +2203,16 @@
                 trapFocusInModal(overlay);
             })();
 
-            /* ========== SAUDAÇÃO ========== */
+            /* ========== SAUDAÇÃO (Olá, Bom dia/Boa tarde/Boa noite) ========== */
             (function() {
                 const g = document.getElementById('sidebarGreeting');
                 if (g) {
                     const h = new Date().getHours();
-                    let s, e;
-                    if (h >= 5 && h < 12) { s = 'Bom dia'; e = '☀️'; }
-                    else if (h >= 12 && h < 18) { s = 'Boa tarde'; e = '🌤️'; }
-                    else { s = 'Boa noite'; e = '🌙'; }
-                    g.innerHTML = `<span id="sidebarNicknameDisplay">Concurseiro(a)</span> <span class="greeting-emoji">${e}</span><span class="support-msg">Ninguém estuda sozinho 🦊</span>`;
+                    let saudacao = '';
+                    if (h >= 5 && h < 12) saudacao = 'Olá, Bom dia ☀️';
+                    else if (h >= 12 && h < 18) saudacao = 'Olá, Boa tarde 🌤️';
+                    else saudacao = 'Olá, Boa noite! 🌙';
+                    g.textContent = saudacao;
                 }
             })();
 
@@ -2331,7 +2363,6 @@
 
             let notifications = JSON.parse(localStorage.getItem('vulps_notifications')) || [];
 
-            // Sincronização entre abas
             window.addEventListener('storage', (e) => {
                 if (e.key === 'vulps_discipline_data' || e.key === 'user_progress_events' || e.key === 'vulps_goals' || e.key === 'vulps_notifications') {
                     try {
@@ -2386,7 +2417,6 @@
             document.getElementById('markAllReadBtn').addEventListener('click', (e) => { e.stopPropagation(); markAllRead(); });
             document.getElementById('notificationList').addEventListener('click', (e) => { const it = e.target.closest('.notification-item'); if (it) { const idx = parseInt(it.dataset.index); if (!isNaN(idx) && notifications[idx]) { notifications[idx].read = true; try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {} updateNotificationUI(); } } });
 
-            // Sidebar foco
             const sidebar = document.getElementById('sidebar');
             const hamburgerBtn = document.getElementById('hamburgerBtn');
             hamburgerBtn.addEventListener('click', () => {
@@ -2405,7 +2435,7 @@
                 document.getElementById('sidebarOverlay').classList.remove('active');
             });
 
-            /* ========== CRONÔMETRO (mantido) ========== */
+            /* ========== CRONÔMETRO ========== */
             let timerStartTime = null, timerAccumulated = 0, timerInterval = null, pomodoroActive = true, pomodoroCount = 1, focusModeActive = false, ciclo30min = 0, ultimoCicloAlarme = 0;
             const timerDisplay = document.getElementById('timerDisplay'), focusTimerDisplay = document.getElementById('focusTimerDisplay'), focusOverlay = document.getElementById('focusOverlay'), alarmeAudio = document.getElementById('alarmeAudio');
 
@@ -2634,7 +2664,7 @@
                 toast('Métricas zeradas com sucesso.');
             });
 
-            /* ========== PDF & SHARE (mantido) ========== */
+            /* ========== PDF & SHARE ========== */
             const exportModal = document.getElementById('exportModal'), shareModal = document.getElementById('shareModal');
             document.getElementById('exportBtn').addEventListener('click', () => {
                 if (typeof window.jspdf === 'undefined' || typeof window.jspdf.jsPDF !== 'function') { toast('Serviço de PDF temporariamente indisponível.', 'error'); return; }
@@ -2713,14 +2743,8 @@
                     const total = d.certas + d.erradas;
                     if (total === 0) continue;
                     const perc = (d.certas / total) * 100;
-                    if (perc > bestPerc) {
-                        bestPerc = perc;
-                        best = { nome, perc };
-                    }
-                    if (perc < worstPerc) {
-                        worstPerc = perc;
-                        worst = { nome, perc };
-                    }
+                    if (perc > bestPerc) { bestPerc = perc; best = { nome, perc }; }
+                    if (perc < worstPerc) { worstPerc = perc; worst = { nome, perc }; }
                 }
                 return { best, worst };
             }
