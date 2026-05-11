@@ -15,10 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Share+Tech+Mono&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
         :root {
             --primary: #1155cc;
@@ -157,15 +155,9 @@
             letter-spacing: 1px;
         }
 
-        #topbar .topbar-logo .topbar-brasao {
-            height: 36px;
-            width: auto;
-            filter: drop-shadow(0 0 8px rgba(255,122,0,0.5));
-            transition: filter 0.3s;
-        }
-
-        #topbar .topbar-logo:hover .topbar-brasao {
-            filter: drop-shadow(0 0 16px rgba(255,122,0,0.8));
+        #topbar .topbar-logo i {
+            color: var(--accent);
+            font-size: 1.4rem;
         }
 
         #topbar .topbar-spacer {
@@ -321,7 +313,6 @@
             padding: 0 16px 24px;
             display: flex;
             flex-direction: column;
-            gap: 4px;
             z-index: 100;
             overflow-y: auto;
             transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
@@ -352,19 +343,13 @@
         #sidebar .sidebar-brasao {
             width: 170px;
             height: auto;
-            filter: drop-shadow(0 0 24px rgba(255,122,0,0.55)) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-            transition: all 0.4s ease;
-            animation: brasaoGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes brasaoGlow {
-            0%,100% { filter: drop-shadow(0 0 24px rgba(255,122,0,0.55)) drop-shadow(0 4px 8px rgba(0,0,0,0.4)); }
-            50% { filter: drop-shadow(0 0 36px rgba(255,122,0,0.85)) drop-shadow(0 6px 16px rgba(255,122,0,0.35)); }
+            filter: drop-shadow(0 0 12px rgba(255,122,0,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+            transition: filter 0.2s ease, transform 0.2s ease;
         }
 
         #sidebar .sidebar-brasao:hover {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 40px rgba(255,122,0,0.9)) drop-shadow(0 8px 20px rgba(255,122,0,0.5));
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 16px rgba(255,122,0,0.6)) drop-shadow(0 6px 12px rgba(0,0,0,0.5));
         }
 
         .sidebar-greeting {
@@ -1523,7 +1508,6 @@
             color: var(--border-medium);
         }
 
-        /* MODO FOCO CORRIGIDO */
         .focus-overlay {
             position: fixed;
             top: 0;
@@ -1915,7 +1899,7 @@
 <body>
     <header id="topbar" role="banner">
         <a href="#" class="topbar-logo">
-            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/BRAS%C3%83O_TROPA_VULP_ewkjig.png" alt="VULPS+ Brasão" class="topbar-brasao" />
+            <i class="fas fa-fox"></i>
             <span>VULPS+</span>
         </a>
         <div class="topbar-spacer"></div>
@@ -1925,7 +1909,7 @@
                 <i class="fas fa-bell"></i><span class="badge" id="notificationBadge" style="display:none">0</span>
                 <div class="notification-dropdown" id="notificationDropdown" role="menu" aria-label="Lista de notificações">
                     <div class="notification-header"><span>Notificações</span><button class="btn btn-sm" id="markAllReadBtn" style="font-size:0.7rem">Marcar todas como lidas</button></div>
-                    <div id="notificationList"><div class="notification-empty">Nenhuma notificação no momento.</div></div>
+                    <div id="notificationList" role="status" aria-live="polite"><div class="notification-empty">Nenhuma notificação no momento.</div></div>
                 </div>
             </div>
             <button id="topbarThemeToggle" class="btn btn-sm" aria-label="Alternar tema"><i class="fas" id="topbarThemeIcon">☀️</i></button>
@@ -1937,7 +1921,7 @@
 
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
-            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/BRAS%C3%83O_TROPA_VULP_ewkjig.png" alt="Brasão VULPS+" class="sidebar-brasao" />
+            <img src="https://res.cloudinary.com/dk8ta3dfy/image/upload/LogotipoVULP_Oficial_gyojn4.png" alt="Logotipo VULP+" class="sidebar-brasao" />
             <div class="sidebar-greeting" id="sidebarGreeting">
                 <span id="sidebarNicknameDisplay">Concurseiro(a)</span> <span class="greeting-emoji">☀️</span>
                 <span class="support-msg">Ninguém estuda sozinho 🦊</span>
@@ -1945,20 +1929,19 @@
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
         <a href="https://vulpmais-portalde-estudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-flag"></i><span class="sb-info"><span class="sb-title">Portal VULP+</span><span class="sb-sub">Central de Comando</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-crosshairs"></i><span class="sb-info"><span class="sb-title">Sala de Operações</span><span class="sb-sub">Painel de Missão</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-blog.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-landmark"></i><span class="sb-info"><span class="sb-title">CT- QG CESPE</span><span class="sb-sub">Instrução Tática CESPE</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-globe"></i><span class="sb-info"><span class="sb-title">CT - QG Todas as bancas</span><span class="sb-sub">Instrução Universal</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-book-open-reader"></i><span class="sb-info"><span class="sb-title">Sala de Leitura Tática</span><span class="sb-sub">Material de Combate</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-stopwatch"></i><span class="sb-info"><span class="sb-title">Cronômetro Tático</span><span class="sb-sub">Gestão de Tempo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-scale-balanced"></i><span class="sb-info"><span class="sb-title">Bizu Jurídico</span><span class="sb-sub">Doutrina de Lei Seca</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-route"></i><span class="sb-info"><span class="sb-title">Logística de Combate</span><span class="sb-sub">Rota de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-id-card"></i><span class="sb-info"><span class="sb-title">Identidade Funcional</span><span class="sb-sub">Perfil do Operador</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-user-graduate"></i><span class="sb-info"><span class="sb-title">Operação Recruta-Zero</span><span class="sb-sub">Comunidade Tática</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <!-- NOVOS LINKS -->
-        <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-boxes-stacked"></i><span class="sb-info"><span class="sb-title">Arsenal de Questões</span><span class="sb-sub">Banco de Questões</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-crown"></i><span class="sb-info"><span class="sb-title">Protocolo de Elite</span><span class="sb-sub">Material Exclusivo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://tela-home.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-gauge-high"></i><span class="sb-info"><span class="sb-title">Painel Principal (Dashboard)</span><span class="sb-sub">Painel de Missão</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulp-blog.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-file-circle-question"></i><span class="sb-info"><span class="sb-title">Simulador CESPE (Questões)</span><span class="sb-sub">Instrução Tática CESPE</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais-questoes1.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-globe"></i><span class="sb-info"><span class="sb-title">Simulador Todas as Bancas (Questões)</span><span class="sb-sub">Instrução Universal</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulp-mais-leitor-de-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-book-open-reader"></i><span class="sb-info"><span class="sb-title">Cabine de Leitura</span><span class="sb-sub">Material de Combate</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-cronometro-2.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-stopwatch"></i><span class="sb-info"><span class="sb-title">Cronômetro (Gestão do Tempo)</span><span class="sb-sub">Gestão de Tempo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulp-mais-leitordeleis.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-scale-balanced"></i><span class="sb-info"><span class="sb-title">Controle de Leitura das Leis</span><span class="sb-sub">Doutrina de Lei Seca</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-cronogramadeestudos.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-calendar-days"></i><span class="sb-info"><span class="sb-title">Planejador de Estudos</span><span class="sb-sub">Rota de Estudos</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-id-card"></i><span class="sb-info"><span class="sb-title">Sala VULP+</span><span class="sb-sub">Perfil do Operador</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-briefcase"></i><span class="sb-info"><span class="sb-title">Meu primeiro cargo</span><span class="sb-sub">Comunidade Tática</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-database"></i><span class="sb-info"><span class="sb-title">Banco de Questões</span><span class="sb-sub">Banco de Questões</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-store"></i><span class="sb-info"><span class="sb-title">VULP Store</span><span class="sb-sub">Material Exclusivo</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
         <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-users"></i><span class="sb-info"><span class="sb-title">Comunidade</span><span class="sb-sub">Fórum VULP+</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
-        <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-chalkboard-user"></i><span class="sb-info"><span class="sb-title">Centro de Instrução Tática</span><span class="sb-sub">Aulas e Treinamento</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
+        <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn"><i class="fas fa-chalkboard-user"></i><span class="sb-info"><span class="sb-title">Aprenda Aqui</span><span class="sb-sub">Aulas e Treinamento</span></span><span class="external-badge"><i class="fas fa-external-link-alt"></i></span></a>
     </div>
 
     <main class="app-container">
@@ -1993,6 +1976,7 @@
             <button class="tab-btn" data-tab="historico" role="tab" aria-selected="false"><i class="fas fa-history"></i> Histórico</button>
         </nav>
 
+        <!-- Abas de conteúdo (mantidas exatamente como na última versão funcional, apenas com os novos KPIs) -->
         <div class="tab-content active" id="tab-principal" role="tabpanel">
             <section class="community-feed">
                 <div class="feed-header">
@@ -2009,6 +1993,8 @@
                 <div class="kpi-card"><div class="kpi-icon streak"><i class="fas fa-fire"></i></div><div class="kpi-info"><div class="kpi-label">Dias Consecutivos</div><div class="kpi-value" id="kpiStreak">0</div><div class="kpi-sub" id="kpiStreakSub">Maior streak: 0</div><div class="kpi-encouragement" id="kpiStreakEnc"><i class="fas fa-trophy"></i><span></span></div></div></div>
                 <div class="kpi-card"><div class="kpi-icon taxa"><i class="fas fa-bullseye"></i></div><div class="kpi-info"><div class="kpi-label">Taxa de Acerto</div><div class="kpi-value" id="kpiAccuracy">0%</div><div class="kpi-sub" id="kpiAccuracySub">Meta: 70%</div></div></div>
                 <div class="kpi-card"><div class="kpi-icon hoje"><i class="fas fa-book-open"></i></div><div class="kpi-info"><div class="kpi-label">Questões Hoje</div><div class="kpi-value" id="kpiToday">0</div><div class="kpi-sub" id="kpiTodaySub">Total: 0 questões</div></div></div>
+                <div class="kpi-card" aria-label="Melhor disciplina em desempenho"><div class="kpi-icon" style="background: var(--secondary-soft); color: var(--secondary);"><i class="fas fa-trophy"></i></div><div class="kpi-info"><div class="kpi-label">Melhor Disciplina</div><div class="kpi-value" id="kpiBestSubject">-</div><div class="kpi-sub" id="kpiBestSubjectPerc">Registre questões para análise</div></div></div>
+                <div class="kpi-card" aria-label="Pior disciplina em desempenho"><div class="kpi-icon" style="background: var(--danger-soft); color: var(--danger);"><i class="fas fa-exclamation-triangle"></i></div><div class="kpi-info"><div class="kpi-label">Pior Disciplina</div><div class="kpi-value" id="kpiWorstSubject">-</div><div class="kpi-sub" id="kpiWorstSubjectPerc">Registre questões para análise</div></div></div>
             </section>
 
             <div class="card" style="text-align:center" id="timerCard">
@@ -2024,9 +2010,7 @@
 
         <div class="tab-content" id="tab-metricas" role="tabpanel">
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div><div class="chart-grid"><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Taxa de Acerto (%)</div><canvas id="accuracyChart" class="chart-canvas"></canvas></div><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Questões (Verde: Acertos, Laranja: Erros)</div><canvas id="volumeChart" class="chart-canvas"></canvas><div class="chart-legend"><span><span class="legend-dot" style="background:var(--secondary)"></span> Acertos</span><span><span class="legend-dot" style="background:var(--accent)"></span> Erros</span></div></div></div></section>
-
             <div class="chart-grid"><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid"></div></div><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div></div>
-
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px" aria-label="Filtrar disciplinas"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
         </div>
 
@@ -2043,7 +2027,7 @@
     <div class="focus-overlay" id="focusOverlay">
         <button class="focus-exit" id="exitFocusBtn"><i class="fas fa-times"></i></button>
         <div class="focus-fox">
-            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/Vers%C3%A3o_HD_miurwy.png" alt="VULP+ Brasão" class="focus-brasao" />
+            <img src="https://res.cloudinary.com/dk8ta3dfy/image/upload/LogotipoVULP_Oficial_gyojn4.png" alt="VULP+ Logotipo" class="focus-brasao" />
         </div>
         <div class="focus-ring-container">
             <canvas id="focusRingCanvas" width="240" height="240"></canvas>
@@ -2058,6 +2042,8 @@
     </div>
 
     <audio id="alarmeAudio" preload="auto" src="https://res.cloudinary.com/dew6hgzpv/video/upload/alarme_hmovis.mp3"></audio>
+    <!-- Som de clique nativo -->
+    <audio id="clickSound" preload="auto" src="https://res.cloudinary.com/dew6hgzpv/video/upload/CLIQUE_fiqvgx.mp4"></audio>
 
     <div class="modal-overlay" id="exportModal" role="dialog" aria-modal="true" aria-labelledby="exportModalTitle"><div class="modal-card"><div class="modal-header"><h3 class="modal-title" id="exportModalTitle"><i class="fas fa-file-pdf"></i> Exportar PDF</h3><button class="modal-close" id="closeExportModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Gere um relatório profissional em PDF:</p><div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap"><button class="btn btn-primary btn-sm" id="exportFullPdfBtn"><i class="fas fa-download"></i> PDF Completo</button><button class="btn btn-sm" id="exportSummaryPdfBtn"><i class="fas fa-file-alt"></i> PDF Resumido</button></div><div class="share-summary-box" id="pdfPreviewInfo"><strong>PDF Completo:</strong> Inclui todas as métricas, tabela de disciplinas e histórico recente.<br><strong>PDF Resumido:</strong> Visão geral com KPIs, taxa de acerto e streak.<br><span id="pdfUnavailableMsg" style="display:none;color:var(--danger);font-weight:600;">⚠️ Serviço de PDF temporariamente indisponível.</span></div></div></div>
     <div class="modal-overlay" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle"><div class="modal-card"><div class="modal-header"><h3 class="modal-title" id="shareModalTitle"><i class="fas fa-share-alt"></i> Compartilhar</h3><button class="modal-close" id="closeShareModal" aria-label="Fechar"><i class="fas fa-times"></i></button></div><p style="color:var(--text-secondary);margin-bottom:16px;font-size:0.9rem">Compartilhe seu desempenho:</p><div class="share-summary-box" id="shareSummaryText"></div><div class="share-actions"><button class="btn btn-whatsapp btn-sm" id="shareWhatsAppBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button><button class="btn btn-sm" id="shareCopyBtn"><i class="fas fa-copy"></i> Copiar</button><button class="btn btn-sm" id="shareCopyLinkBtn"><i class="fas fa-link"></i> Link</button></div></div></div>
@@ -2079,8 +2065,6 @@
 
     <div class="toast-container" id="toastContainer"></div>
 
-    <audio id="bg-radio" loop preload="auto" src="https://res.cloudinary.com/dew6hgzpv/video/upload/sonido_de_radio_militar___military_radio_sound_-_Sound_Free_720p_h264_youtube_lrogw7.mp3"></audio>
-
     <script>
         (function() {
             /* ========== UTILITÁRIOS ========== */
@@ -2092,6 +2076,18 @@
             function sanitizeInput(str) {
                 return str.replace(/<[^>]*>?/gm, '');
             }
+
+            /* ========== SOM DE CLIQUE NATIVO ========== */
+            const clickAudio = document.getElementById('clickSound');
+            function playClickSound() {
+                if (clickAudio) {
+                    clickAudio.currentTime = 0;
+                    clickAudio.play().catch(() => {});
+                }
+            }
+            document.querySelectorAll('#sidebar .sidebar-btn').forEach(btn => {
+                btn.addEventListener('click', playClickSound);
+            });
 
             /* ========== ABAS ========== */
             (function() {
@@ -2198,7 +2194,7 @@
             ];
 
             function getDailyPhraseIndex() {
-                const t = new Date().toISOString().split('T')[0];
+                const t = new Date().toLocaleDateString('pt-BR');
                 let h = 0;
                 for (let i = 0; i < t.length; i++) { h = ((h << 5) - h) + t.charCodeAt(i); h |= 0; }
                 return Math.abs(h) % motivationalPhrases.length;
@@ -2329,12 +2325,26 @@
             }
 
             function salvarDados() { try { localStorage.setItem('vulps_discipline_data', JSON.stringify(data)); } catch (e) {} }
-
             function trimEvents(max = 5000) { if (events.length > max) { events = events.slice(-max); salvarEventos(); } }
             function salvarEventos() { trimEvents(5000); try { localStorage.setItem('user_progress_events', JSON.stringify(events)); } catch (e) {} }
             function salvarMetas() { try { localStorage.setItem('vulps_goals', JSON.stringify(goals)); } catch (e) {} }
 
             let notifications = JSON.parse(localStorage.getItem('vulps_notifications')) || [];
+
+            // Sincronização entre abas
+            window.addEventListener('storage', (e) => {
+                if (e.key === 'vulps_discipline_data' || e.key === 'user_progress_events' || e.key === 'vulps_goals' || e.key === 'vulps_notifications') {
+                    try {
+                        if (e.key === 'vulps_discipline_data') data = JSON.parse(e.newValue) || {};
+                        else if (e.key === 'user_progress_events') events = JSON.parse(e.newValue) || [];
+                        else if (e.key === 'vulps_goals') goals = JSON.parse(e.newValue) || goals;
+                        else if (e.key === 'vulps_notifications') notifications = JSON.parse(e.newValue) || [];
+                        atualizarSelects();
+                        renderizarTabela();
+                        refreshDashboard();
+                    } catch (ex) {}
+                }
+            });
 
             function cleanOrphanNotifications() {
                 const existingSubjects = new Set(Object.keys(data));
@@ -2347,9 +2357,9 @@
                 try {
                     const m = computeMetrics();
                     const n = [];
-                    if (m.streak > 0 && m.streak % 5 === 0) n.push({ id: 'streak_' + m.streak + '_' + new Date().toISOString().split('T')[0], type: 'streak', title: 'Streak!', message: `${m.streak} dias consecutivos! 🔥`, time: new Date().toISOString(), read: false });
-                    if (parseFloat(m.correctPercent) >= 70 && goals.length >= 2) n.push({ id: 'goal_accuracy_' + new Date().toISOString().split('T')[0], type: 'goal', title: 'Meta!', message: `Taxa de ${m.correctPercent}%! 🎯`, time: new Date().toISOString(), read: false });
-                    if (m.todayCount >= 15) n.push({ id: 'today_' + new Date().toISOString().split('T')[0], type: 'goal', title: 'Produtividade!', message: `${m.todayCount} questões hoje! ⚡`, time: new Date().toISOString(), read: false });
+                    if (m.streak > 0 && m.streak % 5 === 0) n.push({ id: 'streak_' + m.streak + '_' + new Date().toLocaleDateString('pt-BR'), type: 'streak', title: 'Streak!', message: `${m.streak} dias consecutivos! 🔥`, time: new Date().toISOString(), read: false });
+                    if (parseFloat(m.correctPercent) >= 70 && goals.length >= 2) n.push({ id: 'goal_accuracy_' + new Date().toLocaleDateString('pt-BR'), type: 'goal', title: 'Meta!', message: `Taxa de ${m.correctPercent}%! 🎯`, time: new Date().toISOString(), read: false });
+                    if (m.todayCount >= 15) n.push({ id: 'today_' + new Date().toLocaleDateString('pt-BR'), type: 'goal', title: 'Produtividade!', message: `${m.todayCount} questões hoje! ⚡`, time: new Date().toISOString(), read: false });
                     return n;
                 } catch (e) { return []; }
             }
@@ -2376,9 +2386,26 @@
             document.getElementById('markAllReadBtn').addEventListener('click', (e) => { e.stopPropagation(); markAllRead(); });
             document.getElementById('notificationList').addEventListener('click', (e) => { const it = e.target.closest('.notification-item'); if (it) { const idx = parseInt(it.dataset.index); if (!isNaN(idx) && notifications[idx]) { notifications[idx].read = true; try { localStorage.setItem('vulps_notifications', JSON.stringify(notifications)); } catch (e) {} updateNotificationUI(); } } });
 
-            (function() { const s = document.getElementById('sidebar'); const o = document.getElementById('sidebarOverlay'); document.getElementById('hamburgerBtn').addEventListener('click', () => { s.classList.add('open'); o.classList.add('active'); }); document.getElementById('closeSidebarBtn').addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active'); }); o.addEventListener('click', () => { s.classList.remove('open'); o.classList.remove('active'); }); })();
+            // Sidebar foco
+            const sidebar = document.getElementById('sidebar');
+            const hamburgerBtn = document.getElementById('hamburgerBtn');
+            hamburgerBtn.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                document.getElementById('sidebarOverlay').classList.add('active');
+                const firstLink = sidebar.querySelector('.sidebar-btn');
+                if (firstLink) setTimeout(() => firstLink.focus(), 100);
+            });
+            document.getElementById('closeSidebarBtn').addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+                hamburgerBtn.focus();
+            });
+            document.getElementById('sidebarOverlay').addEventListener('click', () => {
+                sidebar.classList.remove('open');
+                document.getElementById('sidebarOverlay').classList.remove('active');
+            });
 
-            /* ========== CRONÔMETRO ========== */
+            /* ========== CRONÔMETRO (mantido) ========== */
             let timerStartTime = null, timerAccumulated = 0, timerInterval = null, pomodoroActive = true, pomodoroCount = 1, focusModeActive = false, ciclo30min = 0, ultimoCicloAlarme = 0;
             const timerDisplay = document.getElementById('timerDisplay'), focusTimerDisplay = document.getElementById('focusTimerDisplay'), focusOverlay = document.getElementById('focusOverlay'), alarmeAudio = document.getElementById('alarmeAudio');
 
@@ -2454,7 +2481,6 @@
             });
 
             document.getElementById('timerSave').addEventListener('click', () => salvarTempoNaDisciplina(true));
-
             document.getElementById('timerReset').addEventListener('click', () => {
                 clearInterval(timerInterval); timerInterval = null; timerAccumulated = 0; timerStartTime = null;
                 atualizarTimer(); ciclo30min = 0; ultimoCicloAlarme = 0; updateCiclo30min();
@@ -2608,7 +2634,7 @@
                 toast('Métricas zeradas com sucesso.');
             });
 
-            /* ========== PDF & SHARE ========== */
+            /* ========== PDF & SHARE (mantido) ========== */
             const exportModal = document.getElementById('exportModal'), shareModal = document.getElementById('shareModal');
             document.getElementById('exportBtn').addEventListener('click', () => {
                 if (typeof window.jspdf === 'undefined' || typeof window.jspdf.jsPDF !== 'function') { toast('Serviço de PDF temporariamente indisponível.', 'error'); return; }
@@ -2656,7 +2682,7 @@
                     }
                     const pc = doc.getNumberOfPages();
                     for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }); }
-                    doc.save(`vulps_${new Date().toISOString().split('T')[0]}.pdf`);
+                    doc.save(`vulps_${new Date().toLocaleDateString('pt-BR').replace(/\//g, '-')}.pdf`);
                     toast('PDF exportado!');
                 } catch (e) { toast('Erro ao gerar PDF.', 'error'); }
             }
@@ -2676,28 +2702,57 @@
                 toast('✓ Metas atualizadas!');
             });
 
-            /* ========== DASHBOARD ========== */
+            /* ========== MELHOR/PIOR DISCIPLINA ========== */
+            function getTopBottomDisciplinas() {
+                const disciplinas = Object.keys(data);
+                if (disciplinas.length === 0) return { best: null, worst: null };
+                let best = null, worst = null;
+                let bestPerc = -1, worstPerc = 101;
+                for (let nome of disciplinas) {
+                    const d = data[nome];
+                    const total = d.certas + d.erradas;
+                    if (total === 0) continue;
+                    const perc = (d.certas / total) * 100;
+                    if (perc > bestPerc) {
+                        bestPerc = perc;
+                        best = { nome, perc };
+                    }
+                    if (perc < worstPerc) {
+                        worstPerc = perc;
+                        worst = { nome, perc };
+                    }
+                }
+                return { best, worst };
+            }
+
+            /* ========== DASHBOARD (com data local corrigida) ========== */
             function computeMetrics() {
-                const todayStr = new Date().toISOString().split('T')[0];
+                const todayStr = new Date().toLocaleDateString('pt-BR');
                 let total = 0, correct = 0, wrong = 0, totalTime = 0, timedCount = 0, todayCount = 0;
                 const daysSet = new Set();
                 for (const e of events) {
                     total++;
                     if (e.correct === true) correct++; else if (e.correct === false) wrong++;
                     if (e.timeSpent > 0) { totalTime += e.timeSpent; timedCount++; }
-                    const day = e.timestamp.split('T')[0];
+                    const day = new Date(e.timestamp).toLocaleDateString('pt-BR');
                     if (day === todayStr) todayCount++;
                     daysSet.add(day);
                 }
                 const daysArr = [...daysSet].sort();
                 let streak = 0, maxStreak = 0, cur = 0;
                 if (daysArr.length) {
-                    const today = new Date(); let check = new Date(today);
+                    const today = new Date();
+                    let check = new Date(today);
                     if (!daysSet.has(todayStr)) check.setDate(check.getDate() - 1);
-                    while (daysSet.has(check.toISOString().split('T')[0])) { streak++; check.setDate(check.getDate() - 1); }
+                    while (daysSet.has(check.toLocaleDateString('pt-BR'))) { streak++; check.setDate(check.getDate() - 1); }
                     for (let i = 0; i < daysArr.length; i++) {
                         if (i === 0) cur = 1;
-                        else { const diff = (new Date(daysArr[i]) - new Date(daysArr[i-1])) / 86400000; cur = diff === 1 ? cur + 1 : 1; }
+                        else {
+                            const prev = new Date(daysArr[i-1].split('/').reverse().join('-'));
+                            const curr = new Date(daysArr[i].split('/').reverse().join('-'));
+                            const diff = (curr - prev) / 86400000;
+                            cur = diff === 1 ? cur + 1 : 1;
+                        }
                         maxStreak = Math.max(maxStreak, cur);
                     }
                 }
@@ -2722,6 +2777,12 @@
                 const es = document.getElementById('kpiStreakEnc'); if (es && m.streak >= 3) es.querySelector('span').textContent = 'Sequência inspiradora!'; else if (es) es.querySelector('span').textContent = 'Consistência leva à aprovação';
                 document.getElementById('kpiTodaySub').textContent = 'Total: ' + m.total + ' questões';
                 if (goals.length >= 4) { goals[0].current = m.todayCount; goals[1].current = parseFloat(m.correctPercent); goals[2].current = Math.floor(m.totalTime / 60); goals[3].current = m.streak; }
+
+                const { best, worst } = getTopBottomDisciplinas();
+                document.getElementById('kpiBestSubject').textContent = best ? best.nome : '-';
+                document.getElementById('kpiBestSubjectPerc').textContent = best ? best.perc.toFixed(1) + '%' : 'Registre questões para análise';
+                document.getElementById('kpiWorstSubject').textContent = worst ? worst.nome : '-';
+                document.getElementById('kpiWorstSubjectPerc').textContent = worst ? worst.perc.toFixed(1) + '%' : 'Registre questões para análise';
             }
 
             function formatTime(sec) { if (sec <= 0) return '0:00'; const m = Math.floor(sec / 60); const s = Math.round(sec % 60); return `${m}:${String(s).padStart(2,'0')}`; }
@@ -2733,12 +2794,26 @@
             }
 
             function renderHeatmap() {
-                const grid = document.getElementById('heatmapGrid'); const today = new Date(); const startOfWeek = new Date(today); startOfWeek.setDate(today.getDate() - today.getDay());
-                const byDay = {}; events.forEach(e => { const d = e.timestamp.split('T')[0]; byDay[d] = (byDay[d] || 0) + 1; });
+                const grid = document.getElementById('heatmapGrid');
+                const today = new Date();
+                const startOfWeek = new Date(today);
+                startOfWeek.setDate(today.getDate() - today.getDay());
+                const byDay = {};
+                events.forEach(e => {
+                    const d = new Date(e.timestamp).toLocaleDateString('pt-BR');
+                    byDay[d] = (byDay[d] || 0) + 1;
+                });
                 let html = '';
                 for (let i = 0; i < 7; i++) {
-                    const d = new Date(startOfWeek); d.setDate(startOfWeek.getDate() + i); const iso = d.toISOString().split('T')[0]; const count = byDay[iso] || 0;
-                    let level = ''; if (count >= 13) level = 'level-4'; else if (count >= 8) level = 'level-3'; else if (count >= 4) level = 'level-2'; else if (count >= 1) level = 'level-1';
+                    const d = new Date(startOfWeek);
+                    d.setDate(startOfWeek.getDate() + i);
+                    const iso = d.toLocaleDateString('pt-BR');
+                    const count = byDay[iso] || 0;
+                    let level = '';
+                    if (count >= 13) level = 'level-4';
+                    else if (count >= 8) level = 'level-3';
+                    else if (count >= 4) level = 'level-2';
+                    else if (count >= 1) level = 'level-1';
                     html += `<div class="heatmap-cell ${level} tooltip" tabindex="0" role="button" aria-label="Dia ${d.getDate()}: ${count} questões">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`;
                 }
                 grid.innerHTML = html;
@@ -2749,7 +2824,10 @@
             function renderSubjectTable() { renderizarTabela(filtroInput.value, tabelaSortBy, tabelaSortDir); }
 
             function renderHistoryTable() {
-                const tb = document.getElementById('historyTableBody'); const sf = document.getElementById('historyFilterSubject').value; const rf = document.getElementById('historyFilterResult').value; const df = document.getElementById('historyFilterDate').value;
+                const tb = document.getElementById('historyTableBody');
+                const sf = document.getElementById('historyFilterSubject').value;
+                const rf = document.getElementById('historyFilterResult').value;
+                const df = document.getElementById('historyFilterDate').value;
                 let filtered = [...events].reverse();
                 if (sf) filtered = filtered.filter(e => e.subject === sf);
                 if (rf === 'correct') filtered = filtered.filter(e => e.correct === true);
@@ -2757,7 +2835,8 @@
                 if (rf === 'timer') filtered = filtered.filter(e => e.type === 'timer');
                 if (df) filtered = filtered.filter(e => e.timestamp.startsWith(df));
                 tb.innerHTML = filtered.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro</div><p>Registre acertos, erros ou salve seu tempo!</p></div></td></tr>` : filtered.slice(0, 200).map((e, idx) => {
-                    const dt = new Date(e.timestamp); let rb;
+                    const dt = new Date(e.timestamp);
+                    let rb;
                     if (e.type === 'timer') rb = '<span class="badge badge-warning">⏱️ Tempo</span>';
                     else rb = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>';
                     const oi = events.indexOf(e);
@@ -2767,7 +2846,8 @@
             }
             function attachHistoryListeners() { document.querySelectorAll('.btn-excluir-evento').forEach(btn => { btn.addEventListener('click', function() { excluirEvento(parseInt(this.dataset.idx)); }); }); }
             async function excluirEvento(idx) {
-                if (idx < 0 || idx >= events.length) return; const ev = events[idx];
+                if (idx < 0 || idx >= events.length) return;
+                const ev = events[idx];
                 const confirmed = await window.showConfirmModal('Excluir registro', 'Deseja realmente excluir este registro de atividade?', true);
                 if (!confirmed) return;
                 if (ev.subject && data[ev.subject] && ev.type !== 'timer') {
@@ -2775,7 +2855,12 @@
                     else data[ev.subject].erradas = Math.max(0, (data[ev.subject].erradas || 0) - 1);
                 }
                 if (ev.subject && data[ev.subject] && ev.type === 'timer') data[ev.subject].horasMinutos = Math.max(0, (data[ev.subject].horasMinutos || 0) - (ev.timeSpent || 0));
-                events.splice(idx, 1); salvarDados(); salvarEventos(); renderSubjectTable(); renderHistoryTable(); refreshDashboard();
+                events.splice(idx, 1);
+                salvarDados();
+                salvarEventos();
+                renderSubjectTable();
+                renderHistoryTable();
+                refreshDashboard();
                 toast('Registro excluído.');
             }
 
@@ -2786,55 +2871,147 @@
             }
 
             function renderCharts() {
-                const period = parseInt(document.getElementById('chartPeriod').value) || 7; const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - period);
-                const filtered = events.filter(e => new Date(e.timestamp) >= cutoff); const byDay = {};
-                filtered.forEach(e => { const day = e.timestamp.split('T')[0]; if (!byDay[day]) byDay[day] = { total: 0, correct: 0 }; byDay[day].total++; if (e.correct) byDay[day].correct++; });
+                const period = parseInt(document.getElementById('chartPeriod').value) || 7;
+                const cutoff = new Date();
+                cutoff.setDate(cutoff.getDate() - period);
+                const filtered = events.filter(e => new Date(e.timestamp) >= cutoff);
+                const byDay = {};
+                filtered.forEach(e => {
+                    const day = new Date(e.timestamp).toLocaleDateString('pt-BR');
+                    if (!byDay[day]) byDay[day] = { total: 0, correct: 0 };
+                    byDay[day].total++;
+                    if (e.correct) byDay[day].correct++;
+                });
                 const days = Object.keys(byDay).sort();
                 const ad = days.map(d => ({ day: d, accuracy: (byDay[d].total ? (byDay[d].correct / byDay[d].total) * 100 : 0) }));
                 const vd = days.map(d => ({ day: d, correct: byDay[d].correct, wrong: byDay[d].total - byDay[d].correct }));
-                drawLineChart('accuracyChart', ad); drawBarChart('volumeChart', vd);
+                drawLineChart('accuracyChart', ad);
+                drawBarChart('volumeChart', vd);
             }
 
             function drawLineChart(cid, data) {
-                const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'); const container = canvas.parentElement; const W = container.clientWidth || 400; const H = 300;
-                canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
-                ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
-                ctx.fillStyle = textColor; ctx.font = '10px Inter,sans-serif'; ctx.textAlign = 'center';
-                for (let i = 0; i <= 4; i++) { const y = pad.top + (cH * i / 4); ctx.fillText((100 - i * 25) + '%', pad.left - 10, y + 3); }
-                if (data.length === 0) { ctx.fillText('Sem dados', W / 2, H / 2); return; }
-                if (data.length > 1) {
-                    ctx.beginPath(); ctx.strokeStyle = accent; ctx.lineWidth = 2.5;
-                    data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); });
-                    ctx.stroke();
-                    data.forEach((d, i) => { const x = pad.left + i * (cW / (data.length - 1)); const y = pad.top + cH - (d.accuracy / 100) * cH; ctx.beginPath(); ctx.arc(x, y, 3.5, 0, 2 * Math.PI); ctx.fillStyle = accent; ctx.fill(); ctx.fillText(d.accuracy.toFixed(0) + '%', x, y - 10); });
+                const canvas = document.getElementById(cid); if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const container = canvas.parentElement;
+                const W = container.clientWidth || 400;
+                const H = 300;
+                canvas.width = W;
+                canvas.height = H;
+                const pad = { top: 20, right: 20, bottom: 50, left: 55 };
+                const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
+                ctx.clearRect(0, 0, W, H);
+                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
+                const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
+                ctx.fillStyle = textColor;
+                ctx.font = '10px Inter,sans-serif';
+                ctx.textAlign = 'center';
+                for (let i = 0; i <= 4; i++) {
+                    const y = pad.top + (cH * i / 4);
+                    ctx.fillText((100 - i * 25) + '%', pad.left - 10, y + 3);
                 }
-                ctx.fillStyle = textColor; ctx.font = '9px Inter,sans-serif'; const step = Math.max(1, Math.floor(data.length / 6));
-                data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / (data.length - 1)); ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } });
+                if (data.length === 0) {
+                    ctx.fillText('Sem dados', W / 2, H / 2);
+                    return;
+                }
+                if (data.length > 1) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = accent;
+                    ctx.lineWidth = 2.5;
+                    data.forEach((d, i) => {
+                        const x = pad.left + i * (cW / (data.length - 1));
+                        const y = pad.top + cH - (d.accuracy / 100) * cH;
+                        if (i === 0) ctx.moveTo(x, y);
+                        else ctx.lineTo(x, y);
+                    });
+                    ctx.stroke();
+                    data.forEach((d, i) => {
+                        const x = pad.left + i * (cW / (data.length - 1));
+                        const y = pad.top + cH - (d.accuracy / 100) * cH;
+                        ctx.beginPath();
+                        ctx.arc(x, y, 3.5, 0, 2 * Math.PI);
+                        ctx.fillStyle = accent;
+                        ctx.fill();
+                        ctx.fillText(d.accuracy.toFixed(0) + '%', x, y - 10);
+                    });
+                }
+                ctx.fillStyle = textColor;
+                ctx.font = '9px Inter,sans-serif';
+                const step = Math.max(1, Math.floor(data.length / 6));
+                data.forEach((d, i) => {
+                    if (i % step === 0 || i === data.length - 1) {
+                        const x = pad.left + i * (cW / (data.length - 1));
+                        ctx.fillText(d.day.split('/')[0], x, H - pad.bottom + 20);
+                    }
+                });
             }
 
             function drawBarChart(cid, data) {
-                const canvas = document.getElementById(cid); if (!canvas) return; const ctx = canvas.getContext('2d'); const container = canvas.parentElement; const W = container.clientWidth || 400; const H = 300;
-                canvas.width = W; canvas.height = H; const pad = { top: 20, right: 20, bottom: 50, left: 55 }, cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
-                ctx.clearRect(0, 0, W, H); const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00'; const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878'; const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
-                if (data.length === 0) { ctx.fillStyle = textColor; ctx.fillText('Sem dados', W / 2, H / 2); return; }
-                const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1); const groups = data.length; const totalBarWidth = cW / groups * 0.7; const singleBarW = totalBarWidth / 2; const gap = cW / groups * 0.15;
+                const canvas = document.getElementById(cid); if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                const container = canvas.parentElement;
+                const W = container.clientWidth || 400;
+                const H = 300;
+                canvas.width = W;
+                canvas.height = H;
+                const pad = { top: 20, right: 20, bottom: 50, left: 55 };
+                const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
+                ctx.clearRect(0, 0, W, H);
+                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
+                const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878';
+                const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
+                if (data.length === 0) {
+                    ctx.fillStyle = textColor;
+                    ctx.fillText('Sem dados', W / 2, H / 2);
+                    return;
+                }
+                const maxVal = Math.max(...data.map(d => d.correct + d.wrong), 1);
+                const groups = data.length;
+                const totalBarWidth = cW / groups * 0.7;
+                const singleBarW = totalBarWidth / 2;
+                const gap = cW / groups * 0.15;
                 data.forEach((d, i) => {
-                    const groupX = pad.left + i * (cW / groups) + gap; const xCorrect = groupX; const xWrong = groupX + singleBarW;
-                    const correctH = (d.correct / maxVal) * cH; const wrongH = (d.wrong / maxVal) * cH;
-                    ctx.fillStyle = secondary; ctx.fillRect(xCorrect, H - pad.bottom - correctH, singleBarW, correctH);
-                    ctx.fillStyle = accent; ctx.fillRect(xWrong, H - pad.bottom - wrongH, singleBarW, wrongH);
-                    ctx.fillStyle = textColor; ctx.font = '8px Inter'; ctx.textAlign = 'center';
+                    const groupX = pad.left + i * (cW / groups) + gap;
+                    const xCorrect = groupX;
+                    const xWrong = groupX + singleBarW;
+                    const correctH = (d.correct / maxVal) * cH;
+                    const wrongH = (d.wrong / maxVal) * cH;
+                    ctx.fillStyle = secondary;
+                    ctx.fillRect(xCorrect, H - pad.bottom - correctH, singleBarW, correctH);
+                    ctx.fillStyle = accent;
+                    ctx.fillRect(xWrong, H - pad.bottom - wrongH, singleBarW, wrongH);
+                    ctx.fillStyle = textColor;
+                    ctx.font = '8px Inter';
+                    ctx.textAlign = 'center';
                     ctx.fillText((d.correct + d.wrong), groupX + singleBarW, H - pad.bottom - Math.max(correctH, wrongH) - 5);
                 });
-                ctx.fillStyle = textColor; ctx.font = '9px Inter'; const step = Math.max(1, Math.floor(data.length / 6));
-                data.forEach((d, i) => { if (i % step === 0 || i === data.length - 1) { const x = pad.left + i * (cW / data.length) + cW / data.length / 2; ctx.fillText(d.day.slice(5), x, H - pad.bottom + 20); } });
+                ctx.fillStyle = textColor;
+                ctx.font = '9px Inter';
+                const step = Math.max(1, Math.floor(data.length / 6));
+                data.forEach((d, i) => {
+                    if (i % step === 0 || i === data.length - 1) {
+                        const x = pad.left + i * (cW / data.length) + cW / data.length / 2;
+                        ctx.fillText(d.day.split('/')[0], x, H - pad.bottom + 20);
+                    }
+                });
             }
 
             let resizeDebounceTimer;
-            window.addEventListener('resize', () => { clearTimeout(resizeDebounceTimer); resizeDebounceTimer = setTimeout(() => { const activeTab = document.querySelector('.tab-content.active'); if (activeTab && activeTab.id === 'tab-metricas') { renderCharts(); } if (focusModeActive) drawFocusRing(); }, 200); });
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeDebounceTimer);
+                resizeDebounceTimer = setTimeout(() => {
+                    const activeTab = document.querySelector('.tab-content.active');
+                    if (activeTab && activeTab.id === 'tab-metricas') renderCharts();
+                    if (focusModeActive) drawFocusRing();
+                }, 200);
+            });
 
             function refreshDashboard() {
-                renderKPIs(); renderGoals(); renderHeatmap(); renderSubjectTable(); populateHistoryFilters(); renderHistoryTable();
+                renderKPIs();
+                renderGoals();
+                renderHeatmap();
+                renderSubjectTable();
+                populateHistoryFilters();
+                renderHistoryTable();
                 const activeMetricas = document.getElementById('tab-metricas').classList.contains('active');
                 if (activeMetricas) setTimeout(() => renderCharts(), 100);
                 try { const nn = generateMockNotifications(); nn.forEach(n => addNotification(n)); } catch (e) {}
@@ -2850,24 +3027,61 @@
             document.getElementById('backupBtn').addEventListener('click', () => {
                 const bd = { data, events, goals, version: '1.0', date: new Date().toISOString() };
                 const blob = new Blob([JSON.stringify(bd, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `vulps_backup_${new Date().toISOString().split('T')[0]}.json`; a.click(); URL.revokeObjectURL(url);
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `vulps_backup_${new Date().toLocaleDateString('pt-BR').replace(/\//g, '-')}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
                 toast('✓ Backup exportado!');
-                const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.json';
+                const inp = document.createElement('input');
+                inp.type = 'file';
+                inp.accept = '.json';
                 inp.onchange = (e) => {
-                    const file = e.target.files[0]; if (!file) return; const reader = new FileReader();
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
                     reader.onload = async (ev) => {
                         try {
                             const content = JSON.parse(ev.target.result);
                             if (!content.data || typeof content.data !== 'object' || !Array.isArray(content.events) || !Array.isArray(content.goals)) throw new Error('Formato inválido.');
-                            if (!content.version) { const proceed = await window.showConfirmModal('Backup sem versão', 'Este backup não possui versão. Continuar?', true); if (!proceed) return; }
+                            if (!content.version) {
+                                const proceed = await window.showConfirmModal('Backup sem versão', 'Este backup não possui versão. Continuar?', true);
+                                if (!proceed) return;
+                            }
                             const confirmed = await window.showConfirmModal('Restaurar backup', 'Dados atuais serão substituídos. Continuar?', true);
                             if (!confirmed) return;
                             const sanitizedData = {};
-                            for (const key of Object.keys(content.data)) { const sanitizedKey = sanitizeInput(key); const d = content.data[key]; sanitizedData[sanitizedKey] = { certas: Math.max(0, parseInt(d.certas) || 0), erradas: Math.max(0, parseInt(d.erradas) || 0), horasMinutos: Math.max(0, parseInt(d.horasMinutos) || 0) }; }
+                            for (const key of Object.keys(content.data)) {
+                                const sanitizedKey = sanitizeInput(key);
+                                const d = content.data[key];
+                                sanitizedData[sanitizedKey] = { certas: Math.max(0, parseInt(d.certas) || 0), erradas: Math.max(0, parseInt(d.erradas) || 0), horasMinutos: Math.max(0, parseInt(d.horasMinutos) || 0) };
+                            }
                             data = sanitizedData;
-                            events = content.events.map(e => ({ timestamp: e.timestamp || new Date().toISOString(), subject: sanitizeInput(e.subject || ''), correct: typeof e.correct === 'boolean' ? e.correct : null, timeSpent: Math.max(0, parseInt(e.timeSpent) || 0), type: e.type || 'question', questionId: e.questionId || '' }));
-                            goals = content.goals.map(g => ({ id: g.id || Math.random(), title: sanitizeInput(g.title || ''), target: Math.max(1, parseInt(g.target) || 1), current: Math.max(0, parseInt(g.current) || 0), unit: g.unit || '', period: g.period || 'overall' }));
-                            salvarDados(); salvarEventos(); salvarMetas(); atualizarSelects(); renderizarTabela(); refreshDashboard(); cleanOrphanNotifications(); updateNotificationUI();
+                            events = content.events.map(e => ({
+                                timestamp: e.timestamp || new Date().toISOString(),
+                                subject: sanitizeInput(e.subject || ''),
+                                correct: typeof e.correct === 'boolean' ? e.correct : null,
+                                timeSpent: Math.max(0, parseInt(e.timeSpent) || 0),
+                                type: e.type || 'question',
+                                questionId: e.questionId || ''
+                            }));
+                            goals = content.goals.map(g => ({
+                                id: g.id || Math.random(),
+                                title: sanitizeInput(g.title || ''),
+                                target: Math.max(1, parseInt(g.target) || 1),
+                                current: Math.max(0, parseInt(g.current) || 0),
+                                unit: g.unit || '',
+                                period: g.period || 'overall'
+                            }));
+                            salvarDados();
+                            salvarEventos();
+                            salvarMetas();
+                            atualizarSelects();
+                            renderizarTabela();
+                            refreshDashboard();
+                            cleanOrphanNotifications();
+                            updateNotificationUI();
                             toast('✓ Backup restaurado!');
                         } catch (err) { toast(err.message || 'Arquivo inválido.', 'error'); }
                     };
@@ -2890,7 +3104,12 @@
                 const nome = document.getElementById('newDisciplinaInput').value.trim();
                 if (!nome) { toast('Digite um nome.', 'error'); return; }
                 if (data[nome]) { toast('Já existe.', 'error'); return; }
-                data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 }; salvarDados(); atualizarSelects(); renderizarTabela(); refreshDashboard(); closeModal('addDisciplinaModal');
+                data[nome] = { certas: 0, erradas: 0, horasMinutos: 0 };
+                salvarDados();
+                atualizarSelects();
+                renderizarTabela();
+                refreshDashboard();
+                closeModal('addDisciplinaModal');
                 toast(`✓ Disciplina "${escapeHtml(nome)}" adicionada!`);
             });
             document.getElementById('closeEditDisciplinaModal').addEventListener('click', () => closeModal('editDisciplinaModal'));
@@ -2901,24 +3120,25 @@
                 if (!na || !nn) { toast('Preencha ambos.', 'error'); return; }
                 if (na === nn) { closeModal('editDisciplinaModal'); return; }
                 if (data[nn]) { toast('Já existe.', 'error'); return; }
-                data[nn] = { ...data[na] }; delete data[na];
+                data[nn] = { ...data[na] };
+                delete data[na];
                 events.forEach(e => { if (e.subject === na) e.subject = nn; });
                 notifications.forEach(n => { if (n.subject === na) n.subject = nn; });
-                salvarDados(); salvarEventos(); salvarNotificacoes(); atualizarSelects(); renderizarTabela(); refreshDashboard(); closeModal('editDisciplinaModal');
+                salvarDados();
+                salvarEventos();
+                salvarNotificacoes();
+                atualizarSelects();
+                renderizarTabela();
+                refreshDashboard();
+                closeModal('editDisciplinaModal');
                 toast(`✓ Renomeada para "${escapeHtml(nn)}"!`);
             });
 
-            function abrirEditarDisciplina(nome) { document.getElementById('editDisciplinaNomeAntigo').value = nome; document.getElementById('editDisciplinaNomeNovo').value = nome; openModal('editDisciplinaModal'); }
-
-            /* ========== ÁUDIO AMBIENTE ========== */
-            (function() {
-                const bgRadio = document.getElementById('bg-radio');
-                if (bgRadio) {
-                    bgRadio.volume = 0.08; let radioStarted = false;
-                    function startRadio() { if (!radioStarted) { bgRadio.play().catch(() => {}); radioStarted = true; } }
-                    bgRadio.play().catch(() => { document.addEventListener('click', startRadio, { once: true }); document.addEventListener('touchstart', startRadio, { once: true }); });
-                }
-            })();
+            function abrirEditarDisciplina(nome) {
+                document.getElementById('editDisciplinaNomeAntigo').value = nome;
+                document.getElementById('editDisciplinaNomeNovo').value = nome;
+                openModal('editDisciplinaModal');
+            }
 
             /* ========== INIT ========== */
             atualizarSelects();
@@ -2928,7 +3148,11 @@
             cleanOrphanNotifications();
             updateNotificationUI();
 
-            window.addEventListener('beforeunload', () => { if (timerInterval) clearInterval(timerInterval); if (feedIntervalId) clearInterval(feedIntervalId); if (focusRingAnimFrame) cancelAnimationFrame(focusRingAnimFrame); });
+            window.addEventListener('beforeunload', () => {
+                if (timerInterval) clearInterval(timerInterval);
+                if (feedIntervalId) clearInterval(feedIntervalId);
+                if (focusRingAnimFrame) cancelAnimationFrame(focusRingAnimFrame);
+            });
         })();
     </script>
 </body>
