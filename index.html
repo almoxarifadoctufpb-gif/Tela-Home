@@ -7,7 +7,7 @@
     <meta name="description" content="Acompanhe métricas, metas, cronômetro e progresso nos estudos para concursos." />
     <meta property="og:title" content="VULPS+ · Sala de Operações - QG" />
     <meta property="og:description" content="Dashboard completo com KPIs, gráficos, heatmap, metas e cronômetro de estudos." />
-    <meta property="og:image" content="https://res.cloudinary.com/dew6hgzpv/image/upload/BRAS%C3%83O_TROPA_VULP_ewkjig.png" />
+    <meta property="og:image" content="https://res.cloudinary.com/dew6hgzpv/image/upload/Logo_kcne2w.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vulps.vercel.app/" />
     <meta name="theme-color" content="#0b1120" />
@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
+        /* ===== ESTILOS COMPLETOS (IDÊNTICOS AO ORIGINAL) ===== */
         :root {
             --primary: #1155cc;
             --primary-dark: #0d47a1;
@@ -1846,7 +1847,6 @@
             50% { transform: scale(1); }
         }
 
-        /* Donut Chart Wrapper */
         .donut-chart-wrapper {
             display: flex;
             flex-direction: column;
@@ -1938,7 +1938,7 @@
 
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
-            <img src="https://res.cloudinary.com/dk8ta3dfy/image/upload/LogotipoVULP_Oficial_gyojn4.png" alt="Logotipo VULP+" class="sidebar-brasao" />
+            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/Logo_kcne2w.png" alt="Logotipo VULP+" class="sidebar-brasao" />
             <div class="sidebar-greeting" id="sidebarGreeting"></div>
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
@@ -1952,7 +1952,6 @@
             <span class="sb-title">Painel Principal (Dashboard)</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
-        <!-- Ícone moderno (clipboard-check) para Simulado CESPE -->
         <a href="https://vulp-blog.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-clipboard-check"></i>
             <span class="sb-title">Simulador CESPE (Questões)</span>
@@ -1983,31 +1982,7 @@
             <span class="sb-title">Planejador de Estudos</span>
             <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
         </a>
-        <a href="https://p-gina-do-personagem.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-id-card"></i>
-            <span class="sb-title">Sala VULP+</span>
-            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
-        </a>
-        <a href="https://comunidade-vulps.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-briefcase"></i>
-            <span class="sb-title">Meu primeiro cargo</span>
-            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
-        </a>
-        <a href="https://vulp-mais-pdf.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-database"></i>
-            <span class="sb-title">Banco de Questões</span>
-            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
-        </a>
-        <a href="https://vulps-mais-pdfs.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-store"></i>
-            <span class="sb-title">VULP Store</span>
-            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
-        </a>
-        <a href="https://vulps-mais.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
-            <i class="fas fa-users"></i>
-            <span class="sb-title">Comunidade</span>
-            <span class="external-badge"><i class="fas fa-external-link-alt"></i></span>
-        </a>
+        <!-- Os três links abaixo (Sala VULP+, Banco de Questões, Comunidade) foram removidos -->
         <a href="https://aulas-dun.vercel.app/" target="_blank" rel="noopener noreferrer" class="sidebar-btn">
             <i class="fas fa-chalkboard-user"></i>
             <span class="sb-title">Aprenda Aqui</span>
@@ -2067,7 +2042,6 @@
                 <div class="kpi-card" aria-label="Pior disciplina em desempenho"><div class="kpi-icon" style="background: var(--danger-soft); color: var(--danger);"><i class="fas fa-exclamation-triangle"></i></div><div class="kpi-info"><div class="kpi-label">Pior Disciplina</div><div class="kpi-value" id="kpiWorstSubject">-</div><div class="kpi-sub" id="kpiWorstSubjectPerc">Registre questões para análise</div></div></div>
             </section>
 
-            <!-- NOVA CARTA: Gráfico Donut -->
             <div class="card" style="text-align:center">
                 <div class="section-header">
                     <h2 class="section-title"><i class="fas fa-chart-pie"></i> Taxa de Acertos</h2>
@@ -2638,7 +2612,7 @@
                     const badgeClass = status === 'Avançado' ? 'badge-success' : (status === 'Intermediário' ? 'badge-warning' : 'badge-danger');
                     const h = Math.floor(horasMin / 60); const m = horasMin % 60;
                     const tempo = h > 0 ? `${h}h ${m}min` : `${m}min`;
-                    return `<tr><td><button class="btn btn-sm disciplina-nome-btn" data-nome="${escapeHtml(nome)}">${escapeHtml(nome)} <i class="fas fa-pencil-alt" style="font-size:0.6rem;opacity:0.7"></i></button></td><td>${certas}</td><td>${erradas}</td><td>${total}</td><td>${perc.toFixed(1)}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm btn-play-disciplina" data-nome="${escapeHtml(nome)}" title="Iniciar cronômetro"><i class="fas fa-play"></i></button> <button class="btn btn-sm btn-excluir-disciplina" data-nome="${escapeHtml(nome)}" title="Excluir" style="color:var(--danger)"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                    return `<tr><td><button class="btn btn-sm disciplina-nome-btn" data-nome="${escapeHtml(nome)}">${escapeHtml(nome)} <i class="fas fa-pencil-alt" style="font-size:0.6rem;opacity:0.7"></i></button></td><td>${certas}</td><td>${erradas}</td><td>${total}</td><td>${perc.toFixed(1)}%</td><td><span class="badge ${badgeClass}">${status}</span></td><td>${tempo}</td><td><button class="btn btn-sm btn-play-disciplina" data-nome="${escapeHtml(nome)}" title="Iniciar cronômetro"><i class="fas fa-play"></i></button> <button class="btn btn-sm btn-excluir-disciplina" data-nome="${escapeHtml(nome)}" title="Excluir" style="color:var(--danger)"><i class="fas fa-trash-alt"></i></button></td>`; 
                 }).join('');
                 attachTabelaListeners(); updateSortHeaders(sortBy, sortDir);
             }
@@ -2966,13 +2940,13 @@
                 if (rf === 'wrong') filtered = filtered.filter(e => e.correct === false);
                 if (rf === 'timer') filtered = filtered.filter(e => e.type === 'timer');
                 if (df) filtered = filtered.filter(e => e.timestamp.startsWith(df));
-                tb.innerHTML = filtered.length === 0 ? `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro</div><p>Registre acertos, erros ou salve seu tempo!</p></div></td></tr>` : filtered.slice(0, 200).map((e, idx) => {
+                tb.innerHTML = filtered.length === 0 ? `<td><td colspan="6"><div class="empty-state"><i class="fas fa-history"></i><div class="empty-title">Nenhum registro</div><p>Registre acertos, erros ou salve seu tempo!</p></div></td></tr>` : filtered.slice(0, 200).map((e, idx) => {
                     const dt = new Date(e.timestamp);
                     let rb;
                     if (e.type === 'timer') rb = '<span class="badge badge-warning">⏱️ Tempo</span>';
                     else rb = e.correct ? '<span class="badge badge-success">Acerto</span>' : '<span class="badge badge-danger">Erro</span>';
                     const oi = events.indexOf(e);
-                    return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${escapeHtml(e.subject||'Geral')}</td><td>${rb}</td><td>${e.timeSpent?Math.round(e.timeSpent):'-'}</td><td>${escapeHtml((e.questionId||'').substring(0,8))}</td><td><button class="btn btn-sm btn-excluir-evento" data-idx="${oi}" style="color:var(--danger);font-size:0.7rem"><i class="fas fa-trash-alt"></i></button></td></tr>`;
+                    return `<tr><td>${dt.toLocaleString('pt-BR')}</td><td>${escapeHtml(e.subject||'Geral')}</td><td>${rb}</td><td>${e.timeSpent?Math.round(e.timeSpent):'-'}</td><td>${escapeHtml((e.questionId||'').substring(0,8))}</td><td><button class="btn btn-sm btn-excluir-evento" data-idx="${oi}" style="color:var(--danger);font-size:0.7rem"><i class="fas fa-trash-alt"></i></button></td>`; 
                 }).join('');
                 attachHistoryListeners();
             }
