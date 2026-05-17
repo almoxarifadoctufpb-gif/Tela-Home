@@ -10,40 +10,41 @@
     <meta property="og:image" content="https://res.cloudinary.com/dew6hgzpv/image/upload/Mascolte_VULP_wpg92a.png" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://vulps.vercel.app/" />
-    <meta name="theme-color" content="#0b1120" />
+    <meta name="theme-color" content="#211951" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Share+Tech+Mono&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Fontes atualizadas: Poppins para títulos, Inter para corpo, Fira Code para monoespaçado -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
     <style>
-        /* ===== ESTILOS COMPLETOS (IDÊNTICOS AO ORIGINAL) ===== */
+        /* ===== NOVA PALETA DE CORES ===== */
         :root {
-            --primary: #1155cc;
-            --primary-dark: #0d47a1;
-            --primary-soft: rgba(17, 85, 204, 0.12);
-            --secondary: #00c878;
-            --secondary-dark: #00a862;
-            --secondary-soft: rgba(0, 200, 120, 0.15);
-            --accent: #ff7a00;
-            --accent-dark: #e06a00;
-            --accent-soft: rgba(255, 122, 0, 0.15);
-            --danger: #ef4444;
-            --danger-soft: rgba(239, 68, 68, 0.12);
-            --warning: #f59e0b;
-            --warning-soft: rgba(245, 158, 11, 0.15);
-            --gold: #f0b90b;
+            --primary: #836FFF;
+            --primary-dark: #6b5ce5;
+            --primary-soft: rgba(131, 111, 255, 0.12);
+            --secondary: #15F5BA;
+            --secondary-dark: #10d8a2;
+            --secondary-soft: rgba(21, 245, 186, 0.15);
+            --accent: #15F5BA;
+            --accent-dark: #10d8a2;
+            --accent-soft: rgba(21, 245, 186, 0.15);
+            --danger: #ff4d6a;
+            --danger-soft: rgba(255, 77, 106, 0.12);
+            --warning: #ffb347;
+            --warning-soft: rgba(255, 179, 71, 0.15);
+            --gold: #15F5BA;
             --whatsapp: #25D366;
-            --bg-primary: #0b1120;
-            --bg-card: #1a2332;
-            --text-primary: #e8edf5;
-            --text-secondary: #a0b4cc;
-            --text-muted: #6b7f99;
-            --border-light: #2a3545;
-            --border-medium: #3a4858;
-            --sidebar-bg: #0f1e3d;
-            --sidebar-gradient: linear-gradient(180deg, #0c1835 0%, #0a142e 50%, #080f24 100%);
+            --bg-primary: #211951;
+            --bg-card: #2a1f5e;
+            --text-primary: #F0F3FF;
+            --text-secondary: #b3add9;
+            --text-muted: #8c83b0;
+            --border-light: #3c317a;
+            --border-medium: #4c4190;
+            --sidebar-bg: #1b143f;
+            --sidebar-gradient: linear-gradient(180deg, #1b143f 0%, #1a1238 50%, #150f30 100%);
             --sidebar-shadow: inset -1px 0 6px rgba(0,0,0,0.3), 2px 0 12px rgba(0,0,0,0.4);
             --sidebar-text: rgba(255,255,255,0.88);
             --sidebar-hover: rgba(255,255,255,0.08);
@@ -58,32 +59,32 @@
             --shadow-md: 0 2px 8px rgba(0,0,0,0.25);
             --shadow-lg: 0 4px 16px rgba(0,0,0,0.3);
             --shadow-xl: 0 8px 24px rgba(0,0,0,0.35);
-            --input-bg: #1a2332;
-            --btn-bg: #1a2332;
-            --btn-bg-hover: #243041;
-            --btn-border: #2a3545;
-            --footer-bg: #060b16;
-            --footer-text: #94a3b8;
-            --footer-heading: #e2e8f0;
+            --input-bg: #2a1f5e;
+            --btn-bg: #2a1f5e;
+            --btn-bg-hover: #362a6b;
+            --btn-border: #3c317a;
+            --footer-bg: #150f30;
+            --footer-text: #b3add9;
+            --footer-heading: #F0F3FF;
             --footer-border: rgba(255,255,255,0.08);
-            --font-mono: 'Share Tech Mono','Courier New',monospace;
-            --font-display: 'Orbitron','Fredoka',sans-serif;
+            --font-mono: 'Fira Code','Courier New',monospace;
+            --font-display: 'Poppins',sans-serif;
         }
 
         html[data-theme="light"] {
-            --bg-primary: #f7f9fc;
+            --bg-primary: #F0F3FF;
             --bg-card: #ffffff;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            --border-light: #e2e8f0;
-            --border-medium: #cbd5e1;
+            --text-primary: #211951;
+            --text-secondary: #5a54a0;
+            --text-muted: #8c83b0;
+            --border-light: #d9d4f0;
+            --border-medium: #bfb8e8;
             --input-bg: #ffffff;
             --btn-bg: #ffffff;
-            --btn-bg-hover: #f1f5f9;
-            --btn-border: #e2e8f0;
-            --footer-bg: #0f172a;
-            --footer-text: #cbd5e1;
+            --btn-bg-hover: #f0edff;
+            --btn-border: #d9d4f0;
+            --footer-bg: #211951;
+            --footer-text: #b3add9;
             --footer-heading: #ffffff;
             --footer-border: rgba(255,255,255,0.08);
             --shadow-xs: 0 1px 2px rgba(0,0,0,0.03);
@@ -91,8 +92,8 @@
             --shadow-md: 0 2px 8px rgba(0,0,0,0.05);
             --shadow-lg: 0 4px 16px rgba(0,0,0,0.06);
             --shadow-xl: 0 8px 24px rgba(0,0,0,0.07);
-            --sidebar-gradient: linear-gradient(180deg, #0f1e3d 0%, #0d1a3a 40%, #0a142e 100%);
-            --sidebar-shadow: inset -1px 0 6px rgba(0,0,0,0.12), 2px 0 12px rgba(15,30,60,0.25);
+            --sidebar-gradient: linear-gradient(180deg, #1b143f 0%, #1a1238 40%, #150f30 100%);
+            --sidebar-shadow: inset -1px 0 6px rgba(0,0,0,0.12), 2px 0 12px rgba(33,25,81,0.25);
         }
 
         * {
@@ -123,7 +124,7 @@
             inset: 0;
             pointer-events: none;
             z-index: 0;
-            background-image: linear-gradient(rgba(255,122,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,122,0,0.03) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(21,245,186,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(21,245,186,0.03) 1px, transparent 1px);
             background-size: 40px 40px;
             opacity: 0.5;
         }
@@ -185,7 +186,7 @@
         }
 
         .notification-bell:hover {
-            background: rgba(17,85,204,0.06);
+            background: rgba(131,111,255,0.06);
         }
 
         .notification-bell:focus-visible {
@@ -198,7 +199,7 @@
             top: 2px;
             right: 2px;
             background: var(--accent);
-            color: #fff;
+            color: #211951;
             font-size: 0.65rem;
             min-width: 18px;
             height: 18px;
@@ -212,8 +213,8 @@
         }
 
         @keyframes badgePulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(255,122,0,0.5); }
-            50% { box-shadow: 0 0 0 8px rgba(255,122,0,0); }
+            0%,100% { box-shadow: 0 0 0 0 rgba(21,245,186,0.5); }
+            50% { box-shadow: 0 0 0 8px rgba(21,245,186,0); }
         }
 
         .notification-dropdown {
@@ -262,7 +263,7 @@
         }
 
         .notification-dropdown .notification-item:hover {
-            background: rgba(17,85,204,0.06);
+            background: rgba(131,111,255,0.06);
         }
 
         .notification-dropdown .notification-item.unread {
@@ -344,13 +345,13 @@
         #sidebar .sidebar-brasao {
             width: 170px;
             height: auto;
-            filter: drop-shadow(0 0 12px rgba(255,122,0,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 0 12px rgba(21,245,186,0.4)) drop-shadow(0 4px 8px rgba(0,0,0,0.4));
             transition: filter 0.2s ease, transform 0.2s ease;
         }
 
         #sidebar .sidebar-brasao:hover {
             transform: scale(1.03);
-            filter: drop-shadow(0 0 16px rgba(255,122,0,0.6)) drop-shadow(0 6px 12px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 0 16px rgba(21,245,186,0.6)) drop-shadow(0 6px 12px rgba(0,0,0,0.5));
         }
 
         .sidebar-greeting {
@@ -441,7 +442,7 @@
             font-weight: 600;
             border-left-color: var(--secondary);
             color: #fff;
-            box-shadow: inset 0 0 20px rgba(0,200,120,0.08);
+            box-shadow: inset 0 0 20px rgba(21,245,186,0.08);
         }
 
         .sidebar-btn[aria-current="page"] .sb-title {
@@ -470,7 +471,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(10,20,40,0.55);
+            background: rgba(21,25,81,0.55);
             z-index: 99;
             opacity: 0;
             pointer-events: none;
@@ -547,7 +548,7 @@
             background: var(--accent-soft);
             padding: 4px 12px;
             border-radius: var(--radius-pill);
-            border: 1px solid rgba(255,122,0,0.2);
+            border: 1px solid rgba(21,245,186,0.2);
             transition: all 0.25s;
         }
 
@@ -591,7 +592,7 @@
             width: 64px;
             height: 64px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-soft) 0%, var(--secondary-soft) 100%);
+            background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(131,111,255,0.15) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -707,22 +708,22 @@
         .btn-primary {
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             border: none;
-            color: #fff !important;
+            color: #211951 !important;
             font-weight: 600;
-            box-shadow: 0 3px 10px rgba(255,122,0,0.25);
+            box-shadow: 0 3px 10px rgba(21,245,186,0.25);
         }
 
         .btn-primary:hover {
-            background: linear-gradient(135deg, var(--accent-dark) 0%, #c85a00 100%);
-            box-shadow: 0 5px 16px rgba(255,122,0,0.35);
+            background: linear-gradient(135deg, var(--accent-dark) 0%, #0ec08a 100%);
+            box-shadow: 0 5px 16px rgba(21,245,186,0.35);
         }
 
         .btn-accent {
-            background: linear-gradient(135deg, var(--accent) 0%, #ff8a2e 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, #3dffd0 100%);
             border: none;
-            color: #fff !important;
+            color: #211951 !important;
             font-weight: 600;
-            box-shadow: 0 3px 10px rgba(255,122,0,0.25);
+            box-shadow: 0 3px 10px rgba(21,245,186,0.25);
         }
 
         .btn-outline-accent {
@@ -753,7 +754,7 @@
         .btn-command {
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
             border: 2px solid var(--accent);
-            color: #fff !important;
+            color: #211951 !important;
             padding: 12px 28px;
             font-family: var(--font-display);
             font-size: 0.88rem;
@@ -761,7 +762,7 @@
             letter-spacing: 1px;
             cursor: pointer;
             clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-            box-shadow: 0 3px 14px rgba(255,122,0,0.35);
+            box-shadow: 0 3px 14px rgba(21,245,186,0.35);
             transition: all 0.25s;
             text-transform: uppercase;
             display: inline-flex;
@@ -773,9 +774,9 @@
         }
 
         .btn-command:hover {
-            background: linear-gradient(135deg, var(--accent-dark) 0%, #c85a00 100%);
+            background: linear-gradient(135deg, var(--accent-dark) 0%, #0ec08a 100%);
             transform: scale(1.05);
-            box-shadow: 0 6px 22px rgba(255,122,0,0.5);
+            box-shadow: 0 6px 22px rgba(21,245,186,0.5);
         }
 
         .card {
@@ -831,7 +832,7 @@
             border-radius: var(--radius-pill);
             font-size: 0.76rem;
             font-weight: 600;
-            background: rgba(17,85,204,0.12);
+            background: rgba(131,111,255,0.12);
             color: var(--primary);
             border: 1px solid transparent;
         }
@@ -1126,25 +1127,25 @@
         }
 
         .heatmap-cell.level-1 {
-            background: rgba(0,200,120,0.15);
-            border-color: rgba(0,200,120,0.2);
+            background: rgba(21,245,186,0.15);
+            border-color: rgba(21,245,186,0.2);
         }
 
         .heatmap-cell.level-2 {
-            background: rgba(0,200,120,0.25);
-            border-color: rgba(0,200,120,0.35);
+            background: rgba(21,245,186,0.25);
+            border-color: rgba(21,245,186,0.35);
         }
 
         .heatmap-cell.level-3 {
-            background: rgba(0,200,120,0.45);
-            border-color: rgba(0,200,120,0.65);
-            color: #fff;
+            background: rgba(21,245,186,0.45);
+            border-color: rgba(21,245,186,0.65);
+            color: #211951;
         }
 
         .heatmap-cell.level-4 {
             background: var(--secondary);
             border-color: var(--secondary-dark);
-            color: #fff;
+            color: #211951;
             text-shadow: 0 1px 2px rgba(0,0,0,0.25);
         }
 
@@ -1273,7 +1274,7 @@
 
         .timer-type-btn.active {
             background: var(--accent);
-            color: #fff;
+            color: #211951;
             box-shadow: var(--shadow-xs);
         }
 
@@ -1420,8 +1421,8 @@
 
         .tab-btn.active {
             background: var(--accent);
-            color: #fff;
-            box-shadow: 0 2px 8px rgba(255,122,0,0.3);
+            color: #211951;
+            box-shadow: 0 2px 8px rgba(21,245,186,0.3);
         }
 
         .tab-content {
@@ -1486,7 +1487,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(8,15,30,0.92);
+            background: rgba(21,25,81,0.92);
             z-index: 9999;
             display: flex;
             flex-direction: column;
@@ -1507,25 +1508,25 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255,122,0,0.3), rgba(0,200,120,0.2));
+            background: linear-gradient(135deg, rgba(21,245,186,0.3), rgba(131,111,255,0.2));
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            box-shadow: 0 0 36px rgba(255,122,0,0.35);
+            box-shadow: 0 0 36px rgba(21,245,186,0.35);
         }
 
         .focus-brasao {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            filter: drop-shadow(0 0 20px rgba(255,122,0,0.7));
+            filter: drop-shadow(0 0 20px rgba(21,245,186,0.7));
             animation: brasaoPulse 2s ease-in-out infinite;
         }
 
         @keyframes brasaoPulse {
-            0%,100% { filter: drop-shadow(0 0 20px rgba(255,122,0,0.7)); }
-            50% { filter: drop-shadow(0 0 40px rgba(255,122,0,1)); }
+            0%,100% { filter: drop-shadow(0 0 20px rgba(21,245,186,0.7)); }
+            50% { filter: drop-shadow(0 0 40px rgba(21,245,186,1)); }
         }
 
         .focus-fox::after {
@@ -1560,7 +1561,7 @@
             font-weight: 700;
             letter-spacing: 3px;
             color: #fff;
-            text-shadow: 0 0 48px rgba(255,122,0,0.7);
+            text-shadow: 0 0 48px rgba(21,245,186,0.7);
             white-space: nowrap;
             line-height: 1;
         }
@@ -1595,7 +1596,7 @@
         .focus-btn:hover {
             background: var(--accent);
             border-color: var(--accent);
-            box-shadow: 0 0 36px rgba(255,122,0,0.6);
+            box-shadow: 0 0 36px rgba(21,245,186,0.6);
             transform: scale(1.08);
         }
 
@@ -1631,7 +1632,7 @@
         .modal-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(8,15,30,0.55);
+            background: rgba(21,25,81,0.55);
             z-index: 1000;
             display: none;
             align-items: center;
@@ -1815,9 +1816,9 @@
 
         .footer-social a:hover {
             background: var(--secondary);
-            color: #fff;
+            color: #211951;
             transform: translateY(-2px);
-            box-shadow: 0 4px 14px rgba(0,200,120,0.25);
+            box-shadow: 0 4px 14px rgba(21,245,186,0.25);
         }
 
         .footer-bottom {
@@ -1938,7 +1939,8 @@
 
     <div id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="sidebar-header">
-            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/Logo_kcne2w.png" alt="Logotipo VULP+" class="sidebar-brasao" />
+            <!-- NOVA LOGO ATUALIZADA -->
+            <img src="https://res.cloudinary.com/dew6hgzpv/image/upload/Logo_3_iu8mnd.png" alt="Logotipo VULP+" class="sidebar-brasao" />
             <div class="sidebar-greeting" id="sidebarGreeting"></div>
             <button id="closeSidebarBtn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
         </div>
@@ -2057,7 +2059,7 @@
 
             <div class="card" style="text-align:center" id="timerCard">
                 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px"><div style="text-align:left"><label for="disciplinaSelect">Disciplina</label><select id="disciplinaSelect"><option value="">-- Selecione --</option></select></div><div class="timer-type-selector"><button class="timer-type-btn active" data-type="Teoria"><i class="fas fa-book-open"></i> Teoria</button><button class="timer-type-btn" data-type="Questões"><i class="fas fa-question-circle"></i> Questões</button><button class="timer-type-btn" data-type="Revisão"><i class="fas fa-sync-alt"></i> Revisão</button><button class="timer-type-btn" data-type="Pausa"><i class="fas fa-coffee"></i> Pausa</button></div></div>
-                <div class="timer-display" id="timerDisplay">00:00:00</div>
+                <div class="timer-display" id="timerDisplay" aria-live="polite" aria-atomic="true">00:00:00</div>
                 <div style="margin:12px 0;color:var(--accent);font-weight:600"><i class="fas fa-clock"></i> Sessão: <span id="sessionTypeLabel">Teoria</span></div>
                 <div style="margin:8px 0 16px"><button id="focusModeHighlightBtn" class="btn btn-command"><i class="fas fa-expand"></i> Entrar no Modo Foco</button></div>
                 <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap"><button id="timerStart" class="btn btn-accent"><i class="fas fa-play"></i> Iniciar</button><button id="timerPause" class="btn btn-sm"><i class="fas fa-pause"></i> Pausar</button><button id="timerSave" class="btn btn-accent btn-sm"><i class="fas fa-save"></i> Salvar</button><button id="timerReset" class="btn btn-sm"><i class="fas fa-redo"></i> Zerar</button></div>
@@ -2068,7 +2070,7 @@
 
         <div class="tab-content" id="tab-metricas" role="tabpanel">
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-chart-line"></i> Evolução do Desempenho</h2><div class="section-filters"><select class="filter-select" id="chartPeriod"><option value="7">7 dias</option><option value="14">14 dias</option><option value="30">30 dias</option><option value="90">3 meses</option></select></div></div><div class="chart-grid"><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Taxa de Acerto (%)</div><canvas id="accuracyChart" class="chart-canvas"></canvas></div><div class="chart-wrapper"><div style="font-size:0.7rem;color:var(--text-muted);margin-bottom:4px;text-align:center">Questões (Verde: Acertos, Laranja: Erros)</div><canvas id="volumeChart" class="chart-canvas"></canvas><div class="chart-legend"><span><span class="legend-dot" style="background:var(--secondary)"></span> Acertos</span><span><span class="legend-dot" style="background:var(--accent)"></span> Erros</span></div></div></div></section>
-            <div class="chart-grid"><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid"></div></div><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div></div>
+            <div class="chart-grid"><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-calendar-alt"></i> Mapa de Calor Semanal</h2></div><div class="heatmap-labels"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div class="heatmap-grid" id="heatmapGrid" role="grid" aria-label="Mapa de calor de questões na semana"></div></div><div class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-bullseye"></i> Metas de Estudo</h2><button class="btn btn-sm" id="editAllGoalsBtn" style="font-size:0.72rem"><i class="fas fa-edit"></i> Ajustar Metas</button></div><div id="goalsContainer"></div></div></div>
             <section class="card"><div class="section-header"><h2 class="section-title"><i class="fas fa-graduation-cap"></i> Desempenho por Disciplina</h2><div class="section-filters"><input type="text" id="filtroTabela" placeholder="Filtrar disciplinas..." class="filter-select" style="min-width:200px" aria-label="Filtrar disciplinas"><button id="addDisciplinaBtn" class="btn btn-sm btn-primary"><i class="fas fa-plus"></i> Adicionar Disciplina</button></div></div><div class="table-container"><table class="dash-table" id="tabelaDisciplinas"><thead><tr><th data-sort="disciplina">Disciplina <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="certas">Certas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="erradas">Erradas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="total">Total <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="percentual">% Acerto <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th data-sort="status">Status</th><th data-sort="horas">Horas <span class="sort-icon"><i class="fas fa-sort"></i></span></th><th>Ações</th></tr></thead><tbody id="tabelaDisciplinasBody"></tbody></table></div></section>
         </div>
 
@@ -2089,7 +2091,7 @@
         </div>
         <div class="focus-ring-container">
             <canvas id="focusRingCanvas" width="240" height="240"></canvas>
-            <div class="focus-timer" id="focusTimerDisplay">00:00:00</div>
+            <div class="focus-timer" id="focusTimerDisplay" aria-live="polite">00:00:00</div>
         </div>
         <div class="focus-session-label"><i class="fas fa-clock"></i> <span id="focusSessionLabel">Teoria</span> · Ciclo <span id="focusCycleCount" style="color:var(--accent);font-weight:700;font-size:1.4rem">1</span></div>
         <div class="focus-controls">
@@ -2185,6 +2187,28 @@
                         return;
                     }
                     if (e.key !== 'Tab') return;
+                    if (e.shiftKey) {
+                        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+                    } else {
+                        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+                    }
+                });
+            }
+
+            /* ========== SIDEBAR FOCUS TRAP (NOVO) ========== */
+            function trapFocusSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                if (!sidebar) return;
+                sidebar.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        document.getElementById('closeSidebarBtn').click();
+                        return;
+                    }
+                    if (e.key !== 'Tab') return;
+                    const focusable = sidebar.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                    if (focusable.length === 0) return;
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
                     if (e.shiftKey) {
                         if (document.activeElement === first) { e.preventDefault(); last.focus(); }
                     } else {
@@ -2291,7 +2315,7 @@
             /* ========== COMUNIDADE ========== */
             const nicknames = ["ConcurseiroRaiz", "FocoNaPRF", "FiscalMaster", "AprovadaTRT", "MissãoSEFAZ", "RumoPF", "GuerreiraINSS", "DeltaPC", "MetaReceita", "TáticaTJ", "ElitePC", "RetaFinalPF"];
             const activities = ["acertou 15 questões seguidas de Direito Constitucional", "finalizou a meta diária", "subiu para Ouro II", "recebeu ajuda em Raciocínio Lógico", "entrou na sala de estudos da PF", "iniciou simulado da PRF", "completou 3h de foco hoje", "desbloqueou a conquista Mestre da Disciplina", "recebeu ajuda em Direito Penal", "finalizou revisão de Informática"];
-            const avatarColors = ["#F97316", "#3B82F6", "#8B5CF6", "#EC4899", "#14B8A6", "#EAB308", "#6366F1", "#22C55E"];
+            const avatarColors = ["#15F5BA", "#836FFF", "#FF6B6B", "#FFB347", "#4ECDC4", "#FFD166", "#6C5CE7", "#00D2FF"];
 
             function getRandomItem(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
@@ -2301,7 +2325,7 @@
                     color = getRandomItem(avatarColors);
                 const item = document.createElement("div");
                 item.className = "feed-item";
-                item.innerHTML = `<div class="feed-user"><div class="feed-avatar" style="background:${escapeHtml(color)};color:white;">${escapeHtml(nickname.charAt(0))}</div><div class="feed-text"><strong>${escapeHtml(nickname)}</strong> ${escapeHtml(activity)}</div></div><span class="feed-time">agora</span>`;
+                item.innerHTML = `<div class="feed-user"><div class="feed-avatar" style="background:${escapeHtml(color)};color:#211951;">${escapeHtml(nickname.charAt(0))}</div><div class="feed-text"><strong>${escapeHtml(nickname)}</strong> ${escapeHtml(activity)}</div></div><span class="feed-time">agora</span>`;
                 return item;
             }
             let feedIntervalId;
@@ -2460,6 +2484,8 @@
                 sidebar.classList.remove('open');
                 document.getElementById('sidebarOverlay').classList.remove('active');
             });
+            // Inicializa trap de foco na sidebar
+            trapFocusSidebar();
 
             /* ========== CRONÔMETRO ========== */
             let timerStartTime = null, timerAccumulated = 0, timerInterval = null, pomodoroActive = true, pomodoroCount = 1, focusModeActive = false, ciclo30min = 0, ultimoCicloAlarme = 0;
@@ -2497,7 +2523,7 @@
                     const progress = ciclo30min / 1800;
                     ctx.clearRect(0, 0, w, h);
                     ctx.beginPath(); ctx.arc(cx, cy, r, 0, 2 * Math.PI); ctx.strokeStyle = 'rgba(255,255,255,0.15)'; ctx.lineWidth = 14; ctx.stroke();
-                    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
+                    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#15F5BA';
                     const grad = ctx.createLinearGradient(0, 0, w, h); grad.addColorStop(0, accent); grad.addColorStop(1, '#ffffff');
                     ctx.beginPath(); ctx.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + (2 * Math.PI * progress)); ctx.strokeStyle = grad; ctx.lineWidth = 14; ctx.lineCap = 'round'; ctx.stroke();
                 });
@@ -2720,12 +2746,12 @@
                     const { jsPDF } = window.jspdf;
                     const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
                     const m = computeMetrics();
-                    doc.setFillColor(255, 122, 0); doc.rect(0, 0, 210, 30, 'F');
-                    doc.setTextColor(255, 255, 255); doc.setFontSize(16); doc.setFont('helvetica', 'bold');
+                    doc.setFillColor(21, 245, 186); doc.rect(0, 0, 210, 30, 'F');
+                    doc.setTextColor(33, 25, 81); doc.setFontSize(16); doc.setFont('helvetica', 'bold');
                     doc.text('VULPS+ · Sala de Operações - QG', 105, 15, { align: 'center' });
                     doc.setFontSize(10); doc.text(`Gerado em: ${new Date().toLocaleString('pt-BR')}`, 105, 22, { align: 'center' });
                     let y = 38;
-                    doc.setTextColor(15, 23, 42); doc.setFontSize(14); doc.text('Resumo', 15, y); y += 8;
+                    doc.setTextColor(33, 25, 81); doc.setFontSize(14); doc.text('Resumo', 15, y); y += 8;
                     doc.setFontSize(10);
                     [`Acertos: ${m.correct}`, `Erros: ${m.wrong}`, `Tempo: ${formatHours(m.totalTime)}`, `Streak: ${m.streak}`, `Taxa: ${m.correctPercent}%`, `Hoje: ${m.todayCount}`].forEach(k => { doc.text('• ' + k, 20, y); y += 6; });
                     if (isComplete) {
@@ -2734,10 +2760,10 @@
                             const d = getDisciplina(n); const t = d.certas + d.erradas; const p = t ? ((d.certas / t) * 100).toFixed(1) : 0;
                             return [n, String(d.certas), String(d.erradas), String(t), p + '%', getStatus(parseFloat(p)), formatHours(d.horasMinutos || 0)];
                         });
-                        if (td.length > 0) doc.autoTable({ startY: y, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '%', 'Status', 'Horas']], body: td, headStyles: { fillColor: [255, 122, 0], textColor: 255, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8 }, alternateRowStyles: { fillColor: [255, 245, 235] } });
+                        if (td.length > 0) doc.autoTable({ startY: y, head: [['Disciplina', 'Certas', 'Erradas', 'Total', '%', 'Status', 'Horas']], body: td, headStyles: { fillColor: [21, 245, 186], textColor: 33, fontStyle: 'bold', fontSize: 8 }, bodyStyles: { fontSize: 8 }, alternateRowStyles: { fillColor: [240, 243, 255] } });
                     }
                     const pc = doc.getNumberOfPages();
-                    for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(148, 163, 184); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }); }
+                    for (let i = 1; i <= pc; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(140, 131, 176); doc.text('VULP+', 105, 285, { align: 'center' }); doc.text(`Página ${i} de ${pc}`, 105, 290, { align: 'center' }); }
                     doc.save(`vulps_${new Date().toLocaleDateString('pt-BR').replace(/\//g, '-')}.pdf`);
                     toast('PDF exportado!');
                 } catch (e) { toast('Erro ao gerar PDF.', 'error'); }
@@ -2832,9 +2858,9 @@
                 ctx.lineWidth = 14;
                 ctx.stroke();
 
-                const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878';
-                const dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--danger').trim() || '#ef4444';
-                const bgCard = getComputedStyle(document.documentElement).getPropertyValue('--bg-card').trim() || '#1a2332';
+                const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#15F5BA';
+                const dangerColor = getComputedStyle(document.documentElement).getPropertyValue('--danger').trim() || '#ff4d6a';
+                const bgCard = getComputedStyle(document.documentElement).getPropertyValue('--bg-card').trim() || '#2a1f5e';
 
                 // Erros first (red), then acertos (green) over it
                 const startAngle = -Math.PI / 2;
@@ -2920,7 +2946,7 @@
                     else if (count >= 8) level = 'level-3';
                     else if (count >= 4) level = 'level-2';
                     else if (count >= 1) level = 'level-1';
-                    html += `<div class="heatmap-cell ${level} tooltip" tabindex="0" role="button" aria-label="Dia ${d.getDate()}: ${count} questões">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`;
+                    html += `<div class="heatmap-cell ${level} tooltip" role="gridcell" tabindex="0" aria-label="Dia ${d.getDate()}: ${count} questões">${d.getDate()}<span class="tooltip-text">${count} questão${count!==1?'ões':''}</span></div>`;
                 }
                 grid.innerHTML = html;
                 attachHeatmapListeners();
@@ -3006,7 +3032,7 @@
                 const pad = { top: 20, right: 20, bottom: 50, left: 55 };
                 const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
                 ctx.clearRect(0, 0, W, H);
-                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
+                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#15F5BA';
                 const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
                 ctx.fillStyle = textColor;
                 ctx.font = '10px Inter,sans-serif';
@@ -3062,8 +3088,8 @@
                 const pad = { top: 20, right: 20, bottom: 50, left: 55 };
                 const cW = W - pad.left - pad.right, cH = H - pad.top - pad.bottom;
                 ctx.clearRect(0, 0, W, H);
-                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#ff7a00';
-                const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#00c878';
+                const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#15F5BA';
+                const secondary = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#15F5BA';
                 const textColor = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#888';
                 if (data.length === 0) {
                     ctx.fillStyle = textColor;
